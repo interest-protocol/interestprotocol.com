@@ -24,19 +24,20 @@ const Strategy: FC<StrategyProps> = ({
       p="0"
       m="0"
       height="8rem"
-      bg="#9CA3AF1A"
       variant="outline"
       width={['100%', '16.44rem']}
+      borderRadius="0.5rem"
       nFocus={{
         boxShadow: 'none',
         borderColor: '1px solid #B4C5FF1A',
         '& > div > div:first-child > div:first-child': {
-          opacity: '1',
+          filter: 'grayscale(0%)',
         },
       }}
       nHover={{
         '& > div > div:first-child > div:first-child': {
-          opacity: '1',
+          filter: 'grayscale(0%)',
+          transition: 'filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
         },
       }}
     >
@@ -50,14 +51,15 @@ const Strategy: FC<StrategyProps> = ({
         <Box
           flex="1"
           p="0.5rem"
+          bg="#1F2430"
           width="100%"
           gap="0.5rem"
           display="flex"
           alignItems="center"
           flexDirection="column"
           justifyContent="center"
-          borderTopLeftRadius="0.75rem"
-          borderTopRightRadius="0.75rem"
+          borderTopLeftRadius="0.5rem"
+          borderTopRightRadius="0.5rem"
         >
           <Box
             display="flex"
@@ -65,7 +67,8 @@ const Strategy: FC<StrategyProps> = ({
             alignItems="center"
             justifyContent="center"
             position="relative"
-            opacity={selected ? '1' : '0.3'}
+            transition="filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+            filter={selected ? 'grayscale(0%)' : 'grayscale(100%)'}
           >
             <Box
               position="relative"
@@ -136,6 +139,7 @@ const Strategy: FC<StrategyProps> = ({
             </Box>
           ) : null}
         </Box>
+
         <Box
           width="100%"
           height="3rem"

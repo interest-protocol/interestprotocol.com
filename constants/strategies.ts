@@ -1,22 +1,24 @@
-export const strategies = [
+export const STRATEGIES = [
   {
+    id: 'strategy-1',
     name: 'Memecoins',
     fee: 1,
-    symbol: 'MEME',
+    symbol: 'MOVE',
     iconUrl1: '/android-icon-36x36.png',
     iconUrl2: '/android-icon-36x36.png',
   },
   {
+    id: 'strategy-1',
     name: 'Volatile Pair',
-    fee: undefined,
-    symbol: 'VOL',
+    symbol: 'MOVE',
     iconUrl1: '/android-icon-36x36.png',
     iconUrl2: '/android-icon-36x36.png',
   },
   {
+    id: 'strategy-1',
     name: 'Low Risk Stable Pair',
     fee: 0.05,
-    symbol: 'STBL',
+    symbol: 'MOVE',
     iconUrl1: '/android-icon-36x36.png',
     iconUrl2: '/android-icon-36x36.png',
   },

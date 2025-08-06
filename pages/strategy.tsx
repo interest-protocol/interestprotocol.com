@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 
 import { SEO } from '@/components';
 import Strategy from '@/components/strategy';
-import { strategies } from '@/constants/strategies';
+import { STRATEGIES } from '@/constants/strategies';
 
 const StrategyPage: NextPage = () => {
   return (
@@ -17,7 +17,7 @@ const StrategyPage: NextPage = () => {
         justifyContent="space-between"
         flexDirection={['column', 'row']}
       >
-        {strategies.map((strategy) => (
+        {STRATEGIES.map((strategy) => (
           <Strategy key={v4()} {...strategy} isLoading />
         ))}
       </Box>

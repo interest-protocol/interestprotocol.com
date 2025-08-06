@@ -36,7 +36,9 @@ const TokenIcon: FC<TokenIconProps> = ({
     `${network}-${symbol}`,
     async () => {
       if (icon) return null;
+
       if (url) return url;
+
       return null;
     }
   );
@@ -99,7 +101,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             overflow="hidden"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
-            borderRadius={rounded ? 'full' : 'xs'}
+            borderRadius="full"
             border="1px solid #FFFFFF"
           >
             {loading && (
@@ -113,13 +115,6 @@ const TokenIcon: FC<TokenIconProps> = ({
               src={icon.url}
               onLoad={stopLoad}
               onError={errorOnLoad}
-              style={{
-                objectFit: 'cover',
-                width: `calc(${size} * 1.66)`,
-                height: `calc(${size} * 1.66)`,
-                position: 'absolute',
-                borderRadius: rounded ? '50%' : '0.25rem',
-              }}
             />
           </Box>
         </Box>
@@ -130,6 +125,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             overflow="hidden"
             position="absolute"
             borderRadius="full"
+            border="1px solid #FFFFFF"
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
           </Box>
@@ -230,7 +226,6 @@ const TokenIcon: FC<TokenIconProps> = ({
                 width: `calc(${size} * 1.66)`,
                 height: `calc(${size} * 1.66)`,
                 position: 'absolute',
-                borderRadius: rounded ? '50%' : '0.25rem',
               }}
             />
           </Box>
@@ -265,7 +260,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius={rounded ? 'full' : 'xs'}
+          borderRadius="full"
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Box
@@ -292,8 +287,7 @@ const TokenIcon: FC<TokenIconProps> = ({
                   width: `calc(${size} * 1.66)`,
                   height: `calc(${size} * 1.66)`,
                   position: 'absolute',
-                  border: `${withBorder ? '1px solid #FFFFFF' : 'none'}`,
-                  borderRadius: rounded ? '50%' : '0.25rem',
+                  border: `${withBorder ? '1px solid #FFFFFFF' : 'none'}`,
                 }}
               />
             )}
