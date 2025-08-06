@@ -65,7 +65,7 @@ const Strategy: FC<StrategyProps> = ({
             alignItems="center"
             justifyContent="center"
             position="relative"
-            opacity={selected ? '1' : '0.2'}
+            opacity={selected ? '1' : '0.3'}
           >
             <Box
               position="relative"
