@@ -15,8 +15,10 @@ const Strategy: FC<StrategyProps> = ({
   iconUrl1,
   iconUrl2,
   selected,
+  isLoading,
 }) => {
   const network = useNetwork<Network>();
+
   return (
     <Button
       p="0"
@@ -63,7 +65,7 @@ const Strategy: FC<StrategyProps> = ({
             alignItems="center"
             justifyContent="center"
             position="relative"
-            opacity={selected ? '1' : '0.4'}
+            opacity={selected ? '1' : '0.2'}
           >
             <Box
               position="relative"
@@ -73,7 +75,6 @@ const Strategy: FC<StrategyProps> = ({
             >
               <Box mr="-0.3rem" zIndex="1">
                 <TokenIcon
-                  withBg
                   rounded
                   url={iconUrl1}
                   size="1.129rem"
@@ -92,43 +93,48 @@ const Strategy: FC<StrategyProps> = ({
               </Box>
             </Box>
           </Box>
+
           {fee ? (
             <Box display="flex" fontFamily="Inter" alignItems="center">
-              <Typography
-                size="large"
-                color="#9CA3AF"
-                variant="label"
-                fontWeight="400"
-                fontFamily="Inter"
-                fontSize="0.875rem"
-              >
-                Fee
-              </Typography>
-              <Typography
-                ml="0.2rem"
-                as="span"
-                size="large"
-                variant="label"
-                fontWeight="400"
-                fontFamily="Inter"
-                color={fee >= 1 ? '#FFFFFF' : '#9CA3AF'}
-              >
-                {fee}
-              </Typography>
-              <Typography
-                as="span"
-                size="large"
-                variant="label"
-                color="#FFFFFF"
-                fontWeight="400"
-                fontFamily="Inter"
-              >
-                %
-              </Typography>
+              {isLoading ? (
+                <>
+                  <Typography
+                    size="large"
+                    color="#9CA3AF"
+                    variant="label"
+                    fontWeight="400"
+                    fontFamily="Inter"
+                    fontSize="0.875rem"
+                  >
+                    Fee
+                  </Typography>
+                  <Typography
+                    ml="0.2rem"
+                    as="span"
+                    size="large"
+                    variant="label"
+                    fontWeight="400"
+                    fontFamily="Inter"
+                    color={fee >= 1 ? '#FFFFFF' : '#9CA3AF'}
+                  >
+                    {fee}
+                  </Typography>
+                  <Typography
+                    as="span"
+                    size="large"
+                    variant="label"
+                    color="#FFFFFF"
+                    fontWeight="400"
+                    fontFamily="Inter"
+                  >
+                    %
+                  </Typography>
+                </>
+              ) : (
+                <Skeleton width="6rem" height="0.5rem" />
+              )}
             </Box>
-          ) : (
-            <Skeleton width="4rem" height="0.5rem" />
-          )}
+          ) : null}
         </Box>
         <Box
           width="100%"
@@ -142,7 +148,7 @@ const Strategy: FC<StrategyProps> = ({
           borderBottomLeftRadius="0.75rem"
           borderBottomRightRadius="0.75rem"
         >
-          {name ? (
+          {isLoading ? (
             <Typography
               size="large"
               variant="label"

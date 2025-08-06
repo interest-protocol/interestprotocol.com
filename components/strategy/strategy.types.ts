@@ -5,4 +5,5 @@ export interface StrategyProps {
   iconUrl1: string;
   iconUrl2: string;
   selected?: boolean;
+  isLoading: boolean;
 }
