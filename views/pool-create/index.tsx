@@ -20,12 +20,12 @@ const PoolCreate: FC = () => {
   return (
     <Layout>
       <Box
-        display="flex"
-        width="100%"
-        maxWidth="54rem"
-        height="39rem"
-        flexDirection="column"
         mx="auto"
+        width="100%"
+        display="flex"
+        height="39rem"
+        maxWidth="54rem"
+        flexDirection="column"
       >
         <Box
           p="1.5rem"
@@ -45,7 +45,7 @@ const PoolCreate: FC = () => {
             alignItems="center"
             gap={['1rem', '0.75rem']}
             justifyContent="space-between"
-            gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 27.89rem']}
+            gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 27.6875rem']}
           >
             <Box gap="0.5rem" display="flex" flexDirection="column">
               <Typography
@@ -78,10 +78,11 @@ const PoolCreate: FC = () => {
           </Box>
 
           <Box
-            display="grid"
             width="100%"
+            display="grid"
+            justifyContent="space-between"
             gap={['0.25rem', '0.25rem', '0.75rem']}
-            gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
+            gridTemplateColumns={['1fr', '1fr', 'repeat(3, minmax(0, 16rem))']}
           >
             {STRATEGIES.map((strategy) => (
               <Strategy

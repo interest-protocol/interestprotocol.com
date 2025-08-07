@@ -4,6 +4,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 
 import { formatMoney } from '@/utils';
+import { truncate } from '@/utils/truncate';
 import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
 const PoolPrice: FC = () => {
@@ -13,6 +14,8 @@ const PoolPrice: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [poolTokenPrice, setPoolTokenPrice] = useState<number>(0);
   const [poolTokenPriceUSD, setPoolTokenPriceUSD] = useState<number>(0);
+
+  const poolName = `${truncate(tokens?.[0]?.symbol || '')}/${truncate(tokens?.[1]?.symbol || '')}`;
 
   useEffect(() => {
     const fetchPoolPrice = async () => {
@@ -60,70 +63,11 @@ const PoolPrice: FC = () => {
           variant="body"
           color="#9CA3AF"
           fontWeight="400"
+          fontSize="0.875rem"
           lineHeight="1rem"
           fontFamily="Inter"
-          fontSize="0.875rem"
         >
-          {isLoading ? (
-            <Skeleton width={60} height={14} />
-          ) : (
-            <Typography
-              size="medium"
-              variant="body"
-              color="#9CA3AF"
-              fontWeight="400"
-              lineHeight="1rem"
-              fontFamily="Inter"
-              fontSize="0.875rem"
-            >
-              {isLoading ? (
-                <Skeleton width={60} height={14} />
-              ) : (
-                <Box
-                  as="span"
-                  maxWidth="100%"
-                  overflow="hidden"
-                  display="inline-flex"
-                  alignItems="center"
-                >
-                  <Typography
-                    as="span"
-                    size="medium"
-                    variant="body"
-                    maxWidth="12ch"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    display="inline-block"
-                  >
-                    {tokens?.[0]?.name}
-                  </Typography>
-
-                  <Typography
-                    as="span"
-                    size="medium"
-                    variant="body"
-                    display="inline-block"
-                  >
-                    /
-                  </Typography>
-
-                  <Typography
-                    as="span"
-                    size="medium"
-                    variant="body"
-                    maxWidth="12ch"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    display="inline-block"
-                  >
-                    {tokens?.[1]?.name}
-                  </Typography>
-                </Box>
-              )}
-            </Typography>
-          )}
+          {isLoading ? <Skeleton width={60} height={14} /> : poolName}
         </Typography>
       </Box>
 

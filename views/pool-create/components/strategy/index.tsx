@@ -21,12 +21,10 @@ const Strategy: FC<StrategyProps> = ({
 
   return (
     <Box
-      width="100%"
       cursor="pointer"
       transition="0.3s"
       onClick={onSelect}
       borderRadius="0.75rem"
-      maxWidth={['100%', '100%', '16rem']}
       bg={selected ? '#212838' : '#1f2430'}
       nHover={{
         '& > div:first-child > div:first-child': {
