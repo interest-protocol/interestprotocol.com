@@ -52,7 +52,7 @@ const StrategyView: FC = () => {
                 size="medium"
                 variant="body"
                 fontSize="1rem"
-                color="#FFFFFF"
+                color="#E5E7EB"
                 fontWeight="600"
                 lineHeight="1rem"
                 fontFamily="Inter"
