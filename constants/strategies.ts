@@ -8,14 +8,14 @@ export const STRATEGIES = [
     iconUrl2: '/android-icon-36x36.png',
   },
   {
-    id: 'strategy-1',
+    id: 'strategy-2',
     name: 'Volatile Pair',
     symbol: 'MOVE',
     iconUrl1: '/android-icon-36x36.png',
     iconUrl2: '/android-icon-36x36.png',
   },
   {
-    id: 'strategy-1',
+    id: 'strategy-3',
     name: 'Low Risk Stable Pair',
     fee: 0.05,
     symbol: 'MOVE',

@@ -6,6 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 
 import TokenIcon from '../token-icon';
+import LabelText from './components/label-text';
 import { StrategyProps } from './strategy.types';
 
 const Strategy: FC<StrategyProps> = ({
@@ -16,6 +17,7 @@ const Strategy: FC<StrategyProps> = ({
   iconUrl2,
   selected,
   isLoading,
+  onSelect,
 }) => {
   const network = useNetwork<Network>();
 
@@ -23,35 +25,36 @@ const Strategy: FC<StrategyProps> = ({
     <Button
       p="0"
       m="0"
+      tabIndex={0}
       height="8rem"
       variant="outline"
-      width={['100%', '16.44rem']}
+      onClick={onSelect}
       borderRadius="0.5rem"
-      nFocus={{
-        boxShadow: 'none',
-        borderColor: '1px solid #B4C5FF1A',
-        '& > div > div:first-child > div:first-child': {
-          filter: 'grayscale(0%)',
-        },
-      }}
+      width={['100%', '16.44rem']}
       nHover={{
         '& > div > div:first-child > div:first-child': {
           filter: 'grayscale(0%)',
           transition: 'filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
         },
       }}
+      nFocus={{
+        boxShadow: 'none',
+        borderColor: selected ? '#B4C5FF' : '1px solid transparent',
+      }}
+      border={selected ? '1px solid #B4C5FF' : '1px solid transparent'}
     >
       <Box
         width="100%"
         height="100%"
         display="flex"
+        pointerEvents="none"
         flexDirection="column"
         justifyContent="space-between"
       >
         <Box
           flex="1"
           p="0.5rem"
-          bg="#1F2430"
+          bg={selected ? '#B4C5FF1A' : '#9CA31F1A'}
           width="100%"
           gap="0.5rem"
           display="flex"
@@ -71,8 +74,8 @@ const Strategy: FC<StrategyProps> = ({
             filter={selected ? 'grayscale(0%)' : 'grayscale(100%)'}
           >
             <Box
-              position="relative"
               display="flex"
+              position="relative"
               alignItems="center"
               justifyContent="center"
             >
@@ -97,47 +100,17 @@ const Strategy: FC<StrategyProps> = ({
             </Box>
           </Box>
 
-          {fee ? (
+          {fee && !isLoading && (
             <Box display="flex" fontFamily="Inter" alignItems="center">
-              {isLoading ? (
-                <>
-                  <Typography
-                    size="large"
-                    color="#9CA3AF"
-                    variant="label"
-                    fontWeight="400"
-                    fontFamily="Inter"
-                    fontSize="0.875rem"
-                  >
-                    Fee
-                  </Typography>
-                  <Typography
-                    ml="0.2rem"
-                    as="span"
-                    size="large"
-                    variant="label"
-                    fontWeight="400"
-                    fontFamily="Inter"
-                    color={fee >= 1 ? '#FFFFFF' : '#9CA3AF'}
-                  >
-                    {fee}
-                  </Typography>
-                  <Typography
-                    as="span"
-                    size="large"
-                    variant="label"
-                    color="#FFFFFF"
-                    fontWeight="400"
-                    fontFamily="Inter"
-                  >
-                    %
-                  </Typography>
-                </>
-              ) : (
-                <Skeleton width="6rem" height="0.5rem" />
-              )}
+              <LabelText>Fee</LabelText>
+              <LabelText color={fee >= 1 ? '#FFFFFF' : '#9CA3AF'} ml="0.2rem">
+                {fee}
+              </LabelText>
+              <LabelText color="#FFFFFF">%</LabelText>
             </Box>
-          ) : null}
+          )}
+
+          {fee && isLoading && <Skeleton width="6rem" height="0.5rem" />}
         </Box>
 
         <Box
@@ -153,6 +126,8 @@ const Strategy: FC<StrategyProps> = ({
           borderBottomRightRadius="0.75rem"
         >
           {isLoading ? (
+            <Skeleton width="6rem" height="1rem" />
+          ) : (
             <Typography
               size="large"
               variant="label"
@@ -164,8 +139,6 @@ const Strategy: FC<StrategyProps> = ({
             >
               {name}
             </Typography>
-          ) : (
-            <Skeleton width="6rem" height="1rem" />
           )}
         </Box>
       </Box>

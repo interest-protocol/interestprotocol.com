@@ -6,4 +6,5 @@ export interface StrategyProps {
   iconUrl2: string;
   selected?: boolean;
   isLoading: boolean;
+  onSelect: () => void;
 }
