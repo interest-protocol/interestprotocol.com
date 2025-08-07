@@ -3,12 +3,12 @@ import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 
 import Layout from '@/components/layout';
-import PoolPrice from '@/components/pool-price';
-import Strategy from '@/components/strategy';
+import PoolPrice from '@/views/pool-create/components/pool-price';
 
+import Strategy from './components/strategy';
 import { STRATEGIES } from './strategies.data';
 
-const StrategyView: FC = () => {
+const PoolCreate: FC = () => {
   const [selectedStrategyId, setSelectedStrategyId] = useState<string | null>(
     null
   );
@@ -28,6 +28,8 @@ const StrategyView: FC = () => {
         mx="auto"
       >
         <Box
+          p="1.5rem"
+          gap="1rem"
           width="100%"
           height="100%"
           display="flex"
@@ -36,8 +38,6 @@ const StrategyView: FC = () => {
           flexDirection="column"
           borderRadius="0.75rem"
           justifyContent="flex-end"
-          p="1.5rem"
-          gap="1rem"
         >
           <Box
             width="100%"
@@ -45,7 +45,7 @@ const StrategyView: FC = () => {
             alignItems="center"
             gap={['1rem', '0.75rem']}
             justifyContent="space-between"
-            gridTemplateColumns={['1fr', '1fr', '1fr 27.89rem']}
+            gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 27.89rem']}
           >
             <Box gap="0.5rem" display="flex" flexDirection="column">
               <Typography
@@ -74,15 +74,7 @@ const StrategyView: FC = () => {
               </Typography>
             </Box>
 
-            <PoolPrice
-              tokenPair={{
-                tokenA: 'MOVE',
-                tokenB: 'USDT',
-              }}
-              priceTokenPair={0.0032}
-              poolTokenPriceUSD={0.5}
-              isLoading={false}
-            />
+            <PoolPrice />
           </Box>
 
           <Box
@@ -107,4 +99,4 @@ const StrategyView: FC = () => {
   );
 };
 
-export default StrategyView;
+export default PoolCreate;

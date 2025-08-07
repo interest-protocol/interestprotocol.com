@@ -4,9 +4,9 @@ import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
+import { TokenIcon } from '@/components';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 
-import TokenIcon from '../token-icon';
 import { StrategyProps } from './strategy.types';
 
 const Strategy: FC<StrategyProps> = ({
