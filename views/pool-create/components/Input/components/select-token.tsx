@@ -89,6 +89,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
       bg={isTokenWithoutSymbol ? '#B4C5FF' : '#030712'}
       pl={isTokenWithoutSymbol ? '0.75rem' : '0'}
       pr="0.75rem"
+      nFocus={{ bg: '#B4C5FF', color: '#002A78' }}
       nHover={{ ...(isTokenWithoutSymbol ? { bg: '#B4C5FF' } : {}) }}
       PrefixIcon={
         !isTokenWithoutSymbol && currentSymbol ? (

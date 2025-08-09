@@ -28,10 +28,15 @@ const Input: FC<InputProps> = ({ index }) => {
       p="1rem"
       gap="0.5rem"
       display="flex"
-      bg="#9CA3AF1A"
       height="6.375rem"
       flexDirection="column"
       borderRadius="0.75rem"
+      bg={index === 0 && token?.type && isEmpty ? '#EF44441A' : '#9CA3AF1A'}
+      border={
+        index === 0 && token?.type && isEmpty
+          ? '1px solid #EF44441A'
+          : undefined
+      }
     >
       <Box
         gap="0.5rem"
