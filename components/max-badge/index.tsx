@@ -1,7 +1,7 @@
 import { Button, Typography } from '@interest-protocol/ui-kit';
 import { FC } from 'react';
 
-import { MaxBadgeProps } from './input.types';
+import { MaxBadgeProps } from './max-badge.types';
 
 export const MaxBadge: FC<MaxBadgeProps> = ({ handleMax }) => (
   <Button

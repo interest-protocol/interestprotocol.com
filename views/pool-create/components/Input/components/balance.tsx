@@ -8,15 +8,16 @@ import SubtractBox from '@/components/svg/subtract-box';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
+import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
-import { InputProps } from './input.types';
+import { InputProps } from '../input.types';
 
-const Balance: FC<InputProps> = ({ label }) => {
+const Balance: FC<InputProps> = ({ index }) => {
   const { coinsMap, loading } = useCoins();
-  const { control, setValue, getValues } = useFormContext();
+  const { control, setValue } = useFormContext<CreatePoolForm>();
 
-  const type = useWatch({ control, name: `${label}.type` });
-  const decimals = useWatch({ control, name: `${label}.decimals` });
+  const type = useWatch({ control, name: `tokens.${index}.type` });
+  const decimals = useWatch({ control, name: `tokens.${index}.decimals` });
 
   if (!type)
     return (
@@ -47,71 +48,22 @@ const Balance: FC<InputProps> = ({ label }) => {
   const numericBalance = FixedPointMath.toNumber(balance, decimals);
 
   const handleMax = () => {
-    if (label === 'to') return;
-
     const value = balance.minus(
       FixedPointMath.toBigNumber(isAptos(type) ? 0.01 : 0)
     );
 
     if (isAptos(type) && !value.isPositive()) {
-      setValue('from.valueBN', ZERO_BIG_NUMBER);
-      setValue('from.value', '0');
+      setValue(`tokens.${index}.valueBN`, ZERO_BIG_NUMBER);
+      setValue(`tokens.${index}.value`, '0');
       return;
     }
 
-    if (getValues('focus')) setValue('focus', false);
-
-    setValue('slider', {});
-
     setValue(
-      `${label}.value`,
+      `tokens.${index}.value`,
       FixedPointMath.toNumber(value, decimals).toString()
     );
-
-    setValue('focus', false);
-
-    setValue(`${label}.valueBN`, value);
+    setValue(`tokens.${index}.valueBN`, value);
   };
-
-  if (label === 'to')
-    return (
-      <Box display="flex" gap="xs" alignItems="center">
-        <Box display={['none', 'block']} width="1.38875rem" height="1.25rem">
-          <SubtractBox
-            maxHeight="100%"
-            maxWidth="100%"
-            width="100%"
-            height="100%"
-          />
-        </Box>
-        <Typography
-          size="small"
-          variant="body"
-          color="#D1D5DB"
-          fontWeight="400"
-          fontSize="0.75rem"
-          fontFamily="Inter"
-          whiteSpace="nowrap"
-        >
-          {type
-            ? `${formatMoney(FixedPointMath.toNumber(balance, decimals))}`
-            : '0'}
-        </Typography>
-        {loading && (
-          <Box
-            mx="xs"
-            mt="-1.7rem"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Box position="absolute" justifySelf="flex-end">
-              <ProgressIndicator variant="loading" size={12} />
-            </Box>
-          </Box>
-        )}
-      </Box>
-    );
 
   return (
     <Box display="flex" alignItems="center" gap="0.5rem" onClick={handleMax}>
@@ -140,7 +92,6 @@ const Balance: FC<InputProps> = ({ label }) => {
           : '0.0000'}
       </Typography>
       <MaxBadge handleMax={handleMax} />
-
       {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
         <Box
           mx="xs"

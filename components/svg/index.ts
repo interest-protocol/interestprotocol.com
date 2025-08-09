@@ -1,4 +1,5 @@
 export { default as ActivitySVG } from './activity';
+export { default as AlertSVG } from './alert';
 export { default as ArrowDownSVG } from './arrow-down';
 export { default as ArrowLeftSVG } from './arrow-left';
 export { default as AssetsSVG } from './assets';

@@ -5,6 +5,7 @@ import { v4 } from 'uuid';
 import Layout from '@/components/layout';
 import PoolPrice from '@/views/pool-create/components/pool-price';
 
+import Input from './components/Input';
 import Strategy from './components/strategy';
 import { STRATEGIES } from './strategies.data';
 
@@ -34,11 +35,34 @@ const PoolCreate: FC = () => {
           height="100%"
           display="flex"
           bg="#9CA3AF1A"
-          alignItems="center"
           flexDirection="column"
           borderRadius="0.75rem"
-          justifyContent="flex-end"
         >
+          <Box gap="1rem" display="flex" flexDirection="column">
+            <Typography
+              size="medium"
+              variant="body"
+              fontSize="1rem"
+              color="#E5E7EB"
+              fontWeight="600"
+              lineHeight="1rem"
+              fontFamily="Inter"
+            >
+              Select token pair and enter the initial amount
+            </Typography>
+
+            <Box
+              width="100%"
+              display="grid"
+              alignItems="center"
+              gap={['1rem', '0.75rem']}
+              justifyContent="space-between"
+              gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
+            >
+              <Input index={0} />
+              <Input index={1} />
+            </Box>
+          </Box>
           <Box
             width="100%"
             display="grid"

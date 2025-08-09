@@ -1,3 +1,3 @@
 export interface InputProps {
-  label: 'from' | 'to';
+  index: number;
 }
