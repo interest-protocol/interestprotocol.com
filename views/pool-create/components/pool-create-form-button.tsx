@@ -19,6 +19,7 @@ const PoolCreateFormButton: FC = () => {
 
   return (
     <Box
+      mt="0.5rem"
       gap="1.5rem"
       display="flex"
       alignItems="center"

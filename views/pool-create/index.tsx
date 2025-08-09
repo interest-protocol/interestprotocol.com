@@ -17,6 +17,7 @@ const PoolCreate: FC = () => {
   const { control } = useFormContext<CreatePoolForm>();
 
   const tokens = useWatch({ control, name: 'tokens' });
+
   const isFirstTokenEmpty =
     tokens?.[0]?.type &&
     (!tokens[0].value || isNaN(+tokens[0].value) || +tokens[0].value <= 0);
@@ -52,6 +53,7 @@ const PoolCreate: FC = () => {
           bg="#9CA3AF1A"
           flexDirection="column"
           borderRadius="0.75rem"
+          borderTop="0.375rem solid #9CA3AF1A"
         >
           <Box gap="1rem" display="flex" flexDirection="column">
             <Typography
@@ -72,7 +74,11 @@ const PoolCreate: FC = () => {
               alignItems="center"
               gap={['1rem', '0.75rem']}
               justifyContent="space-between"
+              pb={!isFirstTokenEmpty ? '1.5rem' : undefined}
               gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
+              borderBottom={
+                !isFirstTokenEmpty ? '1px solid #F3F4F61A' : undefined
+              }
             >
               <Input index={0} />
               <Input index={1} />
@@ -170,7 +176,6 @@ const PoolCreate: FC = () => {
               ))}
             </Box>
           </Box>
-
           <PoolCreateFormButton />
         </Box>
       </Box>
