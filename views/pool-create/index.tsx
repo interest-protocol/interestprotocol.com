@@ -20,7 +20,9 @@ const PoolCreate: FC = () => {
     tokens?.[0]?.type &&
     (!tokens[0].value || isNaN(+tokens[0].value) || +tokens[0].value <= 0);
 
-  const tokensSelected = tokens?.[0]?.type && tokens?.[1]?.type;
+  const tokensSelected =
+    tokens?.length >= 2 &&
+    [0, 1].every((i) => tokens[i]?.type && Number(tokens[i]?.value) > 0);
 
   const [selectedStrategyId, setSelectedStrategyId] = useState<string | null>(
     null
@@ -80,11 +82,14 @@ const PoolCreate: FC = () => {
 
           {tokensSelected && (
             <Box
+              mt="0.5rem"
+              pb="1.5rem"
               width="100%"
               display="grid"
               alignItems="center"
               gap={['1rem', '0.75rem']}
               justifyContent="space-between"
+              borderBottom="1px solid #F3F4F61A"
               gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 27.6875rem']}
             >
               <Box gap="0.5rem" display="flex" flexDirection="column">
