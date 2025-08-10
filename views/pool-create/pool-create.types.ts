@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js';
+
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
 
 export type PoolToken = AssetMetadata & {
