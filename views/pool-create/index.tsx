@@ -18,9 +18,13 @@ const PoolCreate: FC = () => {
 
   const tokens = useWatch({ control, name: 'tokens' });
 
-  const isFirstTokenEmpty =
-    tokens?.[0]?.type &&
-    (!tokens[0].value || isNaN(+tokens[0].value) || +tokens[0].value <= 0);
+  const isTokensEmpty =
+    tokens?.length >= 2 &&
+    [0, 1].some(
+      (i) =>
+        tokens[i]?.type &&
+        (!tokens[i]?.value || isNaN(+tokens[i].value) || +tokens[i].value <= 0)
+    );
 
   const tokensSelected =
     tokens?.length >= 2 &&
@@ -74,17 +78,15 @@ const PoolCreate: FC = () => {
               alignItems="center"
               gap={['1rem', '0.75rem']}
               justifyContent="space-between"
-              pb={!isFirstTokenEmpty ? '1.5rem' : undefined}
+              pb={!isTokensEmpty ? '1.5rem' : undefined}
               gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
-              borderBottom={
-                !isFirstTokenEmpty ? '1px solid #F3F4F61A' : undefined
-              }
+              borderBottom={!isTokensEmpty ? '1px solid #F3F4F61A' : undefined}
             >
               <Input index={0} />
               <Input index={1} />
             </Box>
 
-            {isFirstTokenEmpty && <CardError />}
+            {isTokensEmpty && <CardError />}
           </Box>
 
           {tokensSelected && (
