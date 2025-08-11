@@ -66,8 +66,8 @@ const PoolCreate: FC = () => {
               fontSize="1rem"
               color="#E5E7EB"
               fontWeight="600"
-              lineHeight="1rem"
               fontFamily="Inter"
+              lineHeight="1.75rem"
             >
               Select token pair and enter the initial amount
             </Typography>
@@ -108,8 +108,8 @@ const PoolCreate: FC = () => {
                   fontSize="1rem"
                   color="#E5E7EB"
                   fontWeight="600"
-                  lineHeight="1rem"
                   fontFamily="Inter"
+                  lineHeight="1.75rem"
                 >
                   Pool price
                 </Typography>
@@ -119,8 +119,8 @@ const PoolCreate: FC = () => {
                   color="#9CA3AF"
                   fontWeight="400"
                   fontSize="0.75rem"
-                  lineHeight="1rem"
                   fontFamily="Inter"
+                  lineHeight="1.75rem"
                   width={['100%', '100%', '70%']}
                 >
                   Pool price depends on initial price of both tokens added.
@@ -138,8 +138,8 @@ const PoolCreate: FC = () => {
                 fontSize="1rem"
                 color="#E5E7EB"
                 fontWeight="600"
-                lineHeight="1rem"
                 fontFamily="Inter"
+                lineHeight="1.75rem"
               >
                 Select volatility strategy
               </Typography>
@@ -149,8 +149,8 @@ const PoolCreate: FC = () => {
                 color="#9CA3AF"
                 fontWeight="400"
                 fontSize="0.75rem"
-                lineHeight="1rem"
                 fontFamily="Inter"
+                lineHeight="1.1rem"
               >
                 Select strategy to see description
               </Typography>
@@ -162,6 +162,7 @@ const PoolCreate: FC = () => {
               justifyContent="space-between"
               gap={['0.25rem', '0.25rem', '0.75rem']}
               gridTemplateColumns={[
+                '1fr',
                 '1fr',
                 '1fr',
                 'repeat(3, minmax(0, 16rem))',
