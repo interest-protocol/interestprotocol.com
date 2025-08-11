@@ -9,6 +9,7 @@ import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
 import Balance from './components/balance';
 import AmountInDollar from './components/dollar-value';
+import HeaderInfo from './components/header-info';
 import SelectToken from './components/select-token';
 import { InputProps } from './input.types';
 
@@ -34,6 +35,7 @@ const Input: FC<InputProps> = ({ index }) => {
       bg={token?.type && isEmpty ? '#EF44441A' : '#9CA3AF1A'}
       border={token?.type && isEmpty ? '1px solid #EF44441A' : undefined}
     >
+      <HeaderInfo index={index} />
       <Box
         gap="0.5rem"
         display="flex"
