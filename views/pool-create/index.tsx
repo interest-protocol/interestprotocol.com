@@ -8,6 +8,7 @@ import PoolPrice from '@/views/pool-create/components/pool-price';
 
 import CardError from './components/card-error';
 import Input from './components/Input';
+import { PoolErrorManager } from './components/Input/components/pool-error-manager';
 import PoolCreateFormButton from './components/pool-create-form-button';
 import Strategy from './components/strategy';
 import { CreatePoolForm } from './pool-create.types';
@@ -180,6 +181,7 @@ const PoolCreate: FC = () => {
             </Box>
           </Box>
           <PoolCreateFormButton />
+          <PoolErrorManager />
         </Box>
       </Box>
     </Layout>

@@ -1,7 +1,7 @@
 import { Box, TextField } from '@interest-protocol/ui-kit';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { ChangeEvent, FC } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
@@ -14,11 +14,8 @@ import SelectToken from './components/select-token';
 import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue, getValues, control } =
-    useFormContext<CreatePoolForm>();
+  const { register, setValue, getValues } = useFormContext<CreatePoolForm>();
   const { account } = useAptosWallet();
-
-  useWatch({ control, name: 'tokens' });
 
   const token = getValues(`tokens.${index}`);
   const rawValue = token?.value;

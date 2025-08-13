@@ -6,7 +6,9 @@ export type PoolToken = AssetMetadata & {
   value: string;
   valueBN: BigNumber;
 };
+
 export interface CreatePoolForm {
   tokens: ReadonlyArray<PoolToken>;
   volatilityStrategyType: string;
+  error?: string | null;
 }
