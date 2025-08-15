@@ -1,16 +1,13 @@
 import { Box, Typography } from '@interest-protocol/ui-kit';
 import { FC, useEffect, useState } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 
 import { formatMoney } from '@/utils';
 import { truncate } from '@/utils/truncate';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
-const PoolPrice: FC = () => {
-  const { control } = useFormContext<CreatePoolForm>();
-  const tokens = useWatch({ control, name: 'tokens' });
+import { PoolPriceProps } from './pool-price.types';
 
+const PoolPrice: FC<PoolPriceProps> = ({ tokens }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [poolTokenPrice, setPoolTokenPrice] = useState<number>(0);
   const [poolTokenPriceUSD, setPoolTokenPriceUSD] = useState<number>(0);

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@interest-protocol/ui-kit';
 import { FC, useState } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 import Layout from '@/components/layout';
@@ -15,9 +15,8 @@ import { CreatePoolForm } from './pool-create.types';
 import { STRATEGIES } from './strategies.data';
 
 const PoolCreate: FC = () => {
-  const { control } = useFormContext<CreatePoolForm>();
-
-  const tokens = useWatch({ control, name: 'tokens' });
+  const { getValues } = useFormContext<CreatePoolForm>();
+  const tokens = getValues('tokens');
 
   const isTokensEmpty =
     tokens?.length >= 2 &&
@@ -127,7 +126,7 @@ const PoolCreate: FC = () => {
                   Pool price depends on initial price of both tokens added.
                 </Typography>
               </Box>
-              <PoolPrice />
+              <PoolPrice tokens={tokens} />
             </Box>
           )}
 
