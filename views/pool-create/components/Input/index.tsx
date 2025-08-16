@@ -30,7 +30,7 @@ const Input: FC<InputProps> = ({ index }) => {
       p="1rem"
       gap="0.5rem"
       display="flex"
-      height="6.375rem"
+      height={['8rem', '6.375rem']}
       flexDirection="column"
       borderRadius="0.75rem"
       bg={error ? '#EF44441A' : '#9CA3AF1A'}

@@ -1,22 +1,18 @@
 import { Box, Typography } from '@interest-protocol/ui-kit';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
-
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
+import { useWatch } from 'react-hook-form';
 
 import { InputProps } from '../input.types';
 
 const HeaderInfo: FC<InputProps> = ({ index }) => {
-  const { getValues } = useFormContext<CreatePoolForm>();
-
-  const symbol = getValues(`tokens.${index}.symbol`);
+  const symbol = useWatch({ name: `tokens.${index}.symbol` });
 
   return (
     <Box
-      display="flex"
       color="onSurface"
       alignItems="flex-end"
       justifyContent="space-between"
+      display={['flex', 'none']}
     >
       <Typography
         as="span"
@@ -26,7 +22,6 @@ const HeaderInfo: FC<InputProps> = ({ index }) => {
         fontSize="0.875rem"
         fontWeight="400"
         lineHeight="1.25rem"
-        display={['inline-block', 'none']}
       >
         {symbol}
       </Typography>
