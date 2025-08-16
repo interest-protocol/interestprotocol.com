@@ -1,5 +1,5 @@
 import { Box, Typography } from '@interest-protocol/ui-kit';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
@@ -15,27 +15,41 @@ import { CreatePoolForm } from './pool-create.types';
 import { STRATEGIES } from './strategies.data';
 
 const PoolCreate: FC = () => {
-  const { getValues } = useFormContext<CreatePoolForm>();
-  const tokens = getValues('tokens');
+  const [tokensSelected, setTokensSelected] = useState(false);
+  const [isTokensEmpty, setIsTokensEmpty] = useState(false);
+  const { watch } = useFormContext<CreatePoolForm>();
 
-  const isTokensEmpty =
-    tokens?.length >= 2 &&
-    [0, 1].some(
-      (i) =>
-        tokens[i]?.type &&
-        (!tokens[i]?.value || isNaN(+tokens[i].value) || +tokens[i].value <= 0)
-    );
+  useEffect(() => {
+    const sub = watch((values) => {
+      const tokens = values.tokens ?? [];
 
-  const tokensSelected =
-    tokens?.length >= 2 &&
-    [0, 1].every((i) => tokens[i]?.type && Number(tokens[i]?.value) > 0);
+      const empty =
+        tokens.length >= 2 &&
+        [0, 1].some(
+          (i) =>
+            tokens[i]?.type &&
+            (!tokens[i]?.value ||
+              isNaN(+tokens[i].value) ||
+              +tokens[i].value <= 0)
+        );
+
+      const selected =
+        tokens.length >= 2 &&
+        [0, 1].every((i) => tokens[i]?.type && Number(tokens[i]?.value) > 0);
+
+      setIsTokensEmpty(empty);
+      setTokensSelected(selected);
+    });
+
+    return () => sub.unsubscribe();
+  }, [watch]);
 
   const [selectedStrategyId, setSelectedStrategyId] = useState<string | null>(
     null
   );
 
   const handleSelectStrategy = (id: string) => {
-    setSelectedStrategyId(selectedStrategyId == id ? null : id);
+    setSelectedStrategyId(selectedStrategyId === id ? null : id);
   };
 
   return (
@@ -86,7 +100,7 @@ const PoolCreate: FC = () => {
               <Input index={1} />
             </Box>
 
-            {isTokensEmpty && <CardError />}
+            <CardError />
           </Box>
 
           {tokensSelected && (
@@ -126,7 +140,7 @@ const PoolCreate: FC = () => {
                   Pool price depends on initial price of both tokens added.
                 </Typography>
               </Box>
-              <PoolPrice tokens={tokens} />
+              <PoolPrice />
             </Box>
           )}
 

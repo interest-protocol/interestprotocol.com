@@ -1,7 +1,8 @@
 import { Box, TextField } from '@interest-protocol/ui-kit';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { ChangeEvent, FC } from 'react';
-import { useFormContext } from 'react-hook-form';
+import React from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
@@ -17,8 +18,11 @@ const Input: FC<InputProps> = ({ index }) => {
   const { register, setValue, getValues } = useFormContext<CreatePoolForm>();
   const { account } = useAptosWallet();
 
-  const token = getValues(`tokens.${index}`);
-  const rawValue = token?.value;
+  const tokenType = useWatch({ name: `tokens.${index}.type` });
+  const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
+  const error = useWatch({ name: 'error' });
+
+  const rawValue = getValues(`tokens.${index}.value`);
   const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (
@@ -29,8 +33,8 @@ const Input: FC<InputProps> = ({ index }) => {
       height="6.375rem"
       flexDirection="column"
       borderRadius="0.75rem"
-      bg={token?.type && isEmpty ? '#EF44441A' : '#9CA3AF1A'}
-      border={token?.type && isEmpty ? '1px solid #EF44441A' : undefined}
+      bg={error ? '#EF44441A' : '#9CA3AF1A'}
+      border={error ? '1px solid #EF44441A' : undefined}
     >
       <HeaderInfo index={index} />
       <Box
@@ -58,24 +62,24 @@ const Input: FC<InputProps> = ({ index }) => {
               placeholder="0"
               fontFamily="Inter"
               fontWeight="400"
-              disabled={!token?.type}
+              disabled={!tokenType}
               fontSize={['2xl', '2.25rem']}
               opacity={isEmpty ? 0.4 : undefined}
               fieldProps={{
                 width: '100%',
                 border: 'none',
-                nHover: {
-                  border: 'none',
-                },
+                nHover: { border: 'none' },
                 color: isEmpty ? '#6B7280' : '#FFFFFF',
               }}
               {...register(`tokens.${index}.value`, {
                 onChange: (v: ChangeEvent<HTMLInputElement>) => {
                   const value = parseInputEventToNumberString(v);
-                  setValue(`tokens.${index}.value`, value);
+                  setValue(`tokens.${index}.value`, value, {
+                    shouldDirty: true,
+                  });
                   setValue(
                     `tokens.${index}.valueBN`,
-                    FixedPointMath.toBigNumber(value, token?.decimals || 0)
+                    FixedPointMath.toBigNumber(value, tokenDecimals || 0)
                   );
                 },
               })}
@@ -94,4 +98,4 @@ const Input: FC<InputProps> = ({ index }) => {
   );
 };
 
-export default Input;
+export default React.memo(Input);
