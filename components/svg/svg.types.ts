@@ -1,6 +1,13 @@
 import { SVGAttributes } from 'react';
 
-export interface SVGProps extends SVGAttributes<SVGSVGElement> {
-  maxWidth: string;
-  maxHeight: string;
-}
+type SVGSize =
+  | {
+      maxWidth: string;
+      maxHeight?: string;
+    }
+  | {
+      maxWidth?: string;
+      maxHeight: string;
+    };
+
+export type SVGProps = SVGAttributes<SVGSVGElement> & SVGSize;
