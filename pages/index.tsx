@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 
 import { SEO } from '@/components';
-import Home from '@/views/home';
+import Swap from '@/views/swap';
 
-const HomePage: NextPage = () => (
+const SwapPage: NextPage = () => (
   <>
-    <SEO />
-    <Home />
+    <SEO title="Swap" />
+    <Swap />
   </>
 );
 
-export default HomePage;
+export default SwapPage;
