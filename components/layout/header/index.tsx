@@ -1,6 +1,7 @@
 import { Header as HeaderHTML } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import Navbar from './navbar';
 import Sidebar from './sidebar';
 
 const Header: FC = () => (
@@ -11,6 +12,7 @@ const Header: FC = () => (
     gridTemplateColumns="1fr 1fr 1fr"
   >
     <Sidebar />
+    <Navbar />
   </HeaderHTML>
 );
 
