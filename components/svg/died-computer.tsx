@@ -1,11 +1,8 @@
-import { Theme, useTheme } from '@interest-protocol/ui-kit';
 import { FC } from 'react';
 
 import { SVGProps } from './svg.types';
 
 const DiedComputer: FC<SVGProps> = ({ maxWidth, maxHeight, ...props }) => {
-  const { colors } = useTheme() as Theme;
-
   return (
     <svg
       style={{ maxWidth, maxHeight }}
@@ -110,7 +107,7 @@ const DiedComputer: FC<SVGProps> = ({ maxWidth, maxHeight, ...props }) => {
       </g>
       <path
         d="M430.677 251.333L385.633 225.333C385.633 225.333 272.35 290.721 229.298 315.571C225.827 317.575 223.652 321.242 223.558 325.248C223.464 329.253 225.466 333.018 228.839 335.182C254.843 351.859 306.217 384.807 332.22 401.485C335.594 403.649 337.595 407.413 337.502 411.419C337.408 415.424 335.232 419.092 331.761 421.095C318.872 428.535 303.052 437.667 303.052 437.667"
-        stroke={colors.onSurface}
+        stroke="currentColor"
         strokeWidth="6.33"
         strokeMiterlimit="1.5"
         strokeLinecap="round"

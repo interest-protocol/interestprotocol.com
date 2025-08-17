@@ -1,5 +1,5 @@
-import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import { Div } from '@stylin.js/elements';
 
 import { ProgressIndicatorProps } from './progress-indicator.types';
 
