@@ -17,7 +17,7 @@ const SidebarContent: FC = () => (
       </Div>
 
       {SIDEBAR_SECTIONS.map((section) => (
-        <SidebarSection key={section.title} section={section} />
+        <SidebarSection key={unikey()} section={section} />
       ))}
     </Div>
     <Div mb={['0.5rem', '0.5rem', '0.5rem', '0']}>
