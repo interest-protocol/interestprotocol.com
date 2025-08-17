@@ -9,6 +9,7 @@ import Balance from './balance';
 import AmountInDollar from './dollar-value';
 import HeaderInfo from './header-info';
 import SelectToken from './select-token';
+import { TextField } from '@/components/text-field';
 
 const ToInput: FC = () => {
   const { control, getValues } = useFormContext();
@@ -40,13 +41,20 @@ const ToInput: FC = () => {
             alignItems="center"
             justifyContent="flex-end"
           >
-            <Input
+            <TextField
               readOnly
               value={
                 isExponential(+value)
                   ? (+value).toFixed(getValues('to.decimals'))
                   : value
               }
+              fieldProps={{
+                width: '100%',
+                border: 'none',
+                nHover: {
+                  border: 'none',
+                }
+              }}
               ml="-1rem"
               width="100%"
               lineHeight="l"

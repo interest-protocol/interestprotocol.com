@@ -23,7 +23,7 @@ const Swap: FC = () => (
         <InputSwap label="from" />
       </Div>
       <Div
-        my="-1.4rem"
+        my="-1rem"
         display="flex"
         alignItems="center"
         justifyContent="center"

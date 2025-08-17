@@ -22,7 +22,8 @@ const InputSwap: FC<InputProps> = ({ label }) => {
 
   const swapping = useWatch({ control, name: 'swapping' });
 
-  const rawValue = getValues(`${label}.value`);
+  const rawValue = useWatch({ control, name: `${label}.value` });
+  
   const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (

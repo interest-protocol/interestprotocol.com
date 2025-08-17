@@ -29,8 +29,10 @@ const SwapFlipToken: FC<SwapFlipTokenProps> = ({ type }) => {
     <Button
       p="xs"
       bg="#030712"
-      width="2rem"
-      height="2rem"
+      border="none"
+      width="2.25rem"
+      height="2.25rem"
+      cursor="pointer"
       color="onSurface"
       borderRadius="0.75rem"
       onClick={flipToken}

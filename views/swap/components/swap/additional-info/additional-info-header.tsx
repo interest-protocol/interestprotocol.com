@@ -55,11 +55,11 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
           {amount != '--'
             ? price?.length && price[0].price
               ? formatDollars(
-                  +BigNumber(amount)
-                    .times(BigNumber(price[0].price))
-                    .toNumber()
-                    .toFixed(3)
-                )
+                +BigNumber(amount)
+                  .times(BigNumber(price[0].price))
+                  .toNumber()
+                  .toFixed(3)
+              )
               : '--'
             : '--'}
           )
@@ -69,8 +69,14 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
         animate={{ rotate: isOpen ? 180 : 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <Button  color="#949E9E" p="unset">
-          <ChevronDownSVG maxHeight="1.25rem" maxWidth="1.25rem" width="100%" />
+        <Button
+          p="unset"
+          bg="transparent"
+          border="none"
+          color="#949E9E"
+          cursor="pointer"
+        >
+          <ChevronDownSVG maxHeight="0.361rem" maxWidth="0.6rem" width="100%" />
         </Button>
       </Motion>
     </Div>

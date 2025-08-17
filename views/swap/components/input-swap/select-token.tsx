@@ -74,23 +74,23 @@ const SelectToken: FC<InputProps> = ({ label }) => {
     );
 
   const isToWithoutToken = label === 'to' && !currentSymbol;
-  const style = label == 'to' && isToWithoutToken;
 
   return (
     <Button
+      bg="#030712"
+      pr="0.75rem"
+      border="none"
       display="flex"
-      alignItems="center"
       gap="0.5rem"
-      height="0.5rem"
+      height="2rem"
       fontSize="s"
       color="onSurface"
-      borderRadius="l"
+      alignItems="center"
       disabled={swapping}
       onClick={openModal}
-      bg={style ? '#B4C5FF' : '#030712'}
-      pl={style ? '0.75rem' : '0'}
-      pr="0.75rem"
+      cursor="pointer"
       opacity={swapping ? 0.7 : 1}
+      borderRadius="1000px"
       nHover={{ ...(isToWithoutToken ? { bg: '#B4C5FF' } : {}) }}
     >
       {!isToWithoutToken && currentSymbol && (
@@ -121,7 +121,7 @@ const SelectToken: FC<InputProps> = ({ label }) => {
           color="#9CA3AF"
           overflow="hidden"
           whiteSpace="nowrap"
-          fontFamily="Satoshi"
+          fontFamily="Inter"
           textOverflow="ellipsis"
           width={['0px', 'auto']}
           fontWeight="500"
@@ -132,10 +132,10 @@ const SelectToken: FC<InputProps> = ({ label }) => {
       )}
 
       <ChevronDownSVG
-        maxHeight="1.25rem"
-        maxWidth="1.25rem"
         width="100%"
-        color={isToWithoutToken ? '#002A78' : undefined}
+        color="#FFFFFF"
+        maxHeight="0.62625rem"
+        maxWidth="0.62625rem"
       />
     </Button>
   );

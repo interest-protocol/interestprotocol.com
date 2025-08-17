@@ -13,7 +13,7 @@ import {
 } from 'react';
 import { TextFieldProps } from './text-field.types';
 import { TextFieldElementProps } from './text-field.types';
-import { Div, DivElementProps } from '@stylin.js/elements';
+import { Div, DivProps } from '@stylin.js/elements';
 
 const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   'input'
@@ -29,17 +29,7 @@ const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   },
 });
 
-const FieldContainer = stylin<DivElementProps & RefAttributes<unknown>>('div')({
-  '&:has(input:focus)': {
-    borderColor: '#B4C5FF',
-    backgroundColor: '#2B2B2D',
-  },
-
-  '&:has(input:not(:placeholder-shown):not(:focus))': {
-    borderColor: '#9CA3AF',
-    backgroundColor: '#202123',
-  },
-});
+const FieldContainer = stylin<DivProps & RefAttributes<unknown>>('div')();
 
 export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
   (
@@ -97,9 +87,9 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
         cursor={disabled ? 'not-allowed' : 'text'}
         aria-label="textfieldHolder"
       >
-        <Div
+        <FieldContainer
           p="0.75rem"
-          bg="#202123"
+          bg="transparent"
           display="flex"
           height="2.75rem"
           gap={Suffix || Prefix ? '0.15rem' : 'unset'}
@@ -155,7 +145,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
             />
           </Div>
           {Suffix}
-        </Div>
+        </FieldContainer>
         {supportingText && (
           <Div
             pt="2xs"

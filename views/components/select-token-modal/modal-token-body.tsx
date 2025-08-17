@@ -34,10 +34,10 @@ const ModalTokenBody: FC<ModalTokenBodyProps> = ({
   if (!isSearchAddres)
     return (
       <Div>
-        <Div display="flex" gap="2xs" alignItems="center">
+        <Div display="flex" gap="0.25rem" alignItems="center">
           {loading && <ProgressIndicator size="12px" />}
         </Div>
-        <Div gap="s" width="100%">
+        <Div gap="0.75rem" width="100%">
           {filteredTokens.length ? (
             filteredTokens.map((token) => (
               <TokenModalItem

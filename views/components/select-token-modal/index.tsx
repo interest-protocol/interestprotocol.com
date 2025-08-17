@@ -59,15 +59,15 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
             maxHeight="34rem"
             height="34rem"
             overflow="hidden"
-            borderRadius="s"
-            color="onSurface"
             padding="1.25rem"
+            borderRadius="1rem"
             flexDirection="column"
             width={['90vw', '32rem']}
             maxWidth={['25rem', 'unset']}
             transition={{ duration: 0.3 }}
             border="1px solid #FFFFFF1A"
             onClick={(e) => e.stopPropagation()}
+
           >
             <Div
               display="flex"
@@ -75,6 +75,7 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
               justifyContent="space-between"
             >
               <P
+                color="#FFFFFF"
                 fontWeight="700"
                 fontFamily="Inter"
                 lineHeight="1.5rem"
@@ -82,8 +83,14 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
               >
                 Select Token
               </P>
-              <Button onClick={closeModal} mr="-0.5rem">
-                <TimesSVG maxWidth="0.8rem" maxHeight="0.8rem" width="100%" />
+              <Button
+                mr="0.1rem"
+                border="none"
+                bg="transparent"
+                onClick={closeModal}
+                cursor="pointer"
+              >
+                <TimesSVG maxWidth="0.8rem" maxHeight="0.8rem" width="100%" color="#9CA3AF"/>
               </Button>
             </Div>
             <SelectTokenModalSearchInput />

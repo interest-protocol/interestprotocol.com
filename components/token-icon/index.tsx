@@ -61,10 +61,10 @@ const TokenIcon: FC<TokenIconProps> = ({
           overflow="hidden"
           position="relative"
           alignItems="center"
+          borderRadius="9999rem"
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius="full"
           {...(withBg && { bg: 'onSurface', color: 'surface' })}
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
@@ -84,7 +84,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         position="relative"
         alignItems="center"
         justifyContent="center"
-        mr={!ChainIcon ? 'unset' : 'xs'}
+        mr={!ChainIcon ? 'unset' : '0.5rem'}
       >
         <Div
           display="flex"
@@ -93,7 +93,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius={rounded ? 'full' : 'xs'}
+          borderRadius={rounded ? '50%' : '0.25rem'}
           border={withBorder ? '1px solid #FFFFFF' : undefined}
           {...(withBg && { bg: 'onSurface', color: 'surface' })}
         >
@@ -101,7 +101,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             overflow="hidden"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
-            borderRadius="full"
+            borderRadius="9999rem"
             border="1px solid #FFFFFF"
           >
             {loading && (
@@ -124,7 +124,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             bottom="-0.3rem"
             overflow="hidden"
             position="absolute"
-            borderRadius="full"
+            borderRadius="9999rem"
             border="1px solid #FFFFFF"
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
@@ -140,7 +140,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         position="relative"
         alignItems="center"
         justifyContent="center"
-        mr={!ChainIcon ? 'unset' : 'xs'}
+        mr={!ChainIcon ? 'unset' : '0.5rem'}
       >
         <Div
           display="flex"
@@ -150,7 +150,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius={rounded ? 'full' : 'xs'}
+          borderRadius={rounded ? '50%' : '0.5rem'}
           {...(withBg && {
             bg: icon.bg || 'onSurface',
             color: icon.color || 'surface',
@@ -177,7 +177,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             bottom="-0.3rem"
             overflow="hidden"
             position="absolute"
-            borderRadius="full"
+            borderRadius="9999rem"
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
           </Div>
@@ -192,7 +192,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         position="relative"
         alignItems="center"
         justifyContent="center"
-        mr={!ChainIcon ? 'unset' : 'xs'}
+        mr={!ChainIcon ? 'unset' : '0.5rem'}
       >
         <Div
           display="flex"
@@ -201,14 +201,14 @@ const TokenIcon: FC<TokenIconProps> = ({
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius={rounded ? 'full' : 'xs'}
+          borderRadius={rounded ? '50%' : '0.5rem'}
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
             overflow="hidden"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
-            borderRadius={rounded ? 'full' : 'xs'}
+            borderRadius={rounded ? '50%' : '0.5rem'}
           >
             {loading && (
               <Div position="absolute" top="-0.5rem" left="0.9rem">
@@ -236,7 +236,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             bottom="-0.3rem"
             overflow="hidden"
             position="absolute"
-            borderRadius="full"
+            borderRadius="9999rem"
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
           </Div>
@@ -251,7 +251,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         position="relative"
         alignItems="center"
         justifyContent="center"
-        mr={!ChainIcon ? 'unset' : 'xs'}
+        mr={!ChainIcon ? 'unset' : '0.5rem'}
       >
         <Div
           display="flex"
@@ -260,14 +260,14 @@ const TokenIcon: FC<TokenIconProps> = ({
           justifyContent="center"
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
-          borderRadius="full"
+          borderRadius="9999rem"
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
             overflow="hidden"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
-            borderRadius={rounded ? 'full' : 'xs'}
+            borderRadius={rounded ? '50%' : '0.5rem'}
             border={withBorder ? '1px solid #FFFFFF' : undefined}
           >
             {isLoading && (
@@ -299,7 +299,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             bottom="-0.3rem"
             overflow="hidden"
             position="absolute"
-            borderRadius="full"
+            borderRadius="9999rem"
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
           </Div>
@@ -313,7 +313,7 @@ const TokenIcon: FC<TokenIconProps> = ({
       position="relative"
       alignItems="center"
       justifyContent="center"
-      mr={!ChainIcon ? 'unset' : 'xs'}
+      mr={!ChainIcon ? 'unset' : '0.5rem'}
     >
       <Div
         bg="black"
@@ -325,7 +325,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         justifyContent="center"
         width={`calc(${size} * 1.66)`}
         height={`calc(${size} * 1.66)`}
-        borderRadius={rounded || !withBg ? 'full' : 'xs'}
+        borderRadius={rounded || !withBg ? '50%' : '0.5rem'}
         border={withBorder ? '1px solid #FFFFFF' : undefined}
         {...(withBg && { bg: 'onSurface', color: 'surface' })}
       >
@@ -341,7 +341,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           bottom="-0.3rem"
           overflow="hidden"
           position="absolute"
-          borderRadius="full"
+          borderRadius="9999rem"
         >
           <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
         </Div>

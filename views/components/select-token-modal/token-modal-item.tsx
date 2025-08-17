@@ -59,7 +59,7 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
           <Skeleton height="100%" />
         </Div>
       )}
-      <Div display="flex" alignItems="center" gap="s">
+      <Div display="flex" alignItems="center" gap="0.75rem">
         <TokenIcon
           withBg
           url={token.iconUri}
@@ -70,6 +70,7 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
         />
         <Div display="flex" flexDirection="column">
           <P
+            color="#E5E7EB"
             fontWeight="500"
             overflow="hidden"
             fontFamily="Inter"
@@ -96,6 +97,7 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
       </Div>
       <Div display="flex" alignItems="flex-end" flexDirection="column">
         <P
+          color="#E5E7EB"
           fontWeight="500"
           overflow="hidden"
           fontFamily="Inter"
