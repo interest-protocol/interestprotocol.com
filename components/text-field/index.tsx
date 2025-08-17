@@ -15,7 +15,6 @@ import { TextFieldProps } from './text-field.types';
 import { TextFieldElementProps } from './text-field.types';
 import { Div, DivElementProps } from '@stylin.js/elements';
 
-
 const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   'input'
 )({
@@ -98,7 +97,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
         cursor={disabled ? 'not-allowed' : 'text'}
         aria-label="textfieldHolder"
       >
-        <FieldContainer
+        <Div
           p="0.75rem"
           bg="#202123"
           display="flex"
@@ -156,7 +155,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
             />
           </Div>
           {Suffix}
-        </FieldContainer>
+        </Div>
         {supportingText && (
           <Div
             pt="2xs"

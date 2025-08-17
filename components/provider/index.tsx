@@ -4,6 +4,7 @@ import { FC, PropsWithChildren } from 'react';
 import { INDEXER_URL, RPC_URL } from '@/constants';
 import { AptosProvider } from '@/lib/aptos-provider';
 import CoinsManager from '@/lib/coins-manager';
+import ModalProvider from '../modal-provider';
 
 const Provider: FC<PropsWithChildren> = ({ children }) => (
     <AptosProvider
@@ -16,8 +17,9 @@ const Provider: FC<PropsWithChildren> = ({ children }) => (
             },
         ]}
     >
-        {children}
         <CoinsManager />
+        <ModalProvider />
+        {children}
     </AptosProvider>
 );
 

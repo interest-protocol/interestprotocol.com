@@ -2,7 +2,7 @@ import { AccountAddress } from '@aptos-labs/ts-sdk';
 import { Network } from '@interest-protocol/interest-aptos-v2';
 
 import { fasByPool } from '@/constants/pools';
-import { Quest } from '@/server/model/quest';
+type Quest = any;
 
 import { SwapToken } from './swap.types';
 
