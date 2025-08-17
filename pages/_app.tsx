@@ -1,8 +1,9 @@
 import { Global } from '@emotion/react';
 import type { AppProps } from 'next/app';
-import { GlobalStyles } from '@/styles';
 import dynamic from 'next/dynamic';
 import { StrictMode } from 'react';
+
+import { GlobalStyles } from '@/styles';
 
 const Provider = dynamic(() => import('@/components/provider'), {
   ssr: false,

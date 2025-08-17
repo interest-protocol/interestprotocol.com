@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Div, P, Span } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { InputProps } from './input.types';

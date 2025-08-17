@@ -1,6 +1,6 @@
 import { Div } from '@stylin.js/elements';
-import { FC, useState } from 'react';
 import { not } from 'ramda';
+import { FC, useState } from 'react';
 
 import ManageSlippageForm from './manage-slippage-form';
 import SlippageInfo from './slippage';

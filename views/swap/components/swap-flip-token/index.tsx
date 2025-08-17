@@ -1,3 +1,4 @@
+import { Button } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -5,7 +6,6 @@ import { SwapSVG } from '@/components/svg';
 import ArrowNarrowDown from '@/components/svg/arrow-narrow-down';
 
 import { SwapFlipTokenProps } from './swap-flip-token.types';
-import { Button } from '@stylin.js/elements';
 
 const SwapFlipToken: FC<SwapFlipTokenProps> = ({ type }) => {
   const form = useFormContext();

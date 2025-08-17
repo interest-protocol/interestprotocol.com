@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
 import { Div } from '@stylin.js/elements';
+import { FC, useEffect, useState } from 'react';
 
 import {
   AssetMetadata,

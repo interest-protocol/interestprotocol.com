@@ -1,13 +1,12 @@
+import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useWatch } from 'react-hook-form';
 
 import { DotErrorSVG } from '@/components/svg';
 
 import { SwapMessagesEnum } from './swap.data';
-import { Div, P } from '@stylin.js/elements';
 
 const SwapMessages: FC = () => {
-
   const { control } = useWatch();
 
   const error = useWatch({ control, name: 'error' });
@@ -30,14 +29,8 @@ const SwapMessages: FC = () => {
       bg={isCustomErrorBoxMessage ? 'lowContainer' : 'errorContainer'}
       borderColor={isCustomErrorBoxMessage ? 'outline' : 'onErrorContainer'}
     >
-      <DotErrorSVG
-        width="100%"
-        maxWidth="1rem"
-        maxHeight="1rem"
-      />
-      <P>
-        {error}
-      </P>
+      <DotErrorSVG width="100%" maxWidth="1rem" maxHeight="1rem" />
+      <P>{error}</P>
     </Div>
   );
 };

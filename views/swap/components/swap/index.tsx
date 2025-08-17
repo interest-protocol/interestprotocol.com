@@ -1,12 +1,12 @@
-import { FC } from 'react';
 import { Div } from '@stylin.js/elements';
+import { FC } from 'react';
 
+import InputSwap from '../input-swap';
 import ToInput from '../input-swap/to-input';
 import SwapButton from '../swap-button';
 import SwapFlipToken from '../swap-flip-token';
 import SwapManager from '../swap-manager';
 import AdditionalInfo from './additional-info';
-import InputSwap from '../input-swap';
 
 const Swap: FC = () => (
   <>

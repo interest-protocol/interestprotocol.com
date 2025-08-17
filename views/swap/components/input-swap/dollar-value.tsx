@@ -1,6 +1,6 @@
 import { Div, P } from '@stylin.js/elements';
-import { FC } from 'react';
 import BigNumber from 'bignumber.js';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useCoinsPrice } from '@/hooks/use-coins-price';
@@ -26,13 +26,13 @@ const AmountInDollar: FC<InputProps> = ({ label }) => {
       <P fontSize="s" color="#D1D5DB">
         {prices && value
           ? formatDollars(
-            +BigNumber(value)
-              .times(BigNumber(prices[0].price))
-              .toNumber()
-              .toFixed(2),
-            6,
-            'start'
-          )
+              +BigNumber(value)
+                .times(BigNumber(prices[0].price))
+                .toNumber()
+                .toFixed(2),
+              6,
+              'start'
+            )
           : '0'}{' '}
       </P>
       {label == 'to' && <PriceImpact />}

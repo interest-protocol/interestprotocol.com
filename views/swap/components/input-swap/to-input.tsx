@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import { Div, Input } from '@stylin.js/elements';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
+import { Div } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import { TextField } from '@/components/text-field';
 import { isExponential } from '@/utils';
 
 import Balance from './balance';
 import AmountInDollar from './dollar-value';
 import HeaderInfo from './header-info';
 import SelectToken from './select-token';
-import { TextField } from '@/components/text-field';
 
 const ToInput: FC = () => {
   const { control, getValues } = useFormContext();
@@ -53,7 +53,7 @@ const ToInput: FC = () => {
                 border: 'none',
                 nHover: {
                   border: 'none',
-                }
+                },
               }}
               ml="-1rem"
               width="100%"

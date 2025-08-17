@@ -150,7 +150,9 @@ export const getCoinMetadata = (
 
 const getCoinMetadataFromAPI = (type: string): Promise<APIMetadata> =>
   fetch(
-    `https://coin-metadata-api-staging.up.railway.app/api/v1/fetch-coins/${normalizeSuiAddress(type)}`,
+    `https://coin-metadata-api-staging.up.railway.app/api/v1/fetch-coins/${normalizeSuiAddress(
+      type
+    )}`,
     { headers: { network: 'movement' } }
   ).then((res) => res.json());
 
@@ -158,6 +160,8 @@ export const getCoinsMetadataFromAPI = (
   types: ReadonlyArray<string>
 ): Promise<ReadonlyArray<APIMetadata>> =>
   fetch(
-    `https://coin-metadata-api-staging.up.railway.app/api/v1/fetch-coins?coinTypes=${types.map((type) => normalizeSuiAddress(type)).join(',')}`,
+    `https://coin-metadata-api-staging.up.railway.app/api/v1/fetch-coins?coinTypes=${types
+      .map((type) => normalizeSuiAddress(type))
+      .join(',')}`,
     { headers: { network: 'movement' } }
   ).then((res) => res.json());

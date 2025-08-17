@@ -1,15 +1,15 @@
+import { Button, Div, P, Span } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import Motion from '@/components/motion';
 import { ChevronDownSVG } from '@/components/svg';
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { formatDollars, formatMoney } from '@/utils';
 
 import { SwapForm } from '../../swap.types';
 import { AdditionalInfoHeaderProps } from './additional-info.types';
-import { Button, Div, P, Span } from '@stylin.js/elements';
-import Motion from '@/components/motion';
 
 const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
   toggle,
@@ -55,11 +55,11 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
           {amount != '--'
             ? price?.length && price[0].price
               ? formatDollars(
-                +BigNumber(amount)
-                  .times(BigNumber(price[0].price))
-                  .toNumber()
-                  .toFixed(3)
-              )
+                  +BigNumber(amount)
+                    .times(BigNumber(price[0].price))
+                    .toNumber()
+                    .toFixed(3)
+                )
               : '--'
             : '--'}
           )

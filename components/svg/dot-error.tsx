@@ -2,12 +2,7 @@ import { FC } from 'react';
 
 import { SVGProps } from './svg.types';
 
-const DotError: FC<SVGProps & { dotColor?: string }> = ({
-  maxHeight,
-  maxWidth,
-  dotColor,
-  ...props
-}) => {
+const DotError: FC<SVGProps> = ({ maxHeight, maxWidth, ...props }) => {
   return (
     <svg
       fill="none"

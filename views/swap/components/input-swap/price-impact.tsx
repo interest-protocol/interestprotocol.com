@@ -1,8 +1,8 @@
+import { P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useCoinsPrice } from '@/hooks/use-coins-price';
-import { P } from '@stylin.js/elements';
 
 const PriceImpact: FC = () => {
   const { control } = useFormContext();

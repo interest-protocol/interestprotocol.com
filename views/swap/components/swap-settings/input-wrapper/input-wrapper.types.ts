@@ -8,9 +8,5 @@ export interface InputWrapperProps {
   register: UseFormRegister<ISwapSettings>;
   Input?: ReactNode;
   altInfo?: string;
-  name:
-    | 'slippage'
-    | 'slippageTolerance'
-    | 'transactionDeadline'
-    | 'infiniteApproval';
+  name: 'slippage' | 'slippageTolerance';
 }

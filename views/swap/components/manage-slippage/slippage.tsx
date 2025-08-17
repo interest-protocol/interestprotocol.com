@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Button, Div, P, Span } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { MinusSVG, PlusSVG } from '@/components/svg';
@@ -22,12 +22,9 @@ const SlippageInfo: FC<SlippageInfoProps> = ({ isOpen, handleManageView }) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <P  fontSize="0.875rem">
+      <P fontSize="0.875rem">
         Slippage:
-        <Span
-          ml="xs"
-          color="primary"
-        >
+        <Span ml="xs" color="primary">
           {settings.slippage}%
         </Span>
       </P>

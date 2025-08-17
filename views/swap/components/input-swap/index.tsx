@@ -1,8 +1,9 @@
-import { ChangeEvent, FC } from 'react';
-import { Div } from '@stylin.js/elements';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
+import { Div } from '@stylin.js/elements';
+import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
 
@@ -11,7 +12,6 @@ import AmountInDollar from './dollar-value';
 import HeaderInfo from './header-info';
 import { InputProps } from './input.types';
 import SelectToken from './select-token';
-import { TextField } from '@/components/text-field';
 
 const InputSwap: FC<InputProps> = ({ label }) => {
   const { register, setValue, getValues, control } = useFormContext();
@@ -23,7 +23,7 @@ const InputSwap: FC<InputProps> = ({ label }) => {
   const swapping = useWatch({ control, name: 'swapping' });
 
   const rawValue = useWatch({ control, name: `${label}.value` });
-  
+
   const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (

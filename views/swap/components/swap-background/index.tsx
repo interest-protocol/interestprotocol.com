@@ -1,8 +1,11 @@
 import { Network } from '@interest-protocol/interest-aptos-v2';
+import { Div, P } from '@stylin.js/elements';
 import { memo, useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
+import unikey from 'unikey';
 
 import { TokenIcon } from '@/components';
+import Motion from '@/components/motion';
 import { TOKENS } from '@/constants/coins';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
@@ -16,9 +19,6 @@ import {
   TOP_MARGIN,
 } from './swap-background.data';
 import SwapBackgroundPrice from './swap-background-price';
-import { Div, P } from '@stylin.js/elements';
-import Motion from '@/components/motion';
-import unikey from 'unikey';
 
 const SwapBackground = memo(() => {
   const network = useNetwork<Network>();
@@ -141,10 +141,7 @@ const SwapBackground = memo(() => {
               initial: { scale: 0 },
             }}
           >
-            <P
-              color="primary"
-              fontWeight="bold"
-            >
+            <P color="primary" fontWeight="bold">
               {token.symbol}
             </P>
             <SwapBackgroundPrice
@@ -222,10 +219,7 @@ const SwapBackground = memo(() => {
               initial: { scale: 0 },
             }}
           >
-            <P
-              color="primary"
-              fontWeight="bold"
-            >
+            <P color="primary" fontWeight="bold">
               {token.symbol}
             </P>
             <SwapBackgroundPrice

@@ -1,7 +1,7 @@
+import { Button, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { MaxBadgeProps } from './input.types';
-import { Button, P } from '@stylin.js/elements';
 
 export const MaxBadge: FC<MaxBadgeProps> = ({ handleMax }) => (
   <Button

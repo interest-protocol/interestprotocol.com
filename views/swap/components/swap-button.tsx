@@ -1,9 +1,9 @@
-import { Button, Div, P } from '@stylin.js/elements';
 import {
   Network,
   normalizeSuiAddress,
 } from '@interest-protocol/interest-aptos-v2';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
+import { Button, Div, P } from '@stylin.js/elements';
 import { useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import invariant from 'tiny-invariant';
@@ -127,11 +127,7 @@ const SwapButton = () => {
           onClick: gotoExplorer,
         },
         secondaryButton: (
-          <Button
-            mr="s"
-            color="onSurface"
-            onClick={onCloseModal}
-          >
+          <Button mr="s" color="onSurface" onClick={onCloseModal}>
             got it
           </Button>
         ),
@@ -151,10 +147,11 @@ const SwapButton = () => {
     <Div display="flex" flexDirection="column" mt="0.75rem">
       {account?.address ? (
         <Button
-          height="2rem"
-          borderRadius="s"
+          border="none"
+          height="3.5rem"
           onClick={onSwap}
           disabled={disabled}
+          borderRadius="0.75rem"
           justifyContent="center"
           nDisabled={{
             bg: error ? '#f6465d' : 'highestContainer',

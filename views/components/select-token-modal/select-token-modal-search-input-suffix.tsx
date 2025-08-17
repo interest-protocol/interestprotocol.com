@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Div } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import CloseSearch from '@/components/svg/close-search';

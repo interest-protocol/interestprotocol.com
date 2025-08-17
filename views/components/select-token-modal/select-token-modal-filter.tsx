@@ -1,9 +1,9 @@
+import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import unikey from 'unikey';
 
 import { SearchTokenForm, TokenOrigin } from './select-token-modal.types';
-import { Div, P } from '@stylin.js/elements';
 
 const ORIGIN_TITLE = {
   [TokenOrigin.Strict]: 'Strict',

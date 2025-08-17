@@ -1,6 +1,8 @@
+import { Button, Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import Motion from '@/components/motion';
 import { TimesSVG } from '@/components/svg';
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
 
@@ -11,8 +13,6 @@ import {
 } from './select-token-modal.types';
 import SelectTokenModalBody from './select-token-modal-body';
 import SelectTokenModalSearchInput from './select-token-modal-search-input';
-import { Button, Div, P } from '@stylin.js/elements';
-import Motion from '@/components/motion';
 
 const SelectTokenModal: FC<SelectTokenModalProps> = ({
   isOutput,
@@ -67,7 +67,6 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
             transition={{ duration: 0.3 }}
             border="1px solid #FFFFFF1A"
             onClick={(e) => e.stopPropagation()}
-
           >
             <Div
               display="flex"
@@ -90,7 +89,12 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
                 onClick={closeModal}
                 cursor="pointer"
               >
-                <TimesSVG maxWidth="0.8rem" maxHeight="0.8rem" width="100%" color="#9CA3AF"/>
+                <TimesSVG
+                  maxWidth="0.8rem"
+                  maxHeight="0.8rem"
+                  width="100%"
+                  color="#9CA3AF"
+                />
               </Button>
             </Div>
             <SelectTokenModalSearchInput />

@@ -1,9 +1,9 @@
+import { Div, P } from '@stylin.js/elements';
 import { FC, PropsWithChildren } from 'react';
 
 import { LogoSVG } from '@/components/svg';
 
 import { SuccessModalProps } from './success-modal.types';
-import { Div, P } from '@stylin.js/elements';
 
 const SuccessModal: FC<PropsWithChildren<SuccessModalProps>> = ({
   children,

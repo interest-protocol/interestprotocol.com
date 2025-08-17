@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Div, P } from '@stylin.js/elements';
+import { FC } from 'react';
 
 import { NoSearchSVG } from '@/components/svg';
 
@@ -16,19 +16,10 @@ const NotFound: FC = () => (
     flexDirection="column"
   >
     <NoSearchSVG maxHeight="1.25rem" maxWidth="1.25rem" width="100%" />
-    <P
-      fontWeight="700"
-      fontSize="1rem"
-      fontFamily="Inter"
-    >
+    <P fontWeight="700" fontSize="1rem" fontFamily="Inter">
       No tokens found
     </P>
-    <P
-      color="#9CA3AF"
-      fontWeight="700"
-      fontFamily="Inter"
-      fontSize="0.875rem"
-    >
+    <P color="#9CA3AF" fontWeight="700" fontFamily="Inter" fontSize="0.875rem">
       We couldn&#39;t find any tokens matching your criteria.
     </P>
   </Div>

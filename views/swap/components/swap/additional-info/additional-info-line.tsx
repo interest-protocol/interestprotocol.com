@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Div, P } from '@stylin.js/elements';
+import { FC } from 'react';
 
 import { AdditionalInfoLineProps } from './additional-info.types';
 

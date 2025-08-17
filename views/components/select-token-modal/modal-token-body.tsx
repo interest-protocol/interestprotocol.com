@@ -1,7 +1,9 @@
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import unikey from 'unikey';
 
+import ProgressIndicator from '@/components/progress-indicator';
 import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 
 import ModalTokenSearch from './modal-token-search';
@@ -11,8 +13,6 @@ import {
   SearchTokenForm,
 } from './select-token-modal.types';
 import TokenModalItem from './token-modal-item';
-import { Div } from '@stylin.js/elements';
-import ProgressIndicator from '@/components/progress-indicator';
 
 const ModalTokenBody: FC<ModalTokenBodyProps> = ({
   tokens,

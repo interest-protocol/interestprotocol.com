@@ -8,7 +8,6 @@ export interface ISwapSettings {
   slippage: string;
   slippageTolerance: string;
   transactionDeadline: string;
-  infiniteApproval: boolean;
 }
 
 export type SwapToken = AssetMetadata & {

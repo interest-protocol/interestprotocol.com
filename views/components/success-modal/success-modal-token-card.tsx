@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import { Network } from '@interest-protocol/interest-aptos-v2';
+import { Div, P } from '@stylin.js/elements';
+import { FC } from 'react';
 
 import { TokenIcon } from '@/components';
 import { ChevronDoubleLeftSVG } from '@/components/svg';
@@ -8,7 +9,6 @@ import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 import { formatMoney } from '@/utils';
 
 import { SuccessModalTokenCardProps } from './success-modal.types';
-import { Div, P } from '@stylin.js/elements';
 
 const SuccessModalTokenCard: FC<SuccessModalTokenCardProps> = ({
   to,

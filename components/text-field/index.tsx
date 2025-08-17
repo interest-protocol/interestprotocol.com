@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
+import { Div, DivProps } from '@stylin.js/elements';
 import stylin from '@stylin.js/react';
 import {
   ChangeEvent,
@@ -11,9 +12,9 @@ import {
   useId,
   useState,
 } from 'react';
+
 import { TextFieldProps } from './text-field.types';
 import { TextFieldElementProps } from './text-field.types';
-import { Div, DivProps } from '@stylin.js/elements';
 
 const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   'input'

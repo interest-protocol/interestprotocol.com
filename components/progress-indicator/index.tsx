@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Div } from '@stylin.js/elements';
+import { FC } from 'react';
 
 import { ProgressIndicatorProps } from './progress-indicator.types';
 
@@ -24,17 +24,17 @@ const ProgressIndicator: FC<ProgressIndicatorProps> = ({
       justifyContent="center"
       width={`calc(${size} * 1.66)`}
       height={`calc(${size} * 1.66)`}
-      borderRadius={rounded ? 'full' : 'xs'}
+      borderRadius={rounded ? '9999rem' : '0.5rem'}
       border={withBorder ? '1px solid #FFFFFF' : undefined}
       {...(withBg && { bg: 'onSurface', color: 'surface' })}
     >
       <Div
         width={size}
         height={size}
-        borderRadius="full"
+        borderRadius="9999rem"
         border={`2px solid #e5e7eb`}
-        borderTop={`2px solid ${colors[variant]}`}
         animation="spin 1s linear infinite"
+        borderTop={`2px solid ${colors[variant]}`}
       />
     </Div>
   );

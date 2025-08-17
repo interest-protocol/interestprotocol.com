@@ -1,9 +1,9 @@
+import { P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { TextField } from '@/components/text-field';
 
 import { InputWrapperProps } from './input-wrapper.types';
-import { P } from '@stylin.js/elements';
 
 const InputWrapper: FC<InputWrapperProps> = ({
   title,
@@ -29,10 +29,15 @@ const InputWrapper: FC<InputWrapperProps> = ({
           type="text"
           placeholder="0.5"
           textAlign="right"
+          fontSize="0.875rem"
           nPlaceholder={{ opacity: 0.7 }}
           {...register(name)}
           fieldProps={{
             width: '6rem',
+            background: '#202123',
+            border: '1px solid #9CA3AF1A',
+            color: '#FFFFFF',
+            fontSize: '0.875rem',
           }}
         />
       )}

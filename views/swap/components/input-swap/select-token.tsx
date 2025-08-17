@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import { Network } from '@interest-protocol/interest-aptos-v2';
+import { Button, Div, P } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ChevronDownSVG } from '@/components/svg';
@@ -14,7 +15,6 @@ import { ZERO_BIG_NUMBER } from '@/utils';
 import SelectTokenModal from '@/views/components/select-token-modal';
 
 import { InputProps } from './input.types';
-import { Button, Div, P } from '@stylin.js/elements';
 
 const SelectToken: FC<InputProps> = ({ label }) => {
   const network = useNetwork<Network>();
@@ -70,7 +70,8 @@ const SelectToken: FC<InputProps> = ({ label }) => {
         onSelect={onSelect}
         closeModal={handleClose}
         isOutput={label === 'to'}
-      />, { title: 'Select Token' }
+      />,
+      { title: 'Select Token' }
     );
 
   const isToWithoutToken = label === 'to' && !currentSymbol;

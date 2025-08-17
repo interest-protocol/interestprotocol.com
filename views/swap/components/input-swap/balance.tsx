@@ -1,16 +1,16 @@
 import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
+import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import ProgressIndicator from '@/components/progress-indicator';
+import SubtractBox from '@/components/svg/subtract-box';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
 
 import { InputProps } from './input.types';
 import { MaxBadge } from './max-budget';
-import { Div, P } from '@stylin.js/elements';
-import SubtractBox from '@/components/svg/subtract-box';
-import ProgressIndicator from '@/components/progress-indicator';
 
 const Balance: FC<InputProps> = ({ label }) => {
   const { coinsMap, loading } = useCoins();
@@ -36,9 +36,7 @@ const Balance: FC<InputProps> = ({ label }) => {
             height="100%"
           />
         </Div>
-        <P fontSize="s">
-          0
-        </P>
+        <P fontSize="s">0</P>
       </Div>
     );
 
@@ -147,7 +145,7 @@ const Balance: FC<InputProps> = ({ label }) => {
           justifyContent="center"
         >
           <Div position="absolute" justifySelf="flex-end">
-            <ProgressIndicator variant="loading"  />
+            <ProgressIndicator variant="loading" />
           </Div>
         </Div>
       )}

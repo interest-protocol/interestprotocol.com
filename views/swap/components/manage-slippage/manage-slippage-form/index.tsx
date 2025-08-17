@@ -1,15 +1,15 @@
-import { ChangeEvent, FC } from 'react';
 import { Button, Div, P } from '@stylin.js/elements';
+import { ChangeEvent, FC } from 'react';
 import { useForm, useFormContext } from 'react-hook-form';
+import unikey from 'unikey';
 
 import { PercentageSVG } from '@/components/svg';
+import { TextField } from '@/components/text-field';
 import { LOCAL_STORAGE_VERSION } from '@/constants';
 import { parseInputEventToNumberString } from '@/utils';
 
 import { ISwapSettings } from '../../swap.types';
 import { ManageSlippageFormProps } from '../manage-slippage-form.types';
-import unikey from 'unikey';
-import { TextField } from '@/components/text-field';
 
 const SLIPPAGE_BUTTONS = ['0.5', '1', '2'];
 
@@ -39,9 +39,7 @@ const ManageSlippageForm: FC<ManageSlippageFormProps> = ({
   return (
     <Div gap="l" p="m" pt="unset" display="flex" flexDirection="column">
       <Div>
-        <P mb="0.5rem">
-          Slippage Tolerance
-        </P>
+        <P mb="0.5rem">Slippage Tolerance</P>
         <Div
           gap="s"
           flexDirection="column"
@@ -82,9 +80,7 @@ const ManageSlippageForm: FC<ManageSlippageFormProps> = ({
               borderRadius="xs"
               onClick={() => setTolerance(item)}
             >
-              <P width="100%">
-                {item} %
-              </P>
+              <P width="100%">{item} %</P>
             </Button>
           ))}
         </Div>
@@ -100,9 +96,7 @@ const ManageSlippageForm: FC<ManageSlippageFormProps> = ({
           Cancel
         </Button>
         <Button borderRadius="xs" onClick={onConfirm}>
-          <P width="100%">
-            Confirm
-          </P>
+          <P width="100%">Confirm</P>
         </Button>
       </Div>
     </Div>

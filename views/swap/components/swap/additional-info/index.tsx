@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
 import { Div } from '@stylin.js/elements';
+import { AnimatePresence } from 'motion/react';
+import { FC, useState } from 'react';
+
+import Motion from '@/components/motion';
 
 import AdditionalInfoHeader from './additional-info-header';
 import AdditionalInfoLine from './additional-info-line';
 import SwapManagerEquivalence from './swap-manager-equivalence';
-import { AnimatePresence } from 'motion/react';
-import Motion from '@/components/motion';
 
 const AdditionalInfo: FC = () => {
   const [isOpen, setIsOpen] = useState(false);

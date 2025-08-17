@@ -28,7 +28,14 @@ const SwapManagerEquivalence: FC<SwapManagerEquivalenceProps> = ({
     const slippage = (getValues('settings.slippage') * 100).toFixed(0);
 
     fetch(
-      `https://api.mosaic.ag/v1/quote?srcAsset=${from.type}&dstAsset=${to.type}&amount=${FixedPointMath.toBigNumber(1, from.decimals)}&feeInBps=${EXCHANGE_FEE_BPS}&feeReceiver=${TREASURY}&includeSources=interest_v2,interest_curve_stable,interest_curve_volatile&slippage=${slippage}&sender=${account?.address ?? '0x0'}`,
+      `https://api.mosaic.ag/v1/quote?srcAsset=${from.type}&dstAsset=${
+        to.type
+      }&amount=${FixedPointMath.toBigNumber(
+        1,
+        from.decimals
+      )}&feeInBps=${EXCHANGE_FEE_BPS}&feeReceiver=${TREASURY}&includeSources=interest_v2,interest_curve_stable,interest_curve_volatile&slippage=${slippage}&sender=${
+        account?.address ?? '0x0'
+      }`,
       {
         headers: {
           accept: '*/*',

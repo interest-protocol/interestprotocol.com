@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import { Button, Div } from '@stylin.js/elements';
-
+import { FC } from 'react';
 import unikey from 'unikey';
+
 import { TabsProps } from './tabs.types';
 
 const Tabs: FC<TabsProps> = ({ setTab, tab, tabs }) => (
@@ -16,10 +16,10 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs }) => (
         fontWeight="400"
         lineHeight="1.7rem"
         fontFamily="Inter"
-        borderRadius="full"
+        borderRadius="9999rem"
         onClick={() => setTab(index)}
-        border="none"
         color={tab === index ? '#FFFFFF' : '#9CA3AF'}
+        border="none"
         bg={tab === index ? '#9CA3AF33' : 'transparent'}
       >
         {text}

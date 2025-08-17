@@ -1,8 +1,8 @@
+import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { InputProps } from './input.types';
 import SelectToken from './select-token';
-import { Div, P } from '@stylin.js/elements';
 
 const SelectorInput: FC<InputProps> = ({ label }) => {
   return (
