@@ -6,10 +6,8 @@ const SidebarLogo: FC<SVGProps> = ({ maxWidth, maxHeight, ...props }) => (
   <svg
     style={{ maxHeight, maxWidth }}
     viewBox="0 0 40 40"
-    {...props}
-    width={maxWidth}
-    height={maxHeight}
     fill="#0053DB"
+    {...props}
   >
     <rect width={maxHeight} height={maxWidth} rx="4" fill="#0053DB" />
     <path

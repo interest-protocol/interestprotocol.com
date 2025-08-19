@@ -8,7 +8,7 @@ const SidebarSection: FC<ISidebarSectionProps> = ({ section }) => {
   if (section.items.length === 0) return null;
 
   return (
-    <Div mb="1.75rem">
+    <Div>
       <P
         mb="8px"
         color="#FFF"

@@ -5,33 +5,30 @@ import unikey from 'unikey';
 
 import { SidebarLogoSVG } from '@/components/svg';
 
-import { SIDEBAR_SECTIONS } from '../../sidebar.data';
-import { SOCIAL_LINK } from '../../social-link.data';
+import { SIDEBAR_SECTIONS } from '../sidebar.data';
+import { SOCIAL_LINK } from '../social-link.data';
 import SidebarSection from './sidebar-section';
 
 const SidebarContent: FC = () => (
   <>
-    <Div>
+    <Div display="flex" flexDirection="column" gap="1rem">
       <Div mb="m">
         <SidebarLogoSVG maxWidth="40" maxHeight="40" />
       </Div>
-
       {SIDEBAR_SECTIONS.map((section) => (
         <SidebarSection key={unikey()} section={section} />
       ))}
     </Div>
-    <Div mb={['0.5rem', '0.5rem', '0.5rem', '0']}>
+    <Div>
       <P
         mb="m"
-        color="#FFFFFF"
+        color="#9CA3AF"
         fontWeight="600"
-        fontFamily="Inter"
         fontSize="0.75rem"
         lineHeight="1.5rem"
       >
         Social
       </P>
-
       <Div display="flex" gap="1.5rem">
         {SOCIAL_LINK.map(({ title, pathname, Icon }) => (
           <Link

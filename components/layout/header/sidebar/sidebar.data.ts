@@ -1,4 +1,4 @@
-import { ISidebarSection } from './sidebar.types';
+import { ISidebarSection } from './menu-sidebar/sidebar.types';
 
 export const SIDEBAR_SECTIONS: ReadonlyArray<ISidebarSection> = [
   {

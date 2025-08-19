@@ -14,11 +14,10 @@ const SidebarList: FC<ISidebarListProps> = ({ items }) => {
   );
 
   return (
-    <Div p="0" m="0" listStyle="none">
+    <Div p="0" m="0" display="flex" flexDirection="column" gap="0.75rem">
       {normalizeItems.map(({ label, href, isExternal }) => (
         <Div
           key={label}
-          mb="0.75rem"
           borderRadius="s"
           cursor="pointer"
           nHover={{ bg: 'surfaceContainerHighest' }}

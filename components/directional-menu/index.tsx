@@ -20,36 +20,36 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       left="0"
       zIndex="9"
       width="100%"
-      px="1.875rem"
+      p="1.875rem"
       display="flex"
       position="fixed"
       onClick={onClose}
       minHeight="100vh"
-      flexDirection="column"
-      justifyContent="center"
+      alignItems="stretch"
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
       backdropFilter="blur(10px)"
-      exit={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      alignItems={isDirectionalRight ? 'end' : 'start'}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
-      initial={{ opacity: 0, x: isDirectionalRight ? 20 : -20 }}
+      justifyContent={isDirectionalRight ? 'flex-end' : 'flex-start'}
     >
       <Div
         display="flex"
         flexDirection={isDirectionalRight ? 'row-reverse' : 'row'}
-        width={['100%', '100%', '100%', isDirectionalRight ? '28rem' : '18rem']}
-        height="93vh"
       >
-        <Div
-          p={isDirectionalRight ? 'unset' : '1.5rem'}
+        <Motion
           bg="#121313"
           display="flex"
           overflowY="auto"
           border="1px solid"
           flexDirection="column"
+          animate={{ x: '0rem' }}
           borderColor="#FFFFFF1A"
           justifyContent="space-between"
           onClick={(e) => e.stopPropagation()}
+          p={isDirectionalRight ? 'unset' : '1.5rem'}
+          exit={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
+          initial={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
           width={[
             '90%',
             '90%',
@@ -65,7 +65,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
           }
         >
           {children}
-        </Div>
+        </Motion>
         <DirectionalMenuClosed
           onClose={onClose}
           setIsHovered={setIsHovered}
