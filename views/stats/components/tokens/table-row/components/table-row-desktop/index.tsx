@@ -20,23 +20,21 @@ const TableRowDesktop: FC<TokenProps> = ({
     height="4rem"
     display="grid"
     alignItems="center"
-    gridTemplateColumns="2fr 2fr 2fr 2fr 2fr 2fr"
+    gridTemplateColumns="2fr 2fr 2fr 2fr 2fr 2fr 2fr"
   >
-    <Div display="flex" gap="3rem" alignItems="center">
-      <CellText color="#FFFFFF80">{rank}</CellText>
-      <Div display="flex" gap="0.5rem">
-        <img
-          width={20}
-          height={20}
-          alt={`${token} logo`}
-          src="/android-icon-36x36.png"
-          style={{
-            objectFit: 'cover',
-            borderRadius: '50%',
-          }}
-        />
-        <CellText color="#FFFFFF">{token}</CellText>
-      </Div>
+    <CellText color="#FFFFFF80">{rank}</CellText>
+    <Div display="flex" gap="0.5rem">
+      <img
+        width={20}
+        height={20}
+        alt={`${token} logo`}
+        src="/android-icon-36x36.png"
+        style={{
+          objectFit: 'cover',
+          borderRadius: '50%',
+        }}
+      />
+      <CellText color="#FFFFFF">{token}</CellText>
     </Div>
     <CellText color="#FFFFFF">{price}</CellText>
     <CellText color={hour.startsWith('+') ? '#157F3D' : '#EF4444'}>

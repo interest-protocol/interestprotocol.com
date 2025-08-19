@@ -1,9 +1,9 @@
-import { Box } from '@interest-protocol/ui-kit';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 
-import { PoolsProps } from '../../../../pools.types';
+import { PoolsProps } from '../../../pools.types';
 
 const TableRowDesktop: FC<PoolsProps> = ({
   rank,
@@ -14,7 +14,7 @@ const TableRowDesktop: FC<PoolsProps> = ({
   volume7d,
   apr1d,
 }) => (
-  <Box
+  <Div
     gap="m"
     px="1rem"
     height="4rem"
@@ -22,9 +22,9 @@ const TableRowDesktop: FC<PoolsProps> = ({
     alignItems="center"
     gridTemplateColumns="1fr 2fr 1fr 1fr 1fr 1fr 1fr"
   >
-    <Box display="flex" gap="3rem" alignItems="center">
+    <Div display="flex" gap="3rem" alignItems="center">
       <CellText color="#FFFFFF80">{rank}</CellText>
-      <Box display="flex" gap="0.5rem">
+      <Div display="flex" gap="0.5rem">
         <img
           width={20}
           height={20}
@@ -36,14 +36,14 @@ const TableRowDesktop: FC<PoolsProps> = ({
           }}
         />
         <CellText color="#FFFFFF">{token}</CellText>
-      </Box>
-    </Box>
+      </Div>
+    </Div>
     <CellText color="#FFFFFF">{transactions}</CellText>
     <CellText color="#FFFFFF">{tvl}</CellText>
     <CellText color="#FFFFFF">{volume24h}</CellText>
     <CellText color="#FFFFFF">{volume7d}</CellText>
     <CellText color="#FFFFFF">{apr1d}</CellText>
-  </Box>
+  </Div>
 );
 
 export default TableRowDesktop;

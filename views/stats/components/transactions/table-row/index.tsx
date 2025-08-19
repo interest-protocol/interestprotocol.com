@@ -1,12 +1,12 @@
-import { Box } from '@interest-protocol/ui-kit';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { PoolsProps } from '../../pools.types';
+import { TransactionProps } from '../transactions.types';
 import TableRowDesktop from './components/table-row-desktop';
 import TableRowMobile from './components/table-row-mobile';
 
-const TableRow: FC<PoolsProps> = (props) => (
-  <Box
+const TableRow: FC<TransactionProps> = (props) => (
+  <Div
     width="100%"
     bg="#030712"
     borderBottom="1px solid #1F2937"
@@ -15,13 +15,13 @@ const TableRow: FC<PoolsProps> = (props) => (
       bg: '#1F2937',
     }}
   >
-    <Box display={['block', 'none']}>
+    <Div display={['block', 'none']}>
       <TableRowMobile {...props} />
-    </Box>
-    <Box display={['none', 'block']}>
+    </Div>
+    <Div display={['none', 'block']}>
       <TableRowDesktop {...props} />
-    </Box>
-  </Box>
+    </Div>
+  </Div>
 );
 
 export default TableRow;

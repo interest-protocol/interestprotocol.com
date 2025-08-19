@@ -14,6 +14,11 @@ const TableRow: FC<TokenProps> = (props) => (
     nHover={{
       bg: '#1F2937',
     }}
+    nLastChild={{
+      borderBottomLeftRadius: '0.75rem',
+      borderBottomRightRadius: '0.75rem',
+      borderBottom: 0,
+    }}
   >
     <Div display={['block', 'none']}>
       <TableRowMobile {...props} />

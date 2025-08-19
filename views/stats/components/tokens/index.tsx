@@ -8,7 +8,7 @@ import { data } from './tokens.data';
 
 const Tokens: FC = () => (
   <Table
-    gridTemplateColumns={['1fr', '2fr 2fr 2fr 2fr 2fr 2fr']}
+    gridTemplateColumns={['1fr', '2fr 2fr 2fr 2fr 2fr 2fr 2fr']}
     columns={['#', 'Token Name', 'Price', '1 hour', '1 day', 'FDV', 'Volume']}
   >
     {data.map((token) => (

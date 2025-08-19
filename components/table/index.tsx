@@ -10,6 +10,7 @@ const Table: FC<TableProps> = ({ columns, gridTemplateColumns, children }) => (
     width="100%"
     borderRadius="0.75rem"
     border="1px solid #1F2937"
+    borderBottom="0"
     overflowX={['auto', 'visible']}
   >
     <Div

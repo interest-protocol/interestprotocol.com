@@ -1,9 +1,9 @@
-import { Box } from '@interest-protocol/ui-kit';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 
-import { PoolsProps } from '../../../../pools.types';
+import { PoolsProps } from '../../../pools.types';
 
 const TableRowMobile: FC<PoolsProps> = ({
   rank,
@@ -14,14 +14,14 @@ const TableRowMobile: FC<PoolsProps> = ({
   volume7d,
   apr1d,
 }) => (
-  <Box p="m" display="flex" flexDirection="column" gap="0.25rem">
-    <Box display="flex" gap="0.5rem">
+  <Div p="m" display="flex" flexDirection="column" gap="0.25rem">
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF80">#:</CellText>
       <CellText color="#FFFFFF">{rank}</CellText>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Token Name:</CellText>
-      <Box display="flex" gap="0.5rem" alignItems="center">
+      <Div display="flex" gap="0.5rem" alignItems="center">
         <img
           width={20}
           height={20}
@@ -33,29 +33,29 @@ const TableRowMobile: FC<PoolsProps> = ({
           }}
         />
         <CellText color="#FFFFFF">{token}</CellText>
-      </Box>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+      </Div>
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Transactions:</CellText>
       <CellText color="#FFFFFF">{transactions}</CellText>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">TVL:</CellText>
       <CellText color="#FFFFFF">{tvl}</CellText>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">24h Volume:</CellText>
       <CellText color="#FFFFFF">{volume24h}</CellText>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">7D Volume:</CellText>
       <CellText color="#FFFFFF">{volume7d}</CellText>
-    </Box>
-    <Box display="flex" gap="0.5rem">
+    </Div>
+    <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">1D APR:</CellText>
       <CellText color="#FFFFFF">{apr1d}</CellText>
-    </Box>
-  </Box>
+    </Div>
+  </Div>
 );
 
 export default TableRowMobile;

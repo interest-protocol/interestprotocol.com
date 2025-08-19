@@ -1,7 +1,6 @@
-import { Box, TextField } from '@interest-protocol/ui-kit';
+import { Div, Select } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { SearchSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 import { useTabState } from '@/hooks/use-tab-manager';
 
@@ -10,7 +9,7 @@ const StatsTabs: FC = () => {
   const tabs = ['Tokens', 'Pools', 'Transitions'];
 
   return (
-    <Box
+    <Div
       width="100%"
       gap="1rem"
       mb="0.75rem"
@@ -19,10 +18,9 @@ const StatsTabs: FC = () => {
       flexDirection={['column', 'row']}
     >
       <Tabs tabs={tabs} setTab={setTab} tab={tab} />
-      <Box gap="0.75rem" display="flex" flexDirection={['column', 'row']}>
-        <Box
+      <Div gap="0.75rem" display="flex" flexDirection={['column', 'row']}>
+        <Select
           px="0.5rem"
-          as="select"
           border="none"
           bg="#9CA3AF1A"
           color="#6B7280"
@@ -35,9 +33,9 @@ const StatsTabs: FC = () => {
           <option value="1w">1W volume</option>
           <option value="1d">1D volume</option>
           <option value="1m">1M volume</option>
-        </Box>
+        </Select>
 
-        <TextField
+        {/* <TextField
           fontSize="medium"
           placeholder="Search pools"
           nPlaceholder={{ opacity: 0.7 }}
@@ -56,9 +54,9 @@ const StatsTabs: FC = () => {
               color="#6B7280"
             />
           }
-        />
-      </Box>
-    </Box>
+        /> */}
+      </Div>
+    </Div>
   );
 };
 

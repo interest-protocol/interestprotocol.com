@@ -1,9 +1,9 @@
-import { Box } from '@interest-protocol/ui-kit';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 
-import { TransactionProps } from '../../../../transactions.types';
+import { TransactionProps } from '../../../transactions.types';
 
 const TableRowDesktop: FC<TransactionProps> = ({
   time,
@@ -13,7 +13,7 @@ const TableRowDesktop: FC<TransactionProps> = ({
   tokenAmount2,
   wallet,
 }) => (
-  <Box
+  <Div
     gap="m"
     px="1rem"
     height="4rem"
@@ -22,7 +22,7 @@ const TableRowDesktop: FC<TransactionProps> = ({
     gridTemplateColumns="1fr 3fr 2fr 2fr 2fr 2fr"
   >
     <CellText color="#FFFFFF80">{time}</CellText>
-    <Box display="flex" gap="0.5rem" alignItems="center">
+    <Div display="flex" gap="0.5rem" alignItems="center">
       <CellText color="#FFFFFF80">Remove</CellText>
       <img
         width={20}
@@ -47,9 +47,9 @@ const TableRowDesktop: FC<TransactionProps> = ({
         }}
       />
       <CellText color="#FFFFFF">{type}</CellText>
-    </Box>
+    </Div>
     <CellText color="#FFFFFF">{usdAmount}</CellText>
-    <Box display="flex" gap="0.5rem" alignItems="center">
+    <Div display="flex" gap="0.5rem" alignItems="center">
       <CellText color="#FFFFFF">{tokenAmount1}</CellText>
       <img
         width={20}
@@ -61,8 +61,8 @@ const TableRowDesktop: FC<TransactionProps> = ({
           borderRadius: '50%',
         }}
       />
-    </Box>
-    <Box display="flex" gap="0.5rem" alignItems="center">
+    </Div>
+    <Div display="flex" gap="0.5rem" alignItems="center">
       <CellText color="#FFFFFF">{tokenAmount2}</CellText>
       <img
         width={20}
@@ -74,9 +74,9 @@ const TableRowDesktop: FC<TransactionProps> = ({
           borderRadius: '50%',
         }}
       />
-    </Box>
+    </Div>
     <CellText color="#FFFFFF">{wallet}</CellText>
-  </Box>
+  </Div>
 );
 
 export default TableRowDesktop;
