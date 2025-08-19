@@ -2,7 +2,7 @@ import { Box } from '@interest-protocol/ui-kit';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import HeaderText from '../../../header-text';
+import HeaderText from '../../../../../../components/table/components/header-text';
 import TableRow from '../table-row';
 import { data } from './table-pools.data';
 

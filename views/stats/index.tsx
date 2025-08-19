@@ -6,7 +6,7 @@ import StatsContent from './stats-content';
 
 const Stats: FC = () => {
   return (
-    <Layout useContainer={false} ml={['0rem', '2.5rem']}>
+    <Layout>
       <StatsContent />
     </Layout>
   );

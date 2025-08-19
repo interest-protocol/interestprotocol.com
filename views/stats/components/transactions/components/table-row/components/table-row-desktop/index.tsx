@@ -1,7 +1,7 @@
 import { Box } from '@interest-protocol/ui-kit';
 import { FC } from 'react';
 
-import CellText from '@/views/stats/components/cell-text';
+import CellText from '@/components/table/components/cell-text';
 
 import { TransactionProps } from '../../../../transactions.types';
 

@@ -1,9 +1,9 @@
-import { Box } from '@interest-protocol/ui-kit';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import CellText from '@/views/stats/components/cell-text';
+import CellText from '@/components/table/components/cell-text';
 
-import { TokenProps } from '../../../../tokens.types';
+import { TokenProps } from '../../../tokens.types';
 
 const TableRowDesktop: FC<TokenProps> = ({
   rank,
@@ -14,7 +14,7 @@ const TableRowDesktop: FC<TokenProps> = ({
   fdv,
   volume,
 }) => (
-  <Box
+  <Div
     gap="m"
     px="1rem"
     height="4rem"
@@ -22,9 +22,9 @@ const TableRowDesktop: FC<TokenProps> = ({
     alignItems="center"
     gridTemplateColumns="2fr 2fr 2fr 2fr 2fr 2fr"
   >
-    <Box display="flex" gap="3rem" alignItems="center">
+    <Div display="flex" gap="3rem" alignItems="center">
       <CellText color="#FFFFFF80">{rank}</CellText>
-      <Box display="flex" gap="0.5rem">
+      <Div display="flex" gap="0.5rem">
         <img
           width={20}
           height={20}
@@ -36,8 +36,8 @@ const TableRowDesktop: FC<TokenProps> = ({
           }}
         />
         <CellText color="#FFFFFF">{token}</CellText>
-      </Box>
-    </Box>
+      </Div>
+    </Div>
     <CellText color="#FFFFFF">{price}</CellText>
     <CellText color={hour.startsWith('+') ? '#157F3D' : '#EF4444'}>
       {hour}
@@ -47,7 +47,7 @@ const TableRowDesktop: FC<TokenProps> = ({
     </CellText>
     <CellText color="#FFFFFF">{fdv}</CellText>
     <CellText color="#FFFFFF">{volume}</CellText>
-  </Box>
+  </Div>
 );
 
 export default TableRowDesktop;

@@ -1,12 +1,10 @@
-import { Typography } from '@interest-protocol/ui-kit';
+import { P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { HeaderTextProps } from './header-text.types';
 
 const HeaderText: FC<HeaderTextProps> = ({ children }) => (
-  <Typography
-    size="medium"
-    variant="label"
+  <P
     color="#FFFFFF"
     fontSize="1rem"
     fontWeight="500"
@@ -14,7 +12,7 @@ const HeaderText: FC<HeaderTextProps> = ({ children }) => (
     display={['none', 'block']}
   >
     {children}
-  </Typography>
+  </P>
 );
 
 export default HeaderText;
