@@ -18,6 +18,7 @@ import { ZERO_BIG_NUMBER } from '@/utils';
 
 import SuccessModal from '../../components/success-modal';
 import SuccessModalTokenCard from '../../components/success-modal/success-modal-token-card';
+import { AptosTxError } from './swap.types';
 import { logSwap } from './swap.utils';
 
 const SwapButton = () => {
@@ -85,11 +86,12 @@ const SwapButton = () => {
         'explorerLink',
         EXPLORER_URL[Network.MovementMainnet](`txn/${txResult.hash}`)
       );
-    } catch (e) {
-      console.warn(e);
+    } catch (e: unknown) {
+      const err = e as AptosTxError;
 
-      if ((e as any)?.data?.error_code === 'mempool_is_full')
+      if (err.data?.error_code === 'mempool_is_full') {
         throw new Error('The mempool is full, try again in a few seconds.');
+      }
 
       throw e;
     } finally {
@@ -173,7 +175,23 @@ const SwapButton = () => {
           </P>
         </Button>
       ) : (
-        <></>
+        <Button
+          border="none"
+          p="0.5rem 1rem"
+          height="3.5rem"
+          display="flex"
+          color="#002A78"
+          fontWeight="500"
+          fontSize="1rem"
+          background="#B4C5FF"
+          alignItems="center"
+          fontFamily="Inter"
+          cursor="pointer"
+          borderRadius="0.75rem"
+          justifyContent="center"
+        >
+          Connect Wallet
+        </Button>
       )}
     </Div>
   );

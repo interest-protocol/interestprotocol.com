@@ -84,3 +84,10 @@ export interface MosaicQuoteResponse {
 export interface SwapMessagesProps {
   hasNoMarket: boolean;
 }
+
+export interface AptosTxError {
+  data?: {
+    error_code?: string;
+    message?: string;
+  };
+}
