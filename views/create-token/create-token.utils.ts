@@ -1,7 +1,4 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import Resizer from 'react-image-file-resizer';
-
-import { Quest } from '@/server/model/quest';
 
 export const getBase64 = async (file: File) => {
   const stringImage = await new Promise<string>((resolve) => {
@@ -21,35 +18,3 @@ export const getBase64 = async (file: File) => {
 
   return stringImage;
 };
-
-export const logCreateToken = (
-  symbol: string,
-  value: string,
-  address: string,
-  network: Network,
-  txDigest: string
-) =>
-  fetch(`https://api.interestlabs.io/v1/quests`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Request-Headers': 'Content-Type',
-      'Access-Control-Request-Method': 'POST',
-    },
-    body: JSON.stringify({
-      quest: {
-        address,
-        txDigest,
-        kind: 'createToken',
-        data: {
-          coin: {
-            symbol,
-            amount: value,
-            type: 'CUSTOM',
-          },
-        },
-      },
-      profileField: 'createToken',
-      network,
-    } as Omit<Quest, 'timestamp'>),
-  });
