@@ -18,12 +18,11 @@ const SuccessModalTokenCard: FC<SuccessModalTokenCardProps> = ({
   const network = useNetwork<Network>();
   return (
     <Div
-      py="m"
-      px="s"
-      gap="s"
-      bg="surface"
+      gap="0.75ren"
+      py="1rem"
+      px="0.75rem"
       display="flex"
-      borderRadius="xs"
+      borderRadius="0.5rem"
       justifyContent="center"
     >
       <Div display="flex" alignItems="center">
@@ -34,17 +33,11 @@ const SuccessModalTokenCard: FC<SuccessModalTokenCardProps> = ({
           symbol={from.symbol}
           rounded={from.standard === TokenStandard.COIN}
         />
-        <P
-          alignItems="center"
-          textAlign="center"
-          color="onSurface"
-          display="flex"
-          ml="s"
-        >
+        <P alignItems="center" textAlign="center" display="flex" ml="0.75rem">
           {`${!withoutAmount ? formatMoney(+from?.value) : ''} ${from.symbol}`}
         </P>
       </Div>
-      <Div display="flex" alignItems="center" color="onSurface">
+      <Div display="flex" alignItems="center">
         <ChevronDoubleLeftSVG
           maxHeight="0.75rem"
           maxWidth="0.75rem"
@@ -59,13 +52,7 @@ const SuccessModalTokenCard: FC<SuccessModalTokenCardProps> = ({
           network={network as Network}
           rounded={to.standard === TokenStandard.COIN}
         />
-        <P
-          alignItems="center"
-          textAlign="center"
-          color="onSurface"
-          display="flex"
-          ml="s"
-        >
+        <P alignItems="center" textAlign="center" display="flex" ml="0.75rem">
           {`${!withoutAmount ? formatMoney(+to?.value) : ''} ${to.symbol}`}
         </P>
       </Div>

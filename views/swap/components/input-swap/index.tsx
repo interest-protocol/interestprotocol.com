@@ -91,7 +91,7 @@ const InputSwap: FC<InputProps> = ({ label }) => {
           <SelectToken label={label} />
         </Div>
         {account?.address && (
-          <Div display="flex" justifyContent="space-between" color="outline">
+          <Div display="flex" justifyContent="space-between">
             <AmountInDollar label={label} />
             <Balance label={label} />
           </Div>

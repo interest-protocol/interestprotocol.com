@@ -171,9 +171,7 @@ const SwapButton = () => {
             fontWeight="500"
             fontFamily="Inter"
             lineHeight="1.5rem"
-            color={
-              error ? '#FFFFFF' : !loading && !error ? '#002A78' : '#9CA3AF'
-            }
+            color={error ? '#FFFFFF' : !disabled ? '#002A78' : '#9CA3AF'}
           >
             {loading ? 'Swapping...' : error ? error : 'Confirm Swap'}
           </P>
