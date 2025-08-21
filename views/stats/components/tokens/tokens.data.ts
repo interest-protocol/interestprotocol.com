@@ -1,4 +1,4 @@
-import { TokenProps } from '../../tokens.types';
+import { TokenProps } from './tokens.types';
 
 export const data: TokenProps[] = [
   {
