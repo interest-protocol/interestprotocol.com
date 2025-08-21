@@ -2,7 +2,7 @@ import { values } from 'ramda';
 import { KeyedMutator } from 'swr';
 import { create } from 'zustand';
 
-import { noop } from '@/utils';
+import { noop } from '@/utils/promise';
 
 import { Asset, UseCoins } from './coins-manager.types';
 
