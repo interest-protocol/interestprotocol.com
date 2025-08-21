@@ -149,6 +149,7 @@ const SwapButton = () => {
     <Div display="flex" flexDirection="column" mt="0.75rem">
       {account?.address ? (
         <Button
+          bg="#B4C5FF"
           border="none"
           height="3.5rem"
           onClick={onSwap}
@@ -156,12 +157,13 @@ const SwapButton = () => {
           borderRadius="0.75rem"
           justifyContent="center"
           nDisabled={{
-            bg: error ? '#f6465d' : 'highestContainer',
+            bg: error ? '#f6465d' : '#9CA3AF1A',
             ':hover': {
               background: error ? '#f6465d' : '#343438',
               color: '#909094',
             },
           }}
+          cursor="pointer"
         >
           <P
             p="1rem"
@@ -169,7 +171,9 @@ const SwapButton = () => {
             fontWeight="500"
             fontFamily="Inter"
             lineHeight="1.5rem"
-            color={error ? '#fff' : 'none'}
+            color={
+              error ? '#FFFFFF' : !loading && !error ? '#002A78' : '#9CA3AF'
+            }
           >
             {loading ? 'Swapping...' : error ? error : 'Confirm Swap'}
           </P>

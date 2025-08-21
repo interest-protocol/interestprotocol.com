@@ -84,8 +84,8 @@ const SelectToken: FC<InputProps> = ({ label }) => {
       display="flex"
       gap="0.5rem"
       height="2rem"
-      fontSize="s"
       color="onSurface"
+      fontSize="0.75rem"
       alignItems="center"
       disabled={swapping}
       onClick={openModal}

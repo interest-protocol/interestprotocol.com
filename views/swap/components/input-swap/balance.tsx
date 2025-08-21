@@ -22,7 +22,7 @@ const Balance: FC<InputProps> = ({ label }) => {
   if (!type)
     return (
       <Div
-        p="2xs"
+        p="0.25rem"
         gap="0.5rem"
         display="flex"
         color="outline"
@@ -36,7 +36,14 @@ const Balance: FC<InputProps> = ({ label }) => {
             height="100%"
           />
         </Div>
-        <P fontSize="s">0</P>
+        <P
+          color="#D1D5DB"
+          fontWeight="400"
+          fontSize="0.75rem"
+          fontFamily="Inter"
+        >
+          0
+        </P>
       </Div>
     );
 
@@ -74,7 +81,7 @@ const Balance: FC<InputProps> = ({ label }) => {
 
   if (label === 'to')
     return (
-      <Div display="flex" gap="xs" alignItems="center">
+      <Div display="flex" gap="0.5rem" alignItems="center">
         <Div display={['none', 'block']} width="1.38875rem" height="1.25rem">
           <SubtractBox
             maxHeight="100%"
@@ -96,7 +103,7 @@ const Balance: FC<InputProps> = ({ label }) => {
         </P>
         {loading && (
           <Div
-            mx="xs"
+            mx="0.5rem"
             mt="-1.7rem"
             display="flex"
             alignItems="center"
@@ -138,7 +145,7 @@ const Balance: FC<InputProps> = ({ label }) => {
 
       {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
         <Div
-          mx="xs"
+          mx="0.5rem"
           mt="-1.2rem"
           display="flex"
           alignItems="center"

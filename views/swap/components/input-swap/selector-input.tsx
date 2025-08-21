@@ -7,12 +7,12 @@ import SelectToken from './select-token';
 const SelectorInput: FC<InputProps> = ({ label }) => {
   return (
     <Div
-      py="s"
-      px="xl"
+      py="0.75rem"
+      px="1.5rem"
       display="flex"
       bg="#9CA3AF1A"
-      borderRadius="s"
       alignItems="center"
+      borderRadius="0.75rem"
       justifyContent="space-between"
     >
       <P

@@ -30,10 +30,10 @@ const ToInput: FC = () => {
         justifyContent="space-between"
       >
         <Div
+          gap="0.5rem"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
-          gap="0.5rem"
         >
           <Div
             flex="1"
@@ -57,11 +57,11 @@ const ToInput: FC = () => {
               }}
               ml="-1rem"
               width="100%"
-              lineHeight="l"
               placeholder="0"
+              lineHeight="1.25"
               color={isEmpty ? '#6B7280' : '#FFFFFF'}
               fontFamily="Inter"
-              fontSize={['2xl', '2.25rem']}
+              fontSize={['2rem', '2.25rem']}
               opacity="1"
             />
           </Div>

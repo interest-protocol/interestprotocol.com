@@ -32,12 +32,12 @@ const PriceImpact: FC = () => {
 
   return (
     <P
-      px="xs"
-      py="2xs"
+      px="0.5rem"
+      py="0.25rem"
       bg={STATUS}
       fontSize="s"
-      borderRadius="full"
-      color="lowestContainer"
+      borderRadius="9999rem"
+      color="#D1D5DB"
     >
       {priceImpact
         ? `${priceImpact > 0.1 ? priceImpact.toFixed(2) : '< 0.1'}%`

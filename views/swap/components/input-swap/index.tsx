@@ -36,7 +36,7 @@ const InputSwap: FC<InputProps> = ({ label }) => {
         justifyContent="space-between"
       >
         <Div
-          gap="xs"
+          gap="0.5rem"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
@@ -50,11 +50,11 @@ const InputSwap: FC<InputProps> = ({ label }) => {
             <TextField
               ml="-1rem"
               width="100%"
-              lineHeight="l"
+              lineHeight="1.25rem"
               placeholder="0"
               fontFamily="Inter"
               fontWeight="400"
-              fontSize={['2xl', '2.25rem']}
+              fontSize={['2rem', '2.25rem']}
               disabled={label === 'to' || swapping}
               opacity={isEmpty ? 0.4 : undefined}
               fieldProps={{

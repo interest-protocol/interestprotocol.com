@@ -43,7 +43,6 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
       alignItems="center"
       onClick={closeModal}
       justifyContent="center"
-      backdropFilter="blur(10px)"
     >
       <Motion
         animate={{ scale: 1 }}
@@ -55,15 +54,14 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
             layout
             gap="1rem"
             bg="#121313"
+            height="auto"
             display="flex"
-            maxHeight="34rem"
-            height="34rem"
-            overflow="hidden"
+            maxWidth="32rem"
+            maxHeight="90vh"
             padding="1.25rem"
             borderRadius="1rem"
             flexDirection="column"
             width={['90vw', '32rem']}
-            maxWidth={['25rem', 'unset']}
             transition={{ duration: 0.3 }}
             border="1px solid #FFFFFF1A"
             onClick={(e) => e.stopPropagation()}
@@ -97,6 +95,7 @@ const SelectTokenModal: FC<SelectTokenModalProps> = ({
                 />
               </Button>
             </Div>
+
             <SelectTokenModalSearchInput />
             <Div
               flex="1"
