@@ -13,7 +13,7 @@ const SidebarContent: FC = () => (
   <>
     <Div display="flex" flexDirection="column" gap="1rem">
       <Div mb="m">
-        <SidebarLogoSVG maxWidth="40" maxHeight="40" />
+        <SidebarLogoSVG maxWidth="2.5rem" maxHeight="2.5rem" />
       </Div>
       {SIDEBAR_SECTIONS.map((section) => (
         <SidebarSection key={unikey()} section={section} />
