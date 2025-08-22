@@ -1,7 +1,7 @@
 import { Network } from '@interest-protocol/interest-aptos-v2';
 import { FC } from 'react';
 
-import { SVGProps } from '../svg';
+import { SVGProps } from '../svg/svg.types';
 
 export interface TokenIconProps {
   url?: string;
@@ -13,7 +13,6 @@ export interface TokenIconProps {
   loaderSize?: number;
   withBorder?: boolean;
 }
-
 export interface TokenIconUrl {
   url: string;
 }

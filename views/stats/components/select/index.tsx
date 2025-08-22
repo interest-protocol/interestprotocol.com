@@ -1,12 +1,7 @@
 import { Div, P } from '@stylin.js/elements';
 import { useEffect, useRef, useState } from 'react';
-import {  CaretDownVG } from '@/components/svg';
-
-const options = [
-    { value: '1d', label: '1D volume' },
-    { value: '1w', label: '1W volume' },
-    { value: '1m', label: '1M volume' },
-];
+import {  CaretDownSVG } from '@/components/svg';
+import { options } from './select.data';
 
 const Select = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +54,7 @@ const Select = () => {
                     transition="transform 0.3s ease"
                     style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 >
-                    <CaretDownVG maxWidth="1rem" maxHeight="1.25rem" color="#9CA3AF" width="100%" />
+                    <CaretDownSVG maxWidth="1rem" maxHeight="1.25rem" color="#9CA3AF" width="100%" />
                 </Div>
             </Div>
 
