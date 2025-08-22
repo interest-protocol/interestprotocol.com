@@ -2,6 +2,7 @@ import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import { DownSVG, UpSVG } from '@/components/svg';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
@@ -37,15 +38,31 @@ const TableRowMobile: FC<TokenProps> = ({
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">1h:</CellText>
-        <CellText color={hour.startsWith('+') ? '#157F3D' : '#EF4444'}>
-          {hour}
-        </CellText>
+        <Div display="flex" gap="0.5rem" alignItems="center">
+          <UpSVG
+            maxHeight="1.25rem"
+            maxWidth="1.25rem"
+            width="100%"
+            color="#157F3D"
+          />
+          <CellText color={hour.startsWith('+') ? '#157F3D' : '#EF4444'}>
+            {hour}
+          </CellText>
+        </Div>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">1d:</CellText>
-        <CellText color={day.startsWith('-') ? '#EF4444' : '#157F3D'}>
-          {day}
-        </CellText>
+        <Div display="flex" gap="0.5rem" alignItems="center">
+          <DownSVG
+            maxHeight="1.25rem"
+            maxWidth="1.25rem"
+            width="100%"
+            color="#EF4444"
+          />
+          <CellText color={day.startsWith('-') ? '#EF4444' : '#EF4444'}>
+            {day}
+          </CellText>
+        </Div>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">FDV:</CellText>
