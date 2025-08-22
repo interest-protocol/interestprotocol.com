@@ -1,9 +1,9 @@
 export interface TokenProps {
   rank: number;
   token: string;
-  price: string;
+  price: number;
   hour: string;
   day: string;
   fdv: string;
-  volume: string;
+  volume: number;
 }

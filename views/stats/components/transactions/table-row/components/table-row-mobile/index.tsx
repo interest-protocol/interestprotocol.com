@@ -5,6 +5,7 @@ import { FC } from 'react';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatDollars } from '@/utils/string';
 
 import { TransactionProps } from '../../../transactions.types';
 
@@ -37,7 +38,9 @@ const TableRowMobile: FC<TransactionProps> = ({
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">USD Amount:</CellText>
-        <CellText color="#FFFFFF">{usdAmount}</CellText>
+        <CellText color="#FFFFFF">
+          {formatDollars(usdAmount, 6, 'start')}
+        </CellText>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF80">Token Amount 1:</CellText>

@@ -2,7 +2,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',
@@ -10,7 +10,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',
@@ -18,7 +18,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',
@@ -26,7 +26,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',
@@ -34,7 +34,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',
@@ -42,7 +42,7 @@ export const data = [
   {
     time: '51min ago',
     type: 'Remove',
-    usdAmount: '$0.997',
+    usdAmount: 0.997,
     tokenAmount1: '4.93',
     tokenAmount2: '4.93',
     wallet: '0x6be...a4f827660a4cf6a3112cd81357b',

@@ -6,6 +6,7 @@ import { DownSVG, UpSVG } from '@/components/svg';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatDollars } from '@/utils/string';
 
 import { TokenProps } from '../../../tokens.types';
 
@@ -30,10 +31,10 @@ const TableRowDesktop: FC<TokenProps> = ({
     >
       <CellText color="#FFFFFF80">{rank}</CellText>
       <Div display="flex" gap="0.5rem">
-        <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
+        <TokenIcon withBg size="0.75rem" symbol="MOVE" network={network} />
         <CellText color="#FFFFFF">{token}</CellText>
       </Div>
-      <CellText color="#FFFFFF">{price}</CellText>
+      <CellText color="#FFFFFF">{formatDollars(price, 6, 'start')}</CellText>
 
       <Div display="flex" gap="0.5rem" alignItems="center">
         <UpSVG
@@ -60,7 +61,7 @@ const TableRowDesktop: FC<TokenProps> = ({
       </Div>
 
       <CellText color="#FFFFFF">{fdv}</CellText>
-      <CellText color="#FFFFFF">{volume}</CellText>
+      <CellText color="#FFFFFF">{formatDollars(volume, 6, 'start')}</CellText>
     </Div>
   );
 };
