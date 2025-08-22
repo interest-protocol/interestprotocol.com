@@ -5,8 +5,10 @@ import { FC } from 'react';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatDollars } from '@/utils/string';
 
 import { PoolsProps } from '../../../pools.types';
+import StatusBtn from '../status-btn ';
 
 const TableRowMobile: FC<PoolsProps> = ({
   rank,
@@ -15,7 +17,7 @@ const TableRowMobile: FC<PoolsProps> = ({
   tvl,
   volume24h,
   volume7d,
-  apr1d,
+  apr,
 }) => {
   const network = useNetwork<Network>();
 
@@ -27,14 +29,23 @@ const TableRowMobile: FC<PoolsProps> = ({
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Token Name:</CellText>
-        <Div display="flex" gap="0.5rem" alignItems="center">
+        <Div display="flex" gap="3rem" alignItems="center">
           <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
-          <CellText color="#FFFFFF">{token}</CellText>
+          <Div display="flex" gap="0.5rem" flexDirection="column">
+            <CellText color="#FFFFFF">{token}</CellText>
+            <Div display="flex" gap="0.5rem">
+              <StatusBtn status="Earn" />
+              <StatusBtn status="Curve" />
+              <StatusBtn status="Stable" />
+            </Div>
+          </Div>
         </Div>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Transactions:</CellText>
-        <CellText color="#FFFFFF">{transactions}</CellText>
+        <CellText color="#FFFFFF">
+          {formatDollars(transactions, 6, 'start')}
+        </CellText>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">TVL:</CellText>
@@ -50,7 +61,7 @@ const TableRowMobile: FC<PoolsProps> = ({
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">1D APR:</CellText>
-        <CellText color="#FFFFFF">{apr1d}</CellText>
+        <CellText color="#FFFFFF">{formatDollars(apr, 6, 'start')}</CellText>
       </Div>
     </Div>
   );
