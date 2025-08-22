@@ -1,6 +1,6 @@
+export { default as CaretDownVG } from './caret-down';
 export { default as CaretLeftSGV } from './caret-left';
 export { default as CaretRightSVG } from './caret-right';
-export { default as CaretDownVG } from './caret-down';
 export { default as ChevronDownSVG } from './chevron-down';
 export { default as DefaultTokenSVG } from './default';
 export { default as DiscordSVG } from './discord';
@@ -10,7 +10,7 @@ export { default as ExternalLinkSVG } from './external-link';
 export { default as GithubSVG } from './github';
 export { default as LogoSVG } from './logo';
 export { default as LogoLettersSVG } from './logo-letters';
-export { default as SidebarLogoSVG } from './sidebar-logo';
 export { default as SearchSVG } from './search';
+export { default as SidebarLogoSVG } from './sidebar-logo';
 export { default as UpSVG } from './up';
 export { default as XSVG } from './x';
