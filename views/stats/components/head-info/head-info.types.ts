@@ -1,6 +1,6 @@
 export interface HeadProps {
   name: string;
-  value: string;
+  value: number;
   symbol?: string;
   date: string;
 }

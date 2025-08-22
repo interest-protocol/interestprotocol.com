@@ -20,7 +20,7 @@ const StatsContent: FC = () => {
       width="100%"
       display="flex"
       flexDirection="column"
-      px={['0rem', '2.5rem']}
+      px={['1.5rem', '2.5rem']}
     >
       <Div
         mb="1rem"
@@ -30,35 +30,38 @@ const StatsContent: FC = () => {
         gridTemplateColumns={['1fr', '1fr 1fr']}
       >
         <Div display="flex" flexDirection="column" gap="1rem">
-          <HeadInfo name="IPX TVL" value="$31.987.15" date="May 15, 2025" />
+          <HeadInfo
+            name="IPX TVL"
+            value={312323.12}
+            date="2025-08-22T05:42:10.123Z"
+          />
           <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
         </Div>
 
         <Div display="flex" flexDirection="column" gap="1rem">
           <Div display="flex" justifyContent="space-between">
             <HeadInfo
-              name="IPX TVL"
-              value="$31.987.15"
               symbol="USD"
-              date="May 15, 2025"
+              name="IPX TVL"
+              value={312323.12}
+              date="2025-08-22T05:42:10.123Z"
             />
             <Div
               gap="0.5rem"
               height="1.75rem"
               display="flex"
-              p="0.25rem 0.75rem"
+              p="0.25rem 0.5rem"
               border="1px solid #9CA3AF1A"
               borderRadius="9999rem"
             >
               {(['1W', '1M', '3M'] as const).map((intendedInterval) => (
                 <Div
-                  height="1.25rem"
-                  fontSize="0.875rem"
                   display="flex"
+                  fontSize="0.875rem"
                   alignItems="center"
                   borderRadius="9999rem"
                   key={intendedInterval}
-                  padding="0.5rem 0.75rem"
+                  padding="0.25rem 0.5rem"
                   onClick={() => setInterval(intendedInterval)}
                   color={interval === intendedInterval ? '#FFFFFF' : '#9CA3AF'}
                   pointerEvents={

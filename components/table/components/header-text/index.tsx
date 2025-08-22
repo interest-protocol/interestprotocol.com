@@ -9,7 +9,7 @@ const HeaderText: FC<HeaderTextProps> = ({ children }) => (
     fontSize="1rem"
     fontWeight="500"
     fontFamily="Inter"
-    display={['none', 'block']}
+    display={['none', 'none', 'block', 'block']}
   >
     {children}
   </P>

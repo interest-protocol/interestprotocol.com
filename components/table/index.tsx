@@ -7,10 +7,12 @@ import { TableProps } from './table.types';
 
 const Table: FC<TableProps> = ({ columns, gridTemplateColumns, children }) => (
   <Div
+    mb="2rem"
     width="100%"
+    height="auto"
+    borderBottom="0"
     borderRadius="0.75rem"
     border="1px solid #1F2937"
-    borderBottom="0"
     overflowX={['auto', 'visible']}
   >
     <Div

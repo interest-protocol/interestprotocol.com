@@ -20,10 +20,10 @@ const TableRow: FC<TokenProps> = (props) => (
       borderBottom: 0,
     }}
   >
-    <Div display={['block', 'none']}>
+    <Div display={['block', 'block', 'none','none']}>
       <TableRowMobile {...props} />
     </Div>
-    <Div display={['none', 'block']}>
+    <Div display={['none', 'none', 'block','block']}>
       <TableRowDesktop {...props} />
     </Div>
   </Div>

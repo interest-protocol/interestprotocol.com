@@ -14,11 +14,16 @@ const TableRow: FC<TransactionProps> = (props) => (
     nHover={{
       bg: '#1F2937',
     }}
+    nLastChild={{
+      borderBottomLeftRadius: '0.75rem',
+      borderBottomRightRadius: '0.75rem',
+      borderBottom: 0,
+    }}
   >
-    <Div display={['block', 'none']}>
+    <Div display={['block', 'block', 'none', 'none']}>
       <TableRowMobile {...props} />
     </Div>
-    <Div display={['none', 'block']}>
+    <Div display={['none', 'none', 'block', 'block']}>
       <TableRowDesktop {...props} />
     </Div>
   </Div>
