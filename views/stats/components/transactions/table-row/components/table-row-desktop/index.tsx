@@ -13,8 +13,7 @@ const TableRowDesktop: FC<TransactionProps> = ({
   time,
   type,
   usdAmount,
-  tokenAmount1,
-  tokenAmount2,
+  pairTokenAmount,
   wallet,
 }) => {
   const network = useNetwork<Network>();
@@ -41,11 +40,11 @@ const TableRowDesktop: FC<TransactionProps> = ({
         {formatDollars(usdAmount, 6, 'start')}
       </CellText>
       <Div display="flex" gap="0.5rem" alignItems="center">
-        <CellText color="#FFFFFF">{tokenAmount1}</CellText>
+        <CellText color="#FFFFFF">{pairTokenAmount[0]}</CellText>
         <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
       </Div>
       <Div display="flex" gap="0.5rem" alignItems="center">
-        <CellText color="#FFFFFF">{tokenAmount2}</CellText>
+        <CellText color="#FFFFFF">{pairTokenAmount[1]}</CellText>
         <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
       </Div>
       <CellText color="#FFFFFF">{wallet}</CellText>

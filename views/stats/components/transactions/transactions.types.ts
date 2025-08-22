@@ -2,7 +2,6 @@ export interface TransactionProps {
   time: string;
   type: string;
   usdAmount: number;
-  tokenAmount1: string;
-  tokenAmount2: string;
+  pairTokenAmount: ReadonlyArray<string>;
   wallet: string;
 }
