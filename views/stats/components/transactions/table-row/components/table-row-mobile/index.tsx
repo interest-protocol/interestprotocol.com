@@ -5,6 +5,7 @@ import { FC } from 'react';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatTimeAgo } from '@/utils/date';
 import { formatDollars } from '@/utils/string';
 
 import { TransactionProps } from '../../../transactions.types';
@@ -22,7 +23,7 @@ const TableRowMobile: FC<TransactionProps> = ({
     <Div p="1rem" display="flex" flexDirection="column" gap="0.25rem">
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Time:</CellText>
-        <CellText color="#FFFFFF80">{time}</CellText>
+        <CellText color="#FFFFFF80">{formatTimeAgo(time)}</CellText>
       </Div>
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Type:</CellText>

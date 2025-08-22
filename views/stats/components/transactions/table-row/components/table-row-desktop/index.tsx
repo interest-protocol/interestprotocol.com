@@ -5,6 +5,7 @@ import { FC } from 'react';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
 import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatTimeAgo } from '@/utils/date';
 import { formatDollars } from '@/utils/string';
 
 import { TransactionProps } from '../../../transactions.types';
@@ -27,7 +28,7 @@ const TableRowDesktop: FC<TransactionProps> = ({
       alignItems="center"
       gridTemplateColumns="1fr 3fr 2fr 2fr 2fr 2fr"
     >
-      <CellText color="#FFFFFF80">{time}</CellText>
+      <CellText color="#FFFFFF80">{formatTimeAgo(time)}</CellText>
       <Div display="flex" gap="0.5rem" alignItems="center">
         <CellText color="#FFFFFF80">Remove</CellText>
         <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
