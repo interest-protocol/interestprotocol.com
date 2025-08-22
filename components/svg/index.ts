@@ -1,7 +1,9 @@
 export { default as CaretLeftSGV } from './caret-left';
 export { default as CaretRightSVG } from './caret-right';
 export { default as ChevronDownSVG } from './chevron-down';
+export { default as DefaultTokenSVG } from './default';
 export { default as DiscordSVG } from './discord';
+export { default as ETHChainSVG } from './eth-chain';
 export { default as ExternalLinkSVG } from './external-link';
 export { default as GithubSVG } from './github';
 export { default as LogoSVG } from './logo';
