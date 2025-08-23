@@ -20,6 +20,7 @@ const StatsContent: FC = () => {
       width="100%"
       display="flex"
       flexDirection="column"
+      mt={['1.5rem', '2.5rem']}
       px={['1.5rem', '2.5rem']}
     >
       <Div
