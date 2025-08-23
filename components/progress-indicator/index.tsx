@@ -24,7 +24,7 @@ export const ProgressIndicator: FC<
       <ProgressCircle
         size={size}
         status={status}
-        value={variant === 'loading' ? -1 : value ?? 0}
+        value={variant === 'loading' ? -1 : (value ?? 0)}
         {...props}
       />
     </Div>
