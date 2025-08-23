@@ -18,21 +18,80 @@ export const validationSchema = yup.object({
       [yup.ref('name'), yup.ref('symbol')],
       'The description must be different than the name and symbol'
     ),
-  imageUrl: yup
-    .mixed()
-    .test('fileType', 'You must provide a valid image URL', (value) => {
-      const files = value as FileList;
-      if (!files || files.length === 0 || !files[0]) return true;
+  imageUrl: yup.mixed().test({
+    name: 'imageUrl',
+    message: 'You must provide a valid image URL',
+    test: async (value, ctx) => {
+      if (value == null || value === '') return true;
 
-      const supportedFormats = [
+      if (typeof value !== 'string') {
+        return ctx.createError({
+          message: 'The value must be a string (URL).',
+        });
+      }
+
+      const v = value.trim();
+      if (!v) return true;
+
+      const SUPPORTED_MIME = [
         'image/jpeg',
         'image/jpg',
         'image/png',
         'image/gif',
         'image/webp',
       ];
-      return supportedFormats.includes(files[0].type);
-    }),
+
+      const EXT_RE = /\.(?:jpe?g|png|gif|webp)(?:\?.*)?$/i;
+      const HINT_RE =
+        /(?:[?&](?:format|fm|mime)[:=]?(?:webp|jpeg|jpg|png|gif))|(?:\/format:(?:webp|jpeg|jpg|png|gif)\/?)/i;
+      const DATA_URL_RE =
+        /^data:image\/(jpeg|jpg|png|gif|webp);base64,[A-Za-z0-9+/=]+$/i;
+
+      if (v.startsWith('data:')) {
+        return DATA_URL_RE.test(v)
+          ? true
+          : ctx.createError({ message: 'Invalid URL data for image.' });
+      }
+
+      let url: URL;
+      try {
+        url = new URL(v);
+      } catch {
+        return ctx.createError({
+          message: 'You must provide a valid image URL',
+        });
+      }
+      if (!/^https?:$/.test(url.protocol)) {
+        return ctx.createError({
+          message: 'Only URL http/https or data: are allowed.',
+        });
+      }
+
+      const looksLikeImage =
+        EXT_RE.test(url.pathname) || HINT_RE.test(url.href);
+
+      if (typeof fetch === 'function') {
+        try {
+          const res = await fetch(v, { method: 'HEAD' });
+          const ct = (res.headers.get('content-type') || '').toLowerCase();
+          if (ct) {
+            if (SUPPORTED_MIME.some((m) => ct.startsWith(m))) return true;
+            return ctx.createError({
+              message: `The URL does not point to a supported image (Content-Type:  ${ct}).`,
+            });
+          }
+        } catch {
+          /* empty */
+        }
+      }
+
+      return looksLikeImage
+        ? true
+        : ctx.createError({
+            message: "We couldn't confirm that the URL is an image.",
+          });
+    },
+  }),
   supply: yup
     .number()
     .required('Supply is a required field')
