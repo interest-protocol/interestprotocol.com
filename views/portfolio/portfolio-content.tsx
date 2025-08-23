@@ -2,6 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import unikey from 'unikey';
 
+import CurvePools from './components/curve-pools';
 import HeadInfo from './components/head-info';
 import { Info } from './portfolio.data';
 
@@ -15,7 +16,6 @@ const PortfolioContent: FC = () => {
       px={['1.5rem', '5.5rem']}
     >
       <Div
-        mb="1rem"
         gap="1rem"
         width="100%"
         display="grid"
@@ -25,6 +25,8 @@ const PortfolioContent: FC = () => {
           <HeadInfo key={unikey()} title={info.title} value={info.value} />
         ))}
       </Div>
+
+      <CurvePools />
     </Div>
   );
 };
