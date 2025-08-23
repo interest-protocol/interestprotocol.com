@@ -2,9 +2,9 @@ import { Div, Label, Span } from '@stylin.js/elements';
 import { propOr } from 'ramda';
 import { ChangeEventHandler, DragEventHandler, FC, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 import { FolderSVG, ImageCardSVG } from '@/components/svg';
+import { toasting } from '@/components/toast';
 
 import { ICreateTokenForm } from '../create-token.types';
 import { getBase64 } from '../create-token.utils';
@@ -12,7 +12,7 @@ import { getBase64 } from '../create-token.utils';
 const CreateTokenFormImage: FC = () => {
   const { setValue, control } = useFormContext<ICreateTokenForm>();
   const [dragging, setDragging] = useState(false);
-  const [fileName, setfileName] = useState('');
+  const [fileName, setFileName] = useState('');
 
   const dropImageUrl = useWatch({
     control,
@@ -22,18 +22,27 @@ const CreateTokenFormImage: FC = () => {
   const handleChangeFile: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const file = e.target.files?.[0];
 
-    if (!file) return toast.error('Something went wrong');
+    if (!file) return toastError('Something went wrong');
 
     if (!file.type.includes('image/'))
-      return toast.error('Make sure that you are sending an image');
+      return toastError('Make sure that you are sending an image');
 
-    const imageBase64 = await getBase64(file).catch(() =>
-      toast.error('Something went wrong')
-    );
+    try {
+      const imageBase64 = await getBase64(file);
+      setValue('dropImageUrl', imageBase64);
+      setValue('imageUrl', '');
+    } catch (e) {
+      toastError(propOr('Something went wrong', 'message', e));
+      setValue('imageUrl', '');
+    }
+    setFileName(file.name);
+  };
 
-    setValue('dropImageUrl', imageBase64);
-    setValue('imageUrl', '');
-    setfileName(file.name);
+  const toastError = (message: string) => {
+    toasting.error({
+      action: 'Image upload',
+      message: message,
+    });
   };
 
   const handleDropFile: DragEventHandler<HTMLDivElement> = async (e) => {
@@ -43,36 +52,41 @@ const CreateTokenFormImage: FC = () => {
       const item = e.dataTransfer.items[0];
 
       if (item.kind !== 'file' || !item.type.includes('image/'))
-        return toast.error('Make sure that you are sending an image');
+        return toastError('Make sure that you are sending an image');
 
       const file = item.getAsFile();
 
-      if (!file) return toast.error('Something went wrong');
+      if (!file) return toastError('Something went wrong');
 
-      const imageBase64 = await getBase64(file).catch((e) =>
-        toast.error(propOr('Something went wrong', 'message', e))
-      );
+      try {
+        const imageBase64 = await getBase64(file);
+        setValue('dropImageUrl', imageBase64);
+        setValue('imageUrl', '');
+      } catch (e) {
+        toastError(propOr('Something went wrong', 'message', e));
+        setValue('imageUrl', '');
+      }
 
-      setValue('dropImageUrl', imageBase64);
-      setValue('imageUrl', '');
-      setfileName(file.name);
+      setFileName(file.name);
       return;
     }
 
     const file = e.dataTransfer.files[0];
 
-    if (!file) return toast.error('Something went wrong');
+    if (!file) return toastError('Something went wrong');
 
     if (!file.type.includes('image/'))
-      return toast.error('Make sure that you are sending an image');
+      return toastError('Make sure that you are sending an image');
 
-    const imageBase64 = await getBase64(file).catch(() =>
-      toast.error('Something went wrong')
-    );
-
-    setValue('dropImageUrl', imageBase64);
-    setValue('imageUrl', '');
-    setfileName(file.name);
+    try {
+      const imageBase64 = await getBase64(file);
+      setValue('dropImageUrl', imageBase64);
+      setValue('imageUrl', '');
+    } catch (e) {
+      toastError(propOr('Something went wrong', 'message', e));
+      setValue('imageUrl', '');
+    }
+    setFileName(file.name);
   };
 
   return (

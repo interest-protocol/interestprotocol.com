@@ -1,12 +1,9 @@
-import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { TextField } from '@/components/text-field';
-import { MOVE } from '@/constants/coins';
 import { FixedPointMath } from '@/lib';
-import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { parseInputEventToNumberString, ZERO_BIG_NUMBER } from '@/utils';
 import { ICreateTokenForm } from '@/views/create-token/create-token.types';
 
@@ -17,15 +14,11 @@ import SelectToken from './select-token';
 import TokenBalance from './token-balance';
 
 const Input: FC<InputProps> = ({ label }) => {
-  const { coinsMap } = useCoins();
   const { register, setValue, getValues } = useFormContext<ICreateTokenForm>();
 
-  const type = MOVE.address.toString();
   const balance =
     label == 'quote'
-      ? FixedPointMath.toNumber(
-          coinsMap[normalizeSuiAddress(type)]?.balance ?? ZERO_BIG_NUMBER
-        )
+      ? FixedPointMath.toNumber(ZERO_BIG_NUMBER)
       : getValues('supply');
 
   const rawValue = getValues(`pool.${label}Value`);

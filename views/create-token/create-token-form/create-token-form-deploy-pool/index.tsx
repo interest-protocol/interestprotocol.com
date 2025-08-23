@@ -8,8 +8,6 @@ import CreateTokenFormPoolForm from '../create-token-form-pool/create-token-form
 const CreateTokenFormDeployPool: FC = () => (
   <Div display="flex" gap="1rem" flexDirection="column">
     <P
-      //size="small"
-      //variant="body"
       color="#E5E7EB"
       fontSize="1rem"
       fontWeight="600"
@@ -33,9 +31,7 @@ const CreateTokenFormDeployPool: FC = () => (
     >
       <Div display="flex" flexDirection="column">
         <P
-          //size="medium"
           mb="0.25rem"
-          //variant="body"
           color="#FFFFFF"
           fontWeight="400"
           fontFamily="Inter"
@@ -45,8 +41,6 @@ const CreateTokenFormDeployPool: FC = () => (
           Deploy Pool Instantly
         </P>
         <P
-          //size="medium"
-          //variant="label"
           color="#9CA3AF"
           fontSize="1rem"
           fontWeight="400"

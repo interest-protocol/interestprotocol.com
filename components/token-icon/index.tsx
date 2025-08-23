@@ -157,12 +157,12 @@ const TokenIcon: FC<TokenIconProps> = ({
             maxWidth={
               PADDING_BORDER_SYMBOLS.includes(symbol)
                 ? `calc(${size} * 1.66)`
-                : size ?? '1.5rem'
+                : (size ?? '1.5rem')
             }
             maxHeight={
               PADDING_BORDER_SYMBOLS.includes(symbol)
                 ? `calc(${size} * 1.66)`
-                : size ?? '1.5rem'
+                : (size ?? '1.5rem')
             }
           />
         </Div>

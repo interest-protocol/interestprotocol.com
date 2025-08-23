@@ -7,7 +7,6 @@ import { COLOR_MAP, STATUS_ICON } from './dialog.data';
 import { DialogProps, IDialogButton } from './dialog.types';
 
 export const Dialog: FC<DialogProps> = ({
-  title,
   status,
   message,
   fontFamily,
@@ -18,7 +17,6 @@ export const Dialog: FC<DialogProps> = ({
 
   return (
     <Div
-      p="1.5rem"
       width="25rem"
       maxWidth="100%"
       borderRadius="0.5rem"
@@ -26,31 +24,8 @@ export const Dialog: FC<DialogProps> = ({
       display="inline-flex"
       flexDirection="column"
       justifyContent="center"
-      boxShadow="0rem 1.5rem 2.875rem -0.625rem rgba(13, 16, 23, 0.16)"
-      backgroundColor="#1F1F23"
       role="dialog"
     >
-      <Div
-        display="flex"
-        minWidth="100%"
-        position="relative"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Span
-          color={
-            // eslint-disable-next-line no-constant-condition
-            status === 'loading' || status === 'general'
-              ? '#E2E2E6'
-              : COLOR_MAP[status]
-          }
-          flex="1"
-          textAlign="center"
-          {...(fontFamily && { fontFamily })}
-        >
-          {title}
-        </Span>
-      </Div>
       <Div
         display="flex"
         maxWidth="22rem"
@@ -59,7 +34,6 @@ export const Dialog: FC<DialogProps> = ({
         justifyContent="center"
         flexDirection="column"
         overflowWrap="anywhere"
-        pt="1.5rem"
         gap="1rem"
       >
         {status !== 'general' ? (

@@ -9,8 +9,8 @@ export const Filled: FC<PropsWithChildren<Omit<ButtonProps, 'variant'>>> = ({
 }) => {
   return (
     <StylinButton
-      px="1.5rem"
       all="unset"
+      px="1.5rem"
       gap="0.5rem"
       py="0.75rem"
       display="flex"
@@ -26,7 +26,6 @@ export const Filled: FC<PropsWithChildren<Omit<ButtonProps, 'variant'>>> = ({
       justifyContent="center"
       transition="all 300ms ease-in-out"
       boxShadow="0px 0px 0px 1px #9CA3AF1A"
-      flex="3"
       background="#B4C5FF"
       nHover={{
         background: `linear-gradient(0deg, #FFF2, #FFF2), #B4C5FF`,

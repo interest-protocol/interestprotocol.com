@@ -6,7 +6,6 @@ export interface IDialogButton {
 }
 
 export interface DialogProps {
-  title: string;
   fontFamily?: string;
   message: string | ReactNode;
   primaryButton?: IDialogButton | ReactNode;

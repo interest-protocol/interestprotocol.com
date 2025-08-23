@@ -18,6 +18,14 @@ export const GlobalStyles = css`
     font-display: swap;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'Inter';
+    src: url('https://interest-protocol.github.io/fonts/inter/Inter-Medium.ttf')
+      format('truetype');
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+  }
 
   @font-face {
     font-family: 'Inter';
