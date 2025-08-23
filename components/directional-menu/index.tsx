@@ -18,7 +18,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       layout
       top="0"
       left="0"
-      zIndex="9"
+      zIndex="2"
       width="100%"
       p="1.875rem"
       display="flex"
