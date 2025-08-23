@@ -9,8 +9,9 @@ const TableRow: FC<TransactionProps> = (props) => (
   <Div
     width="100%"
     bg="#030712"
-    borderBottom="1px solid #1F2937"
     cursor="pointer"
+    border="1px solid #1F2937"
+    borderTop="none"
     nHover={{
       bg: '#1F2937',
     }}

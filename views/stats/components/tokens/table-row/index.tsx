@@ -9,7 +9,8 @@ const TableRow: FC<TokenProps> = (props) => (
   <Div
     width="100%"
     bg="#030712"
-    borderBottom="1px solid #1F2937"
+    border="1px solid #1F2937"
+    borderTop="none"
     cursor="pointer"
     nHover={{
       bg: '#1F2937',
@@ -20,10 +21,10 @@ const TableRow: FC<TokenProps> = (props) => (
       borderBottom: 0,
     }}
   >
-    <Div display={['block', 'block', 'none','none']}>
+    <Div display={['block', 'block', 'none', 'none']}>
       <TableRowMobile {...props} />
     </Div>
-    <Div display={['none', 'none', 'block','block']}>
+    <Div display={['none', 'none', 'block', 'block']}>
       <TableRowDesktop {...props} />
     </Div>
   </Div>

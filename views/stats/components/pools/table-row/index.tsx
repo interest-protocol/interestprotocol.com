@@ -9,7 +9,8 @@ const TableRow: FC<PoolsProps> = (props) => (
   <Div
     width="100%"
     bg="#030712"
-    borderBottom="1px solid #1F2937"
+    border="1px solid #1F2937"
+    borderTop="none"
     cursor="pointer"
     nHover={{
       bg: '#1F2937',

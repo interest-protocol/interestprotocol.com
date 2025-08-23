@@ -20,7 +20,7 @@ const TableRowMobile: FC<TransactionProps> = ({
   const network = useNetwork<Network>();
 
   return (
-    <Div p="1rem" display="flex" flexDirection="column" gap="0.25rem">
+    <Div p="1rem" display="flex" flexDirection="column" gap="0.5rem">
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Time:</CellText>
         <CellText color="#FFFFFF80">{formatTimeAgo(time)}</CellText>
