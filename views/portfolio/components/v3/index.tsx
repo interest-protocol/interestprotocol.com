@@ -7,7 +7,7 @@ import Earnings from '../earnings';
 import Position from '../position';
 import Title from '../title';
 
-const CurvePools: FC = () => {
+const V3: FC = () => {
   return (
     <Div width="100%" display="flex" flexDirection="column">
       <Div
@@ -17,9 +17,9 @@ const CurvePools: FC = () => {
         justifyContent="space-between"
         flexDirection={['column', 'column', 'row']}
       >
-        <Title title="Curve pools" count={0} />
+        <Title title="v3" count={0} />
         <Div display="flex" gap="1rem">
-          <Position type="pools" value={0} />
+          <Position value={0} />
           <Earnings value={98} />
         </Div>
       </Div>
@@ -34,4 +34,4 @@ const CurvePools: FC = () => {
   );
 };
 
-export default CurvePools;
+export default V3;

@@ -3,11 +3,9 @@ import { FC } from 'react';
 
 import Table from '@/components/table';
 
-import Earnings from '../earnings';
-import Position from '../position';
 import Title from '../title';
 
-const CurvePools: FC = () => {
+const Transactions: FC = () => {
   return (
     <Div width="100%" display="flex" flexDirection="column">
       <Div
@@ -17,16 +15,12 @@ const CurvePools: FC = () => {
         justifyContent="space-between"
         flexDirection={['column', 'column', 'row']}
       >
-        <Title title="Curve pools" count={0} />
-        <Div display="flex" gap="1rem">
-          <Position type="pools" value={0} />
-          <Earnings value={98} />
-        </Div>
+        <Title title="Transactions" count={0} />
       </Div>
 
       <Table
-        columns={['Pool', 'Price Range', 'Liquidity', 'Leverage', 'Earnings']}
-        gridTemplateColumns={['1fr', 'repeat(5,1fr)']}
+        columns={['Time', 'Action', 'Pool', 'Detail']}
+        gridTemplateColumns={['1fr', 'repeat(4,1fr)']}
       >
         nada a comentar
       </Table>
@@ -34,4 +28,4 @@ const CurvePools: FC = () => {
   );
 };
 
-export default CurvePools;
+export default Transactions;
