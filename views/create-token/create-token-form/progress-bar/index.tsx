@@ -21,7 +21,7 @@ const ProgressBar: FC<ProgressBarProps> = ({ currentStep, totalSteps }) => {
         width={`${progress}%`}
         borderTopLeftRadius="100000px"
         borderTopRightRadius="100000px"
-        borderBottomRightRadius="100000px"
+        borderBottomRightRadius="0"
         transition="width 0.3s ease"
         style={{
           background: 'linear-gradient(90deg, #8BA5FF 0%, #6366F1 100%)',
