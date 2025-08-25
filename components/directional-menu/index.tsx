@@ -1,8 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC, PropsWithChildren, useState } from 'react';
 
-import { Motion } from '@/components';
-
+import { Motion } from '../motion';
 import { IDirectionalMenuProps } from './directional-menu.types';
 import DirectionalMenuClosed from './directional-menu-closed';
 
