@@ -1,7 +1,8 @@
 import { Button, Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import AdditionalInfo from '../additional-info';
+import Rewards from '../rewards';
+import AdditionalInfo from './components/additional-info';
 import Input from './components/input';
 
 const Deposit: FC = () => (
@@ -14,6 +15,7 @@ const Deposit: FC = () => (
     />
 
     <Button
+      mb="1.5rem"
       border="none"
       p="0.5rem 1rem"
       height="3.5rem"
@@ -30,6 +32,8 @@ const Deposit: FC = () => (
     >
       Connect Wallet
     </Button>
+
+    <Rewards claimingFee="18%" />
   </Div>
 );
 
