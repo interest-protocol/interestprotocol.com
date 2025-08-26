@@ -16,7 +16,7 @@ const SwapContent: FC = () => {
         gap="1.25rem"
         mx="auto"
         display="flex"
-        borderRadius="l"
+        borderRadius="3rem"
         alignContent="center"
         justifyContent="center"
         px={['1.5rem', '3rem']}

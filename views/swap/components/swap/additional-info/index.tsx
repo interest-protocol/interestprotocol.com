@@ -32,13 +32,7 @@ const AdditionalInfo: FC = () => {
             animate={{ height: 'auto', opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <Div
-              mt="0.5rem"
-              gap="0.5rem"
-              display="flex"
-              flexDirection="column"
-              className="accordion"
-            >
+            <Div mt="0.5rem" gap="0.5rem" display="flex" flexDirection="column">
               <AdditionalInfoLine title="Fee (0,25%)" value="0.00$" />
               <AdditionalInfoLine title="Price impact" value="0.00%" />
               <AdditionalInfoLine title="Network cost" value="0.00$" />

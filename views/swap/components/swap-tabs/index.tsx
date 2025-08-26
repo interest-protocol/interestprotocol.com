@@ -45,12 +45,12 @@ const SwapTabs: FC = () => {
         lineHeight="0"
         display="flex"
         cursor="pointer"
-        color="onSurface"
+        color="#9CA3AF"
         alignItems="center"
         aria-label="Settings"
         onClick={handleOpenSettings}
         transition="transform 500ms ease-in-out"
-        nHover={{ transform: 'rotate(180deg)' }}
+        nHover={{ transform: 'rotate(180deg)', color: '#B4C5FF' }}
       >
         <CogsSVG maxWidth="1.25rem" maxHeight="1.25rem" width="100%" />
       </Div>
