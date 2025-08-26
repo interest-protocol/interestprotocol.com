@@ -11,9 +11,10 @@ import AmountInDollar from './components/dollar-value';
 import HeaderInfo from './components/header-info';
 import SelectToken from './components/select-token';
 import { InputProps } from './input.types';
+import { CreateDepositForm } from '../../deposit.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue, getValues } = useFormContext<CreatePoolForm>();
+  const { register, setValue, getValues } = useFormContext<CreateDepositForm>();
 
   const tokenType = useWatch({ name: `tokens.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
@@ -84,10 +85,10 @@ const Input: FC<InputProps> = ({ index }) => {
           </Div>
           <SelectToken index={index} />
         </Div>
-          <Div display="flex" justifyContent="space-between" color="outline">
-            <AmountInDollar index={index} />
-            <Balance index={index} />
-          </Div>
+        <Div display="flex" justifyContent="space-between" color="outline">
+          <AmountInDollar index={index} />
+          <Balance index={index} />
+        </Div>
       </Div>
     </Div>
   );

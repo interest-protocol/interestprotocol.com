@@ -9,13 +9,13 @@ import SubtractBox from '@/components/svg/subtract-box';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
 import { InputProps } from '../input.types';
+import { CreateDepositForm } from '../../../deposit.types';
 
 const Balance: FC<InputProps> = ({ index }) => {
   const { coinsMap, loading } = useCoins();
-  const { control, setValue } = useFormContext<CreatePoolForm>();
+  const { control, setValue } = useFormContext<CreateDepositForm>();
 
   const type = useWatch({ control, name: `tokens.${index}.type` });
   const decimals = useWatch({ control, name: `tokens.${index}.decimals` });

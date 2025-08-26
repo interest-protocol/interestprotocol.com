@@ -1,0 +1,14 @@
+import BigNumber from 'bignumber.js';
+
+import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
+
+export type PoolToken = AssetMetadata & {
+    value: string;
+    valueBN: BigNumber;
+};
+
+export interface CreateDepositForm {
+    tokens: ReadonlyArray<PoolToken>;
+    volatilityStrategyType: string;
+    error?: string | null;
+}

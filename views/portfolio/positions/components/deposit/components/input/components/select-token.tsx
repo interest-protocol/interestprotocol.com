@@ -11,14 +11,13 @@ import {
 } from '@/lib/coins-manager/coins-manager.types';
 import { ZERO_BIG_NUMBER } from '@/utils';
 import SelectTokenModal from '@/views/components/select-token-modal';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
 import { InputProps } from '../input.types';
+import { CreateDepositForm } from '../../../deposit.types';
 
 const SelectToken: FC<InputProps> = ({ index }) => {
-  const network = useNetwork<Network>();
   const { setContent, handleClose } = useModal();
-  const { setValue, control } = useFormContext<CreatePoolForm>();
+  const { setValue, control } = useFormContext<CreateDepositForm>();
 
   const [currentToken, tokens] = useWatch({
     control,
@@ -96,6 +95,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
             size="1.25rem"
             symbol={currentSymbol}
             rounded={sanitizedToken?.standard === TokenStandard.COIN}
+            network={Network.MovementMainnet}
           />
         </Div>
       )}
