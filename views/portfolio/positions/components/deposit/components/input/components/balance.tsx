@@ -10,8 +10,8 @@ import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
 
-import { InputProps } from '../input.types';
 import { CreateDepositForm } from '../../../deposit.types';
+import { InputProps } from '../input.types';
 
 const Balance: FC<InputProps> = ({ index }) => {
   const { coinsMap, loading } = useCoins();

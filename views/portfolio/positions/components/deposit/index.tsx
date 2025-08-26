@@ -1,10 +1,13 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-const Deposit: FC = () => (
-    <Div display="flex" flexDirection="column">
+import Input from './components/input';
 
-    </Div>
+const Deposit: FC = () => (
+  <Div display="flex" flexDirection="column">
+    <Input index={0} />
+    <Input index={1} />
+  </Div>
 );
 
 export default Deposit;

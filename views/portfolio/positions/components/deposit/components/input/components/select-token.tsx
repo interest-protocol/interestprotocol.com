@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Button, Div, P } from '@stylin.js/elements';
+import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ChevronDownSVG } from '@/components/svg';
@@ -12,8 +13,8 @@ import {
 import { ZERO_BIG_NUMBER } from '@/utils';
 import SelectTokenModal from '@/views/components/select-token-modal';
 
-import { InputProps } from '../input.types';
 import { CreateDepositForm } from '../../../deposit.types';
+import { InputProps } from '../input.types';
 
 const SelectToken: FC<InputProps> = ({ index }) => {
   const { setContent, handleClose } = useModal();
