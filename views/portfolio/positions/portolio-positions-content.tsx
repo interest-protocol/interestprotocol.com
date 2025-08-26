@@ -1,10 +1,17 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import unikey from 'unikey';
+
+import { useTabState } from '@/hooks/use-tab-manager';
 
 import Breadcrumb from './components/breadcrumb';
+import Deposit from './components/deposit';
 import Info from './components/info';
+import PositionsTabs from './components/positions-tabs';
+import Withdraw from './components/withdraw';
 
 const PortfolioPositionsContent: FC = () => {
+  const { tab } = useTabState();
   return (
     <Div
       mt="2.5rem"
@@ -16,8 +23,12 @@ const PortfolioPositionsContent: FC = () => {
     >
       <Breadcrumb pools={['USDC', 'BTC']} lp="/no-coin.png" />
 
-      <Div display="grid" gridTemplateColumns={['1fr', '1fr 1fr']}>
+      <Div gap="2.5rem" display="grid" gridTemplateColumns={['1fr', '1fr 1fr']}>
         <Info />
+        <Div gap="0.75rem" display="flex" flexDirection="column">
+          <PositionsTabs />
+          {[<Deposit key={unikey()} />, <Withdraw key={unikey()} />][tab]}
+        </Div>
       </Div>
     </Div>
   );
