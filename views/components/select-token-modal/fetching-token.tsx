@@ -1,7 +1,7 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import ProgressIndicator from '@/components/progress-indicator';
+import { ProgressIndicator } from '@/components/progress-indicator';
 
 const FetchingToken: FC = () => (
   <Div

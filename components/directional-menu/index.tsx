@@ -1,8 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC, PropsWithChildren, useState } from 'react';
 
-import { Motion } from '@/components';
-
+import { Motion } from '../motion';
 import { IDirectionalMenuProps } from './directional-menu.types';
 import DirectionalMenuClosed from './directional-menu-closed';
 
@@ -18,7 +17,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       layout
       top="0"
       left="0"
-      zIndex="9"
+      zIndex="2"
       width="100%"
       p="1.875rem"
       display="flex"

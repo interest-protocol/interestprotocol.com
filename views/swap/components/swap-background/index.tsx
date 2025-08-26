@@ -1,13 +1,12 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import { memo, useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import unikey from 'unikey';
 
 import { TokenIcon } from '@/components';
-import Motion from '@/components/motion';
+import { Motion } from '@/components/motion';
+import { Network } from '@/constants';
 import { TOKENS } from '@/constants/coins';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
 import { parseToMetadata, ZERO_BIG_NUMBER } from '@/utils';
 import { CoinMetadata, FAMetadata } from '@/utils/coin/coin.types';
@@ -21,7 +20,6 @@ import {
 import SwapBackgroundPrice from './swap-background-price';
 
 const SwapBackground = memo(() => {
-  const network = useNetwork<Network>();
   const { setValue, getValues } = useFormContext();
 
   const onSelect = async (metadata: AssetMetadata) => {
@@ -129,7 +127,7 @@ const SwapBackground = memo(() => {
             >
               <TokenIcon
                 withBg
-                network={network}
+                network={Network.MovementMainnet}
                 url={token.iconUri}
                 symbol={token.symbol}
               />
@@ -207,7 +205,7 @@ const SwapBackground = memo(() => {
             >
               <TokenIcon
                 withBg
-                network={network}
+                network={Network.MovementMainnet}
                 url={token.iconUri}
                 symbol={token.symbol}
               />

@@ -3,7 +3,7 @@ import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import ProgressIndicator from '@/components/progress-indicator';
+import { ProgressIndicator } from '@/components/progress-indicator';
 import SubtractBox from '@/components/svg/subtract-box';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';

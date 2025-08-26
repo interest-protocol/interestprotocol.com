@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import Motion from '@/components/motion';
+import { Motion } from '@/components/motion';
 import { ChevronDownSVG } from '@/components/svg';
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { formatDollars, formatMoney } from '@/utils';

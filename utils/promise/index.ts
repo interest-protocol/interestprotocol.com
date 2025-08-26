@@ -1,9 +1,7 @@
-import { KeyedMutator } from 'swr';
-
 const RATE_LIMIT_DELAY = 500;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export const noop: KeyedMutator<void> = async () => undefined;
+// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
+export const noop: any = () => {};
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const asyncNoop = async () => {};

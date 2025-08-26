@@ -1,4 +1,3 @@
-import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -15,8 +14,6 @@ import SelectToken from './select-token';
 
 const InputSwap: FC<InputProps> = ({ label }) => {
   const { register, setValue, getValues, control } = useFormContext();
-
-  const { account } = useAptosWallet();
 
   useWatch({ control, name: 'focus' });
 
@@ -90,12 +87,11 @@ const InputSwap: FC<InputProps> = ({ label }) => {
           </Div>
           <SelectToken label={label} />
         </Div>
-        {account?.address && (
-          <Div display="flex" justifyContent="space-between">
-            <AmountInDollar label={label} />
-            <Balance label={label} />
-          </Div>
-        )}
+        {/*account?.address*/}
+        <Div display="flex" justifyContent="space-between">
+          <AmountInDollar label={label} />
+          <Balance label={label} />
+        </Div>
       </Div>
     </>
   );

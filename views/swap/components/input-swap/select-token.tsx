@@ -1,12 +1,11 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Button, Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ChevronDownSVG } from '@/components/svg';
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { useModal } from '@/hooks/use-modal';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 import {
   AssetMetadata,
   TokenStandard,
@@ -17,7 +16,6 @@ import SelectTokenModal from '@/views/components/select-token-modal';
 import { InputProps } from './input.types';
 
 const SelectToken: FC<InputProps> = ({ label }) => {
-  const network = useNetwork<Network>();
   const { setContent, handleClose } = useModal();
   const { setValue, control } = useFormContext();
 
@@ -99,7 +97,7 @@ const SelectToken: FC<InputProps> = ({ label }) => {
           <TokenIcon
             withBg
             size="1.25rem"
-            network={network}
+            network={Network.MovementMainnet}
             symbol={currentSymbol}
             rounded={sanitizedToken?.standard === TokenStandard.COIN}
           />
@@ -123,7 +121,6 @@ const SelectToken: FC<InputProps> = ({ label }) => {
           overflow="hidden"
           whiteSpace="nowrap"
           fontFamily="Inter"
-          textOverflow="ellipsis"
           width={['0px', 'auto']}
           fontWeight="500"
           display={[currentSymbol ? 'none' : 'block', 'block']}

@@ -70,6 +70,9 @@ export const SwapErrorManager: FC<SwapMessagesProps> = ({ hasNoMarket }) => {
       newError = String(SwapMessagesEnum.notEnoughToken);
     }
 
+    /* TODO: remove to error works well */
+    newError = null;
+
     if (newError !== error) {
       setValue('error', newError);
     }

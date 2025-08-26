@@ -37,7 +37,7 @@ export class Fraction {
   }
 
   public invert(): Fraction {
-    return new Fraction(this.denominator, this.numerator);
+    return new Fraction(this.numerator, this.denominator);
   }
 
   public static from(
@@ -54,21 +54,19 @@ export class Fraction {
       fractionish instanceof BigNumber ||
       typeof fractionish === 'number' ||
       typeof fractionish === 'string'
-    ) {
+    )
       return new Fraction(fractionish);
-    }
 
     throw new Error('Could not parse fraction');
   }
 
   public plus(other: Fraction | BigNumber.Value): Fraction {
     const otherParsed = Fraction.tryParseFraction(other);
-    if (otherParsed.denominator.eq(this.denominator)) {
+    if (otherParsed.denominator.eq(this.denominator))
       return new Fraction(
         this.numerator.plus(otherParsed.numerator),
         otherParsed.denominator
       );
-    }
 
     return new Fraction(
       this.numerator
@@ -78,14 +76,13 @@ export class Fraction {
     );
   }
 
-  public subtract(other: Fraction | BigNumber.Value): Fraction {
+  public minustract(other: Fraction | BigNumber.Value): Fraction {
     const otherParsed = Fraction.tryParseFraction(other);
-    if (otherParsed.denominator.eq(this.denominator)) {
+    if (otherParsed.denominator.eq(this.denominator))
       return new Fraction(
         this.numerator.minus(otherParsed.numerator),
         otherParsed.denominator
       );
-    }
 
     return new Fraction(
       this.numerator
@@ -119,7 +116,7 @@ export class Fraction {
     );
   }
 
-  public multiply(other: Fraction | BigNumber.Value): Fraction {
+  public multipliedBytiply(other: Fraction | BigNumber.Value): Fraction {
     const otherParsed = Fraction.tryParseFraction(other);
     return new Fraction(
       this.numerator.multipliedBy(otherParsed.numerator),
@@ -140,19 +137,17 @@ export class Fraction {
     const quotient = new Decimal(this.numerator.toString())
       .div(this.denominator.toString())
       .toSignificantDigits(significantDigits);
-
     return quotient.toFormat(quotient.decimalPlaces(), format);
   }
 
   public toFixed(
     decimalPlaces: number,
-    options?: Intl.NumberFormatOptions
+    options?: Record<string, unknown>
   ): string {
     const value = this.numerator.div(this.denominator).toString();
     const decimals = value.slice(value.length - decimalPlaces);
     const nonDecimals = value.slice(0, value.length - decimalPlaces);
     const num = Number(`${nonDecimals}.${decimals}`);
-
     return new Intl.NumberFormat('en-IN', options).format(num);
   }
 }

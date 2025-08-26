@@ -3,12 +3,7 @@ import { FC } from 'react';
 import { SVGProps } from './svg.types';
 
 const CloseSearch: FC<SVGProps> = ({ maxWidth, maxHeight, ...props }) => (
-  <svg
-    style={{ maxWidth, maxHeight }}
-    viewBox="0 0 20 20"
-    fill="none"
-    {...props}
-  >
+  <svg style={{ maxWidth, maxHeight }} viewBox="0 0 20 20" {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

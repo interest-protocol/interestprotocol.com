@@ -37,7 +37,7 @@ const SwapPage: NextPage = () => {
 
   return (
     <FormProvider {...form}>
-      <SEO title="Swap" />
+      <SEO />
       <SwapInitManager />
       <SwapComponent />
     </FormProvider>

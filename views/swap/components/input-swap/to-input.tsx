@@ -1,4 +1,3 @@
-import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -13,8 +12,6 @@ import SelectToken from './select-token';
 
 const ToInput: FC = () => {
   const { control, getValues } = useFormContext();
-
-  const { account } = useAptosWallet();
 
   const value = useWatch({ control, name: 'to.value' });
 
@@ -68,12 +65,11 @@ const ToInput: FC = () => {
           <SelectToken label="to" />
         </Div>
 
-        {account?.address && (
-          <Div display="flex" justifyContent="space-between" color="outline">
-            <AmountInDollar label="to" />
-            <Balance label="to" />
-          </Div>
-        )}
+        {/*account?.address*/}
+        <Div display="flex" justifyContent="space-between" color="outline">
+          <AmountInDollar label="to" />
+          <Balance label="to" />
+        </Div>
       </Div>
     </>
   );

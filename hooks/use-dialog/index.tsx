@@ -1,6 +1,6 @@
 import { Dialog } from '@/components/dialog';
-import { useModal } from '@/hooks/use-modal';
 
+import { useModal } from '../use-modal';
 import { IDialogData } from './use-dialog.types';
 
 export const useDialog = () => {

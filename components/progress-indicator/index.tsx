@@ -1,43 +1,34 @@
 import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
-import { ProgressIndicatorProps } from './progress-indicator.types';
+import { ProgressIndicatorProps } from '../progress-indicator';
+import { ProgressBar } from './progress-bar';
+import { ProgressCircle } from './progress-circle';
 
-const ProgressIndicator: FC<ProgressIndicatorProps> = ({
-  size = '1.5rem',
-  variant = 'loading',
-  rounded = true,
-  withBorder = false,
-  withBg = false,
-}) => {
-  const colors = {
-    loading: '#4f46e5',
-    success: '#16a34a',
-    error: '#dc2626',
-  };
+export const ProgressIndicator: FC<
+  PropsWithChildren<ProgressIndicatorProps>
+> = ({ size, value, status, variant, isRounded, ...props }) => {
+  if (variant === 'bar')
+    return (
+      <ProgressBar
+        isRounded={isRounded}
+        value={value ?? 0}
+        status={status}
+        size={size}
+        {...props}
+      />
+    );
 
   return (
-    <Div
-      display="flex"
-      position="relative"
-      alignItems="center"
-      justifyContent="center"
-      width={`calc(${size} * 1.66)`}
-      height={`calc(${size} * 1.66)`}
-      borderRadius={rounded ? '9999rem' : '0.5rem'}
-      border={withBorder ? '1px solid #FFFFFF' : undefined}
-      {...(withBg && { bg: 'onSurface', color: 'surface' })}
-    >
-      <Div
-        width={size}
-        height={size}
-        borderRadius="9999rem"
-        border={`2px solid #e5e7eb`}
-        animation="spin 1s linear infinite"
-        borderTop={`2px solid ${colors[variant]}`}
+    <Div role="progressbar" aria-label="circle">
+      <ProgressCircle
+        size={size}
+        status={status}
+        value={variant === 'loading' ? -1 : (value ?? 0)}
+        {...props}
       />
     </Div>
   );
 };
 
-export default ProgressIndicator;
+export * from './progress-indicator.types';

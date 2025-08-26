@@ -2,7 +2,6 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { FormProvider, useFormContext } from 'react-hook-form';
 
-import Motion from '@/components/motion';
 import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 import { useModal } from '@/hooks/use-modal';
@@ -14,33 +13,13 @@ const SwapTabs: FC = () => {
   const { tab, setTab } = useTabState();
   const tabs = ['Swap', 'Bridge'];
 
-  const { setContent, handleClose } = useModal();
+  const { setContent } = useModal();
   const form = useFormContext();
 
   const handleOpenSettings = () =>
     setContent(
       <FormProvider {...form}>
-        <Div
-          top="0"
-          left="0"
-          width="100vw"
-          height="100vh"
-          display="flex"
-          position="fixed"
-          zIndex={2}
-          alignItems="center"
-          justifyContent="center"
-          backdropFilter="blur(10px)"
-          onClick={() => handleClose()}
-        >
-          <Motion
-            animate={{ scale: 1 }}
-            initial={{ scale: 0.85 }}
-            transition={{ duration: 0.3 }}
-          >
-            <SwapSettings />
-          </Motion>
-        </Div>
+        <SwapSettings />
       </FormProvider>,
       { title: 'Settings' }
     );

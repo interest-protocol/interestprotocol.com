@@ -1,12 +1,12 @@
-import { Button, Div, P } from '@stylin.js/elements';
+import { Div, Span } from '@stylin.js/elements';
 import React, { FC } from 'react';
 
-import ProgressIndicator from '../progress-indicator';
+import { Button } from '../Button';
+import { ProgressIndicator } from '../progress-indicator';
 import { COLOR_MAP, STATUS_ICON } from './dialog.data';
 import { DialogProps, IDialogButton } from './dialog.types';
 
 export const Dialog: FC<DialogProps> = ({
-  title,
   status,
   message,
   fontFamily,
@@ -25,31 +25,8 @@ export const Dialog: FC<DialogProps> = ({
       display="inline-flex"
       flexDirection="column"
       justifyContent="center"
-      boxShadow="dropShadow.2rem"
-      backgroundColor="container"
       role="dialog"
     >
-      <Div
-        display="flex"
-        minWidth="100%"
-        position="relative"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <P
-          color={
-            // eslint-disable-next-line no-constant-condition
-            status === 'loading' || status === 'general'
-              ? 'onSurface'
-              : COLOR_MAP[status]
-          }
-          flex="1"
-          textAlign="center"
-          {...(fontFamily && { fontFamily })}
-        >
-          {title}
-        </P>
-      </Div>
       <Div
         display="flex"
         maxWidth="22rem"
@@ -58,12 +35,15 @@ export const Dialog: FC<DialogProps> = ({
         justifyContent="center"
         flexDirection="column"
         overflowWrap="anywhere"
-        pt="1.5rem"
         gap="1rem"
       >
         {status !== 'general' ? (
           status === 'loading' ? (
-            <ProgressIndicator variant="loading" />
+            <ProgressIndicator
+              maxWidth="1.5rem"
+              maxHeight="1.5rem"
+              variant="loading"
+            />
           ) : (
             <Div
               width="3rem"
@@ -77,7 +57,7 @@ export const Dialog: FC<DialogProps> = ({
               backgroundColor={
                 status == 'success'
                   ? '#4ec076e6'
-                  : `${COLOR_MAP[status]}Container`
+                  : COLOR_MAP[`${status}Container`]
               }
             >
               <Icon
@@ -92,19 +72,20 @@ export const Dialog: FC<DialogProps> = ({
         {React.isValidElement(message) ? (
           message
         ) : (
-          <P
-            color="onSurface"
+          <Span
+            color="#E2E2E6"
             textAlign="center"
             lineHeight="1rem"
+            //size="medium"
             {...(fontFamily && { fontFamily })}
           >
             {message}
-          </P>
+          </Span>
         )}
       </Div>
       {(secondaryButton || primaryButton) && (
         <Div
-          pt="xl"
+          pt="1.5rem"
           display="flex"
           minWidth="100%"
           justifyContent="space-between"
@@ -115,12 +96,7 @@ export const Dialog: FC<DialogProps> = ({
               ? secondaryButton
               : !!(secondaryButton as IDialogButton).label && (
                   <Button
-                    flex="1"
-                    border="none"
-                    marginRight="0.75rem"
-                    borderRadius="0.5rem"
-                    justifyContent="center"
-                    borderColor="outlineVariant"
+                    variant="outline"
                     onClick={(secondaryButton as IDialogButton).onClick}
                   >
                     {(secondaryButton as IDialogButton).label}
@@ -131,12 +107,9 @@ export const Dialog: FC<DialogProps> = ({
               ? primaryButton
               : !!(primaryButton as IDialogButton)?.label && (
                   <Button
-                    border="none"
+                    variant="filled"
                     onClick={(primaryButton as IDialogButton).onClick}
-                    backgroundColor={status === 'error' ? 'error' : ''}
-                    justifyContent="center"
-                    flex="3"
-                    borderRadius="0.5rem"
+                    background={status === 'error' ? '#FED7D7' : '#B4C5FF'}
                   >
                     {(primaryButton as IDialogButton).label}
                   </Button>
