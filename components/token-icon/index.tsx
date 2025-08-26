@@ -21,6 +21,7 @@ const TokenIcon: FC<TokenIconProps> = ({
   withBg,
   network,
   rounded,
+  withBorder,
   size = '1.5rem',
   loaderSize = 16,
 }) => {
@@ -65,6 +66,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
           borderRadius={rounded || !withBg ? '999rem' : '0.5rem'}
+          border={withBorder ? '1px solid #FFFFFF' : undefined}
           {...(withBg && { bg: '#E2E2E6', color: '#131316' })}
         >
           <DefaultTokenSVG
@@ -93,6 +95,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
           borderRadius={rounded ? '999rem' : '0.5rem'}
+          border={withBorder ? '1px solid #FFFFFF' : undefined}
           {...(withBg && { bg: 'transparent', color: '#131316' })}
         >
           <Div
@@ -100,6 +103,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
             borderRadius={rounded ? '999rem' : '0.5rem'}
+            border={withBorder ? '1px solid #FFFFFF' : undefined}
           >
             {loading && (
               <Div position="absolute" top="-0.5rem" left="0.9rem">
@@ -122,6 +126,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             overflow="hidden"
             position="absolute"
             borderRadius="999rem"
+            border={withBorder ? '1px solid #FFFFFF' : undefined}
           >
             <ChainIcon maxHeight={size} maxWidth={size} width="100%" />
           </Div>
@@ -151,6 +156,7 @@ const TokenIcon: FC<TokenIconProps> = ({
             bg: icon.bg || '#E2E2E6',
             color: icon.color || '#131316',
           })}
+          border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <icon.Icon
             width="100%"
@@ -197,6 +203,7 @@ const TokenIcon: FC<TokenIconProps> = ({
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
           borderRadius={rounded ? '999rem' : '0.5rem'}
+          border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
             overflow="hidden"
@@ -255,12 +262,14 @@ const TokenIcon: FC<TokenIconProps> = ({
           width={`calc(${size} * 1.66)`}
           height={`calc(${size} * 1.66)`}
           borderRadius={rounded ? '999rem' : '0.5rem'}
+          border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
             overflow="hidden"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
             borderRadius={rounded ? '999rem' : '0.5rem'}
+            border={withBorder ? '1px solid #FFFFFF' : undefined}
           >
             {isLoading && (
               <Div position="absolute" top="-0.5rem" left="0.9rem">
@@ -279,6 +288,7 @@ const TokenIcon: FC<TokenIconProps> = ({
                   width: `calc(${size} * 1.66)`,
                   height: `calc(${size} * 1.66)`,
                   position: 'absolute',
+                  border: `${withBorder ? '1px solid #FFFFFFF' : 'none'}`,
                 }}
               />
             )}
@@ -317,6 +327,7 @@ const TokenIcon: FC<TokenIconProps> = ({
         width={`calc(${size} * 1.66)`}
         height={`calc(${size} * 1.66)`}
         borderRadius={rounded || !withBg ? '999rem' : '0.5rem'}
+        border={withBorder ? '1px solid #FFFFFF' : undefined}
         {...(withBg && { bg: '#E2E2E6', color: '#131316' })}
       >
         <DefaultTokenSVG

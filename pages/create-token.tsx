@@ -23,7 +23,7 @@ const CreateTokenPage: NextPage = () => {
 
   return (
     <FormProvider {...form}>
-      <SEO title="Create Token" />
+      <SEO />
       <CreateToken />
     </FormProvider>
   );

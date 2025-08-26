@@ -1,10 +1,12 @@
-import { Div, P, Span } from '@stylin.js/elements';
+import { Div, P } from '@stylin.js/elements';
 import { AnimatePresence, motion } from 'motion/react';
 import { FC } from 'react';
 
 import useEventListener from '@/hooks/use-event-listener';
 import { useModal } from '@/hooks/use-modal';
 import { useSafeHeight } from '@/hooks/use-safe-height';
+
+import { TimesSVG } from '../svg';
 
 const Motion = motion.create(Div);
 
@@ -78,31 +80,33 @@ const ModalProvider: FC = () => {
               color="#ffffff"
               maxHeight="100%"
               flexDirection="column"
+              border="1px solid #FFFFFF1A"
               backdropFilter="blur(50px)"
               borderRadius={['1rem 1rem 0 0', '1rem 1rem 0 0', '1rem']}
-              bg="linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.10))"
+              bg="#121313"
             >
               <Div
-                px="0.5rem"
+                pr="0.5rem"
                 pt="0.5rem"
                 display="flex"
                 justifyContent="space-between"
+                alignItems="center"
               >
                 <P fontSize="1.25rem" fontWeight="600">
                   {title}
                 </P>
-                <Span
-                  py="0.25rem"
-                  px="0.75rem"
-                  bg="#FFFFFF1A"
-                  display="flex"
-                  fontWeight="500"
-                  cursor="pointer"
-                  borderRadius="0.5rem"
+                <Div
                   onClick={handleClose}
+                  cursor="pointer"
+                  color="#9CA3AF"
+                  width="0.85rem"
+                  height="0.85rem"
+                  nHover={{
+                    color: '#B4C5FF',
+                  }}
                 >
-                  ESC
-                </Span>
+                  <TimesSVG maxWidth="100%" maxHeight="100%" width="100%" />
+                </Div>
               </Div>
               {content}
             </Div>

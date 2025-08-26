@@ -12,11 +12,23 @@ import {
   useState,
 } from 'react';
 
-import { TextFieldElementProps, TextFieldProps } from './text-field.types';
+import { TextFieldProps } from './text-field.types';
+import { TextFieldElementProps } from './text-field.types';
 
 const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   'input'
-)();
+)({
+  '&[type="number"]': {
+    '-moz-appearance': 'auto',
+
+    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'auto',
+      opacity: 1,
+      display: 'none',
+    },
+  },
+});
+
 const LabelElement = stylin<LabelElementProps>('label')();
 
 export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
@@ -127,6 +139,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
               type="text"
               width="100%"
               fontSize="1rem"
+              fontFamily="Inter"
               lineHeight="1.5rem"
               fontWeight="500"
               disabled={disabled}

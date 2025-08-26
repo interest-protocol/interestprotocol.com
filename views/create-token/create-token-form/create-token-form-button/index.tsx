@@ -44,6 +44,7 @@ const CreateTokenFormButton: FC = () => {
     }
     return;
   };
+
   const isRequiredFieldsFilled = !!(values.name && values.symbol);
 
   return (

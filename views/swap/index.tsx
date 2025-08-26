@@ -1,7 +1,15 @@
 import { FC } from 'react';
 
-import { Layout } from '@/components';
+import Layout from '@/components/layout';
 
-const Swap: FC = () => <Layout></Layout>;
+import SwapContent from './swap-content';
+
+const Swap: FC = () => {
+  return (
+    <Layout>
+      <SwapContent />
+    </Layout>
+  );
+};
 
 export default Swap;
