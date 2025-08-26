@@ -83,7 +83,7 @@ const ModalProvider: FC = () => {
               border="1px solid #FFFFFF1A"
               backdropFilter="blur(50px)"
               borderRadius={['1rem 1rem 0 0', '1rem 1rem 0 0', '1rem']}
-              bg="linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.10))"
+              bg="#121313"
             >
               <Div
                 pr="0.5rem"
