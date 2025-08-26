@@ -1,11 +1,14 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import unikey from 'unikey';
 
 import Table from '@/components/table';
 
 import Earnings from '../earnings';
 import Position from '../position';
+import TableRow from '../table-row-pool';
 import Title from '../title';
+import { data } from './curve-pools.data';
 
 const CurvePools: FC = () => {
   return (
@@ -17,7 +20,7 @@ const CurvePools: FC = () => {
         justifyContent="space-between"
         flexDirection={['column', 'column', 'row']}
       >
-        <Title title="Curve pools" count={0} />
+        <Title title="Curve pools" count={data.length} />
         <Div display="flex" gap="1rem">
           <Position type="pools" value={0} />
           <Earnings value={98} />
@@ -26,9 +29,13 @@ const CurvePools: FC = () => {
 
       <Table
         columns={['Pool', 'Price Range', 'Liquidity', 'Leverage', 'Earnings']}
-        gridTemplateColumns={['1fr', 'repeat(5,1fr)']}
+        gridTemplateColumns={['1fr', '2.5fr 1fr 1fr 1fr 1fr 1fr']}
       >
-        nada a comentar
+        {data.length > 0 ? (
+          data.map((pool) => <TableRow key={unikey()} {...pool} />)
+        ) : (
+          <></>
+        )}
       </Table>
     </Div>
   );

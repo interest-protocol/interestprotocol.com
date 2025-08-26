@@ -12,7 +12,6 @@ const Table: FC<TableProps> = ({ columns, gridTemplateColumns, children }) => (
     height="auto"
     borderBottom="0"
     borderRadius="0.75rem"
-    border="1px solid #1F2937"
     overflowX={['auto', 'visible']}
   >
     <Div
@@ -25,6 +24,7 @@ const Table: FC<TableProps> = ({ columns, gridTemplateColumns, children }) => (
       px={['0.5rem', '1rem']}
       borderTopLeftRadius="0.5rem"
       borderTopRightRadius="0.5rem"
+      borderBottom="1px solid #1F2937"
       gridTemplateColumns={gridTemplateColumns}
     >
       {columns.map((column) => (

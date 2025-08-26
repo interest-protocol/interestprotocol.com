@@ -11,6 +11,7 @@ import { Info } from './portfolio.data';
 const PortfolioContent: FC = () => {
   return (
     <Div
+      mt="2.5rem"
       width="100%"
       display="flex"
       flexDirection="column"
