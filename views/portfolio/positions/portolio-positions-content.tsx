@@ -23,7 +23,11 @@ const PortfolioPositionsContent: FC = () => {
     >
       <Breadcrumb pools={['USDC', 'BTC']} lp="/no-coin.png" />
 
-      <Div gap="2.5rem" display="grid" gridTemplateColumns={['1fr', '1fr 1fr']}>
+      <Div
+        gap="2.5rem"
+        display="grid"
+        gridTemplateColumns={['1fr', '1fr 25.84rem']}
+      >
         <Info />
         <Div gap="0.75rem" display="flex" flexDirection="column">
           <PositionsTabs />

@@ -8,12 +8,7 @@ const HeaderInfo: FC<InputProps> = ({ index }) => {
   const symbol = useWatch({ name: `tokens.${index}.symbol` });
 
   return (
-    <Div
-      color="onSurface"
-      alignItems="flex-end"
-      justifyContent="space-between"
-      display={['flex', 'none']}
-    >
+    <Div color="onSurface" alignItems="flex-end" justifyContent="space-between">
       <Span
         fontFamily="Inter"
         fontSize="0.875rem"
