@@ -4,7 +4,7 @@ import { FC } from 'react';
 import TokenPair from './components/token-pair';
 import { RewardsProps } from './rewards.types';
 
-const Rewards: FC<RewardsProps> = ({ claimingFee }) => (
+const Rewards: FC<RewardsProps> = ({ claimingFee, pairToken }) => (
   <Div display="flex" flexDirection="column" gap="0.5rem" mb="2rem">
     <P
       mb="0.75rem"
@@ -24,40 +24,25 @@ const Rewards: FC<RewardsProps> = ({ claimingFee }) => (
       borderRadius="0.75rem"
       flexDirection="column"
     >
-      <P
-        color="#949E9E"
-        fontWeight="500"
-        fontFamily="Inter"
-        fontSize="1rem"
-        lineHeight="1.1375rem"
-      >
+      <P color="#949E9E" fontSize="1rem" fontWeight="500" fontFamily="Inter">
         Pending Yield
       </P>
 
       <Span
-        mb="1rem"
+        mb="0.5rem"
         color="#FFFFFF"
         fontWeight="500"
         fontFamily="Inter"
         fontSize="1.5rem"
-        lineHeight="1.1375rem"
       >
         $0.00
       </Span>
-      <P
-        fontSize="1rem"
-        color="#949E9E"
-        fontWeight="500"
-        fontFamily="Inter"
-        lineHeight="1.1375rem"
-      >
+
+      <P fontSize="1rem" color="#949E9E" fontWeight="500" fontFamily="Inter">
         Rewards per asset
       </P>
 
-      <TokenPair
-        left={{ value: '0.00', symbol: 'USDC', iconUrl: '/icons/usdc.svg' }}
-        right={{ value: '0.00', symbol: 'USDT', iconUrl: '/icons/usdt.svg' }}
-      />
+      <TokenPair left={pairToken[0]} right={pairToken[1]} />
     </Div>
 
     <Div display="flex" justifyContent="space-between">

@@ -1,4 +1,4 @@
-import { Div, Span } from '@stylin.js/elements';
+import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useWatch } from 'react-hook-form';
 
@@ -8,16 +8,25 @@ const HeaderInfo: FC<InputProps> = ({ index }) => {
   const symbol = useWatch({ name: `tokens.${index}.symbol` });
 
   return (
-    <Div color="onSurface" alignItems="flex-end" justifyContent="space-between">
-      <Span
-        fontFamily="Inter"
-        fontSize="0.875rem"
+    <Div display="flex" alignItems="flex-end" justifyContent="space-between">
+      <P
+        color="#9CA3AF"
         fontWeight="400"
+        fontFamily="Inter"
+        fontSize="0.868rem"
         lineHeight="1.25rem"
-        color="#FFFFFF"
       >
-        {symbol}
-      </Span>
+        You pay
+        <Span
+          fontWeight="400"
+          fontFamily="Inter"
+          fontSize="0.875rem"
+          lineHeight="1.25rem"
+          display={['inline-block', 'none']}
+        >
+          : {symbol}
+        </Span>
+      </P>
     </Div>
   );
 };

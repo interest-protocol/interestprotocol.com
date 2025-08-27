@@ -33,7 +33,13 @@ const Deposit: FC = () => (
       Connect Wallet
     </Button>
 
-    <Rewards claimingFee="18%" />
+    <Rewards
+      claimingFee="18%"
+      pairToken={[
+        { value: '0.00', symbol: 'ETH', iconUrl: '/eth.png' },
+        { value: '0.00', symbol: 'USDT', iconUrl: '/usdt.png' },
+      ]}
+    />
   </Div>
 );
 

@@ -12,18 +12,18 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
 
   return (
     <Div
+      gap="0.5rem"
       display="flex"
       alignItems="center"
-      gap="0.5rem"
       justifyContent="space-between"
     >
       <P
+        gap="0.55rem"
+        display="flex"
+        color="#FFFFFF"
         fontSize="1.5rem"
         fontFamily="Inter"
-        display="flex"
         alignItems="center"
-        gap="0.25rem"
-        color="#FFFFFF"
       >
         {left.value} {left.symbol}
         <TokenIcon
@@ -34,14 +34,14 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
           rounded
         />
       </P>
-      <Div width="4px" height="4px" bg="#FFFFFF" borderRadius="100px"></Div>
+      <Div width="4px" height="4px" bg="#FFFFFF" borderRadius="1000px"></Div>
       <P
+        gap="0.5rem"
+        display="flex"
+        color="#FFFFFF"
         fontSize="1.5rem"
         fontFamily="Inter"
-        display="flex"
         alignItems="center"
-        gap="0.25rem"
-        color="#FFFFFF"
       >
         {right.value} {right.symbol}
         <TokenIcon

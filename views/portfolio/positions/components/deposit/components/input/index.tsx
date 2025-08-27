@@ -1,24 +1,21 @@
-import { ChangeEvent, FC } from 'react';
 import { Div } from '@stylin.js/elements';
+import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
 
-import Balance from './components/balance';
-import AmountInDollar from './components/dollar-value';
+import { CreateDepositForm } from '../../deposit.types';
 import HeaderInfo from './components/header-info';
 import SelectToken from './components/select-token';
 import { InputProps } from './input.types';
-import { CreateDepositForm } from '../../deposit.types';
 
 const Input: FC<InputProps> = ({ index }) => {
   const { register, setValue, getValues } = useFormContext<CreateDepositForm>();
 
   const tokenType = useWatch({ name: `tokens.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
-  const error = useWatch({ name: 'error' });
 
   const rawValue = getValues(`tokens.${index}.value`);
   const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
@@ -28,11 +25,10 @@ const Input: FC<InputProps> = ({ index }) => {
       p="1rem"
       gap="0.5rem"
       display="flex"
-      height={['8rem', '6.375rem']}
+      bg="#9CA3AF1A"
+      height="8.15625rem"
       flexDirection="column"
       borderRadius="0.75rem"
-      bg={error ? '#EF44441A' : '#9CA3AF1A'}
-      border={error ? '1px solid #EF44441A' : undefined}
     >
       <HeaderInfo index={index} />
       <Div
@@ -42,7 +38,7 @@ const Input: FC<InputProps> = ({ index }) => {
         justifyContent="space-between"
       >
         <Div
-          gap="xs"
+          gap="0.5rem"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
@@ -56,8 +52,8 @@ const Input: FC<InputProps> = ({ index }) => {
             <TextField
               ml="-1rem"
               width="100%"
-              lineHeight="l"
               placeholder="0"
+              lineHeight="3rem"
               fontFamily="Inter"
               fontWeight="400"
               disabled={!tokenType}
@@ -84,10 +80,6 @@ const Input: FC<InputProps> = ({ index }) => {
             />
           </Div>
           <SelectToken index={index} />
-        </Div>
-        <Div display="flex" justifyContent="space-between" color="outline">
-          <AmountInDollar index={index} />
-          <Balance index={index} />
         </Div>
       </Div>
     </Div>
