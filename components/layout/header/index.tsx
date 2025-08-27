@@ -7,9 +7,10 @@ import Wallet from './wallet';
 
 const Header: FC = () => (
   <HeaderHTML
-    px="2rem"
+    //px={['',"2rem"]}
     py="1rem"
-    display="grid"
+    display={['flex', 'flex', 'flex', 'grid', 'grid']}
+    justifyContent="space-between"
     alignItems="center"
     gridTemplateColumns="1fr 1fr 1fr"
   >

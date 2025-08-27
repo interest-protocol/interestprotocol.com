@@ -17,9 +17,10 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       layout
       top="0"
       left="0"
-      zIndex="2"
+      zIndex="200"
       width="100%"
-      p="1.875rem"
+      py="1.875rem"
+      px="1rem"
       display="flex"
       position="fixed"
       onClick={onClose}
@@ -33,6 +34,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       justifyContent={isDirectionalRight ? 'flex-end' : 'flex-start'}
     >
       <Div
+        width="100%"
         display="flex"
         flexDirection={isDirectionalRight ? 'row-reverse' : 'row'}
       >
@@ -50,9 +52,9 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
           exit={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
           initial={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
           width={[
-            '90%',
-            '90%',
-            '90%',
+            '100%',
+            '100%',
+            '100%',
             isDirectionalRight ? '28rem' : '14.5rem',
           ]}
           borderRadius={

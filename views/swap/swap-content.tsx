@@ -19,7 +19,6 @@ const SwapContent: FC = () => {
         borderRadius="3rem"
         alignContent="center"
         justifyContent="center"
-        px={['1.5rem', '3rem']}
         width={['100%', '100%', '100%', '39.75rem']}
       >
         <Div display="flex" flexDirection="column">
