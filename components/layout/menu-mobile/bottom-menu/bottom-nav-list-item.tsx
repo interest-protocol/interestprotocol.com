@@ -47,7 +47,7 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
           justifyContent="center"
           transition="all 350ms ease-in-out"
           color={asPath === path ? '#B4C5FF' : '#ffffff9d'}
-          nHover={{ color: asPath !== path ? 'outline' : '' }}
+          nHover={{ color: asPath !== path ? '#909094' : '' }}
           {...(onClick
             ? { onClick }
             : {

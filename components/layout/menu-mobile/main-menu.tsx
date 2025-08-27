@@ -25,7 +25,6 @@ const MainMenu: FC<MainMenuMobileProps> = ({ closeMenu }) => (
       </Div>
       <P
         m="1.25rem"
-        //ml="1.25rem"
         fontWeight="500"
         fontSize="0.875rem"
         lineHeight="1.25rem"
