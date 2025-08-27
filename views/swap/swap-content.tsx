@@ -11,7 +11,7 @@ const SwapContent: FC = () => {
   const { tab } = useTabState();
 
   return (
-    <Div height="100%" display="flex" mt={['1rem', '6rem']}>
+    <Div display="flex" mt={['1rem', '6rem']}>
       <Div
         gap="1.25rem"
         mx="auto"
@@ -19,7 +19,6 @@ const SwapContent: FC = () => {
         borderRadius="3rem"
         alignContent="center"
         justifyContent="center"
-        px={['1.5rem', '3rem']}
         width={['100%', '100%', '100%', '39.75rem']}
       >
         <Div display="flex" flexDirection="column">

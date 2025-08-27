@@ -25,7 +25,7 @@ const Balance: FC<InputProps> = ({ label }) => {
         p="0.25rem"
         gap="0.5rem"
         display="flex"
-        color="outline"
+        color="#909094"
         alignItems="center"
       >
         <Div width="1rem" height="1rem">

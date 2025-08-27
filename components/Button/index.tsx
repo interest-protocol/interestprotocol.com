@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { ButtonProps } from './button.types';
+import { ButtonProps, ButtonVariants } from './button.types';
 import { Filled } from './filled';
 import { Outline } from './outline';
 import { Text } from './text';
@@ -11,13 +11,14 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   variant,
   ...props
 }) => {
-  return variant == 'filled' ? (
-    <Filled {...props}> {children}</Filled>
-  ) : variant == 'outline' ? (
-    <Outline {...props}> {children}</Outline>
-  ) : variant == 'text' ? (
-    <Text {...props}> {children}</Text>
-  ) : (
-    <Tonal {...props}> {children}</Tonal>
-  );
+  const variants: Record<ButtonVariants, FC> = {
+    filled: Filled,
+    outline: Outline,
+    text: Text,
+    tonal: Tonal,
+  };
+
+  const Component = variants[variant] ?? Tonal;
+
+  return <Component {...props}>{children}</Component>;
 };

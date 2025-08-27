@@ -7,11 +7,11 @@ import Wallet from './wallet';
 
 const Header: FC = () => (
   <HeaderHTML
-    px="2rem"
     py="1rem"
-    display="grid"
     alignItems="center"
+    justifyContent="space-between"
     gridTemplateColumns="1fr 1fr 1fr"
+    display={['flex', 'flex', 'flex', 'grid', 'grid']}
   >
     <Sidebar />
     <Navbar />

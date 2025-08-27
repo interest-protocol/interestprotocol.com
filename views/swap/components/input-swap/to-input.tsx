@@ -66,7 +66,7 @@ const ToInput: FC = () => {
         </Div>
 
         {/*account?.address*/}
-        <Div display="flex" justifyContent="space-between" color="outline">
+        <Div display="flex" justifyContent="space-between" color="#909094">
           <AmountInDollar label="to" />
           <Balance label="to" />
         </Div>
