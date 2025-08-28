@@ -1,8 +1,10 @@
+import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
+import TokenIcon from '@/components/token-icon';
 
 import StatusBtn from '../../../status-btn ';
 import { PoolsProps } from '../../pools.types';
@@ -20,7 +22,14 @@ const TableRowMobile: FC<PoolsProps> = ({
     <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Pool:</CellText>
       <Div display="flex" gap="3rem" alignItems="center">
-        <img src={lp} alt={lp} />
+        <TokenIcon
+          withBg
+          url={lp}
+          rounded
+          symbol="MOVE"
+          size="1.206rem"
+          network={Network.MovementMainnet}
+        />
         <Div display="flex" gap="0.5rem" flexDirection="column">
           <CellText color="#FFFFFF">{`${pool[0]} ${pool[1]}`}</CellText>
           <Div display="flex" gap="0.5rem">
