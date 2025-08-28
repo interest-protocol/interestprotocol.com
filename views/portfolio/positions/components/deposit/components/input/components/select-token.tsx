@@ -1,10 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Button, Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ChevronDownSVG } from '@/components/svg';
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { useModal } from '@/hooks/use-modal';
 import {
   AssetMetadata,
