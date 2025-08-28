@@ -8,6 +8,7 @@ import NotFound from '@/views/components/select-token-modal/not-found';
 import Title from '../title';
 import TableRow from './table-row';
 import { transactions } from './transactions.data';
+import Select from './select';
 
 const Transactions: FC = () => {
   return (
@@ -20,6 +21,7 @@ const Transactions: FC = () => {
         flexDirection={['column', 'column', 'row']}
       >
         <Title title="Transactions" count={0} />
+        <Select />
       </Div>
 
       <Table
