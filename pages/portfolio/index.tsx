@@ -5,7 +5,7 @@ import Portfolio from '@/views/portfolio';
 
 const PortfolioPage: NextPage = () => (
   <>
-    <SEO title="Portfolio" />
+    <SEO />
     <Portfolio />
   </>
 );
