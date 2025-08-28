@@ -1,8 +1,8 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { formatMoney } from '@/utils';
 
 import { TokenPairProps } from './token-pair.types';
@@ -19,9 +19,9 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
         gap="0.55rem"
         display="flex"
         color="#FFFFFF"
-        fontSize="1.5rem"
         fontFamily="Inter"
         alignItems="center"
+        fontSize={['1rem', '1.5rem']}
       >
         {formatMoney(left.value)} {left.symbol}
         <TokenIcon
@@ -38,9 +38,9 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
         gap="0.5rem"
         display="flex"
         color="#FFFFFF"
-        fontSize="1.5rem"
         fontFamily="Inter"
         alignItems="center"
+        fontSize={['1rem', '1.5rem']}
       >
         {formatMoney(right.value)} {right.symbol}
         <TokenIcon

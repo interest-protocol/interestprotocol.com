@@ -3,6 +3,7 @@ import { FC } from 'react';
 import unikey from 'unikey';
 
 import Table from '@/components/table';
+import NotFound from '@/views/components/select-token-modal/not-found';
 
 import Title from '../title';
 import TableRow from './table-row';
@@ -30,7 +31,16 @@ const Transactions: FC = () => {
             <TableRow key={unikey()} {...transaction} />
           ))
         ) : (
-          <></>
+          <Div
+            py="2rem"
+            width="100%"
+            border="1px solid #1F2937"
+            borderTop="none"
+            borderBottomLeftRadius="0.75rem"
+            borderBottomRightRadius="0.75rem"
+          >
+            <NotFound />
+          </Div>
         )}
       </Table>
     </Div>

@@ -9,7 +9,7 @@ import PoolBalance from './components/pool-balance';
 const Info: FC = () => (
   <Div display="flex" flexDirection="column" gap="1rem">
     <Div
-      mb="1.5rem"
+      mb="0.5rem"
       gap="0.5rem"
       display="flex"
       bg="#9CA3AF1A"

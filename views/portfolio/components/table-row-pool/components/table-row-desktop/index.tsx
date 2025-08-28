@@ -1,10 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { formatDollars } from '@/utils/string';
 
 import StatusBtn from '../../../status-btn ';

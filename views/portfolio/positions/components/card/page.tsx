@@ -1,7 +1,6 @@
 import { Div, P } from '@stylin.js/elements';
 import { ReactNode, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import unikey from 'unikey';
 
 import { ArrowDownSVG, ArrowUpSVG } from '@/components/svg';
 
@@ -46,7 +45,7 @@ const renderValue = (value: ValueType): ReactNode => {
 
   if (value === null || value === undefined) return '';
 
-  return value.toString();
+  return value as ReactNode;
 };
 
 const Card = <T extends Record<string, unknown>>({
@@ -59,7 +58,7 @@ const Card = <T extends Record<string, unknown>>({
 }: CardInfoProps<T>) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const items = keys.reduce<{ label: string; value: ReactNode }[]>(
+  const items = keys.reduce<{ label: ReactNode; value: ReactNode }[]>(
     (acc, key, index) => {
       if (index >= headers.length || !(key in values)) return acc;
 
@@ -77,7 +76,7 @@ const Card = <T extends Record<string, unknown>>({
         return acc;
 
       acc.push({
-        label: headers[index],
+        label: headers[index] as ReactNode,
         value: resolvedValue,
       });
 
@@ -131,27 +130,33 @@ const Card = <T extends Record<string, unknown>>({
             <Skeleton width="100%" height="0.75rem" count={keys.length} />
           ) : items.length ? (
             <Div gap="1rem" width="100%" display="flex" flexDirection="column">
-              {items.map((item) => (
+              {items.map((item, index) => (
                 <Div
-                  key={unikey()}
+                  key={index}
                   width="100%"
                   display="flex"
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <P
-                    color="#9CA3AF"
-                    fontWeight="400"
-                    fontFamily="Inter"
-                    fontSize="0.875rem"
-                  >
-                    {item.label}
-                  </P>
+                  <Div display="flex" alignItems="center" gap="0.5rem">
+                    {typeof item.label === 'string' ? (
+                      <P
+                        color="#9CA3AF"
+                        fontWeight="400"
+                        fontFamily="Inter"
+                        fontSize="0.875rem"
+                      >
+                        {item.label}
+                      </P>
+                    ) : (
+                      item.label
+                    )}
+                  </Div>
                   <Div
                     flex="1"
                     mx="0.5rem"
                     height="1px"
-                    borderBottom="1px dashed #4B556380"
+                    borderBottom="1px solid #4B556380"
                   />
                   <Div
                     maxWidth="50%"
@@ -167,14 +172,7 @@ const Card = <T extends Record<string, unknown>>({
               ))}
             </Div>
           ) : (
-            <P
-              color="#9CA3AF"
-              fontWeight="400"
-              fontFamily="Inter"
-              fontSize="0.875rem"
-            >
-              No Info
-            </P>
+            <Skeleton width="10rem" height="2rem" />
           )}
         </>
       )}

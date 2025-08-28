@@ -41,7 +41,6 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
     <Div
       p="12px"
       display="flex"
-      color="textSoft"
       cursor="pointer"
       borderRadius="0.5rem"
       onClick={onSelect}

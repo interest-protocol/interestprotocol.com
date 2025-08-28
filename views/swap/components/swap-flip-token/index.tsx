@@ -27,7 +27,7 @@ const SwapFlipToken: FC<SwapFlipTokenProps> = ({ type }) => {
 
   return (
     <Button
-      p="xs"
+      p="0.5rem"
       bg="#030712"
       border="none"
       width="2.25rem"

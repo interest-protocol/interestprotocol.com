@@ -2,10 +2,18 @@ import { Button, Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import ArrowRight from '@/components/svg/arrow-right';
+import { useModal } from '@/hooks/use-modal';
 
+import RewardsModal from './components/rewards-modal';
 import { EarningsProps } from './earnings.types';
 
 const Earnings: FC<EarningsProps> = ({ value, symbol }) => {
+  const { setContent } = useModal();
+
+  const openModal = () =>
+    setContent(<RewardsModal />, {
+      title: 'Rewards',
+    });
   return (
     <Div
       gap="0.5rem"
@@ -38,6 +46,7 @@ const Earnings: FC<EarningsProps> = ({ value, symbol }) => {
         cursor="pointer"
         fontFamily="1rem"
         alignItems="center"
+        onClick={openModal}
       >
         Claim
         <ArrowRight

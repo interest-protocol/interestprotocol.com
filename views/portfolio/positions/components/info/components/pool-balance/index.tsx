@@ -1,8 +1,8 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { formatMoney } from '@/utils';
 
 import { PoolBalanceProps } from './pool-balance.types';
@@ -25,8 +25,8 @@ const PoolBalance: FC<PoolBalanceProps> = ({ pairTokens }) => {
             <P
               color="#FFFFFF"
               fontWeight="500"
-              fontSize="1.5rem"
               fontFamily="Inter"
+              fontSize={['1rem', '1.5rem']}
             >
               {formatMoney(token.value)}
             </P>
@@ -42,8 +42,8 @@ const PoolBalance: FC<PoolBalanceProps> = ({ pairTokens }) => {
             <Span
               fontWeight="500"
               color="#FFFFFF"
-              fontSize="1.5rem"
               fontFamily="Inter"
+              fontSize={['1rem', '1.5rem']}
             >
               {token.symbol}
             </Span>

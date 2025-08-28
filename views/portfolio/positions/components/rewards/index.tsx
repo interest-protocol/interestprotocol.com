@@ -35,7 +35,7 @@ const Rewards: FC<RewardsProps> = ({ claimingFee, pairToken }) => (
         color="#FFFFFF"
         fontWeight="500"
         fontFamily="Inter"
-        fontSize="1.5rem"
+        fontSize={['1rem', '1.5rem']}
       >
         {formatDollars(0.0, 6, 'start')}
       </Span>

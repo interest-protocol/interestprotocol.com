@@ -1,10 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
+import { Network } from '@/constants';
 import { formatDollars } from '@/utils/string';
 
 import StatusBtn from '../../../status-btn ';
@@ -19,10 +19,10 @@ const TableRowMobile: FC<PoolsProps> = ({
   leverage,
   earnings,
 }) => (
-  <Div p="1rem" display="flex" flexDirection="column" gap="0.5rem">
-    <Div display="flex" gap="0.5rem">
+  <Div p="1rem" display="flex" flexDirection="column" gap="1rem">
+    <Div display="flex" gap="0.5rem" alignItems="center">
       <CellText color="#FFFFFF">Pool:</CellText>
-      <Div display="flex" gap="3rem" alignItems="center">
+      <Div display="flex" gap="1rem" alignItems="center">
         <TokenIcon
           withBg
           url={lp}
