@@ -3,6 +3,7 @@ import { FC } from 'react';
 
 import ExternalLink from '@/components/svg/external-link';
 import CellText from '@/components/table/components/cell-text';
+import { formatTimeAgo } from '@/utils/date';
 import { formatDollars, formatMoney } from '@/utils/string';
 import StatusBtn from '@/views/portfolio/components/status-btn ';
 
@@ -22,7 +23,7 @@ const TableRowDesktop: FC<TransactionsProps> = ({
     alignItems="center"
     gridTemplateColumns="repeat(4,1.5fr)"
   >
-    <CellText color="#FFFFFF">{time}</CellText>
+    <CellText color="#FFFFFF">{formatTimeAgo(time)}</CellText>
     <Div width="3.875rem">
       {action ? <StatusBtn status="Claimed" /> : <StatusBtn status="Stake" />}
     </Div>
