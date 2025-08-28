@@ -147,7 +147,7 @@ export const parseInputEventToNumberString = (
   return x;
 };
 
-export function isHexString(value: any, length?: number): boolean {
+export function isHexString(value: unknown, length?: number): boolean {
   if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
     return false;
   }
@@ -159,3 +159,6 @@ export function isHexString(value: any, length?: number): boolean {
 
 export const formatAddress = (address: string): string =>
   `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+export const removeLeadingZeros = (hexString: string) =>
+  '0x' + hexString.slice(2).replace(/^0+/, '') || '0';

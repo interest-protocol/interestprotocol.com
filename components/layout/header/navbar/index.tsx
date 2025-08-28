@@ -11,7 +11,6 @@ const Navbar: FC = () => (
     px="2rem"
     gap="2rem"
     zIndex="3"
-    display="flex"
     position="relative"
     borderRadius="2rem"
     alignItems="center"
@@ -22,6 +21,7 @@ const Navbar: FC = () => (
       backdropFilter: 'blur(8px)',
       boxShadow: '0px 0px 0px 1px #9CA3AF4D',
     }}
+    display={['none', 'none', 'none', 'flex', 'flex']}
   >
     {Object.entries(NavItemsTitle).map(([key, title]) => (
       <NavbarItem key={key} href={Routes[key as RoutesEnum]} title={title} />

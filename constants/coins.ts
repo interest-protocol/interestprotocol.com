@@ -28,6 +28,28 @@ export const MOVE = {
   symbol: 'MOVE',
 };
 
+export const mUSD = {
+  address: AccountAddress.from(
+    '0xdd84125d1ebac8f1ecb2819801417fc392325e672be111ec03830c34d6ff82dd'
+  ),
+  decimals: 8,
+  iconUri: '/images/mUSD.webp',
+  name: 'mirage dollar',
+  projectUri: 'https://mirage.money',
+  symbol: 'mUSD',
+};
+
+export const mBTC = {
+  address: AccountAddress.from(
+    '0x0b7400b60e249c92b6b97717e29915474d90eec3e8c510bf5675628367d39e35'
+  ),
+  decimals: 10,
+  iconUri: 'https://assets.echo-protocol.xyz/mbtc.svg',
+  name: 'mBTC',
+  projectUri: 'https://www.echo-protocol.xyz/',
+  symbol: 'mBTC',
+};
+
 export const USDCe = {
   address: AccountAddress.from(
     '0x83121c9f9b0527d1f056e21a950d6bf3b9e9e2e8353d0e95ccea726713cbea39'
@@ -76,4 +98,4 @@ export const WBTCe = {
 
 export const ETH_COINS = [USDCe, USDTe, WETHe, WBTCe];
 
-export const TOKENS: ReadonlyArray<Token> = [MOVE, ...ETH_COINS];
+export const TOKENS: ReadonlyArray<Token> = [MOVE, ...ETH_COINS, mUSD, mBTC];

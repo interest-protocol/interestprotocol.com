@@ -20,7 +20,12 @@ const SelectTokenFilter: FC = () => {
   if (searchValue) return;
 
   return (
-    <Div gap="s" display="grid" flexWrap="wrap" gridTemplateColumns="1fr 1fr">
+    <Div
+      gap="0.5rem"
+      display="grid"
+      flexWrap="wrap"
+      gridTemplateColumns="1fr 1fr"
+    >
       {[TokenOrigin.Strict, TokenOrigin.Wallet].map((item) => (
         <Div
           key={unikey()}
@@ -31,6 +36,14 @@ const SelectTokenFilter: FC = () => {
           fontWeight="500"
           fontFamily="Inter"
           borderRadius="9999px"
+          transition="all 500ms ease-in-out"
+          border={'1px solid transparent'}
+          nHover={{
+            border:
+              filterSelected === item
+                ? '1px solid #B4C5FF33'
+                : '1px solid #FFFFFF1A',
+          }}
           py="0.5rem"
         >
           <P

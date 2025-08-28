@@ -15,14 +15,21 @@ const Sidebar: FC = () => {
   return (
     <Div>
       <Div
-        p="1rem"
+        py="1rem"
         display="flex"
         gap="0.825rem"
         color="#F8F9FD"
         alignItems="center"
       >
         <LogoSVG maxWidth="1.75rem" width="100%" />
-        <LogoLettersSVG maxHeight="1.25rem" height="100%" />
+        <Div display={['none', 'none', 'none', 'flex', 'flex']}>
+          <LogoLettersSVG
+            maxHeight="1.25rem"
+            maxWidth="100%"
+            width="100%"
+            height="100%"
+          />
+        </Div>
         <Span color="#9CA3AF" cursor="pointer" onClick={toggleMenu}>
           <ChevronDownSVG width="100%" maxWidth="0.825rem" />
         </Span>

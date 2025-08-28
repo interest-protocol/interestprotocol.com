@@ -1,16 +1,13 @@
-import {
-  Network,
-  normalizeSuiAddress,
-} from '@interest-protocol/interest-aptos-v2';
+import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import { TokenIcon } from '@/components';
+import { Network } from '@/constants';
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { FixedPointMath } from '@/lib';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatDollars, formatMoney, ZERO_BIG_NUMBER } from '@/utils';
 
@@ -22,7 +19,6 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
   onClick,
   selected,
 }) => {
-  const network = useNetwork<Network>();
   const { coinsMap } = useCoins();
   const [isLoading, setLoading] = useState(false);
 
@@ -47,12 +43,13 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
       display="flex"
       color="textSoft"
       cursor="pointer"
-      borderRadius="xs"
+      borderRadius="0.5rem"
       onClick={onSelect}
       alignItems="center"
       position="relative"
       justifyContent="space-between"
       transition="background 500ms ease-in-out"
+      nHover={{ borderColor: '#B4C5FF4D', bg: '#B4C5FF33' }}
     >
       {isLoading && (
         <Div position="absolute" top="0" right="0" left="0" bottom="0">
@@ -66,7 +63,7 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
           size="1.52rem"
           rounded={!isFA}
           symbol={token.symbol}
-          network={network}
+          network={Network.MovementMainnet}
         />
         <Div display="flex" flexDirection="column">
           <P

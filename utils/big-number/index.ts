@@ -5,7 +5,7 @@ import { FixedPointMath } from '@/lib';
 
 import { isHexString } from '../string';
 
-export const parseBigNumberish = (x: any): BigNumber =>
+export const parseBigNumberish = (x: unknown): BigNumber =>
   isBigNumberish(x) ? new BigNumber(x.toString()) : ZERO_BIG_NUMBER;
 
 export const parseToPositiveStringNumber = (x: string): string => {
@@ -16,7 +16,7 @@ export const parseToPositiveStringNumber = (x: string): string => {
 
 export const ZERO_BIG_NUMBER = new BigNumber(0);
 
-export function isBigNumberish(value: any): value is BigNumberish {
+export function isBigNumberish(value: unknown): value is BigNumberish {
   return (
     value != null &&
     (BigNumber.isBigNumber(value) ||

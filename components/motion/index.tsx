@@ -1,6 +1,7 @@
 import { Div } from '@stylin.js/elements';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
-const Motion = motion.create(Div);
+import { MotionComponent } from './motion.types';
 
-export default Motion;
+export const Motion = motion(Div) as MotionComponent;
+export * from './motion.types';

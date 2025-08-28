@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import unikey from 'unikey';
 
-import ProgressIndicator from '@/components/progress-indicator';
+import { ProgressIndicator } from '@/components/progress-indicator';
 import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 
 import ModalTokenSearch from './modal-token-search';
@@ -35,7 +35,7 @@ const ModalTokenBody: FC<ModalTokenBodyProps> = ({
     return (
       <Div>
         <Div display="flex" gap="0.25rem" alignItems="center">
-          {loading && <ProgressIndicator size="12px" />}
+          {loading && <ProgressIndicator size={12} />}
         </Div>
         <Div gap="0.75rem" width="100%">
           {filteredTokens.length ? (

@@ -1,7 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { CaretLeftSGV, CaretRightSVG } from '@/components/svg';
+import { CaretLeftSVG, CaretRightSVG } from '@/components/svg';
 
 import { IDirectionalClosedProps } from './directional-menu-closed.types';
 
@@ -26,7 +26,7 @@ const DirectionalMenuClosed: FC<IDirectionalClosedProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       {!isDirectionalRight ? (
-        <CaretLeftSGV
+        <CaretLeftSVG
           maxWidth="20"
           maxHeight="20"
           cursor="pointer"

@@ -1,7 +1,8 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { FC } from 'react';
 
-import { SVGProps } from '../svg';
+import { Network } from '@/constants';
+
+import { SVGProps } from '../svg/svg.types';
 
 export interface TokenIconProps {
   url?: string;

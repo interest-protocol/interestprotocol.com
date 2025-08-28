@@ -56,22 +56,36 @@ export const GlobalStyles = css`
     color: inherit;
     text-decoration: none;
   }
+
+  .remove-spinner {
+    appearance: textfield;
+  }
+
+  .remove-spinner::-webkit-outer-spin-button,
+  .remove-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .remove-spinner {
+    -moz-appearance: textfield;
+  }
   /* width */
   ::-webkit-scrollbar {
-    width: 10px;
-    padding: 2rem;
+    width: 3px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
+    background: #0007;
+    padding-left: 2px;
     border-radius: 0.5rem;
-    background: transparent;
     transition: all 300ms ease-in-out;
   }
 
   /* Track on hover */
   ::-webkit-scrollbar-track:hover {
-    background: #fff1;
+    background: #0003;
   }
 
   /* Handle */
@@ -79,5 +93,15 @@ export const GlobalStyles = css`
     background: #888;
     border-radius: 0.5rem;
     border: 5px solid transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b4c5ffcc;
+  }
+
+  /* React hot toast */
+  #_rht_toaster [role='status'] {
+    justify-content: unset;
   }
 `;
