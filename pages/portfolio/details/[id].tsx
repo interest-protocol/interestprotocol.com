@@ -38,7 +38,7 @@ const PortfolioPositionsPage: NextPage = () => {
 
   return (
     <FormProvider {...form}>
-      <SEO title="Portfolio Positions" />
+      <SEO />
       <PortfolioPositions />
     </FormProvider>
   );
