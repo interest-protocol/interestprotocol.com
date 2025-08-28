@@ -18,7 +18,7 @@ const Info: FC = () => (
       border="1px solid #9CA3AF1A"
     >
       <P color="#9CA3AF" fontSize="1rem" fontWeight="500" fontFamily="Inter">
-        Your posirtion:
+        Your position:
       </P>
       <Span color="#FFFFFF" fontSize="1rem" fontWeight="500" fontFamily="Inter">
         $19,720.00
@@ -41,7 +41,16 @@ const Info: FC = () => (
         position: '$19.72K',
         range: '0.997403507 USDC - 0.997602997 USDT',
         price: '0.997403507 per USDC',
-        leverage: <span style={{ color: '#22C55E' }}>20x</span>,
+        leverage: (
+          <Span
+            color="#34D399"
+            fontWeight="400"
+            fontSize="0.875rem"
+            fontFamily="Inter"
+          >
+            20x
+          </Span>
+        ),
       }}
       isLoading={false}
     />
@@ -55,52 +64,46 @@ const Info: FC = () => (
         rewards: (
           <>
             0.5000{' '}
-            <span
-              style={{
-                background: '#064E3B',
-                color: '#10B981',
-                fontSize: '0.75rem',
-                padding: '0.125rem 0.5rem',
-                borderRadius: '0.5rem',
-                marginLeft: '0.25rem',
-              }}
+            <Span
+              bg="#064E3B"
+              color="#10B981"
+              fontSize="0.75rem"
+              p="0.125rem 0.5rem"
+              borderRadius="0.5rem"
+              ml="0.25rem"
             >
               Rewards
-            </span>
+            </Span>
           </>
         ),
         fees1: (
           <>
             0.0000{' '}
-            <span
-              style={{
-                background: '#374151',
-                color: '#9CA3AF',
-                fontSize: '0.75rem',
-                padding: '0.125rem 0.5rem',
-                borderRadius: '0.5rem',
-                marginLeft: '0.25rem',
-              }}
+            <Span
+              bg="#374151"
+              color="#9CA3AF"
+              fontSize="0.75rem"
+              p="0.125rem 0.5rem"
+              borderRadius="0.5rem"
+              ml="0.25rem"
             >
               Fees
-            </span>
+            </Span>
           </>
         ),
         fees2: (
           <>
             0.0000{' '}
-            <span
-              style={{
-                background: '#374151',
-                color: '#9CA3AF',
-                fontSize: '0.75rem',
-                padding: '0.125rem 0.5rem',
-                borderRadius: '0.5rem',
-                marginLeft: '0.25rem',
-              }}
+            <Span
+              bg="#374151"
+              color="#9CA3AF"
+              fontSize="0.75rem"
+              p="0.125rem 0.5rem"
+              borderRadius="0.5rem"
+              ml="0.25rem"
             >
               Fees
-            </span>
+            </Span>
           </>
         ),
       }}
