@@ -1,16 +1,16 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { HeadInfoProps } from './head-info.types';
+import { formatDollars } from '@/utils/string';
 
-const formatDolar = (value: number) => `$${value.toFixed(2)}`;
+import { HeadInfoProps } from './head-info.types';
 
 const HeadInfo: FC<HeadInfoProps> = ({ title, value }) => {
   let formattedValue = value;
 
   if (typeof value === 'number') {
     if (title === 'Net worth' || title === 'Portfolio value') {
-      formattedValue = formatDolar(value);
+      formattedValue = formatDollars(value, 6, 'start');
     } else if (title === 'Average APR') {
       formattedValue = `${value}%`;
     }

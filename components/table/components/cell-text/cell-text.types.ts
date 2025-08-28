@@ -1,4 +1,4 @@
 export interface CellTextProps {
-  children: string | number;
+  children: string | number | string[];
   color?: string;
 }

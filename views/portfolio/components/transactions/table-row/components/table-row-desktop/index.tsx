@@ -3,6 +3,7 @@ import { FC } from 'react';
 
 import ExternalLink from '@/components/svg/external-link';
 import CellText from '@/components/table/components/cell-text';
+import { formatDollars, formatMoney } from '@/utils/string';
 import StatusBtn from '@/views/portfolio/components/status-btn ';
 
 import { TransactionsProps } from '../../../transation.types';
@@ -25,9 +26,9 @@ const TableRowDesktop: FC<TransactionsProps> = ({
     <Div width="3.875rem">
       {action ? <StatusBtn status="Claimed" /> : <StatusBtn status="Stake" />}
     </Div>
-    <CellText color="#FFFFFF">{pool}</CellText>
+    <CellText color="#FFFFFF">{formatDollars(pool, 6, 'start')}</CellText>
     <Div gap="0.75rem" display="flex" alignItems="center">
-      <CellText color="#FFFFFF">{details}</CellText>
+      <CellText color="#FFFFFF">{formatMoney(details)}</CellText>
       <ExternalLink
         maxWidth="1rem"
         maxHeight="1rem"

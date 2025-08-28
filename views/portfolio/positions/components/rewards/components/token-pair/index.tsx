@@ -3,13 +3,11 @@ import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import TokenIcon from '@/components/token-icon';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { formatMoney } from '@/utils';
 
 import { TokenPairProps } from './token-pair.types';
 
 const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
-  const network = useNetwork<Network>();
-
   return (
     <Div
       gap="0.5rem"
@@ -25,13 +23,14 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
         fontFamily="Inter"
         alignItems="center"
       >
-        {left.value} {left.symbol}
+        {formatMoney(left.value)} {left.symbol}
         <TokenIcon
-          network={network}
+          withBg
+          rounded
+          size="1rem"
           url={left.iconUrl}
           symbol={left.symbol}
-          size="1rem"
-          rounded
+          network={Network.MovementMainnet}
         />
       </P>
       <Div width="4px" height="4px" bg="#FFFFFF" borderRadius="1000px"></Div>
@@ -43,13 +42,14 @@ const TokenPair: FC<TokenPairProps> = ({ left, right }) => {
         fontFamily="Inter"
         alignItems="center"
       >
-        {right.value} {right.symbol}
+        {formatMoney(right.value)} {right.symbol}
         <TokenIcon
-          network={network}
+          withBg
+          rounded
+          size="1rem"
           url={right.iconUrl}
           symbol={right.symbol}
-          size="1rem"
-          rounded
+          network={Network.MovementMainnet}
         />
       </P>
     </Div>

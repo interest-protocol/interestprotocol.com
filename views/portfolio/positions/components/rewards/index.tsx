@@ -1,6 +1,8 @@
 import { Button, Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import { formatDollars } from '@/utils/string';
+
 import TokenPair from './components/token-pair';
 import { RewardsProps } from './rewards.types';
 
@@ -35,7 +37,7 @@ const Rewards: FC<RewardsProps> = ({ claimingFee, pairToken }) => (
         fontFamily="Inter"
         fontSize="1.5rem"
       >
-        $0.00
+        {formatDollars(0.0, 6, 'start')}
       </Span>
 
       <P fontSize="1rem" color="#949E9E" fontWeight="500" fontFamily="Inter">

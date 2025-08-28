@@ -5,6 +5,7 @@ import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
+import { formatDollars } from '@/utils/string';
 
 import StatusBtn from '../../../status-btn ';
 import { PoolsProps } from '../../pools.types';
@@ -47,7 +48,9 @@ const TableRowMobile: FC<PoolsProps> = ({
     </Div>
     <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Liquidity:</CellText>
-      <CellText color="#FFFFFF">{liquidity}</CellText>
+      <CellText color="#FFFFFF">
+        {formatDollars(liquidity, 6, 'start')}
+      </CellText>
     </Div>
     <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Leverage:</CellText>
@@ -55,7 +58,7 @@ const TableRowMobile: FC<PoolsProps> = ({
     </Div>
     <Div display="flex" gap="0.5rem">
       <CellText color="#FFFFFF">Earnings:</CellText>
-      <CellText color="#FFFFFF">{earnings}</CellText>
+      <CellText color="#FFFFFF">{formatDollars(earnings, 6, 'start')}</CellText>
     </Div>
     <Link href="#">
       <CellText color="#B4C5FF">Manage</CellText>

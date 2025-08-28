@@ -31,8 +31,8 @@ const Withdraw: FC = () => (
     <Rewards
       claimingFee="18%"
       pairToken={[
-        { value: '0.00', symbol: 'ETH', iconUrl: '/eth.png' },
-        { value: '0.00', symbol: 'USDT', iconUrl: '/usdt.png' },
+        { value: 0.0, symbol: 'MOVE', iconUrl: '/eth.png' },
+        { value: 0.0, symbol: 'MOVE', iconUrl: '/usdt.png' },
       ]}
     />
   </Div>

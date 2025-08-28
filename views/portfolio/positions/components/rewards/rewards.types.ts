@@ -1,5 +1,5 @@
 export interface TokenInfo {
-  value: string;
+  value: number;
   symbol: string;
   iconUrl: string;
 }

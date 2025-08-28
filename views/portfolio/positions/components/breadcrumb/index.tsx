@@ -1,7 +1,9 @@
+import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import ArrowRight from '@/components/svg/arrow-right';
+import TokenIcon from '@/components/token-icon';
 import StatusBtn from '@/views/portfolio/components/status-btn ';
 
 import CrumbText from '../bread-crumb-text';
@@ -24,7 +26,14 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ pools, lp }) => (
 
     <Div display="flex" alignItems="center" justifyContent="space-between">
       <Div gap="1rem" display="flex" alignItems="center">
-        <img src={lp} alt={lp} />
+        <TokenIcon
+          withBg
+          rounded
+          size="1rem"
+          url={lp}
+          symbol="MOVE"
+          network={Network.MovementMainnet}
+        />
         <P
           color="#E5E7EB"
           fontWeight="600"

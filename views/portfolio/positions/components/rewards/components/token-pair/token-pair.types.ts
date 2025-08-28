@@ -1,6 +1,6 @@
 export interface TokenAmountProps {
   symbol: string;
-  value: string;
+  value: number;
   iconUrl: string;
 }
 

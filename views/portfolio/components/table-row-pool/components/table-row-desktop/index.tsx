@@ -5,6 +5,7 @@ import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
+import { formatDollars } from '@/utils/string';
 
 import StatusBtn from '../../../status-btn ';
 import { PoolsProps } from '../../pools.types';
@@ -46,9 +47,9 @@ const TableRowDesktop: FC<PoolsProps> = ({
       <CellText color="#FFFFFF">{`${pairPool}`}</CellText>
     </Div>
     <Div width="3.875rem">{inRange && <StatusBtn status="Range" />}</Div>
-    <CellText color="#FFFFFF">{liquidity}</CellText>
+    <CellText color="#FFFFFF">{formatDollars(liquidity, 6, 'start')}</CellText>
     <CellText color="#34D399">{leverage}</CellText>
-    <CellText color="#FFFFFF">{earnings}</CellText>
+    <CellText color="#FFFFFF">{formatDollars(earnings, 6, 'start')}</CellText>
     <Link href="portfolio/details/1">
       <CellText color="#B4C5FF">Manage</CellText>
     </Link>

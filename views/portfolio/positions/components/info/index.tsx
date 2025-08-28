@@ -1,6 +1,8 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import { formatDollars } from '@/utils/string';
+
 import Card from '../card/page';
 import PoolBalance from './components/pool-balance';
 
@@ -21,14 +23,14 @@ const Info: FC = () => (
         Your position:
       </P>
       <Span color="#FFFFFF" fontSize="1rem" fontWeight="500" fontFamily="Inter">
-        $19,720.00
+        {formatDollars(1931211, 6, 'start')}
       </Span>
     </Div>
 
     <PoolBalance
       pairTokens={[
-        { symbol: 'ETH', value: 10, percent: 60, icon: '/eth.png' },
-        { symbol: 'USDT', value: 6, percent: 40, icon: '/usdt.png' },
+        { symbol: 'MOVE', value: 10, percent: 60, icon: '/eth.png' },
+        { symbol: 'MOVE', value: 6, percent: 40, icon: '/usdt.png' },
       ]}
     />
 
