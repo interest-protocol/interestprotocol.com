@@ -12,7 +12,7 @@ const FetchingToken: FC = () => (
     display="flex"
     overflowY="auto"
     bg="lowContainer"
-    color="onSurface"
+    color="#E2E2E6"
     alignItems="center"
     flexDirection="column"
   >

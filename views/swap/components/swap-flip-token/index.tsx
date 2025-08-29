@@ -27,13 +27,13 @@ const SwapFlipToken: FC<SwapFlipTokenProps> = ({ type }) => {
 
   return (
     <Button
-      p="xs"
+      p="0.5rem"
       bg="#030712"
       border="none"
       width="2.25rem"
       height="2.25rem"
       cursor="pointer"
-      color="onSurface"
+      color="#E2E2E6"
       borderRadius="0.75rem"
       onClick={flipToken}
       nHover={{ bg: 'lowContainer' }}

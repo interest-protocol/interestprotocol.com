@@ -12,7 +12,7 @@ import SidebarSection from './sidebar-section';
 const SidebarContent: FC = () => (
   <>
     <Div display="flex" flexDirection="column" gap="1rem">
-      <Div mb="m">
+      <Div mb="1rem">
         <SidebarLogoSVG maxWidth="2.5rem" maxHeight="2.5rem" />
       </Div>
       {SIDEBAR_SECTIONS.map((section) => (
@@ -21,7 +21,7 @@ const SidebarContent: FC = () => (
     </Div>
     <Div>
       <P
-        mb="m"
+        mb="1rem"
         color="#9CA3AF"
         fontWeight="600"
         fontSize="0.75rem"

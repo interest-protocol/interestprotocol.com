@@ -45,7 +45,7 @@ const ModalTokenSearch: FC<ModalTokenSearchProps> = ({
   if (error || !tokenMetadata) return <NotFound />;
 
   return (
-    <Div p="m">
+    <Div p="1rem">
       <TokenModalItem
         key={search}
         selected={false}

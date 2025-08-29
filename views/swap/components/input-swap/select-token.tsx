@@ -82,7 +82,7 @@ const SelectToken: FC<InputProps> = ({ label }) => {
       display="flex"
       gap="0.5rem"
       height="2rem"
-      color="onSurface"
+      color="#E2E2E6"
       fontSize="0.75rem"
       alignItems="center"
       disabled={swapping}

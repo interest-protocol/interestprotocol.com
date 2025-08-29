@@ -22,6 +22,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       py="1.875rem"
       px="1rem"
       display="flex"
+      height="100vh"
       position="fixed"
       onClick={onClose}
       minHeight="100vh"
