@@ -67,7 +67,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
         isOutput={index === 1}
       />,
       {
-        title: 'Select Token Pool',
+        title: 'Select a Token',
       }
     );
 
