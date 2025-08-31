@@ -70,12 +70,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
       symbol={symbol}
       supportingText="--"
     >
-      <Div
-        display="flex"
-        gap="0.5rem"
-        alignItems="center"
-        //flexDirection="row-reverse"
-      >
+      <Div display="flex" gap="0.5rem" alignItems="center">
         <Div
           display="flex"
           alignItems="flex-end"
