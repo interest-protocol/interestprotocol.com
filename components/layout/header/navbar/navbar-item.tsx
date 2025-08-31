@@ -15,7 +15,7 @@ const NavbarItem: FC<NavbarItemProps> = ({ title, href }) => {
         fontSize="1rem"
         cursor="pointer"
         height="1.375rem"
-        borderRadius="xs"
+        borderRadius="0.5rem"
         alignItems="center"
         fontFamily="Inter"
         width="max-content"

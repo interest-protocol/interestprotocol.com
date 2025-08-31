@@ -5,14 +5,11 @@ import { ProgressIndicator } from '@/components/progress-indicator';
 
 const FetchingToken: FC = () => (
   <Div
-    p="4xl"
-    gap="xl"
     flex="1"
-    height="100%"
+    py="2rem"
+    gap="1.5rem"
     display="flex"
-    overflowY="auto"
-    bg="lowContainer"
-    color="onSurface"
+    color="#E2E2E6"
     alignItems="center"
     flexDirection="column"
   >

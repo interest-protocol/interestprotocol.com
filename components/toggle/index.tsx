@@ -100,7 +100,7 @@ export const ToggleButton: FC<PropsWithChildren<CheckedButtonProps>> = ({
           </Motion>
         </Div>
       </LabelElement>
-      <Div display="flex" ml="xs" flexDirection="column">
+      <Div display="flex" ml="0.5rem" flexDirection="column">
         <Label>{labels?.label}</Label>
         <P color={`#E2E2E6B8`}>{labels?.supportingLabel}</P>
       </Div>

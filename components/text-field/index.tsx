@@ -111,7 +111,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
         >
           {Prefix && (
             <Div
-              p="m"
+              p="1rem"
               display="flex"
               color="#E2E2E6"
               alignItems="center"

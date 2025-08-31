@@ -91,7 +91,7 @@ const CreateTokenFormImage: FC = () => {
 
   return (
     <Div
-      p="l"
+      p="1.25rem"
       gap="0.75rem"
       display="flex"
       bg="#9CA3AF1A"

@@ -16,7 +16,7 @@ export const ModalHeader: FC<StandardizedWithCloseButton | Standardized> = ({
 
   return (
     <Div
-      px="l"
+      px="1.25rem"
       height="4rem"
       display="grid"
       alignItems="center"

@@ -22,12 +22,12 @@ export const CreateTokenFormPoolToggle: FC = () => {
 
 const CreateTokenFormPool: FC = () => (
   <Div
-    p="m"
+    p="1rem"
     my="xl"
-    gap="m"
+    gap="1rem"
     bg="surface"
     display="flex"
-    borderRadius="xs"
+    borderRadius="0.5rem"
     flexDirection="column"
   >
     <Div display="flex" justifyContent="space-between" color="#E2E2E6">

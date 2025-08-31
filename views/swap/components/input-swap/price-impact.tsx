@@ -35,7 +35,7 @@ const PriceImpact: FC = () => {
       px="0.5rem"
       py="0.25rem"
       bg={STATUS}
-      fontSize="s"
+      fontSize="0.75rem"
       borderRadius="9999rem"
       color="#D1D5DB"
     >

@@ -15,7 +15,7 @@ const HeaderInfo: FC<InputProps> = ({ label }) => {
     <Div
       display="flex"
       justifyContent="space-between"
-      color="onSurface"
+      color="#E2E2E6"
       alignItems="flex-end"
     >
       <P
