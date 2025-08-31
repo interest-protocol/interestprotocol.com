@@ -19,27 +19,6 @@ const Balance: FC<InputProps> = ({ index }) => {
   const type = useWatch({ control, name: `tokens.${index}.type` });
   const decimals = useWatch({ control, name: `tokens.${index}.decimals` });
 
-  if (!type)
-    return (
-      <Div
-        p="0.25rem"
-        gap="0.5rem"
-        display="flex"
-        color="outline"
-        alignItems="center"
-      >
-        <Div width="1rem" height="1rem">
-          <SubtractBox
-            maxHeight="100%"
-            maxWidth="100%"
-            width="100%"
-            height="100%"
-          />
-        </Div>
-        <P fontSize="0.75rem">0</P>
-      </Div>
-    );
-
   const balance = coinsMap[type]?.balance ?? ZERO_BIG_NUMBER;
 
   const numericBalance = FixedPointMath.toNumber(balance, decimals);

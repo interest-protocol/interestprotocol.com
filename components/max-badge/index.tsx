@@ -7,6 +7,7 @@ export const MaxBadge: FC<MaxBadgeProps> = ({ handleMax }) => (
   <Button
     p="2px 6px"
     bg="#9CA3AF1A"
+    cursor="pointer"
     onClick={handleMax}
     borderRadius="0.75rem"
     nHover={{ bg: 'unset' }}
