@@ -7,8 +7,8 @@ import Layout from '@/components/layout';
 import PoolPrice from '@/views/pool-create/components/pool-price';
 
 import CardError from './components/card-error';
-import Input from './components/Input';
-import { PoolErrorManager } from './components/Input/components/pool-error-manager';
+import Input from './components/input';
+import { PoolErrorManager } from './components/input/components/pool-error-manager';
 import PoolCreateFormButton from './components/pool-create-form-button';
 import Strategy from './components/strategy';
 import { CreatePoolForm } from './pool-create.types';

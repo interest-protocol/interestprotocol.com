@@ -162,3 +162,6 @@ export const formatAddress = (address: string): string =>
 
 export const removeLeadingZeros = (hexString: string) =>
   '0x' + hexString.slice(2).replace(/^0+/, '') || '0';
+
+export const truncate = (str: string, max = 14) =>
+  str.length > max ? str.slice(0, max) + '…' : str;

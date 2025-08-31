@@ -1,11 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import unikey from 'unikey';
 
 import { TokenIcon } from '@/components';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { Network } from '@/constants';
 
 import { StrategyProps } from './strategy.types';
 
@@ -17,8 +16,6 @@ const Strategy: FC<StrategyProps> = ({
   isLoading,
   onSelect,
 }) => {
-  const network = useNetwork<Network>();
-
   return (
     <Div
       cursor="pointer"
@@ -77,7 +74,7 @@ const Strategy: FC<StrategyProps> = ({
                     withBg
                     size="1.129rem"
                     symbol={symbol}
-                    network={network}
+                    network={Network.MovementMainnet}
                   />
                 )}
               </Div>

@@ -3,8 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 
-import { formatMoney } from '@/utils';
-import { truncate } from '@/utils/truncate';
+import { formatMoney, truncate } from '@/utils';
 import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
 const PoolPrice: FC = () => {
