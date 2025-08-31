@@ -56,10 +56,10 @@ const Input: FC<InputProps> = ({ index }) => {
             <TextField
               ml="-1rem"
               width="100%"
-              lineHeight="3ren"
               placeholder="0"
-              fontFamily="Inter"
               fontWeight="400"
+              lineHeight="3rem"
+              fontFamily="Inter"
               disabled={!tokenType}
               fontSize={['2rem', '2.25rem']}
               opacity={isEmpty ? 0.4 : undefined}

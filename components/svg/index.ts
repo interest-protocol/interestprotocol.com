@@ -1,3 +1,4 @@
+export { default as AlertSVG } from './assets';
 export { default as AssetsSVG } from './assets';
 export { default as BridgeSVG } from './bridge';
 export { default as BTCSVG } from './btc';
