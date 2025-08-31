@@ -21,7 +21,7 @@ const AmountInDollar: FC<InputProps> = ({ index }) => {
   if (!(prices?.length && value)) return '$0';
 
   return (
-    <Div display="flex" gap="s" alignItems="center" flexWrap="wrap">
+    <Div display="flex" gap="1rem" alignItems="center" flexWrap="wrap">
       <P fontSize="0.75rem" color="#D1D5DB">
         {prices && value
           ? formatDollars(

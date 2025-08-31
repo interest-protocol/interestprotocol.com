@@ -9,7 +9,6 @@ const HeaderInfo: FC<InputProps> = ({ index }) => {
 
   return (
     <Div
-      color="onSurface"
       alignItems="flex-end"
       justifyContent="space-between"
       display={['flex', 'none']}

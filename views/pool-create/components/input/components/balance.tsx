@@ -1,10 +1,9 @@
-import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { MaxBadge } from '@/components/max-badge';
-import ProgressIndicator from '@/components/progress-indicator';
+import { ProgressIndicator } from '@/components/progress-indicator';
 import SubtractBox from '@/components/svg/subtract-box';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
@@ -23,7 +22,7 @@ const Balance: FC<InputProps> = ({ index }) => {
   if (!type)
     return (
       <Div
-        p="2xs"
+        p="0.25rem"
         gap="0.5rem"
         display="flex"
         color="outline"
@@ -41,8 +40,7 @@ const Balance: FC<InputProps> = ({ index }) => {
       </Div>
     );
 
-  const balance =
-    coinsMap[normalizeSuiAddress(type)]?.balance ?? ZERO_BIG_NUMBER;
+  const balance = coinsMap[type]?.balance ?? ZERO_BIG_NUMBER;
 
   const numericBalance = FixedPointMath.toNumber(balance, decimals);
 
@@ -89,16 +87,16 @@ const Balance: FC<InputProps> = ({ index }) => {
           : '0.0000'}
       </P>
       <MaxBadge handleMax={handleMax} />
-      {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
+      {!coinsMap[type]?.balance && loading && (
         <Div
-          mx="xs"
+          mx="0.5rem"
           mt="-1.2rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <Div position="absolute" justifySelf="flex-end">
-            <ProgressIndicator variant="loading" />
+            <ProgressIndicator />
           </Div>
         </Div>
       )}

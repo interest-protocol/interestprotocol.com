@@ -1,4 +1,3 @@
-import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -16,7 +15,6 @@ import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
   const { register, setValue, getValues } = useFormContext<CreatePoolForm>();
-  const { account } = useAptosWallet();
 
   const tokenType = useWatch({ name: `tokens.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
@@ -30,9 +28,9 @@ const Input: FC<InputProps> = ({ index }) => {
       p="1rem"
       gap="0.5rem"
       display="flex"
-      height={['8rem', '6.375rem']}
       flexDirection="column"
       borderRadius="0.75rem"
+      height={['8rem', '6.375rem']}
       bg={error ? '#EF44441A' : '#9CA3AF1A'}
       border={error ? '1px solid #EF44441A' : undefined}
     >
@@ -44,7 +42,7 @@ const Input: FC<InputProps> = ({ index }) => {
         justifyContent="space-between"
       >
         <Div
-          gap="xs"
+          gap="0.5rem"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
@@ -58,7 +56,7 @@ const Input: FC<InputProps> = ({ index }) => {
             <TextField
               ml="-1rem"
               width="100%"
-              lineHeight="l"
+              lineHeight="3ren"
               placeholder="0"
               fontFamily="Inter"
               fontWeight="400"
@@ -87,12 +85,11 @@ const Input: FC<InputProps> = ({ index }) => {
           </Div>
           <SelectToken index={index} />
         </Div>
-        {account?.address && (
-          <Div display="flex" justifyContent="space-between" color="outline">
-            <AmountInDollar index={index} />
-            <Balance index={index} />
-          </Div>
-        )}
+
+        <Div display="flex" justifyContent="space-between">
+          <AmountInDollar index={index} />
+          <Balance index={index} />
+        </Div>
       </Div>
     </Div>
   );

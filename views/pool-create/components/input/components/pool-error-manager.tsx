@@ -1,4 +1,3 @@
-import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import BigNumber from 'bignumber.js';
 import { FC, useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -26,17 +25,13 @@ export const PoolErrorManager: FC = () => {
   const baseToken = tokens?.[0];
   const quoteToken = tokens?.[1];
 
-  const baseCoin = baseToken?.type
-    ? coinsMap[normalizeSuiAddress(baseToken.type)]
-    : null;
+  const baseCoin = baseToken?.type ? coinsMap[baseToken.type] : null;
   const baseBalance = FixedPointMath.toNumber(
     baseCoin?.balance ?? ZERO_BIG_NUMBER,
     baseCoin?.decimals ?? 0
   );
 
-  const quoteCoin = quoteToken?.type
-    ? coinsMap[normalizeSuiAddress(quoteToken.type)]
-    : null;
+  const quoteCoin = quoteToken?.type ? coinsMap[quoteToken.type] : null;
   const quoteBalance = FixedPointMath.toNumber(
     quoteCoin?.balance ?? ZERO_BIG_NUMBER,
     quoteCoin?.decimals ?? 0
@@ -44,10 +39,7 @@ export const PoolErrorManager: FC = () => {
 
   const isSameToken = useMemo(() => {
     if (!baseToken?.type || !quoteToken?.type) return false;
-    return (
-      normalizeSuiAddress(baseToken.type) ===
-      normalizeSuiAddress(quoteToken.type)
-    );
+    return baseToken.type === quoteToken.type;
   }, [baseToken, quoteToken]);
 
   const isInvalidAmount = useMemo(() => {
