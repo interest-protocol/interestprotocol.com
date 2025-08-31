@@ -1,11 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { DownSVG, UpSVG } from '@/components/svg';
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { Network } from '@/constants';
 import { formatDollars } from '@/utils/string';
 
 import { TokenProps } from '../../../tokens.types';
@@ -19,7 +18,6 @@ const TableRowDesktop: FC<TokenProps> = ({
   fdv,
   volume,
 }) => {
-  const network = useNetwork<Network>();
   return (
     <Div
       gap="1rem"
@@ -31,7 +29,12 @@ const TableRowDesktop: FC<TokenProps> = ({
     >
       <CellText color="#FFFFFF80">{rank}</CellText>
       <Div display="flex" gap="0.5rem">
-        <TokenIcon withBg size="0.75rem" symbol="MOVE" network={network} />
+        <TokenIcon
+          withBg
+          size="0.75rem"
+          symbol="MOVE"
+          network={Network.MovementMainnet}
+        />
         <CellText color="#FFFFFF">{token}</CellText>
       </Div>
       <CellText color="#FFFFFF">{formatDollars(price, 6, 'start')}</CellText>

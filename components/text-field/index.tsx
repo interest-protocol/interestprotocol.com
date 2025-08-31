@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-autofocus */
-import { Div, DivProps } from '@stylin.js/elements';
+import { Div, LabelElementProps, Span } from '@stylin.js/elements';
 import stylin from '@stylin.js/react';
 import {
   ChangeEvent,
@@ -30,13 +29,14 @@ const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
   },
 });
 
-const FieldContainer = stylin<DivProps & RefAttributes<unknown>>('div')();
+const LabelElement = stylin<LabelElementProps>('label')();
 
 export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
   (
     {
       Suffix,
       Prefix,
+      label,
       onBlur,
       status,
       onFocus,
@@ -51,15 +51,15 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
     const [value, setValue] = useState<string>();
     const id = useId();
 
-    const statusColor = focus || status === 'none' ? 'onSurface' : status;
+    const statusColor = focus || status === 'none' ? '#E2E2E6' : status;
 
     const handleBorderStatus = () => {
       const isFocused = focus && !disabled;
       const isError = status === 'error';
       const isSuccess = status === 'success';
       const hasStatus = isError || isSuccess;
-      if (disabled) return '1px solid #46464A';
-      if (isFocused) return '1px solid #B4C5FF';
+      if (disabled) return '1px solid ' + '#46464A';
+      if (isFocused) return '3px solid #B4C5FF';
       if (hasStatus)
         return '1px solid ' + status == 'error' ? '#FED7D7' : '#BAF6CF';
     };
@@ -88,34 +88,43 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
         cursor={disabled ? 'not-allowed' : 'text'}
         aria-label="textfieldHolder"
       >
-        <FieldContainer
-          p="0.75rem"
-          bg="transparent"
+        {label && (
+          <LabelElement htmlFor={id}>
+            <Span mb="0.25rem" color="#E2E2E6">
+              {label}
+            </Span>
+          </LabelElement>
+        )}
+        <Div
           display="flex"
-          height="2.75rem"
-          gap={Suffix || Prefix ? '0.5rem' : 'unset'}
+          borderRadius="9999rem"
+          height="2.5rem"
           alignItems="center"
-          borderRadius="0.75rem"
-          border={handleBorderStatus() || '1px solid'}
-          borderColor={handleBorderStatus() || '#9CA3AF1F'}
+          border={handleBorderStatus() || '1px solid ' + '#46464A'}
           nHover={{
+            borderWidth: focus ? '3px' : disabled ? '1px' : '2px',
             borderStyle: 'solid',
-            borderWidth: focus ? '1px' : disabled ? '1px' : '1px',
-            borderColor: !disabled ? '#44464A' : 'outlineVariant',
-            backgroundColor: !focus ? '#44464A' : '#2B2B2D',
-          }}
-          nActive={{
-            borderColor: '#B4C5FF ',
+            borderColor: !disabled ? '#B4C5FF' : '#46464A',
           }}
           transition="all 300ms ease-in-out"
-          color="#6B7280"
           {...fieldProps}
         >
-          {Prefix}
+          {Prefix && (
+            <Div
+              p="1rem"
+              display="flex"
+              color="#E2E2E6"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {Prefix}
+            </Div>
+          )}
           <Div
+            p={Prefix ? '0.5rem' : '1rem'}
             flex="1"
             width="100%"
-            height="100%"
+            height="2.5rem"
             display="flex"
             alignItems="stretch"
             flexDirection="column"
@@ -130,28 +139,37 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
               type="text"
               width="100%"
               fontSize="1rem"
-              fontWeight="400"
               fontFamily="Inter"
-              autoFocus={focus}
+              lineHeight="1.5rem"
+              fontWeight="500"
               disabled={disabled}
               onBlur={handleBlur}
               onFocus={handleFocus}
               onChange={handleChange}
-              color="#FFFFFF"
+              color={statusColor}
               defaultValue={value || props.defaultValue}
               nPlaceholder={{
-                color: '#6B7280',
+                color: '#E2E2E6',
               }}
               {...props}
             />
           </Div>
-          {Suffix}
-        </FieldContainer>
+          {Suffix && (
+            <Div
+              p="1rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {Suffix}
+            </Div>
+          )}
+        </Div>
         {supportingText && (
           <Div
-            pt="2xs"
+            pt="0.25rem"
             fontSize="0.75rem"
-            color={disabled ? 'onSurface' : statusColor}
+            color={disabled ? '#E2E2E6' : statusColor}
           >
             {supportingText}
           </Div>

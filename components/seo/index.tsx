@@ -1,11 +1,9 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import { SEOProps } from './seo.types';
-
-const SEO: FC<SEOProps> = ({ title }) => (
+const SEO: FC = () => (
   <Head>
-    <title>{title} | Interest Protocol</title>
+    <title>Movement</title>
     <link rel="icon" type="image/x-icon" href="/icon.svg" />
   </Head>
 );

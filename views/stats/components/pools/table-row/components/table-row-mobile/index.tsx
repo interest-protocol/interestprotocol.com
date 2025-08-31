@@ -1,10 +1,9 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import CellText from '@/components/table/components/cell-text';
 import TokenIcon from '@/components/token-icon';
-import { useNetwork } from '@/lib/aptos-provider/network/network.hooks';
+import { Network } from '@/constants';
 import { formatDollars } from '@/utils/string';
 
 import { PoolsProps } from '../../../pools.types';
@@ -19,8 +18,6 @@ const TableRowMobile: FC<PoolsProps> = ({
   volume7d,
   apr,
 }) => {
-  const network = useNetwork<Network>();
-
   return (
     <Div p="1rem" display="flex" flexDirection="column" gap="0.5rem">
       <Div display="flex" gap="0.5rem">
@@ -30,7 +27,12 @@ const TableRowMobile: FC<PoolsProps> = ({
       <Div display="flex" gap="0.5rem">
         <CellText color="#FFFFFF">Token Name:</CellText>
         <Div display="flex" gap="3rem" alignItems="center">
-          <TokenIcon withBg size="0.75rem" symbol="Move" network={network} />
+          <TokenIcon
+            withBg
+            size="0.75rem"
+            symbol="Move"
+            network={Network.MovementMainnet}
+          />
           <Div display="flex" gap="0.5rem" flexDirection="column">
             <CellText color="#FFFFFF">{token}</CellText>
             <Div display="flex" gap="0.5rem">

@@ -1,8 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC, PropsWithChildren, useState } from 'react';
 
-import { Motion } from '@/components';
-
+import { Motion } from '../motion';
 import { IDirectionalMenuProps } from './directional-menu.types';
 import DirectionalMenuClosed from './directional-menu-closed';
 
@@ -18,10 +17,12 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       layout
       top="0"
       left="0"
-      zIndex="9"
+      zIndex="200"
       width="100%"
-      p="1.875rem"
+      py="1.875rem"
+      px="1rem"
       display="flex"
+      height="100vh"
       position="fixed"
       onClick={onClose}
       minHeight="100vh"
@@ -34,6 +35,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       justifyContent={isDirectionalRight ? 'flex-end' : 'flex-start'}
     >
       <Div
+        width="100%"
         display="flex"
         flexDirection={isDirectionalRight ? 'row-reverse' : 'row'}
       >
@@ -51,9 +53,9 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
           exit={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
           initial={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
           width={[
-            '90%',
-            '90%',
-            '90%',
+            '100%',
+            '100%',
+            '100%',
             isDirectionalRight ? '28rem' : '14.5rem',
           ]}
           borderRadius={

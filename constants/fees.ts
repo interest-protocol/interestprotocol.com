@@ -1,0 +1,4 @@
+// Swap fee: 0.1%
+export const EXCHANGE_FEE = 0.001;
+export const EXCHANGE_FEE_PERCENTAGE = EXCHANGE_FEE * 100;
+export const EXCHANGE_FEE_BPS = EXCHANGE_FEE_PERCENTAGE * 100;

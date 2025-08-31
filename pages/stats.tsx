@@ -5,7 +5,7 @@ import Stats from '@/views/stats';
 
 const StatsPage: NextPage = () => (
   <>
-    <SEO title="Swap" />
+    <SEO />
     <Stats />
   </>
 );
