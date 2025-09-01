@@ -4,16 +4,16 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import { AlertSVG } from '@/components/svg';
 
-import { CreatePoolForm } from '../pool-create.types';
+import { CreatePoolForm } from '../../pool-create.types';
 
-const CardError: FC = () => {
+const CreatePoolErrorMessage: FC = () => {
   const { control } = useFormContext<CreatePoolForm>();
   const error = useWatch({ control, name: 'error' });
 
   if (!error) return null;
 
   return (
-    <Div pb="1.5rem" borderBottom="1px solid #F3F4F61A">
+    <Div>
       <Div
         p="0.5rem"
         mt="0.5rem"
@@ -44,4 +44,4 @@ const CardError: FC = () => {
   );
 };
 
-export default CardError;
+export default CreatePoolErrorMessage;

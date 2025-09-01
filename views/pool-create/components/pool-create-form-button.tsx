@@ -1,47 +1,73 @@
-import { Button, Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { Button } from '@stylin.js/elements';
+import { FC, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+
+import { toasting } from '@/components/toast';
 
 import { CreatePoolForm } from '../pool-create.types';
 
 const PoolCreateFormButton: FC = () => {
-  const { control } = useFormContext<CreatePoolForm>();
+  const [loading, setLoading] = useState(false);
+  const { control, reset } = useFormContext<CreatePoolForm>();
 
-  const values = useWatch({ control });
+  const error = useWatch({ control, name: 'error' });
+  const volatilityStrategyType = useWatch({
+    control,
+    name: 'volatilityStrategyType',
+  });
 
-  const isValidToken = (t?: { type?: string; value?: string }) =>
-    t?.type && Number(t?.value) > 0;
+  const handleCreatePool = async (stopLoading: () => void) => {
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.random() * 4000 + 1000)
+    );
 
-  const isRequiredFieldsFilled =
-    (values?.tokens?.length ?? 0) >= 2 &&
-    [0, 1].every((i) => isValidToken(values?.tokens?.[i])) &&
-    values?.volatilityStrategyType;
+    stopLoading();
+    if (Math.random() > 0.5) {
+      toasting.success({
+        action: 'Create pool',
+        message: 'See on explorer',
+        link: '#',
+      });
+      reset();
+    } else throw new Error();
+  };
+
+  const onSubmit = async () => {
+    const dismiss = toasting.loading({ message: 'Create pool...' });
+    try {
+      setLoading(true);
+      await handleCreatePool(dismiss);
+    } catch (e) {
+      toasting.error({
+        action: 'Create pool',
+        message: (e as Error).message ?? 'Error executing transaction',
+      });
+    } finally {
+      setLoading(false);
+    }
+    return;
+  };
+  const isRequiredFieldsFilled = !error && volatilityStrategyType;
 
   return (
-    <Div
+    <Button
+      py="1rem"
       mt="0.5rem"
-      gap="1.5rem"
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
+      width="100%"
+      border="none"
+      fontSize="1rem"
+      fontWeight="500"
+      cursor="pointer"
+      onClick={onSubmit}
+      fontFamily="Inter"
+      borderRadius="0.75rem"
+      justifyContent="center"
+      disabled={!isRequiredFieldsFilled}
+      bg={!isRequiredFieldsFilled ? '#9CA3AF1A' : '#B4C5FF'}
+      color={!isRequiredFieldsFilled ? '#9CA3AF' : '#002A78'}
     >
-      <Button
-        py="1rem"
-        width="100%"
-        border="none"
-        fontSize="1rem"
-        fontWeight="500"
-        cursor="pointer"
-        fontFamily="Inter"
-        borderRadius="0.75rem"
-        justifyContent="center"
-        disabled={!isRequiredFieldsFilled}
-        bg={!isRequiredFieldsFilled ? '#9CA3AF1A' : '#B4C5FF'}
-        color={!isRequiredFieldsFilled ? '#9CA3AF' : '#002A78'}
-      >
-        Create Pool
-      </Button>
-    </Div>
+      {loading ? 'Creating Pool...' : 'Create Pool'}
+    </Button>
   );
 };
 

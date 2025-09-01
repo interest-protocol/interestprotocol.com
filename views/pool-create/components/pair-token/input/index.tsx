@@ -14,14 +14,11 @@ import SelectToken from './components/select-token';
 import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue, getValues } = useFormContext<CreatePoolForm>();
+  const { register, setValue } = useFormContext<CreatePoolForm>();
 
   const tokenType = useWatch({ name: `tokens.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
   const error = useWatch({ name: 'error' });
-
-  const rawValue = getValues(`tokens.${index}.value`);
-  const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (
     <Div
@@ -30,7 +27,6 @@ const Input: FC<InputProps> = ({ index }) => {
       display="flex"
       flexDirection="column"
       borderRadius="0.75rem"
-      height={['8rem', '6.375rem']}
       bg={error ? '#EF44441A' : '#9CA3AF1A'}
       border={error ? '1px solid #EF44441A' : undefined}
     >
@@ -56,18 +52,18 @@ const Input: FC<InputProps> = ({ index }) => {
             <TextField
               ml="-1rem"
               width="100%"
+              status="none"
               placeholder="0"
               fontWeight="400"
               lineHeight="3rem"
               fontFamily="Inter"
               disabled={!tokenType}
               fontSize={['2rem', '2.25rem']}
-              opacity={isEmpty ? 0.4 : undefined}
               fieldProps={{
                 width: '100%',
                 border: 'none',
                 nHover: { border: 'none' },
-                color: isEmpty ? '#6B7280' : '#FFFFFF',
+                color: '#FFFFFF',
               }}
               {...register(`tokens.${index}.value`, {
                 onChange: (v: ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +82,7 @@ const Input: FC<InputProps> = ({ index }) => {
           <SelectToken index={index} />
         </Div>
 
-        <Div display="flex" justifyContent="space-between">
+        <Div display="flex" justifyContent="space-between" alignItems="center">
           <AmountInDollar index={index} />
           <Balance index={index} />
         </Div>

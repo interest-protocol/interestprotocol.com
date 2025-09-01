@@ -1,116 +1,66 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC, useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
-import Skeleton from 'react-loading-skeleton';
 
-import { formatMoney, truncate } from '@/utils';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
+import { CreatePoolForm } from '../../pool-create.types';
+import PoolPrice from './pool-price-card';
 
-const PoolPrice: FC = () => {
+const PoolPriceSection: FC = () => {
+  const [tokensSelected, setTokensSelected] = useState(false);
   const { control } = useFormContext<CreatePoolForm>();
-  const tokens = useWatch({ control, name: 'tokens' });
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [poolTokenPrice, setPoolTokenPrice] = useState<number>(0);
-  const [poolTokenPriceUSD, setPoolTokenPriceUSD] = useState<number>(0);
-
-  const poolName = `${truncate(tokens?.[0]?.symbol || '')}/${truncate(
-    tokens?.[1]?.symbol || ''
-  )}`;
+  const error = useWatch({ control, name: 'error' });
+  const tokensList = useWatch({
+    control,
+    name: 'tokens',
+  });
 
   useEffect(() => {
-    const fetchPoolPrice = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    setTokensSelected(
+      tokensList.length >= 2 &&
+        [0, 1].every(
+          (i) => tokensList[i]?.type && Number(tokensList[i]?.value) > 0
+        )
+    );
+  }, [tokensList]);
 
-      setPoolTokenPrice(0.0032);
-      setPoolTokenPriceUSD(0.5);
-      setIsLoading(false);
-    };
+  if (!tokensSelected) return;
 
-    fetchPoolPrice();
-  }, []);
+  if (error) return;
 
   return (
     <Div
-      p="1rem"
-      height="5rem"
-      display="flex"
-      bg="#9CA3AF1A"
-      position="relative"
+      width="100%"
+      display="grid"
       alignItems="center"
-      borderRadius="0.75rem"
-      border="1px solid #F3F4F61A"
+      gap={['1rem', '0.75rem']}
       justifyContent="space-between"
+      gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 27.6875rem']}
     >
-      <Div gap="0.25rem" display="flex" flexDirection="column">
+      <Div gap="0.5rem" display="flex" flexDirection="column">
         <P
           fontSize="1rem"
-          color="#FFFFFF"
-          fontWeight="400"
-          lineHeight="1rem"
+          color="#E5E7EB"
+          fontWeight="600"
           fontFamily="Inter"
+          lineHeight="1.75rem"
         >
-          {isLoading ? (
-            <Skeleton width={80} height={16} />
-          ) : (
-            formatMoney(poolTokenPrice, 2)
-          )}
+          Pool price
         </P>
-
         <P
           color="#9CA3AF"
           fontWeight="400"
-          fontSize="0.875rem"
-          lineHeight="1rem"
+          fontSize="0.75rem"
           fontFamily="Inter"
+          lineHeight="1.25rem"
+          width={['100%', '100%', '70%']}
         >
-          {isLoading ? <Skeleton width={60} height={14} /> : poolName}
+          Pool price depends on initial price of both tokens added.
         </P>
       </Div>
-
-      <Div
-        top="50%"
-        left="50%"
-        bg="#FFFFFF"
-        width="0.25rem"
-        height="0.25rem"
-        borderRadius="100px"
-        position="absolute"
-        transform="translate(-50%, -50%)"
-      />
-
-      <Div
-        gap="0.25rem"
-        display="flex"
-        textAlign="right"
-        flexDirection="column"
-      >
-        <P
-          fontSize="1rem"
-          color="#FFFFFF"
-          fontWeight="400"
-          lineHeight="1rem"
-          fontFamily="Inter"
-        >
-          {isLoading ? (
-            <Skeleton width={80} height={16} />
-          ) : (
-            formatMoney(poolTokenPriceUSD, 2)
-          )}
-        </P>
-
-        <P
-          color="#9CA3AF"
-          fontWeight="400"
-          lineHeight="1rem"
-          fontFamily="Inter"
-          fontSize="0.875rem"
-        >
-          {isLoading ? <Skeleton width={40} height={14} /> : 'USD'}
-        </P>
-      </Div>
+      <PoolPrice />
     </Div>
   );
 };
 
-export default PoolPrice;
+export default PoolPriceSection;

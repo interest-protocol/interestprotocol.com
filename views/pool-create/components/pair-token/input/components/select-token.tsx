@@ -125,23 +125,22 @@ const SelectToken: FC<InputProps> = ({ index }) => {
           {formattedSymbol}
         </P>
       )}
-      <Button
+      <Div
         border="none"
-        height="1.25rem"
-        width="1.25rem"
         display="flex"
+        width="1.25rem"
+        cursor="pointer"
+        height="1.25rem"
         alignItems="center"
         justifyContent="center"
-        bg="transparent"
-        cursor="pointer"
       >
         <ChevronDownSVG
           width="100%"
-          maxWidth="0.62625rem"
           maxHeight="0.361rem"
+          maxWidth="0.62625rem"
           color={isTokenWithoutSymbol ? '#002A78' : '#FFFFFF'}
         />
-      </Button>
+      </Div>
     </Button>
   );
 };

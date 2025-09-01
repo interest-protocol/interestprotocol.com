@@ -51,7 +51,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
     const [value, setValue] = useState<string>();
     const id = useId();
 
-    const statusColor = focus || status === 'none' ? '#E2E2E6' : status;
+    const statusColor = focus || status === 'none' ? '#FFF' : status;
 
     const handleBorderStatus = () => {
       const isFocused = focus && !disabled;

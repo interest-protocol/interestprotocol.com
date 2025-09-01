@@ -7,15 +7,9 @@ import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { isAptos, ZERO_BIG_NUMBER } from '@/utils';
 import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
 
-export enum PoolMessagesEnum {
-  sameToken = 'Same token selected',
-  insufficientBalance = 'Insufficient balance',
-  leastOneMove = 'Need to keep at least 1 MOVE',
-  invalidAmount = 'Initial price must be greater than 0',
-  notEnoughToken = 'Not enough token amount',
-}
+import { CreatePoolErrorMessagesEnum } from './error-section.types';
 
-export const PoolErrorManager: FC = () => {
+export const CreatePoolErrorManager: FC = () => {
   const { control, setValue } = useFormContext<CreatePoolForm>();
   const { coinsMap } = useCoins();
 
@@ -94,13 +88,13 @@ export const PoolErrorManager: FC = () => {
       quoteToken?.value
     ) {
       if (isSameToken) {
-        newError = PoolMessagesEnum.sameToken;
+        newError = CreatePoolErrorMessagesEnum.sameToken;
       } else if (isInvalidAmount) {
-        newError = PoolMessagesEnum.invalidAmount;
+        newError = CreatePoolErrorMessagesEnum.invalidAmount;
       } else if (isInsufficientBalance) {
-        newError = PoolMessagesEnum.insufficientBalance;
+        newError = CreatePoolErrorMessagesEnum.insufficientBalance;
       } else if (hasAtLeastOneMove) {
-        newError = PoolMessagesEnum.leastOneMove;
+        newError = CreatePoolErrorMessagesEnum.leastOneMove;
       }
     }
 
@@ -111,16 +105,16 @@ export const PoolErrorManager: FC = () => {
     error,
     baseToken,
     quoteToken,
+    isSameToken,
     baseBalance,
     quoteBalance,
-    isSameToken,
     isInvalidAmount,
-    isInsufficientBalance,
     hasAtLeastOneMove,
+    isInsufficientBalance,
     setValue,
   ]);
 
   return null;
 };
 
-export default PoolErrorManager;
+export default CreatePoolErrorManager;

@@ -1,4 +1,4 @@
-import { StrategyProps } from './components/strategy/strategy.types';
+import { StrategyProps } from './strategy.types';
 
 export const STRATEGIES: ReadonlyArray<Omit<StrategyProps, 'onSelect'>> = [
   {

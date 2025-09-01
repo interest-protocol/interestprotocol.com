@@ -1,129 +1,79 @@
-import { Div, P, Span } from '@stylin.js/elements';
+import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import { useFormContext, useWatch } from 'react-hook-form';
 import unikey from 'unikey';
 
-import { TokenIcon } from '@/components';
-import { Network } from '@/constants';
+import { CreatePoolForm } from '../../pool-create.types';
+import { STRATEGIES } from './strategies.data';
+import StrategyCard from './strategy-card';
 
-import { StrategyProps } from './strategy.types';
+const StrategySection: FC = () => {
+  const { control, setValue } = useFormContext<CreatePoolForm>();
 
-const Strategy: FC<StrategyProps> = ({
-  description,
-  fee,
-  pair,
-  selected,
-  isLoading,
-  onSelect,
-}) => {
+  const volatilityStrategyType = useWatch({
+    control,
+    name: 'volatilityStrategyType',
+  });
+
+  const handleSelectStrategy = (strategyType: string) => {
+    const newStrategyType =
+      strategyType == volatilityStrategyType ? '' : strategyType;
+    setValue('volatilityStrategyType', newStrategyType);
+  };
+
   return (
     <Div
-      cursor="pointer"
-      transition="0.3s"
-      onClick={onSelect}
-      borderRadius="0.75rem"
-      bg={selected ? '#212838' : '#1f2430'}
-      nHover={{
-        '& > div:first-child > div:first-child': {
-          filter: 'grayscale(0%)',
-          transition: 'filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-        },
-        border: '1px solid #B4C5FF',
-      }}
-      border={selected ? '1px solid #B4C5FF' : '1px solid transparent'}
+      gap="1rem"
+      display="flex"
+      flexDirection="column"
+      borderTop="1px solid #F3F4F61A"
+      pt="1.5rem"
     >
-      <Div
-        flex="1"
-        py="0.75rem"
-        width="100%"
-        gap="0.5rem"
-        display="flex"
-        height="5rem"
-        alignItems="center"
-        flexDirection="column"
-        justifyContent="center"
-      >
-        <Div
-          display="flex"
-          position="relative"
-          alignItems="center"
-          justifyContent="center"
-          transition="filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-          filter={selected ? 'grayscale(0%)' : 'grayscale(100%)'}
+      <Div gap="0.5rem" display="flex" flexDirection="column">
+        <P
+          fontSize="1rem"
+          color="#E5E7EB"
+          fontWeight="600"
+          fontFamily="Inter"
+          lineHeight="1.75rem"
         >
-          <Div
-            display="flex"
-            position="relative"
-            alignItems="center"
-            justifyContent="center"
-          >
-            {pair.map((symbol, index) => (
-              <Div
-                mr={index == 0 ? '-0.3rem' : 'unset'}
-                ml={index == 1 ? '-0.3rem' : 'unset'}
-                key={unikey()}
-              >
-                {isLoading ? (
-                  <Skeleton
-                    width="1.875rem"
-                    height="1.875rem"
-                    borderRadius="100%"
-                  />
-                ) : (
-                  <TokenIcon
-                    withBg
-                    size="1.129rem"
-                    symbol={symbol}
-                    network={Network.MovementMainnet}
-                  />
-                )}
-              </Div>
-            ))}
-          </Div>
-        </Div>
-
-        {isLoading
-          ? fee != undefined && <Skeleton width="6rem" height="0.75rem" />
-          : fee && (
-              <Div display="flex" fontFamily="Inter" alignItems="center">
-                <P
-                  color="#9CA3AF"
-                  fontWeight="400"
-                  lineHeight="1rem"
-                  fontFamily="Inter"
-                  fontSize="0.875rem"
-                >
-                  Fee <Span color={fee >= 1 ? '#FFF' : 'inherit'}>{fee}</Span>
-                  <Span color="#fff">%</Span>
-                </P>
-              </Div>
-            )}
+          Select volatility strategySection
+        </P>
+        <P
+          color="#9CA3AF"
+          fontWeight="400"
+          fontSize="0.75rem"
+          fontFamily="Inter"
+          lineHeight="1.1rem"
+        >
+          Select strategy to see description
+        </P>
       </Div>
 
       <Div
-        p="0.75rem"
         width="100%"
-        borderBottomLeftRadius="0.75rem"
-        borderBottomRightRadius="0.75rem"
-        bg={selected ? '#2e3444' : '#2c313d'}
+        display="grid"
+        justifyContent="space-between"
+        gap={['0.25rem', '0.25rem', '0.75rem']}
+        gridTemplateColumns={[
+          '1fr',
+          '1fr',
+          '1fr',
+          'repeat(3, minmax(0, 16rem))',
+        ]}
       >
-        {isLoading ? (
-          <Skeleton width="100%" height="1rem" />
-        ) : (
-          <P
-            color="#FFFFFF"
-            fontSize="1rem"
-            fontWeight="500"
-            fontFamily="Inter"
-            lineHeight="1.5rem"
-            textAlign="center"
-          >
-            {description}
-          </P>
-        )}
+        {STRATEGIES.map((strategy) => (
+          <StrategyCard
+            key={unikey()}
+            {...strategy}
+            isLoading={false}
+            selected={volatilityStrategyType === strategy.pairId}
+            onSelect={() => handleSelectStrategy(strategy.pairId)}
+          />
+        ))}
       </Div>
     </Div>
   );
 };
 
-export default Strategy;
+export default StrategySection;
