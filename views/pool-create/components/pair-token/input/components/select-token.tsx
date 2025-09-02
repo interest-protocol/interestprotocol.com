@@ -12,9 +12,10 @@ import {
 } from '@/lib/coins-manager/coins-manager.types';
 import { ZERO_BIG_NUMBER } from '@/utils';
 import SelectTokenModal from '@/views/components/select-token-modal';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
-
-import { InputProps } from '../input.types';
+import {
+  CreatePoolForm,
+  InputProps,
+} from '@/views/pool-create/pool-create.types';
 
 const SelectToken: FC<InputProps> = ({ index }) => {
   const { setContent, handleClose } = useModal();
@@ -67,7 +68,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
         isOutput={index === 1}
       />,
       {
-        title: 'Select a Token',
+        title: 'Select Token',
       }
     );
 

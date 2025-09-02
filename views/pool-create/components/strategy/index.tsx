@@ -52,9 +52,9 @@ const StrategySection: FC = () => {
 
       <Div
         width="100%"
+        gap="0.75rem"
         display="grid"
         justifyContent="space-between"
-        gap={['0.25rem', '0.25rem', '0.75rem']}
         gridTemplateColumns={[
           '1fr',
           '1fr',

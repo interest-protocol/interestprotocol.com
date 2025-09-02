@@ -5,20 +5,22 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
-import { CreatePoolForm } from '@/views/pool-create/pool-create.types';
+import {
+  CreatePoolForm,
+  InputProps,
+} from '@/views/pool-create/pool-create.types';
 
 import Balance from './components/balance';
 import AmountInDollar from './components/dollar-value';
 import HeaderInfo from './components/header-info';
 import SelectToken from './components/select-token';
-import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue } = useFormContext<CreatePoolForm>();
+  const { register, setValue, control } = useFormContext<CreatePoolForm>();
 
-  const tokenType = useWatch({ name: `tokens.${index}.type` });
-  const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
-  const error = useWatch({ name: 'error' });
+  const error = useWatch({ control, name: 'error' });
+  const tokenType = useWatch({ control, name: `tokens.${index}.type` });
+  const tokenDecimals = useWatch({ control, name: `tokens.${index}.decimals` });
 
   return (
     <Div

@@ -6,8 +6,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { formatDollars } from '@/utils';
 
-import { CreatePoolForm } from '../../../../pool-create.types';
-import { InputProps } from '../input.types';
+import { CreatePoolForm, InputProps } from '../../../../pool-create.types';
 
 const AmountInDollar: FC<InputProps> = ({ index }) => {
   const { control } = useFormContext<CreatePoolForm>();

@@ -1,7 +1,7 @@
-import { Button } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import { Button } from '@/components/Button';
 import { toasting } from '@/components/toast';
 
 import { CreatePoolForm } from '../pool-create.types';
@@ -51,20 +51,11 @@ const PoolCreateFormButton: FC = () => {
 
   return (
     <Button
-      py="1rem"
       mt="0.5rem"
-      width="100%"
-      border="none"
+      variant="filled"
       fontSize="1rem"
-      fontWeight="500"
-      cursor="pointer"
       onClick={onSubmit}
-      fontFamily="Inter"
-      borderRadius="0.75rem"
-      justifyContent="center"
-      disabled={!isRequiredFieldsFilled}
-      bg={!isRequiredFieldsFilled ? '#9CA3AF1A' : '#B4C5FF'}
-      color={!isRequiredFieldsFilled ? '#9CA3AF' : '#002A78'}
+      disabled={!isRequiredFieldsFilled || loading}
     >
       {loading ? 'Creating Pool...' : 'Create Pool'}
     </Button>

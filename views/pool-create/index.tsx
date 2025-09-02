@@ -7,15 +7,13 @@ import PoolCreateFormButton from './components/pool-create-form-button';
 import StrategySection from './components/strategy';
 import PoolCreateWrapper from './pool-create-wrapper';
 
-const PoolCreate: FC = () => {
-  return (
-    <PoolCreateWrapper>
-      <PairTokenSection />
-      <PoolPriceSection />
-      <StrategySection />
-      <PoolCreateFormButton />
-    </PoolCreateWrapper>
-  );
-};
+const PoolCreate: FC = () => (
+  <PoolCreateWrapper>
+    <PairTokenSection />
+    <PoolPriceSection />
+    <StrategySection />
+    <PoolCreateFormButton />
+  </PoolCreateWrapper>
+);
 
 export default PoolCreate;

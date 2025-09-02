@@ -12,7 +12,7 @@ import { TOAST_DURATION } from '@/constants';
 import { GlobalStyles } from '@/styles';
 
 const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
-  <>
+  <SkeletonTheme baseColor="#99BBFF28" highlightColor="#99BBFF14">
     <StrictMode>
       <Global styles={GlobalStyles} />
       <ModalProvider />
@@ -31,11 +31,9 @@ const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
           },
         }}
       />
-      <SkeletonTheme baseColor="#99BBFF28" highlightColor="#99BBFF14">
-        <Component {...pageProps} />
-      </SkeletonTheme>
+      <Component {...pageProps} />
     </StrictMode>
-  </>
+  </SkeletonTheme>
 );
 
 export default MyApp;

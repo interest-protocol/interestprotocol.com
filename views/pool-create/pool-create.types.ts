@@ -8,7 +8,10 @@ export type PoolToken = AssetMetadata & {
 };
 
 export interface CreatePoolForm {
-  tokens: ReadonlyArray<PoolToken>;
-  volatilityStrategyType: string;
   error?: string | null;
+  volatilityStrategyType: string;
+  tokens: ReadonlyArray<PoolToken>;
+}
+export interface InputProps {
+  index: number;
 }
