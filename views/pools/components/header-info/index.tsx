@@ -35,7 +35,7 @@ const HeadInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
         lineHeight="1.25rem"
       >
         {formatDollars(value, 6, 'start')}
-        <Span color="#9CA3AF" fontSize="0.875rem" marginLeft="0.25rem">
+        <Span color="#9CA3AF" fontSize="0.875rem">
           {symbol}
         </Span>
       </P>

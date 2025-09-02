@@ -1,14 +1,17 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import unikey from 'unikey';
 
 import Filter from './components/filter';
 import HeaderInfo from './components/header-info';
 import { headerData } from './components/header-info/headerInfo.data';
+import PoolsTabs from './components/pools-tabs';
 
 const PoolsContent: FC = () => {
   return (
     <Div
+      gap="1rem"
       display="flex"
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
@@ -26,20 +29,9 @@ const PoolsContent: FC = () => {
         ))}
         <Filter />
       </Div>
-      <Div
-        mx="auto"
-        gap="1.25rem"
-        width="100%"
-        display="flex"
-        borderRadius="3rem"
-        alignContent="center"
-        justifyContent="center"
-      >
-        <Div display="flex" flexDirection="column">
-          {/* <PoolsTabs />
-          {[<Pools key={unikey()} />][tab]} */}
-        </Div>
-      </Div>
+      <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
+
+      <PoolsTabs />
     </Div>
   );
 };
