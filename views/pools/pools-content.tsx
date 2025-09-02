@@ -7,6 +7,7 @@ import Filter from './components/filter';
 import HeaderInfo from './components/header-info';
 import { headerData } from './components/header-info/headerInfo.data';
 import PoolsTabs from './components/pools-tabs';
+import Tooltip from './components/tooltip';
 
 const PoolsContent: FC = () => {
   return (
@@ -32,6 +33,26 @@ const PoolsContent: FC = () => {
       <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
 
       <PoolsTabs />
+
+      <Tooltip
+        totalApr={157.49}
+        fees={110.13}
+        rewards={47.36}
+        rewardsPerDay={[
+          {
+            symbol: 'USDC',
+            amount: 4916.4,
+            value: 14863.59,
+            icon: '/',
+          },
+          {
+            symbol: 'USDT',
+            amount: 6.4,
+            value: 63.59,
+            icon: '/',
+          },
+        ]}
+      />
     </Div>
   );
 };
