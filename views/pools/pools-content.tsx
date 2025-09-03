@@ -7,6 +7,7 @@ import Filter from './components/filter';
 import HeaderInfo from './components/header-info';
 import { headerData } from './components/header-info/headerInfo.data';
 import PoolsTabs from './components/pools-tabs';
+import TimeToggle from './components/time-toggle';
 import Tooltip from './components/tooltip';
 
 const PoolsContent: FC = () => {
@@ -51,6 +52,8 @@ const PoolsContent: FC = () => {
           },
         ]}
       />
+
+      <TimeToggle />
     </Div>
   );
 };
