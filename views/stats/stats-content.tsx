@@ -1,15 +1,19 @@
 import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import unikey from 'unikey';
+import { v4 } from 'uuid';
 
 import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeadInfo from './components/head-info';
-import Pools from './components/pools';
 import StatsTabs from './components/stats-tabs';
-import Tokens from './components/tokens';
-import Transactions from './components/transactions';
+import {
+  POOL_STATS_DATA,
+  POOLS_STATS_HEADER_DATA,
+  TOKEN_STATS_DATA,
+  TOKENS_STATS_HEADER_DATA,
+} from './stats.data';
+import Table from './table';
 
 const StatsContent: FC = () => {
   const { tab } = useTabState();
@@ -21,7 +25,6 @@ const StatsContent: FC = () => {
       display="flex"
       flexDirection="column"
       mt={['1.5rem', '2.5rem']}
-      px={['1.5rem', '2.5rem']}
     >
       <Div
         mb="1rem"
@@ -84,13 +87,27 @@ const StatsContent: FC = () => {
           <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
         </Div>
       </Div>
-
       <StatsTabs />
       {
         [
-          <Tokens key={unikey()} />,
-          <Pools key={unikey()} />,
-          <Transactions key={unikey()} />,
+          <Table
+            key={v4()}
+            rows={TOKEN_STATS_DATA}
+            title={TOKENS_STATS_HEADER_DATA}
+            gridTemplateColumns="4rem repeat(6, 1fr)"
+          />,
+          <Table
+            key={v4()}
+            rows={POOL_STATS_DATA}
+            title={POOLS_STATS_HEADER_DATA}
+            gridTemplateColumns="4rem repeat(6, 1fr)"
+          />,
+          <Table
+            key={v4()}
+            rows={TOKEN_STATS_DATA}
+            title={TOKENS_STATS_HEADER_DATA}
+            gridTemplateColumns="4rem repeat(6, 1fr)"
+          />,
         ][tab]
       }
     </Div>

@@ -14,13 +14,13 @@ const StatusBtn: FC<StatusBtnProps> = ({ status }) => {
       bg={style.bg}
       display="flex"
       fontWeight="500"
-      cursor="pointer"
+      fontSize="0.75rem"
       fontFamily="Inter"
+      cursor="pointer"
       alignItems="center"
       width="auto"
       height="1.1875rem"
       color={style.color}
-      fontSize="0.75rem"
       borderRadius="0.75rem"
       justifyContent="center"
       border={`1px solid ${style.bg}`}
