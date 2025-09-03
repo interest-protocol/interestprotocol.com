@@ -7,13 +7,11 @@ import { HeaderInfoProps } from './header-info.types';
 
 const HeadInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
   const titleColor =
-    title === 'TVL'
-      ? '#9CA3AF'
-      : title === 'Total Volume'
-        ? '#8BA5FF'
-        : title === 'Total Fees'
-          ? '#34D399'
-          : '#FFFFFF';
+    title === 'Total Volume'
+      ? '#8BA5FF'
+      : title === 'Total Fees'
+        ? '#34D399'
+        : '#9CA3AF';
 
   return (
     <Div gap="0.25rem" display="flex" height="auto" flexDirection="column">
@@ -35,7 +33,7 @@ const HeadInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
         lineHeight="1.25rem"
       >
         {formatDollars(value, 6, 'start')}
-        <Span color="#9CA3AF" fontSize="0.875rem">
+        <Span ml="0.2rem" color="#9CA3AF" fontSize="0.875rem">
           {symbol}
         </Span>
       </P>

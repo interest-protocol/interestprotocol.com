@@ -3,12 +3,12 @@ import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import unikey from 'unikey';
 
+import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
-import HeaderInfo from './components/header-info';
-import { headerData } from './components/header-info/headerInfo.data';
 import PoolsTabs from './components/pools-tabs';
 import TimeToggle from './components/time-toggle';
 import Tooltip from './components/tooltip';
+import { headerData } from './pools.data';
 
 const PoolsContent: FC = () => {
   return (

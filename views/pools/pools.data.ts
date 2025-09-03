@@ -1,4 +1,4 @@
-import { HeaderInfoProps } from './header-info.types';
+import { HeaderInfoProps } from '@/components/header-info/header-info.types';
 
 export const headerData: HeaderInfoProps[] = [
   {
