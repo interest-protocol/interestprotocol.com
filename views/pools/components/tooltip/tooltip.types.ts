@@ -1,13 +1,12 @@
 interface TokenReward {
   symbol: string;
-  amount: number;
-  value: number;
-  icon: string;
+  balance: number;
+  valueUSD: number;
 }
 
 export interface TooltipProps {
-  totalApr: number;
   fees: number;
   rewards: number;
-  rewardsPerDay: TokenReward[];
+  totalApr: number;
+  rewardsPerDay: ReadonlyArray<TokenReward>;
 }

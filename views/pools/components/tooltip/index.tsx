@@ -4,7 +4,6 @@ import { FC } from 'react';
 import Chart from './components/chart';
 import Metric from './components/metric';
 import Rewards from './components/rewards';
-import { COLORS, getChartData } from './tooltip.data';
 import { TooltipProps } from './tooltip.types';
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -13,7 +12,10 @@ export const Tooltip: FC<TooltipProps> = ({
   rewards,
   rewardsPerDay,
 }) => {
-  const chartData = getChartData(fees, rewards);
+  const chartData = [
+    { name: 'Fees', value: fees },
+    { name: 'Rewards', value: rewards },
+  ];
 
   return (
     <Div
@@ -55,7 +57,7 @@ export const Tooltip: FC<TooltipProps> = ({
         alignItems="center"
         justifyContent="space-between"
       >
-        <Chart data={chartData} colors={COLORS} />
+        <Chart data={chartData} colors={['#22C55E', '#FF9315']} />
         <Metric label="Fees" value={fees} color="#22C55E" suffix="%" />
         <Metric label="Rewards" value={rewards} color="#FF9315" />
       </Div>

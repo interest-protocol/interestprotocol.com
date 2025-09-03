@@ -28,7 +28,7 @@ const Rewards: FC<RewardsProps> = ({ tokens }) => (
     </Div>
 
     <Div display="flex" flexDirection="column" gap="0.5rem">
-      {tokens.map((token) => (
+      {tokens.map(({ symbol, balance, valueUSD }) => (
         <Div
           key={unikey()}
           display="flex"
@@ -39,7 +39,7 @@ const Rewards: FC<RewardsProps> = ({ tokens }) => (
             withBg
             rounded
             size="9.64px"
-            symbol={token.symbol}
+            symbol={symbol}
             network={Network.MovementMainnet}
           />
           <Span
@@ -49,7 +49,7 @@ const Rewards: FC<RewardsProps> = ({ tokens }) => (
             fontFamily="Inter"
             fontSize="0.875rem"
           >
-            {token.symbol}
+            {symbol}
           </Span>
 
           <Div
@@ -65,10 +65,8 @@ const Rewards: FC<RewardsProps> = ({ tokens }) => (
             fontFamily="Inter"
             fontSize="0.875rem"
           >
-            {token.amount.toLocaleString()}{' '}
-            <Span color="#9CA3AF">
-              ({formatDollars(token.value, 6, 'start')})
-            </Span>
+            {balance.toLocaleString()}{' '}
+            <Span color="#9CA3AF">({formatDollars(valueUSD, 6, 'start')})</Span>
           </P>
         </Div>
       ))}

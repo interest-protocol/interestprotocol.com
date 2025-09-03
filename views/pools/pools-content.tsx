@@ -41,15 +41,13 @@ const PoolsContent: FC = () => {
         rewardsPerDay={[
           {
             symbol: 'USDC',
-            amount: 4916.4,
-            value: 14863.59,
-            icon: '/',
+            balance: 4916.4,
+            valueUSD: 14863.59,
           },
           {
             symbol: 'USDT',
-            amount: 6.4,
-            value: 63.59,
-            icon: '/',
+            balance: 6.4,
+            valueUSD: 63.59,
           },
         ]}
       />

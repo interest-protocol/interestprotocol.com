@@ -1,9 +1,9 @@
 export interface RewardToken {
   symbol: string;
-  amount: number;
-  value: number;
+  balance: number;
+  valueUSD: number;
 }
 
 export interface RewardsProps {
-  tokens: RewardToken[];
+  tokens: ReadonlyArray<RewardToken>;
 }
