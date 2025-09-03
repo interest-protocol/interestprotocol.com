@@ -1,20 +1,15 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { formatDollars } from '@/utils/string';
-
 import { HeaderInfoProps } from './header-info.types';
+import { formatValue, titleColors } from './utils';
 
-const HeadInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
-  const titleColor =
-    title === 'Total Volume'
-      ? '#8BA5FF'
-      : title === 'Total Fees'
-        ? '#34D399'
-        : '#9CA3AF';
+const HeaderInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
+  const formattedValue = formatValue(title, value);
+  const titleColor = titleColors[title] || titleColors.default;
 
   return (
-    <Div gap="0.25rem" display="flex" height="auto" flexDirection="column">
+    <Div gap="0.25rem" display="flex" flexDirection="column">
       <P
         color={titleColor}
         fontWeight="400"
@@ -32,23 +27,27 @@ const HeadInfo: FC<HeaderInfoProps> = ({ title, value, symbol, date }) => {
         fontSize="1.375rem"
         lineHeight="1.25rem"
       >
-        {formatDollars(value, 6, 'start')}
-        <Span ml="0.2rem" color="#9CA3AF" fontSize="0.875rem">
-          {symbol}
-        </Span>
+        {formattedValue}
+        {symbol && (
+          <Span ml="0.25rem" color="#9CA3AF" fontSize="0.875rem">
+            {symbol}
+          </Span>
+        )}
       </P>
 
-      <P
-        color="#9CA3AF"
-        fontWeight="400"
-        fontFamily="Inter"
-        fontSize="0.875rem"
-        lineHeight="1.25rem"
-      >
-        {formatDollars(value, 6, 'start')} {date}
-      </P>
+      {date && (
+        <P
+          color="#9CA3AF"
+          fontWeight="400"
+          fontFamily="Inter"
+          fontSize="0.875rem"
+          lineHeight="1.25rem"
+        >
+          {formattedValue} {date}
+        </P>
+      )}
     </Div>
   );
 };
 
-export default HeadInfo;
+export default HeaderInfo;
