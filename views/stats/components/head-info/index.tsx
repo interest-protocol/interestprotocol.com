@@ -1,9 +1,10 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { HeadProps } from './head-info.types';
-import { formatDollars } from '@/utils/string';
 import { formatDate } from '@/utils/date';
+import { formatDollars } from '@/utils/string';
+
+import { HeadProps } from './head-info.types';
 
 const HeadInfo: FC<HeadProps> = ({ name, value, symbol, date }) => (
   <Div gap="4px" display="flex" fontFamily="Inter" flexDirection="column">

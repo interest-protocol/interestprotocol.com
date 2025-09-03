@@ -1,10 +1,11 @@
-import { FC } from 'react';
 import { Div } from '@stylin.js/elements';
+import { FC } from 'react';
 
+import { SearchSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
-import { useTabState } from '@/hooks/use-tab-manager';
 import { TextField } from '@/components/text-field';
-import {  SearchSVG } from '@/components/svg';
+import { useTabState } from '@/hooks/use-tab-manager';
+
 import Select from '../select';
 
 const StatsTabs: FC = () => {
@@ -26,15 +27,15 @@ const StatsTabs: FC = () => {
         <Div gap="0.75rem" display="flex" flexDirection={['column', 'row']}>
           <Select />
           <TextField
-            fontSize="1rem"
             gap="1rem"
+            fontSize="1rem"
             placeholder="Search tokens"
             nPlaceholder={{ opacity: 0.7 }}
             fieldProps={{
               height: '2.75rem',
-              borderRadius: '0.5rem',
               bg: '#9CA3AF1A',
               color: '#6B7280',
+              borderRadius: '0.5rem',
               borderColor: '#9CA3AF1A',
             }}
             Prefix={
@@ -52,15 +53,15 @@ const StatsTabs: FC = () => {
       {tab === 1 && (
         <Div gap="0.75rem" display="flex">
           <TextField
-            fontSize="1rem"
             gap="1rem"
+            fontSize="1rem"
             placeholder="Search pools"
             nPlaceholder={{ opacity: 0.7 }}
             fieldProps={{
               height: '2.75rem',
-              borderRadius: '0.5rem',
               bg: '#9CA3AF1A',
               color: '#6B7280',
+              borderRadius: '0.5rem',
               borderColor: '#9CA3AF1A',
             }}
             Prefix={
