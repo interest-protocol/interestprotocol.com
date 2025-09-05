@@ -9,7 +9,7 @@ export enum RoutesEnum {
 
 export const Routes: Record<RoutesEnum, string> = {
   [RoutesEnum.Swap]: '/',
-  [RoutesEnum.Pool]: '/pool',
+  [RoutesEnum.Pool]: '/pools',
   [RoutesEnum.Portfolio]: '/portfolio',
   [RoutesEnum.CreateToken]: '/create-token',
   [RoutesEnum.DCA]: '/dca',

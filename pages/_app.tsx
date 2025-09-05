@@ -5,17 +5,17 @@ import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { ReactNode, StrictMode } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 import ModalProvider from '@/components/modal-provider';
 import { TOAST_DURATION } from '@/constants';
 import { GlobalStyles } from '@/styles';
 
 const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
-  <>
+  <SkeletonTheme baseColor="#99BBFF28" highlightColor="#99BBFF14">
     <StrictMode>
       <Global styles={GlobalStyles} />
       <ModalProvider />
-
       <Toaster
         position="bottom-right"
         toastOptions={{
@@ -33,7 +33,7 @@ const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
       />
       <Component {...pageProps} />
     </StrictMode>
-  </>
+  </SkeletonTheme>
 );
 
 export default MyApp;
