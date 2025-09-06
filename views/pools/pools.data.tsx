@@ -1,6 +1,8 @@
 import { HeaderInfoProps } from '@/components/header-info/header-info.types';
+import PoolName from '@/components/pool-name';
 
 import { TableRowProps } from '../../components/table/table.types';
+import OverviewTooltip from './components/overview-tooltip';
 
 export const HEADER_DATA: HeaderInfoProps[] = [
   {
@@ -44,11 +46,15 @@ export const FEATURES_POOLS_HEADER_DATA = [
 export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
   {
     cells: [
-      { Title: '1', color: '#FFFFFF80' },
+      {
+        Content: (
+          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+        ),
+      },
       { Title: '$1.53M' },
       { Title: '$234.06K' },
-      { Title: '2%', color: '#157F3D' },
-      { Title: 'Overview', color: '#B4C5FF' },
+      { Title: '2%' },
+      { Content: <OverviewTooltip /> },
       { Title: 'Add Liquidity', color: '#B4C5FF' },
     ],
   },

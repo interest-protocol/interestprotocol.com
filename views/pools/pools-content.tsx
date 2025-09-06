@@ -48,13 +48,13 @@ const PoolsContent: FC = () => {
             key={v4()}
             rows={VERIFIED_POOLS_DATA}
             title={VERIFIED_POOLS_HEADER_DATA}
-            gridTemplateColumns="4rem repeat(6, 1fr)"
+            gridTemplateColumns="repeat(6, 1fr)"
           />,
           <Table
             key={v4()}
             rows={FEATURES_POOLS_DATA}
             title={FEATURES_POOLS_HEADER_DATA}
-            gridTemplateColumns="4rem repeat(6, 1fr)"
+            gridTemplateColumns="repeat(6, 1fr)"
           />,
         ][tab]
       }
