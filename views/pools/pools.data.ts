@@ -1,6 +1,8 @@
 import { HeaderInfoProps } from '@/components/header-info/header-info.types';
 
-export const headerData: HeaderInfoProps[] = [
+import { TableRowProps } from '../../components/table/table.types';
+
+export const HEADER_DATA: HeaderInfoProps[] = [
   {
     title: 'TVL',
     value: 3250000,
@@ -18,5 +20,49 @@ export const headerData: HeaderInfoProps[] = [
     value: 450000,
     symbol: 'USD',
     date: 'May 15, 2025',
+  },
+];
+
+export const VERIFIED_POOLS_HEADER_DATA = [
+  'Pool',
+  'TVL',
+  'Volume',
+  'APR',
+  '',
+  '',
+];
+
+export const FEATURES_POOLS_HEADER_DATA = [
+  'Pool',
+  'TVL',
+  'Volume',
+  'APR',
+  '',
+  '',
+];
+
+export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
+  {
+    cells: [
+      { Title: '1', color: '#FFFFFF80' },
+      { Title: '$1.53M' },
+      { Title: '$234.06K' },
+      { Title: '2%', color: '#157F3D' },
+      { Title: 'Overview', color: '#B4C5FF' },
+      { Title: 'Add Liquidity', color: '#B4C5FF' },
+    ],
+  },
+];
+
+export const FEATURES_POOLS_DATA: ReadonlyArray<TableRowProps> = [
+  {
+    cells: [
+      { Title: '1', color: '#FFFFFF80' },
+      { Title: '$1.53M' },
+      { Title: '$234.06K' },
+      { Title: '2%', color: '#157F3D' },
+      { Title: 'Overview', color: '#B4C5FF' },
+      { Title: 'Add Liquidity', color: '#B4C5FF' },
+    ],
   },
 ];

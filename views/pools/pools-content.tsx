@@ -1,16 +1,24 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import unikey from 'unikey';
+import { v4 } from 'uuid';
+
+import Table from '@/components/table';
+import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
 import PoolsTabs from './components/pools-tabs';
-import TimeToggle from './components/time-toggle';
-import Tooltip from './components/tooltip';
-import { headerData } from './pools.data';
+import {
+  FEATURES_POOLS_DATA,
+  FEATURES_POOLS_HEADER_DATA,
+  HEADER_DATA,
+  VERIFIED_POOLS_DATA,
+  VERIFIED_POOLS_HEADER_DATA,
+} from './pools.data';
 
 const PoolsContent: FC = () => {
+  const { tab } = useTabState();
   return (
     <Div
       gap="1rem"
@@ -26,34 +34,30 @@ const PoolsContent: FC = () => {
         flexDirection={['column', 'column', 'column', 'row']}
         alignItems={['flex-start', 'flex-start', 'flex-start', 'end']}
       >
-        {headerData.map((info) => (
-          <HeaderInfo key={unikey()} {...info} />
+        {HEADER_DATA.map((info) => (
+          <HeaderInfo key={v4()} {...info} />
         ))}
         <Filter />
       </Div>
       <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
 
       <PoolsTabs />
-
-      <Tooltip
-        totalApr={157.49}
-        fees={110.13}
-        rewards={47.36}
-        rewardsPerDay={[
-          {
-            symbol: 'USDC',
-            balance: 4916.4,
-            valueUSD: 14863.59,
-          },
-          {
-            symbol: 'USDT',
-            balance: 6.4,
-            valueUSD: 63.59,
-          },
-        ]}
-      />
-
-      <TimeToggle />
+      {
+        [
+          <Table
+            key={v4()}
+            rows={VERIFIED_POOLS_DATA}
+            title={VERIFIED_POOLS_HEADER_DATA}
+            gridTemplateColumns="4rem repeat(6, 1fr)"
+          />,
+          <Table
+            key={v4()}
+            rows={FEATURES_POOLS_DATA}
+            title={FEATURES_POOLS_HEADER_DATA}
+            gridTemplateColumns="4rem repeat(6, 1fr)"
+          />,
+        ][tab]
+      }
     </Div>
   );
 };
