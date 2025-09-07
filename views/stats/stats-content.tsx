@@ -6,6 +6,7 @@ import StatsTableReports from './stats-table-report';
 
 const StatsContent: FC = () => (
   <Div
+    mb="4rem"
     width="100%"
     display="flex"
     flexDirection="column"

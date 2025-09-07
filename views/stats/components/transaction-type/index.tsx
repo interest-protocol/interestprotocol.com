@@ -24,7 +24,7 @@ const TransactionType: FC<TransactionTypeProps> = ({
     <Span textTransform="capitalize">{category}</Span>
     <TokenIcon
       withBg
-      size="13px"
+      size="12.05px"
       symbol={tokenIn}
       rounded={true}
       network={Network.MovementMainnet}
@@ -33,7 +33,7 @@ const TransactionType: FC<TransactionTypeProps> = ({
     <Span>and</Span>
     <TokenIcon
       withBg
-      size="13px"
+      size="12.05px"
       symbol={tokenOut}
       rounded={true}
       network={Network.MovementMainnet}

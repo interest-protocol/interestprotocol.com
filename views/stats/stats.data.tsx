@@ -46,7 +46,7 @@ export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Prefix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -99,7 +99,7 @@ export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Prefix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}
@@ -152,7 +152,7 @@ export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Prefix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -205,7 +205,7 @@ export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Prefix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}
@@ -412,7 +412,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -424,7 +424,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}
@@ -455,7 +455,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -467,7 +467,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}
@@ -498,7 +498,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -510,7 +510,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}
@@ -541,7 +541,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="MOVE"
             rounded={true}
             network={Network.MovementMainnet}
@@ -553,7 +553,7 @@ export const TRANSACTION_STATS_DATA: ReadonlyArray<TableRowProps> = [
         Suffix: (
           <TokenIcon
             withBg
-            size="13px"
+            size="12.05px"
             symbol="USDT.e"
             rounded={true}
             network={Network.MovementMainnet}

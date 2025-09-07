@@ -36,7 +36,12 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => (
           <stop offset="95%" stopColor="#ffffff8d" stopOpacity={0} />
         </linearGradient>
       </defs>
-      <CartesianGrid strokeDasharray="1 20" opacity={0.4} />
+      <CartesianGrid
+        opacity={0.5}
+        xAxisId="top"
+        yAxisId="left"
+        strokeDasharray="0.7 30"
+      />
       <XAxis dataKey={xDataKey} />
       <Tooltip
         cursor={{

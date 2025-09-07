@@ -13,7 +13,7 @@ const PoolName: FC<PoolNameProps> = ({ tags, iconURL, name }) => (
   <>
     <TokenIcon
       withBg
-      size="20px"
+      size="19.28px"
       symbol="MOVE"
       url={iconURL}
       rounded={true}

@@ -1,19 +1,23 @@
 import { Div, P } from '@stylin.js/elements';
+import { not } from 'ramda';
 import { useEffect, useRef, useState } from 'react';
+import { v4 } from 'uuid';
 
 import { CaretDownSVG } from '@/components/svg';
 
-import { options } from './select.data';
+import { VOLUME_FILTER_DATA } from './volume-filter.data';
+import { VolumeFilterProps } from './volume-filter.types';
 
-const Select = () => {
+const VolumeFilterDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState(options[0]);
+  const [currentVolumeFilter, setCurrentVolumeFilter] =
+    useState<VolumeFilterProps>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>(null);
 
-  const handleSelect = (option: (typeof options)[0]) => {
-    setValue(option);
-    setIsOpen(false);
+  const handleVolumeFilter = (volumeFilter: VolumeFilterProps) => {
+    setCurrentVolumeFilter(volumeFilter);
+    setIsOpen(not);
   };
 
   useEffect(() => {
@@ -29,25 +33,36 @@ const Select = () => {
   }, [isOpen]);
 
   return (
-    <Div ref={ref} position="relative" width={['100%', '8.875rem']}>
+    <Div ref={ref} position="relative">
       <Div
         px="1rem"
+        py="0.75rem"
         display="flex"
+        gap="0.75rem"
         bg="#9CA3AF1A"
-        height="2.75rem"
         cursor="pointer"
-        color="#6B7280"
-        fontSize="0.875rem"
         alignItems="center"
+        width={['100%', '100%', '100%', 'max-content']}
         borderRadius="0.75rem"
-        transition="all 0.3s ease"
-        nHover={{ bg: '#E5E7EB44' }}
         justifyContent="space-between"
         border="1px solid #9CA3AF1A"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(not)}
+        transition="all 250ms ease-in-out"
+        borderColor={isOpen ? '#B4C5FF' : '#9CA3AF1A'}
+        nHover={{
+          borderColor: '#B4C5FF',
+        }}
       >
-        <P>{value.label}</P>
+        <P
+          fontSize="1rem"
+          fontWeight="400"
+          fontFamily="Inter"
+          color={currentVolumeFilter?.label ? '#fff' : '#6B7280'}
+        >
+          {currentVolumeFilter?.label || 'Select Volume'}
+        </P>
         <Div
+          display="flex"
           transition="transform 0.3s ease"
           transform={isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}
         >
@@ -72,21 +87,25 @@ const Select = () => {
           top="calc(100% + 0.25rem)"
           boxShadow="0 4px 12px #00000033"
         >
-          {options.map((opt) => (
+          {VOLUME_FILTER_DATA.map(({ value, label }) => (
             <Div
+              key={v4()}
               p="0.75rem"
-              key={opt.value}
               cursor="pointer"
               fontSize="0.875rem"
               transition="all 0.2s ease"
-              color={value.value === opt.value ? '#B4C5FF' : '#E5E7EB'}
-              bg={value.value === opt.value ? '#374151' : 'transparent'}
+              color={
+                currentVolumeFilter?.value === value ? '#B4C5FF' : '#E5E7EB'
+              }
+              bg={
+                currentVolumeFilter?.value === value ? '#374151' : 'transparent'
+              }
               nHover={{
                 bg: '#4B5563',
               }}
-              onClick={() => handleSelect(opt)}
+              onClick={() => handleVolumeFilter({ label, value })}
             >
-              {opt.label}
+              {label}
             </Div>
           ))}
         </Div>
@@ -95,4 +114,4 @@ const Select = () => {
   );
 };
 
-export default Select;
+export default VolumeFilterDropdown;

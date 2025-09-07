@@ -37,7 +37,7 @@ const StrategySection: FC = () => {
           fontFamily="Inter"
           lineHeight="1.75rem"
         >
-          Select volatility strategySection
+          Select volatility strategy
         </P>
         <P
           color="#9CA3AF"
