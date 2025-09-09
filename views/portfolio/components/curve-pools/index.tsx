@@ -3,36 +3,29 @@ import { FC } from 'react';
 import unikey from 'unikey';
 
 import Table from '@/components/table';
+import { noop } from '@/utils';
 import NotFound from '@/views/components/select-token-modal/not-found';
 
-import Earnings from '../earnings';
-import Position from '../position';
 import TableRow from '../table-row-pool';
-import Title from '../title';
+import TableSummary from '../table-summary';
 import { data } from './curve-pools.data';
 
 const CurvePools: FC = () => {
   return (
     <Div width="100%" display="flex" flexDirection="column">
-      <Div
-        gap="1rem"
-        mb="1.875rem"
-        display="flex"
-        justifyContent="space-between"
-        flexDirection={['column', 'column', 'row']}
-      >
-        <Title title="Curve pools" count={data.length} />
-        <Div display="flex" gap="1rem">
-          <Position type="pools" value={0} />
-          <Earnings value={98} />
-        </Div>
-      </Div>
+      <TableSummary
+        onClaim={noop}
+        totalPosition="0"
+        gain="38.88 MOVE"
+        title="Curve pools"
+        total={`${data.length}`}
+      />
 
       <Table
         columns={['Pool', 'Price Range', 'Liquidity', 'Leverage', 'Earnings']}
         gridTemplateColumns={['1fr', '2.5fr 1fr 1fr 1fr 1fr 1fr']}
       >
-        {data.length > 0 ? (
+        {data.length < 0 ? (
           data.map((pool) => <TableRow key={unikey()} {...pool} />)
         ) : (
           <Div

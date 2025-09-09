@@ -3,12 +3,13 @@ import { FC } from 'react';
 import unikey from 'unikey';
 
 import Table from '@/components/table';
+import { noop } from '@/utils';
 import NotFound from '@/views/components/select-token-modal/not-found';
 
-import Title from '../title';
+import TableSummary from '../table-summary';
+import Select from './select';
 import TableRow from './table-row';
 import { transactions } from './transactions.data';
-import Select from './select';
 
 const Transactions: FC = () => {
   return (
@@ -20,9 +21,15 @@ const Transactions: FC = () => {
         justifyContent="space-between"
         flexDirection={['column', 'column', 'row']}
       >
-        <Title title="Transactions" count={0} />
         <Select />
       </Div>
+      <TableSummary
+        onClaim={noop}
+        totalPosition="3"
+        gain="$33.23"
+        title="Transactions"
+        total={`${transactions.length}`}
+      />
 
       <Table
         columns={['Time', 'Action', 'Pool', 'Details']}

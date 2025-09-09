@@ -1,34 +1,40 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { TitleProps } from './title.types';
+import { TableSummaryTitleProps } from '../table-summary.types';
 
-const Title: FC<TitleProps> = ({ title, count }) => (
+const TableSummaryTitle: FC<TableSummaryTitleProps> = ({ title, total }) => (
   <Div gap="0.5rem" display="flex" alignItems="center">
-    <P color="#FFFFFF" fontSize="1.75rem" fontWeight="500" fontFamily="Inter">
+    <P
+      fontWeight="400"
+      color="#FFFFFF"
+      fontSize="1.75rem"
+      fontFamily="Inter"
+      lineHeight="2.25rem"
+    >
       {title}
     </P>
     <Div
       p="0.25rem"
-      width="1rem"
-      bg="#9CA3AF1A"
       display="flex"
+      bg="#121621"
       height="1.4375rem"
       alignItems="center"
-      justifyContent="center"
       borderRadius="0.75rem"
+      justifyContent="center"
       border="1px solid #9CA3AF1A"
     >
       <Span
-        color="#9CA3AF"
         fontWeight="500"
+        color="#9CA3AF"
+        lineHeight="1rem"
         fontSize="0.75rem"
         fontFamily="Inter"
       >
-        {count}
+        {total}
       </Span>
     </Div>
   </Div>
 );
 
-export default Title;
+export default TableSummaryTitle;

@@ -3,29 +3,22 @@ import { FC } from 'react';
 import unikey from 'unikey';
 
 import Table from '@/components/table';
+import { noop } from '@/utils';
 import NotFound from '@/views/components/select-token-modal/not-found';
 
 import { data } from '../curve-pools/curve-pools.data';
-import Earnings from '../earnings';
-import Position from '../position';
 import TableRow from '../table-row-pool';
-import Title from '../title';
+import TableSummary from '../table-summary';
 
 const V3: FC = () => (
   <Div width="100%" display="flex" flexDirection="column">
-    <Div
-      gap="1rem"
-      mb="1.875rem"
-      display="flex"
-      justifyContent="space-between"
-      flexDirection={['column', 'column', 'row']}
-    >
-      <Title title="v3" count={0} />
-      <Div display="flex" gap="1rem">
-        <Position value={0} />
-        <Earnings value={98} />
-      </Div>
-    </Div>
+    <TableSummary
+      onClaim={noop}
+      totalPosition="3"
+      gain="$33.23"
+      title="v3"
+      total={`${data.length}`}
+    />
 
     <Table
       columns={['Pool', 'Price Range', 'Liquidity', 'Leverage', 'Earnings']}
