@@ -2,7 +2,6 @@ import { FC } from 'react';
 import {
   Area,
   Bar,
-  CartesianGrid,
   ComposedChart,
   ResponsiveContainer,
   Tooltip,
@@ -36,12 +35,7 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => (
           <stop offset="95%" stopColor="#ffffff8d" stopOpacity={0} />
         </linearGradient>
       </defs>
-      <CartesianGrid
-        opacity={0.5}
-        xAxisId="top"
-        yAxisId="left"
-        strokeDasharray="0.7 30"
-      />
+
       <XAxis dataKey={xDataKey} />
       <Tooltip
         cursor={{
