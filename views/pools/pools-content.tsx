@@ -1,6 +1,5 @@
 import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
 import Table from '@/components/table';
@@ -8,6 +7,7 @@ import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
+import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
 import {
   FEATURES_POOLS_DATA,
@@ -45,7 +45,8 @@ const PoolsContent: FC = () => {
           options={['1W', '1M', '3M', '1Y']}
         />
       </Div>
-      <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
+
+      <PoolsChartReports />
 
       <PoolsTabs />
       {
