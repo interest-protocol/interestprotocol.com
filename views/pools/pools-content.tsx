@@ -1,5 +1,5 @@
 import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
@@ -19,6 +19,8 @@ import {
 
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
+  const [interval, setInterval] = useState('1M');
+
   return (
     <Div
       gap="1rem"
@@ -37,7 +39,11 @@ const PoolsContent: FC = () => {
         {HEADER_DATA.map((info) => (
           <HeaderInfo key={v4()} {...info} />
         ))}
-        <Filter />
+        <Filter
+          interval={interval}
+          setInterval={setInterval}
+          options={['1W', '1M', '3M', '1Y']}
+        />
       </Div>
       <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
 
