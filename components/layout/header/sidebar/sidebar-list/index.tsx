@@ -18,7 +18,7 @@ const SidebarList: FC<ISidebarListProps> = ({ items }) => {
       {normalizeItems.map(({ label, href, isExternal }) => (
         <Div
           key={label}
-          borderRadius="s"
+          borderRadius="0.75rem"
           cursor="pointer"
           nHover={{ bg: 'surfaceContainerHighest' }}
         >

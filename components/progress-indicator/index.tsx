@@ -20,7 +20,7 @@ export const ProgressIndicator: FC<
     );
 
   return (
-    <Div role="progressbar" aria-label="circle">
+    <Div role="progressbar" aria-label="circle" display="flex">
       <ProgressCircle
         size={size}
         status={status}

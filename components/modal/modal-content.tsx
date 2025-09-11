@@ -45,10 +45,10 @@ const ModalContentWrapper: FC<PropsWithChildren<ModalContentWrapperProps>> = ({
         }}
       >
         <Div
-          mb="m"
+          mb="1rem"
           display="flex"
           minWidth="21rem"
-          borderRadius="m"
+          borderRadius="1rem"
           color="#E2E2E6"
           bg="#131316"
           flexDirection="column"

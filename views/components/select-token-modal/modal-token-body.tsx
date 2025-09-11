@@ -23,7 +23,7 @@ const ModalTokenBody: FC<ModalTokenBodyProps> = ({
 
   const search = useWatch({ control, name: 'search' });
 
-  const isSearchAddres = search.startsWith('0x');
+  const isSearchAddress = search.startsWith('0x');
 
   const filteredTokens = tokens.filter(
     (token) =>
@@ -31,12 +31,14 @@ const ModalTokenBody: FC<ModalTokenBodyProps> = ({
       token.name.toLowerCase().includes(search?.toLowerCase() || '')
   );
 
-  if (!isSearchAddres)
+  if (!isSearchAddress)
     return (
       <Div>
-        <Div display="flex" gap="0.25rem" alignItems="center">
-          {loading && <ProgressIndicator size={12} />}
-        </Div>
+        {loading && (
+          <Div display="flex" gap="0.25rem" alignItems="center" pl="0.7rem">
+            <ProgressIndicator variant="loading" size={15} />
+          </Div>
+        )}
         <Div gap="0.75rem" width="100%">
           {filteredTokens.length ? (
             filteredTokens.map((token) => (

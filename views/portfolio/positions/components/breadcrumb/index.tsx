@@ -4,7 +4,6 @@ import { FC } from 'react';
 import ArrowRight from '@/components/svg/arrow-right';
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
-import StatusBtn from '@/views/portfolio/components/status-btn ';
 
 import CrumbText from '../bread-crumb-text';
 import { BreadcrumbProps } from './breadcrumb.types';
@@ -44,7 +43,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ pools, lp }) => (
           {pools[0]} - {pools[1]}
         </P>
       </Div>
-      <StatusBtn status="Range" />
+      asdasdasdasd
     </Div>
   </Div>
 );

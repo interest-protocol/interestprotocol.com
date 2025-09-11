@@ -18,9 +18,12 @@ const TableSummaryEarnings: FC<TotalEarningProps> = ({ gain, onClaim }) => (
     fontWeight="500"
     fontFamily="Inter"
     lineHeight="1.5rem"
+    justifyContent="space-between"
   >
-    <Span color="#9CA3AF">Total Earnings:</Span>
-    <Span color="#FFFFFF">{gain}</Span>
+    <Div display="flex" gap="0.5rem">
+      <Span color="#9CA3AF">Total Earnings:</Span>
+      <Span color="#FFFFFF">{gain}</Span>
+    </Div>
     <Button
       all="unset"
       ml="0.5rem"

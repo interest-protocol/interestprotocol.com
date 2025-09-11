@@ -11,7 +11,7 @@ export const MaxBadge: FC<MaxBadgeProps> = ({ handleMax }) => (
     borderRadius="0.75rem"
     onClick={handleMax}
     border="2px solid #9CA3AF1A"
-    nHover={{ bg: 'unset', borderColor: 'primary' }}
+    nHover={{ bg: 'unset', borderColor: '#B4C5FF' }}
   >
     <P
       color="#9CA3AF"

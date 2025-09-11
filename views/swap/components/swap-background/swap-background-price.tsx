@@ -8,7 +8,7 @@ const SwapBackgroundPrice: FC<{ coin: string }> = ({ coin }) => {
   const { data: price } = useCoinsPrice(coin);
 
   return (
-    <P color="onSurface" width="max-content">
+    <P color="#E2E2E6" width="max-content">
       {formatDollars(price?.length ? price[0].price : 0, 4)}
     </P>
   );

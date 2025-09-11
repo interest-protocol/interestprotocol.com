@@ -39,7 +39,7 @@ const TokenModalItem: FC<TokenModalItemProps> = ({
 
   return (
     <Div
-      p="12px"
+      p="0.75rem"
       display="flex"
       cursor="pointer"
       borderRadius="0.5rem"

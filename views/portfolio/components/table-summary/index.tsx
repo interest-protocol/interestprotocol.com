@@ -19,11 +19,17 @@ const TableSummary: FC<TableSummaryProps> = ({
       mb="1.875rem"
       display="flex"
       justifyContent="space-between"
-      flexDirection={['column', 'column', 'row']}
+      flexDirection={['column', 'column', 'column', 'row']}
     >
       <TableSummaryTitle title={title} total={total} />
-      <Div display="flex" gap="1rem">
-        <TableSummaryPosition totalPosition={totalPosition} />
+      <Div
+        display={['grid', 'grid', 'grid', 'flex']}
+        flexWrap="wrap"
+        gap="1rem"
+      >
+        {totalPosition && (
+          <TableSummaryPosition totalPosition={totalPosition} />
+        )}
         <TableSummaryEarnings gain={gain} onClaim={onClaim} />
       </Div>
     </Div>

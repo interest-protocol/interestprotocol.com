@@ -48,15 +48,15 @@ export const ProgressCircle: FC<PropsWithChildren<ProgressItemProps>> = ({
                 backgroundImage: noAnimation
                   ? `conic-gradient(${getProgressColor(
                       status
-                    )} ${value}%, ${'#1F1F23'} ${value}%)`
+                    )} ${value}%, #1F1F23 ${value}%)`
                   : `conic-gradient(${getProgressColor(
                       status
-                    )} 0%, '#1F1F23' 0%)`,
+                    )} 0%, #1F1F23 0%)`,
               },
               animate: {
                 backgroundImage: `conic-gradient(${getProgressColor(
                   status
-                )} ${value}%, '#1F1F23', ${value}%)`,
+                )} ${value}%, #1F1F23 ${value}%)`,
               },
             })}
       />

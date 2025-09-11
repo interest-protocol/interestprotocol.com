@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
+
 export interface TableSummaryTitleProps {
   title: string;
   total: string;
 }
 
 export interface TableSummaryPositionProps {
-  totalPosition: string;
+  totalPosition?: string;
 }
 
 export interface TotalEarningProps {
@@ -15,3 +17,7 @@ export interface TotalEarningProps {
 export type TableSummaryProps = TableSummaryTitleProps &
   TableSummaryPositionProps &
   TotalEarningProps;
+
+export type TableSummaryCustomProps = TableSummaryTitleProps & {
+  Filter: ReactNode;
+};

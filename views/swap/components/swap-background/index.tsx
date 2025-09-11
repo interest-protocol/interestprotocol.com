@@ -71,7 +71,7 @@ const SwapBackground = memo(() => {
     >
       {leftCoins.map((token, index) => (
         <Motion
-          gap="l"
+          gap="1.25rem"
           key={unikey()}
           display="flex"
           cursor="pointer"
@@ -139,7 +139,7 @@ const SwapBackground = memo(() => {
               initial: { scale: 0 },
             }}
           >
-            <P color="primary" fontWeight="bold">
+            <P color="#B4C5FF" fontWeight="bold">
               {token.symbol}
             </P>
             <SwapBackgroundPrice
@@ -217,7 +217,7 @@ const SwapBackground = memo(() => {
               initial: { scale: 0 },
             }}
           >
-            <P color="primary" fontWeight="bold">
+            <P color="#B4C5FF" fontWeight="bold">
               {token.symbol}
             </P>
             <SwapBackgroundPrice

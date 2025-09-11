@@ -80,8 +80,8 @@ const SelectToken: FC<InputProps> = ({ index }) => {
       height="2rem"
       gap="0.5rem"
       pr="0.75rem"
-      alignItems="center"
       fontSize="0.75rem"
+      alignItems="center"
       onClick={openModal}
       cursor="pointer"
       borderRadius="1.25rem"
@@ -125,7 +125,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
           {formattedSymbol}
         </P>
       )}
-      <Button
+      <Div
         border="none"
         height="1.25rem"
         width="1.25rem"
@@ -141,7 +141,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
           maxHeight="0.361rem"
           color={isTokenWithoutSymbol ? '#002A78' : '#FFFFFF'}
         />
-      </Button>
+      </Div>
     </Button>
   );
 };

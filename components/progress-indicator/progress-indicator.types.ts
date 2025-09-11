@@ -6,7 +6,7 @@ export type ProgressVariants = 'bar' | 'circle' | 'loading';
 export type ProgressStatus =
   | 'success'
   | 'warning'
-  | 'primary'
+  | '#B4C5FF'
   | 'normal'
   | 'error';
 
