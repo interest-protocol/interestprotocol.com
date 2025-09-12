@@ -1,0 +1,117 @@
+import { Div, P } from '@stylin.js/elements';
+import { not } from 'ramda';
+import { useEffect, useRef, useState } from 'react';
+import { v4 } from 'uuid';
+
+import { CaretDownSVG } from '@/components/svg';
+
+import { VOLUME_FILTER_DATA } from './volume-filter.data';
+import { VolumeFilterProps } from './volume-filter.types';
+
+const VolumeFilterDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentVolumeFilter, setCurrentVolumeFilter] =
+    useState<VolumeFilterProps>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ref = useRef<any>(null);
+
+  const handleVolumeFilter = (volumeFilter: VolumeFilterProps) => {
+    setCurrentVolumeFilter(volumeFilter);
+    setIsOpen(not);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node))
+        setIsOpen(false);
+    };
+
+    if (isOpen) document.addEventListener('mousedown', handleClickOutside);
+    else document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
+  return (
+    <Div ref={ref} position="relative">
+      <Div
+        px="1rem"
+        py="0.75rem"
+        display="flex"
+        gap="0.75rem"
+        bg="#9CA3AF1A"
+        cursor="pointer"
+        alignItems="center"
+        width={['100%', '100%', '100%', 'max-content']}
+        borderRadius="0.75rem"
+        justifyContent="space-between"
+        border="1px solid #9CA3AF1A"
+        onClick={() => setIsOpen(not)}
+        transition="all 250ms ease-in-out"
+        borderColor={isOpen ? '#B4C5FF' : '#9CA3AF1A'}
+        nHover={{
+          borderColor: '#B4C5FF',
+        }}
+      >
+        <P
+          fontSize="1rem"
+          fontWeight="400"
+          fontFamily="Inter"
+          color={currentVolumeFilter?.label ? '#fff' : '#6B7280'}
+        >
+          {currentVolumeFilter?.label || 'Select Volume'}
+        </P>
+        <Div
+          display="flex"
+          transition="transform 0.3s ease"
+          transform={isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}
+        >
+          <CaretDownSVG
+            width="100%"
+            maxWidth="1rem"
+            color="#9CA3AF"
+            maxHeight="1.25rem"
+          />
+        </Div>
+      </Div>
+
+      {isOpen && (
+        <Div
+          left="0"
+          zIndex="10"
+          width="100%"
+          bg="#1F2937"
+          overflow="hidden"
+          position="absolute"
+          borderRadius="0.75rem"
+          top="calc(100% + 0.25rem)"
+          boxShadow="0 4px 12px #00000033"
+        >
+          {VOLUME_FILTER_DATA.map(({ value, label }) => (
+            <Div
+              key={v4()}
+              p="0.75rem"
+              cursor="pointer"
+              fontSize="0.875rem"
+              transition="all 0.2s ease"
+              color={
+                currentVolumeFilter?.value === value ? '#B4C5FF' : '#E5E7EB'
+              }
+              bg={
+                currentVolumeFilter?.value === value ? '#374151' : 'transparent'
+              }
+              nHover={{
+                bg: '#4B5563',
+              }}
+              onClick={() => handleVolumeFilter({ label, value })}
+            >
+              {label}
+            </Div>
+          ))}
+        </Div>
+      )}
+    </Div>
+  );
+};
+
+export default VolumeFilterDropdown;

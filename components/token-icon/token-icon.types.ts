@@ -14,7 +14,6 @@ export interface TokenIconProps {
   loaderSize?: number;
   withBorder?: boolean;
 }
-
 export interface TokenIconUrl {
   url: string;
 }

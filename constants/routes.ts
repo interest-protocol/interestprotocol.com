@@ -4,6 +4,7 @@ export enum RoutesEnum {
   Portfolio = 'portfolio',
   CreateToken = 'create-token',
   DCA = 'dca',
+  Stats = 'stats',
 }
 
 export const Routes: Record<RoutesEnum, string> = {
@@ -12,6 +13,7 @@ export const Routes: Record<RoutesEnum, string> = {
   [RoutesEnum.Portfolio]: '/portfolio',
   [RoutesEnum.CreateToken]: '/create-token',
   [RoutesEnum.DCA]: '/dca',
+  [RoutesEnum.Stats]: '/stats',
 };
 
 export const NavItemsTitle: Record<RoutesEnum, string> = {
@@ -20,4 +22,5 @@ export const NavItemsTitle: Record<RoutesEnum, string> = {
   [RoutesEnum.Portfolio]: 'Portfolio',
   [RoutesEnum.CreateToken]: 'Create Token',
   [RoutesEnum.DCA]: 'DCA',
+  [RoutesEnum.Stats]: 'Stats',
 };

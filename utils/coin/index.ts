@@ -8,10 +8,10 @@ import {
   FUNGIBLE_ASSETS,
   normalizeSuiAddress,
 } from '@interest-protocol/interest-aptos-v2';
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { pathOr, propOr, values } from 'ramda';
 import invariant from 'tiny-invariant';
 
+import { Network } from '@/constants';
 import { CoinBalance } from '@/interface';
 import {
   AssetMetadata,

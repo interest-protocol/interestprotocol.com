@@ -1,11 +1,10 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import { Button } from '@/components/Button';
 import { CopySVG, UserSVG } from '@/components/svg';
-import { EXPLORER_URL } from '@/constants';
+import { EXPLORER_URL, Network } from '@/constants';
 import { copyToClipboard, formatAddress } from '@/utils';
 
 import BalanceCard from '../balance-card';
