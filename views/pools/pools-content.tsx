@@ -7,6 +7,7 @@ import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
+import LiquidityChart from './components/liquidity-chart';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
 import PriceInput from './components/price-input';
@@ -23,6 +24,15 @@ const PoolsContent: FC = () => {
   const [interval, setInterval] = useState('1M');
   const [minPrice, setMinPrice] = useState(1);
 
+  const liquidityData = [
+    { price: 3.7, liquidity: 50 },
+    { price: 3.8, liquidity: 80 },
+    { price: 3.9, liquidity: 65 },
+    { price: 4.0, liquidity: 100 },
+    { price: 4.1, liquidity: 70 },
+    { price: 4.2, liquidity: 60 },
+  ];
+
   return (
     <Div
       gap="1rem"
@@ -30,6 +40,13 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
+      <Div width="26rem" margin="2rem auto">
+        <LiquidityChart
+          data={liquidityData}
+          initialMin={3.8}
+          initialMax={4.1}
+        />
+      </Div>
       <PriceInput
         label="Min price"
         value={minPrice}
