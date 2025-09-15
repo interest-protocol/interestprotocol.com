@@ -1,4 +1,6 @@
-export const TAG_COLOR: Record<string, Record<'color' | 'bg', string>> = {
+import { TAG_TYPE } from './tag.types';
+
+export const TAG_COLOR: Record<TAG_TYPE, Record<'color' | 'bg', string>> = {
   curve: {
     bg: '#8888FF33',
     color: '#8888FF',

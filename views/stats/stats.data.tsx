@@ -6,7 +6,7 @@ import {
   TableHeaderTitleProps,
   TableRowProps,
 } from '../../components/table/table.types';
-import PoolName from './components/pool-name';
+import PoolName from '../components/pool-name';
 import TransactionType from './components/transaction-type';
 
 export const TOKENS_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> = [
@@ -263,7 +263,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -291,7 +294,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -319,7 +325,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -347,7 +356,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -375,7 +387,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {

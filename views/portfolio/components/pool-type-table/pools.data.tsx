@@ -1,59 +1,30 @@
-import { Div, Span } from '@stylin.js/elements';
-import Link from 'next/link';
-import { v4 } from 'uuid';
+import { Div } from '@stylin.js/elements';
 
-import { Button } from '@/components/Button';
 import { ExternalLinkSVG } from '@/components/svg';
 import {
   TableHeaderTitleProps,
   TableRowProps,
 } from '@/components/table/table.types';
-import PoolName from '@/views/stats/components/pool-name';
-import { TAG_COLOR } from '@/views/stats/components/pool-name/pool-name.data';
+import Tag from '@/components/tag';
+import Manage from '@/views/components/manage';
+import PoolName from '@/views/components/pool-name';
+import PriceRange from '@/views/components/price-range';
+
+export const POOL_EMPTY_DATA: ReadonlyArray<TableRowProps> = [];
 
 export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
   {
     cells: [
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
-        Content: (
-          <Div
-            display="flex"
-            alignItems="center"
-            justifyContent="flex-end"
-            flexWrap="wrap"
-            gap={['1rem']}
-            width="100%"
-          >
-            <Span color="#FFFFFF" textAlign="right">
-              {' '}
-              0.0997-0.998 per USDC.e
-            </Span>
-            <Button
-              key={v4()}
-              px="0.5rem"
-              py="0.25rem"
-              variant="filled"
-              fontWeight="500"
-              lineHeight="1rem"
-              fontSize="0.75rem"
-              border="1px solid"
-              bg={TAG_COLOR['success'].bg}
-              textTransform="capitalize"
-              color={TAG_COLOR['success'].color}
-              borderColor={TAG_COLOR['success'].color}
-              nHover={{
-                borderColor: TAG_COLOR['success'].bg,
-              }}
-            >
-              In Range
-            </Button>
-          </Div>
-        ),
+        Content: <PriceRange price="0.0997-0.998 per USDC.e" />,
       },
       {
         Title: '$25,12K',
@@ -69,23 +40,7 @@ export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
         position: 'right',
       },
       {
-        Content: (
-          <Div display="flex" justifyContent="flex-end" width="100%">
-            <Link href="portfolio/details/1" title="pool name">
-              <Span
-                color="#B4C5FF"
-                width="100%"
-                display="block"
-                fontWeight="400"
-                fontFamily="Inter"
-                fontSize="0.875rem"
-                lineHeight="1.12rem"
-              >
-                Manage
-              </Span>
-            </Link>
-          </Div>
-        ),
+        Content: <Manage url="portfolio/details/1" />,
       },
     ],
   },
@@ -93,44 +48,14 @@ export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
     cells: [
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
-        Content: (
-          <Div
-            display="flex"
-            alignItems="center"
-            justifyContent="flex-end"
-            flexWrap="wrap"
-            gap={['1rem']}
-            width="100%"
-          >
-            <Span color="#FFFFFF" textAlign="right">
-              {' '}
-              0.0997-0.998 per USDC.e
-            </Span>
-            <Button
-              key={v4()}
-              px="0.5rem"
-              py="0.25rem"
-              variant="filled"
-              fontWeight="500"
-              lineHeight="1rem"
-              fontSize="0.75rem"
-              border="1px solid"
-              bg={TAG_COLOR['success'].bg}
-              textTransform="capitalize"
-              color={TAG_COLOR['success'].color}
-              borderColor={TAG_COLOR['success'].color}
-              nHover={{
-                borderColor: TAG_COLOR['success'].bg,
-              }}
-            >
-              In Range
-            </Button>
-          </Div>
-        ),
+        Content: <PriceRange price="0.0997-0.998 per USDC.e" />,
       },
       {
         Title: '$25,12K',
@@ -146,23 +71,7 @@ export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
         position: 'right',
       },
       {
-        Content: (
-          <Div display="flex" justifyContent="flex-end" width="100%">
-            <Link href="portfolio/details/1" title="pool name">
-              <Span
-                color="#B4C5FF"
-                width="100%"
-                display="block"
-                fontWeight="400"
-                fontFamily="Inter"
-                fontSize="0.875rem"
-                lineHeight="1.12rem"
-              >
-                Manage
-              </Span>
-            </Link>
-          </Div>
-        ),
+        Content: <Manage url="portfolio/details/1" />,
       },
     ],
   },
@@ -177,25 +86,7 @@ export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
       {
         Content: (
           <Div display="flex" justifyContent="center" width="100%">
-            <Button
-              key={v4()}
-              px="0.5rem"
-              py="0.25rem"
-              variant="filled"
-              fontWeight="500"
-              lineHeight="1rem"
-              fontSize="0.75rem"
-              border="1px solid"
-              bg={TAG_COLOR['success'].bg}
-              textTransform="capitalize"
-              color={TAG_COLOR['success'].color}
-              borderColor={TAG_COLOR['success'].color}
-              nHover={{
-                borderColor: TAG_COLOR['success'].bg,
-              }}
-            >
-              Claimed
-            </Button>
+            <Tag label="Claimed" type="success" />
           </Div>
         ),
       },
@@ -216,10 +107,10 @@ export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
             justifyContent="center"
           >
             <ExternalLinkSVG
-              maxWidth="1rem"
               maxHeight="1rem"
-              width="100%"
+              maxWidth="1rem"
               color="#FFF"
+              width="100%"
             />
           </Div>
         ),
@@ -234,25 +125,7 @@ export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
       {
         Content: (
           <Div display="flex" justifyContent="center" width="100%">
-            <Button
-              key={v4()}
-              px="0.5rem"
-              py="0.25rem"
-              variant="filled"
-              fontWeight="500"
-              lineHeight="1rem"
-              fontSize="0.75rem"
-              border="1px solid"
-              bg={TAG_COLOR['staked'].bg}
-              textTransform="capitalize"
-              color={TAG_COLOR['staked'].color}
-              borderColor={TAG_COLOR['staked'].color}
-              nHover={{
-                borderColor: TAG_COLOR['staked'].bg,
-              }}
-            >
-              Staked
-            </Button>
+            <Tag label="Staked" type="staked" />
           </Div>
         ),
       },
