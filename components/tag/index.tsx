@@ -23,7 +23,7 @@ const Tag: FC<TagProps> = ({ type, label, onClick }) => (
     borderColor={TAG_COLOR[type].color}
     nHover={{
       borderColor: TAG_COLOR[type].bg,
-      fontWeight: 'bold',
+      fontWeight: '500',
     }}
   >
     {label || type}

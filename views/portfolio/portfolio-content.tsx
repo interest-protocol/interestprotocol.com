@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import Dropdown from '@/components/dropdown';
-import { noop } from '@/utils';
+import { useModal } from '@/hooks';
 
 import PoolTypeTable from './components/pool-type-table';
 import {
@@ -15,19 +15,77 @@ import {
   TableSummaryCustomProps,
   TableSummaryProps,
 } from './components/table-summary/table-summary.types';
+import RewardsModal from './components/table-summary/table-summary-earnings/components/rewards-modal';
 import { TRANSACTION_FILTER_DATA } from './portfolio.data';
 import PortfolioSummary from './portfolio-summary';
 
 const PortfolioContent: FC = () => {
+  const { setContent } = useModal();
   const CURVE_HEADER_SUMMARY: TableSummaryProps = {
-    onClaim: noop,
+    onClaim: () =>
+      setContent(
+        <RewardsModal
+          claimingFee="0.123"
+          totalEarnings="0.00"
+          rewardFee="0.00"
+          rewardsList={[
+            {
+              amount: '0.00',
+              symbol: 'MOVE',
+            },
+            {
+              amount: '0.00',
+              symbol: 'USDC.e',
+            },
+            {
+              amount: '0.00',
+              symbol: 'USDT.e',
+            },
+            {
+              amount: '0.00',
+              symbol: 'WBTC.e',
+            },
+          ]}
+        />,
+        {
+          title: 'Rewards',
+        }
+      ),
     gain: '38.88 MOVE',
     title: 'Curve pools',
     total: '12',
   };
 
   const V3_HEADER_SUMMARY: TableSummaryProps = {
-    onClaim: noop,
+    onClaim: () =>
+      setContent(
+        <RewardsModal
+          claimingFee="0.123"
+          totalEarnings="0.00"
+          rewardFee="0.00"
+          rewardsList={[
+            {
+              amount: '0.00',
+              symbol: 'MOVE',
+            },
+            {
+              amount: '0.00',
+              symbol: 'USDC.e',
+            },
+            {
+              amount: '0.00',
+              symbol: 'USDT.e',
+            },
+            {
+              amount: '0.00',
+              symbol: 'WBTC.e',
+            },
+          ]}
+        />,
+        {
+          title: 'Rewards',
+        }
+      ),
     totalPosition: '3',
     gain: '38.88 MOVE',
     title: 'v3',

@@ -1,4 +1,5 @@
 import { Div } from '@stylin.js/elements';
+import Link from 'next/link';
 
 import { ExternalLinkSVG } from '@/components/svg';
 import {
@@ -100,18 +101,26 @@ export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <Div
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <ExternalLinkSVG
-              maxHeight="1rem"
-              maxWidth="1rem"
-              color="#FFF"
-              width="100%"
-            />
+          <Div width="100%">
+            <Link href="portfolio/details/1" title="Transaction #1">
+              <Div
+                width="100%"
+                display="flex"
+                color="#fff"
+                alignItems="center"
+                justifyContent="center"
+                transition="all 300ms ease-in-out"
+                nHover={{
+                  color: '#B4C5FF',
+                }}
+              >
+                <ExternalLinkSVG
+                  maxHeight="1rem"
+                  maxWidth="1rem"
+                  width="100%"
+                />
+              </Div>
+            </Link>
           </Div>
         ),
       },
@@ -139,18 +148,26 @@ export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <Div
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <ExternalLinkSVG
-              maxWidth="1rem"
-              maxHeight="1rem"
-              width="100%"
-              color="#FFF"
-            />
+          <Div width="100%">
+            <Link href="portfolio/details/1" title="Transaction #1">
+              <Div
+                width="100%"
+                display="flex"
+                color="#fff"
+                alignItems="center"
+                justifyContent="center"
+                transition="all 300ms ease-in-out"
+                nHover={{
+                  color: '#B4C5FF',
+                }}
+              >
+                <ExternalLinkSVG
+                  maxHeight="1rem"
+                  maxWidth="1rem"
+                  width="100%"
+                />
+              </Div>
+            </Link>
           </Div>
         ),
       },

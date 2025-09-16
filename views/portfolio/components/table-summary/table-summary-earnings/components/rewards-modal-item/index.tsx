@@ -7,19 +7,16 @@ import { formatMoney } from '@/utils/string';
 
 import { RewardsModalItemProps } from './rewards-modal-item.types';
 
-const RewardsModalItem: FC<RewardsModalItemProps> = ({
-  url,
-  symbol,
-  value,
-}) => (
-  <Div
-    mb="0.5rem"
-    display="flex"
-    justifyContent="space-between"
-    alignItems="center"
-  >
-    <P color="#FFFFFF" fontWeight="500" fontFamily="Inter" fontSize="1.25rem">
-      {formatMoney(value)}
+const RewardsModalItem: FC<RewardsModalItemProps> = ({ symbol, amount }) => (
+  <Div display="flex" justifyContent="space-between" alignItems="center">
+    <P
+      color="#FFFFFF"
+      fontWeight="500"
+      fontFamily="Inter"
+      fontSize="1.25rem"
+      lineHeight="2.25rem"
+    >
+      {formatMoney(+amount)}
     </P>
     <Div gap="0.5rem" display="flex" alignItems="center">
       <Span
@@ -27,14 +24,12 @@ const RewardsModalItem: FC<RewardsModalItemProps> = ({
         fontWeight="500"
         fontFamily="Inter"
         fontSize="1.125rem"
+        lineHeight="2.25rem"
       >
         {symbol}
       </Span>
-
       <TokenIcon
         withBg
-        url={url}
-        rounded
         symbol={symbol}
         size="0.906rem"
         network={Network.MovementMainnet}
@@ -42,4 +37,5 @@ const RewardsModalItem: FC<RewardsModalItemProps> = ({
     </Div>
   </Div>
 );
+
 export default RewardsModalItem;

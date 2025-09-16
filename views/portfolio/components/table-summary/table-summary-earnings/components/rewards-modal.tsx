@@ -1,112 +1,146 @@
 import { Div, P, Span } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { v4 } from 'uuid';
 
 import { Button } from '@/components/Button';
+import { toasting } from '@/components/toast';
+import { useModal } from '@/hooks';
 import { formatDollars } from '@/utils/string';
 
+import { RewardsModalProps } from '../earnings.types';
 import RewardsModalItem from './rewards-modal-item';
 
-const RewardsModal: FC = () => {
-  const claimingFee = 122;
+const RewardsModal: FC<RewardsModalProps> = ({
+  totalEarnings,
+  rewardsList,
+  rewardFee,
+  claimingFee,
+}) => {
+  const { handleClose } = useModal();
+  const [loading, setLoading] = useState(false);
+
+  const handleClaimRewards = async (stopLoading: () => void) => {
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.random() * 4000 + 1000)
+    );
+
+    stopLoading();
+    if (Math.random() > 0.5) {
+      toasting.success({
+        action: 'Claim Reward',
+        message: 'See on explorer',
+        link: '#',
+      });
+      handleClose();
+    } else throw new Error();
+  };
+
+  const onSubmit = async () => {
+    const dismiss = toasting.loading({ message: 'Claim Rewarding...' });
+    try {
+      setLoading(true);
+      await handleClaimRewards(dismiss);
+    } catch (e) {
+      toasting.error({
+        action: 'Claim reward',
+        message: (e as Error).message ?? 'Error executing transaction',
+      });
+    } finally {
+      setLoading(false);
+    }
+    return;
+  };
 
   return (
-    <Div display="flex" flexDirection="column" gap="0.5rem" borderRadius="1rem">
+    <Div display="flex" flexDirection="column" gap="1rem">
       <Div
         p="1rem"
-        gap="0.5rem"
+        gap="1rem"
         display="flex"
         bg="#9CA3AF1A"
-        borderRadius="0.75rem"
+        borderRadius="1rem"
         flexDirection="column"
       >
-        <P
-          color="#949E9E"
-          fontSize="0.875rem"
-          fontWeight="500"
-          fontFamily="Inter"
-        >
-          Total Earning
-        </P>
+        <Div display="flex" flexDirection="column" gap="0.5rem">
+          <P
+            fontWeight="500"
+            color="#9CA3AF"
+            fontFamily="Inter"
+            fontSize="0.875rem"
+            lineHeight="1.5rem"
+          >
+            Total Earning
+          </P>
 
-        <Span
-          mb="0.5rem"
-          color="#FFFFFF"
-          fontWeight="500"
-          fontFamily="Inter"
-          fontSize="1.25rem"
-        >
-          {formatDollars(0.0, 6, 'start')}
-        </Span>
+          <Span
+            color="#FFFFFF"
+            fontWeight="500"
+            fontFamily="Inter"
+            fontSize="1.25rem"
+            lineHeight="2.25rem"
+          >
+            {formatDollars(+totalEarnings, 6, 'start')}
+          </Span>
+        </Div>
 
-        <P
-          color="#949E9E"
-          fontSize="0.875rem"
-          fontWeight="500"
-          fontFamily="Inter"
-        >
-          Rewards per asset
-        </P>
+        <Div display="flex" flexDirection="column" gap="0.5rem">
+          <P
+            color="#949E9E"
+            fontWeight="500"
+            fontFamily="Inter"
+            fontSize="0.875rem"
+            lineHeight="2.25rem"
+          >
+            Rewards per asset
+          </P>
+          {rewardsList.map((reward) => (
+            <RewardsModalItem key={v4()} {...reward} />
+          ))}
+        </Div>
 
-        <RewardsModalItem symbol="Move" value={12} url="/" />
-        <RewardsModalItem symbol="Move" value={12} url="/" />
-        <RewardsModalItem symbol="Move" value={12} url="/" />
-        <RewardsModalItem symbol="Move" value={12} url="/" />
+        <Div display="flex" flexDirection="column" gap="0.5rem">
+          <P
+            fontWeight="500"
+            color="#9CA3AF"
+            fontFamily="Inter"
+            fontSize="0.875rem"
+            lineHeight="1.5rem"
+          >
+            Rewarded Fees
+          </P>
 
-        <P
-          color="#949E9E"
-          fontSize="0.875rem"
-          fontWeight="500"
-          fontFamily="Inter"
-        >
-          Rewarded Fees
-        </P>
-        <Span
-          mb="0.5rem"
-          color="#FFFFFF"
-          fontWeight="500"
-          fontFamily="Inter"
-          fontSize="1.25rem"
-        >
-          {formatDollars(0.0, 6, 'start')}
-        </Span>
+          <Span
+            color="#FFFFFF"
+            fontWeight="500"
+            fontFamily="Inter"
+            fontSize="1.25rem"
+            lineHeight="2.25rem"
+          >
+            {formatDollars(+rewardFee, 6, 'start')}
+          </Span>
+        </Div>
       </Div>
 
-      <Div display="flex" justifyContent="space-between">
-        <P
-          color="#949E9E"
-          fontWeight="500"
-          fontFamily="Inter"
-          fontSize="0.875rem"
-          lineHeight="1.1375rem"
-        >
+      <Div
+        display="flex"
+        fontWeight="500"
+        fontFamily="Inter"
+        fontSize="0.875rem"
+        lineHeight="1.1375rem"
+        justifyContent="space-between"
+      >
+        <P color="#949E9E" letterSpacing="-0.56">
           Claiming Fee:
         </P>
-        <P
-          color="#FFFFFF"
-          fontWeight="500"
-          fontFamily="Inter"
-          fontSize="0.875rem"
-          lineHeight="1.1375rem"
-        >
-          {claimingFee} %
-        </P>
+        <P color="#FFFFFF">{claimingFee} %</P>
       </Div>
       <Button
         variant="filled"
-        p="0.5rem 1rem"
-        height="2.5rem"
-        display="flex"
-        color="#002A78"
-        fontWeight="500"
         fontSize="1rem"
-        background="#B4C5FF"
-        alignItems="center"
-        fontFamily="Inter"
-        cursor="pointer"
-        borderRadius="0.75rem"
-        justifyContent="center"
+        onClick={onSubmit}
+        disabled={loading}
       >
-        Claim
+        {loading ? 'Claiming' : 'Claim'}
       </Button>
     </Div>
   );
