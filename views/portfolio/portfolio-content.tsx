@@ -6,6 +6,7 @@ import { useModal } from '@/hooks';
 
 import PoolTypeTable from './components/pool-type-table';
 import {
+  POOL_EMPTY_DATA,
   POOL_TYPE_DATA,
   POOL_TYPE_HEADER_DATA,
   TRANSACTION_DATA,
@@ -117,7 +118,7 @@ const PortfolioContent: FC = () => {
         headerSummary={CURVE_HEADER_SUMMARY}
       />
       <PoolTypeTable
-        rows={POOL_TYPE_DATA}
+        rows={POOL_EMPTY_DATA}
         tableHeader={POOL_TYPE_HEADER_DATA}
         headerSummary={V3_HEADER_SUMMARY}
       />
