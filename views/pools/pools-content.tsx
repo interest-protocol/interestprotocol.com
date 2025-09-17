@@ -9,6 +9,8 @@ import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
+import VolumeChart from './components/volume-chart';
+import { VOLUME_DATA } from './components/volume-chart/volume-chart.data';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
@@ -28,6 +30,9 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
+      <Div width="100%" height="18rem">
+        <VolumeChart data={VOLUME_DATA} />
+      </Div>
       <Div
         gap="1rem"
         width="100%"
