@@ -14,7 +14,7 @@ import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
   HEADER_DATA,
-  liquidityData,
+  LIQUIDITY_DATA,
   VERIFIED_POOLS_DATA,
   VERIFIED_POOLS_HEADER_DATA,
 } from './pools.data';
@@ -32,7 +32,7 @@ const PoolsContent: FC = () => {
     >
       <Div width="26rem" margin="2rem auto">
         <LiquidityChart
-          data={liquidityData}
+          data={LIQUIDITY_DATA}
           initialMin={3.8}
           initialMax={4.1}
         />
