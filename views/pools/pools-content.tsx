@@ -9,6 +9,7 @@ import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
+import TimeToggle from './components/time-toggle';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
@@ -28,6 +29,7 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
+      <TimeToggle />
       <Div
         gap="1rem"
         width="100%"
