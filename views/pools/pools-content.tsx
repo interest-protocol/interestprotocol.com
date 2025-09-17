@@ -1,11 +1,12 @@
 import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 
 import Table from '@/components/table';
 import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
+import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
 import {
@@ -18,6 +19,7 @@ import {
 
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
+  const [interval, setInterval] = useState('1M');
 
   return (
     <Div
@@ -37,6 +39,11 @@ const PoolsContent: FC = () => {
         {HEADER_DATA.map((info) => (
           <HeaderInfo key={v4()} {...info} />
         ))}
+        <Filter
+          interval={interval}
+          setInterval={setInterval}
+          options={['1W', '1M', '3M', '1Y']}
+        />
       </Div>
 
       <PoolsChartReports />
