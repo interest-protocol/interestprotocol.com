@@ -2,7 +2,6 @@ import { HeaderInfoProps } from '@/components/header-info/header-info.types';
 import PoolName from '@/components/pool-name';
 
 import { TableRowProps } from '../../components/table/table.types';
-import OverviewTooltip from './components/overview-tooltip';
 
 export const HEADER_DATA: HeaderInfoProps[] = [
   {
@@ -54,7 +53,7 @@ export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
       { Title: '$1.53M' },
       { Title: '$234.06K' },
       { Title: '2%' },
-      { Content: <OverviewTooltip /> },
+      { Content: '' },
       { Title: 'Add Liquidity', color: '#B4C5FF' },
     ],
   },
