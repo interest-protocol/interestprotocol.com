@@ -71,3 +71,12 @@ export const FEATURES_POOLS_DATA: ReadonlyArray<TableRowProps> = [
     ],
   },
 ];
+
+export const liquidityData = [
+  { price: 3.7, liquidity: 50 },
+  { price: 3.8, liquidity: 80 },
+  { price: 3.9, liquidity: 65 },
+  { price: 4.0, liquidity: 100 },
+  { price: 4.1, liquidity: 70 },
+  { price: 4.2, liquidity: 60 },
+];
