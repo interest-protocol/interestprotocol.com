@@ -21,7 +21,7 @@ const NotFound: FC = () => (
     </P>
     <P
       color="#9CA3AF"
-      fontWeight="700"
+      fontWeight="400"
       fontFamily="Inter"
       textAlign="center"
       fontSize="0.875rem"

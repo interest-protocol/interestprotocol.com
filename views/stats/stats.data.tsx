@@ -2,38 +2,42 @@ import { TokenIcon } from '@/components';
 import { DownSVG, UpSVG } from '@/components/svg';
 import { Network } from '@/constants';
 
-import { TableRowProps } from '../../components/table/table.types';
-import PoolName from './components/pool-name';
+import {
+  TableHeaderTitleProps,
+  TableRowProps,
+} from '../../components/table/table.types';
+import PoolName from '../components/pool-name';
 import TransactionType from './components/transaction-type';
 
-export const TOKENS_STATS_HEADER_DATA = [
-  '#',
-  'Token Name',
-  'Price',
-  '1 hour',
-  '1 day',
-  'FDV',
-  'Volume',
+export const TOKENS_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> = [
+  { description: '#' },
+  { description: 'Token Name' },
+  { description: 'Price' },
+  { description: '1 hour' },
+  { description: '1 day' },
+  { description: 'FDV' },
+  { description: 'Volume' },
 ];
 
 export const POOLS_STATS_HEADER_DATA = [
-  '#',
-  'Token Name',
-  'Transactions',
-  'TVL',
-  '24h Volume',
-  '7D Volume',
-  '1D APR',
+  { description: '#' },
+  { description: 'Token Name' },
+  { description: 'Transactions' },
+  { description: 'TVL' },
+  { description: '24h Volume' },
+  { description: '7D Volume' },
+  { description: '1D APR' },
 ];
 
-export const TRANSACTION_STATS_HEADER_DATA = [
-  'Time',
-  'Type',
-  'USD Amount',
-  'Token Amount',
-  'Token Amount',
-  'Wallet',
-];
+export const TRANSACTION_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
+  [
+    { description: 'Time' },
+    { description: 'Type' },
+    { description: 'USD Amount' },
+    { description: 'Token Amount' },
+    { description: 'Token Amount' },
+    { description: 'Wallet' },
+  ];
 
 export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
   {
@@ -259,7 +263,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -287,7 +294,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -315,7 +325,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -343,7 +356,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {
@@ -371,7 +387,10 @@ export const POOL_STATS_DATA: ReadonlyArray<TableRowProps> = [
       },
       {
         Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+          <PoolName
+            name="USDT.e • MOVE"
+            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
+          />
         ),
       },
       {

@@ -35,7 +35,6 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => (
           <stop offset="95%" stopColor="#ffffff8d" stopOpacity={0} />
         </linearGradient>
       </defs>
-
       <XAxis dataKey={xDataKey} />
       <Tooltip
         cursor={{
