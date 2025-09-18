@@ -6,14 +6,15 @@ import Table from '@/components/table';
 import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
+import SegmentedControl from '../../components/segmented-control';
 import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
-import TimeToggle from './components/time-toggle';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
   HEADER_DATA,
+  SEGMENTED_CONTROL_DATA,
   VERIFIED_POOLS_DATA,
   VERIFIED_POOLS_HEADER_DATA,
 } from './pools.data';
@@ -29,7 +30,10 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <TimeToggle />
+      <SegmentedControl
+        options={SEGMENTED_CONTROL_DATA}
+        defaultOption={SEGMENTED_CONTROL_DATA[0]}
+      />
       <Div
         gap="1rem"
         width="100%"
