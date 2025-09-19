@@ -1,6 +1,15 @@
 import { Div } from '@stylin.js/elements';
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import {
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+
+import TooltipChart from '@/components/combined-chart/tooltip-chart';
 
 import { DataPoint, LiquidityChartProps } from './liquidity-chart.types';
 import LiquidityGradient from './liquidity-gradient';
@@ -71,14 +80,21 @@ const LiquidityChart: FC<LiquidityChartProps> = ({
             tickLine={false}
           />
           <YAxis hide />
-          {/* <Tooltip /> */}
+          <Tooltip
+            cursor={{
+              opacity: 0.5,
+              strokeWidth: 1,
+              strokeDasharray: '1 5',
+            }}
+            content={<TooltipChart title="Price" showPayloadWithName />}
+          />
 
           <LiquidityGradient minPercent={minPercent} maxPercent={maxPercent} />
 
           <Area
+            stroke="none"
             type="stepAfter"
             dataKey="liquidity"
-            stroke="none"
             fill="url(#liquidityFill)"
           />
         </AreaChart>

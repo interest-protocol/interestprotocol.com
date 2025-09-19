@@ -78,5 +78,7 @@ export const LIQUIDITY_DATA = [
   { price: 3.9, liquidity: 65 },
   { price: 4.0, liquidity: 100 },
   { price: 4.1, liquidity: 70 },
-  { price: 4.2, liquidity: 60 },
+  { price: 4.2, liquidity: 160 },
+  { price: 5.1, liquidity: 30 },
+  { price: 5.5, liquidity: 50 },
 ];

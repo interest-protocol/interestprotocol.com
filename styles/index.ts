@@ -57,6 +57,10 @@ export const GlobalStyles = css`
     text-decoration: none;
   }
 
+  .recharts-responsive-container svg {
+    outline: none;
+  }
+
   .remove-spinner {
     appearance: textfield;
   }

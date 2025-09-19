@@ -34,9 +34,9 @@ const RangeHandle: FC<RangeHandleProps> = ({
     >
       <DotsChart
         width="100%"
+        color="#FFFFFF"
         maxWidth="0.75rem"
         maxHeight="0.75rem"
-        color="#FFFFFF"
       />
     </Div>
   </Div>

@@ -30,12 +30,8 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <Div width="26rem" margin="2rem auto">
-        <LiquidityChart
-          data={LIQUIDITY_DATA}
-          initialMin={3.8}
-          initialMax={4.1}
-        />
+      <Div width="45rem" margin="2rem auto">
+        <LiquidityChart data={LIQUIDITY_DATA} initialMin={4} initialMax={5.1} />
       </Div>
       <Div
         gap="1rem"

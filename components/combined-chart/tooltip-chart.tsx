@@ -4,7 +4,13 @@ import { v4 } from 'uuid';
 
 import { TooltipChartProps } from './combined-chart.types';
 
-const TooltipChart: FC<TooltipChartProps> = ({ active, payload, label }) => {
+const TooltipChart: FC<TooltipChartProps> = ({
+  label,
+  title,
+  active,
+  payload,
+  showPayloadWithName,
+}) => {
   if (active && payload && payload.length) {
     return (
       <Div
@@ -17,11 +23,11 @@ const TooltipChart: FC<TooltipChartProps> = ({ active, payload, label }) => {
       >
         <Div display="flex" alignItems="center" gap="0.5rem" mb="0.75rem">
           <P color="#fff" fontWeight="bold" fontSize="1rem">
-            {label}
+            {title ? `${title}: ${label}` : `${label}`}
           </P>
         </Div>
 
-        {payload.map(({ color, value }) => (
+        {payload.map(({ color, value, name }) => (
           <Div
             key={v4()}
             gap="1rem"
@@ -31,19 +37,23 @@ const TooltipChart: FC<TooltipChartProps> = ({ active, payload, label }) => {
             justifyContent="space-between"
           >
             <Div display="flex" alignItems="center" gap="0.5rem">
-              <Div
-                width="1rem"
-                height="1rem"
-                borderRadius="5px"
-                style={{ backgroundColor: color }}
-              />
+              {!color.startsWith('url') && (
+                <Div
+                  width="1rem"
+                  height="1rem"
+                  borderRadius="5px"
+                  style={{ backgroundColor: color }}
+                />
+              )}
+
               <Span
                 color="#fff"
                 fontWeight="700"
                 fontFamily="Inter"
                 fontSize="0.875rem"
+                textTransform="capitalize"
               >
-                {value}
+                {`${showPayloadWithName ? name + ': ' : ''} ${value}`}
               </Span>
             </Div>
           </Div>
