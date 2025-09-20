@@ -7,14 +7,12 @@ import { useTabState } from '@/hooks/use-tab-manager';
 
 import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
-import LiquidityChart from './components/liquidity-chart';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
   HEADER_DATA,
-  LIQUIDITY_DATA,
   VERIFIED_POOLS_DATA,
   VERIFIED_POOLS_HEADER_DATA,
 } from './pools.data';
@@ -30,9 +28,6 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <Div width="45rem" margin="2rem auto">
-        <LiquidityChart data={LIQUIDITY_DATA} initialMin={4} initialMax={5.1} />
-      </Div>
       <Div
         gap="1rem"
         width="100%"
