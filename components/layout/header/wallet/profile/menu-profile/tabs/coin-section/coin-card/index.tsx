@@ -1,7 +1,7 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { WrapSVG } from '@/components/svg';
 import { toasting } from '@/components/toast';
 import TokenIcon from '@/components/token-icon';

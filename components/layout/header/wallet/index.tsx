@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { not } from 'ramda';
 import { FC, useState } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 
 import Profile from './profile';
 

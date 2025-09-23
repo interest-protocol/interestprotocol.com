@@ -2,7 +2,7 @@ import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
 import { ICreateTokenForm } from '@/views/create-token/create-token.types';

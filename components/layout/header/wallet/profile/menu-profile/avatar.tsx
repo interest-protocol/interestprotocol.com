@@ -2,7 +2,7 @@ import { Div, P } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { CopySVG, UserSVG } from '@/components/svg';
 import { EXPLORER_URL, Network } from '@/constants';
 import { copyToClipboard, formatAddress } from '@/utils';

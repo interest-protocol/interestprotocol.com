@@ -2,7 +2,7 @@ import { Div, P, Span } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
 import { useModal } from '@/hooks';
 import { formatDollars } from '@/utils/string';

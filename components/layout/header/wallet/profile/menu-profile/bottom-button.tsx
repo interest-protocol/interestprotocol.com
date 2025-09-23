@@ -1,7 +1,7 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { ChevronRightSVG } from '@/components/svg';
 
 import { BottomButtonProps } from './user-info.types';

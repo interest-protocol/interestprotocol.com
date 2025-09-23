@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 
-import { Button } from '../Button';
+import { Button } from '../button';
 import { InfoSVG } from '../svg';
 import { TextFieldElementProps } from '../text-field';
 import {

@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { Motion } from '@/components/motion';
 import { TimesSVG } from '@/components/svg';
 
