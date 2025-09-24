@@ -3,14 +3,15 @@ import { FC, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import CombinedChart from '@/components/combined-chart';
+import SegmentedControl from '@/components/segmented-control';
 import { formatDate } from '@/utils/date';
 
 import HeadInfo from '../components/head-info';
-import VolumeFilterDropdown from '../components/volume-filter';
 import { DATA } from './stats-chart-reports.data';
 
 const StatsChartVolumeReport: FC = () => {
   const [loading, setLoading] = useState(true);
+  const [interval, setInterval] = useState('1M');
 
   useEffect(() => {
     const delay = Math.floor(Math.random() * 5000);
@@ -34,8 +35,17 @@ const StatsChartVolumeReport: FC = () => {
     >
       <Div display="flex" justifyContent="space-between" alignItems="center">
         <HeadInfo symbol="USD" name="IPX Volume" value={312323.12} />
-        <Div display="flex" flexDirection="column">
-          <VolumeFilterDropdown />
+        <Div
+          gap="0.5rem"
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-end"
+        >
+          <SegmentedControl
+            interval={interval}
+            setInterval={setInterval}
+            options={['1W', '1M', '3M']}
+          />
           <P color="#9CA3AF" fontWeight={400} fontSize="0.75rem">
             {formatDate('2025-08-22T05:42:10.123Z')}
           </P>
