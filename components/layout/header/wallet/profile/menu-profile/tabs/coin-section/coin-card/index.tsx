@@ -9,8 +9,9 @@ import { TooltipWrapper } from '@/components/tooltip';
 import { Network } from '@/constants';
 import { COIN_TYPE_TO_FA } from '@/constants/coins';
 import { FixedPointMath } from '@/lib';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
-import { formatMoney, ZERO_BIG_NUMBER } from '@/utils';
+import { formatMoney } from '@/utils';
 
 import { CoinCardProps } from '../../../user-info.types';
 import CardWrapper from './card-wrapper';
@@ -19,9 +20,13 @@ type CoinType = keyof typeof COIN_TYPE_TO_FA;
 
 const CoinCard: FC<CoinCardProps> = ({ token }) => {
   const symbol = token.symbol;
+  const { coinsMap } = useCoins();
   const decimals = token.decimals;
 
-  const balance = FixedPointMath.toNumber(ZERO_BIG_NUMBER, decimals);
+  const balance = FixedPointMath.toNumber(
+    coinsMap[token.type]?.balance,
+    decimals
+  );
 
   const handleWrapCoin = async () => {
     const dismiss = toasting.loading({ message: `Wrapping ${symbol}...` });

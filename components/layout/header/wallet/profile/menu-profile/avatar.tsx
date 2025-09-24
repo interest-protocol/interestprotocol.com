@@ -82,11 +82,12 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
         </Div>
         <Button
           p="0"
-          pb="0.25rem"
           mr="unset"
+          pb="0.25rem"
           border="none"
           cursor="pointer"
           variant="text"
+          color="#E2E2E6"
           nHover={{
             color: '#B4C5FF',
           }}
@@ -94,7 +95,6 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
             e.stopPropagation();
             copyToClipboard(account || '', clipBoardSuccessMessage);
           }}
-          color="#E2E2E6"
         >
           <CopySVG maxHeight="1rem" maxWidth="1rem" width="100%" />
         </Button>

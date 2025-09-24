@@ -1,12 +1,24 @@
+import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { MOVE } from '@/constants/coins';
 import { FixedPointMath } from '@/lib';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { ZERO_BIG_NUMBER } from '@/utils';
 
-const BalanceCard: FC = () => {
-  const balance = ZERO_BIG_NUMBER;
+const MOVE_TYPE = normalizeSuiAddress(MOVE.type);
+const MOVE_ADDRESS = normalizeSuiAddress(MOVE.address.toString());
+
+const MoveBalanceCard: FC = () => {
+  const { coinsMap } = useCoins();
+
+  const typeBalance = coinsMap[MOVE_TYPE]?.balance;
+  const addressBalance = coinsMap[MOVE_ADDRESS]?.balance;
+  const balance = (typeBalance ?? ZERO_BIG_NUMBER).plus(
+    addressBalance ?? ZERO_BIG_NUMBER
+  );
+
   return (
     <Div
       gap="0.5rem"
@@ -30,4 +42,4 @@ const BalanceCard: FC = () => {
   );
 };
 
-export default BalanceCard;
+export default MoveBalanceCard;

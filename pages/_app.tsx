@@ -8,12 +8,21 @@ import { Toaster } from 'react-hot-toast';
 import { SkeletonTheme } from 'react-loading-skeleton';
 
 import ModalProvider from '@/components/modal-provider';
-import { TOAST_DURATION } from '@/constants';
+import { INDEXER_URL, Network, RPC_URL, TOAST_DURATION } from '@/constants';
 import { AptosProvider } from '@/lib/aptos-provider';
 import { GlobalStyles } from '@/styles';
 
 const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
-  <AptosProvider defaultNetwork={''} networks={[]}>
+  <AptosProvider
+    defaultNetwork={Network.MAINNET}
+    networks={[
+      {
+        network: Network.MAINNET,
+        rpc: RPC_URL[Network.MAINNET],
+        indexer: INDEXER_URL[Network.MAINNET],
+      },
+    ]}
+  >
     <SkeletonTheme baseColor="#99BBFF28" highlightColor="#99BBFF14">
       <StrictMode>
         <Global styles={GlobalStyles} />
