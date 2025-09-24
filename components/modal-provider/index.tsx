@@ -91,7 +91,7 @@ const ModalProvider: FC = () => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <P fontSize="1.25rem" fontWeight="600">
+                <P fontSize="1.25rem" fontFamily="Inter" fontWeight="600">
                   {title}
                 </P>
                 <Div

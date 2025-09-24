@@ -37,6 +37,7 @@ export { default as ExternalLinkSVG } from './external-link';
 export { default as FireEmojiSVG } from './fire-emoji';
 export { default as FolderSVG } from './folder';
 export { default as GithubSVG } from './github';
+export { default as GoogleSVG } from './google';
 export { default as HourglassSVG } from './hourglass';
 export { default as ImageCardSVG } from './image-card';
 export { default as InfoSVG } from './info';
