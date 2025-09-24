@@ -1,6 +1,7 @@
 import { Nav } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import ExternalLink from '@/components/svg/external-link';
 import { NavItemsTitle, Routes, RoutesEnum } from '@/constants';
 
 import NavbarItem from './navbar-item';
@@ -26,6 +27,19 @@ const Navbar: FC = () => (
     {Object.entries(NavItemsTitle).map(([key, title]) => (
       <NavbarItem key={key} href={Routes[key as RoutesEnum]} title={title} />
     ))}
+    <a
+      href="Bridge"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+    >
+      <ExternalLink
+        maxWidth="1rem"
+        maxHeight="1rem"
+        width="100%"
+        color="#9CA3AF"
+      />
+    </a>
   </Nav>
 );
 

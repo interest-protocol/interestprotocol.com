@@ -1,4 +1,4 @@
-import { Div } from '@stylin.js/elements';
+import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { FormProvider, useFormContext } from 'react-hook-form';
 
@@ -11,7 +11,6 @@ import SwapSettings from '../swap-settings';
 
 const SwapTabs: FC = () => {
   const { tab, setTab } = useTabState();
-  const tabs = ['Swap', 'Bridge'];
 
   const { setContent } = useModal();
   const form = useFormContext();
@@ -24,14 +23,6 @@ const SwapTabs: FC = () => {
       { title: 'Settings' }
     );
 
-  const handleSetTab = (index: number) => {
-    if (index === 1) {
-      window.open('https://bridge.movementnetwork.xyz/', '_blank');
-      return;
-    }
-    setTab(index);
-  };
-
   return (
     <Div
       display="flex"
@@ -39,7 +30,19 @@ const SwapTabs: FC = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Tabs tabs={tabs} setTab={handleSetTab} tab={tab} />
+      <Span
+        color="#FFFFFF"
+        fontWeight="500"
+        fontFamily="Inter"
+        lineHeight="1.5rem"
+        fontSize="1.125rem"
+        display={['block', 'none']}
+      >
+        Swap
+      </Span>
+      <Div display={['none', 'block']}>
+        <Tabs tabs={['Swap']} setTab={setTab} tab={tab} />
+      </Div>
       <Div
         role="button"
         lineHeight="0"
