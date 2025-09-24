@@ -24,10 +24,17 @@ const VolumeChart: FC<VolumeChartProps> = ({ data }) => (
       <YAxis hide />
       <Tooltip
         itemStyle={{ color: '#FFFFFF' }}
-        cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+        cursor={{
+          fill: 'transparent',
+          opacity: 0.5,
+          strokeWidth: 1,
+          strokeDasharray: '1 5',
+        }}
         contentStyle={{
           background: '#1e293b',
           border: 'none',
+          borderRadius: '0.5rem',
+          padding: '1rem',
           color: '#FFFFFF',
         }}
       />
