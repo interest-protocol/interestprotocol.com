@@ -1,9 +1,21 @@
-import { Input } from '@stylin.js/elements';
-import { FC } from 'react';
+import { InputElementProps } from '@stylin.js/elements';
+import stylin from '@stylin.js/react';
+import { FC, RefAttributes } from 'react';
+
+const Range = stylin<InputElementProps & RefAttributes<unknown>>('input')({
+  '&::-webkit-slider-thumb': {
+    background: '#B4C5FF',
+    width: '20px',
+    height: '20px',
+    cursor: 'pointer',
+    borderRadius: '50%',
+    '-webkit-appearance': 'none',
+  },
+});
 
 const Slider: FC = () => {
   return (
-    <Input
+    <Range
       min={0}
       max={100}
       mb="0.75rem"

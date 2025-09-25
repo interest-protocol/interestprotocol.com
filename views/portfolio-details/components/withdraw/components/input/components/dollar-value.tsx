@@ -5,15 +5,14 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { formatDollars } from '@/utils';
-
-import { CreateWithdraw } from '../input.types';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 const AmountInDollar: FC = () => {
-  const { control } = useFormContext<CreateWithdraw>();
+  const { control } = useFormContext<PortfolioDetailsFormProps>();
 
   const value = useWatch({
     control,
-    name: 'value',
+    name: 'lpCoin.value',
   });
 
   const { data: prices } = useCoinsPrice('USD');

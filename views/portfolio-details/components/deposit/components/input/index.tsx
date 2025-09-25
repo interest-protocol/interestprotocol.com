@@ -5,19 +5,20 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
-import { CreateDepositForm } from '../../deposit.types';
 import HeaderInfo from './components/header-info';
-import SelectToken from './components/select-token';
+import SelectedToken from './components/selected-token';
 import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue, getValues } = useFormContext<CreateDepositForm>();
+  const { register, setValue, getValues } =
+    useFormContext<PortfolioDetailsFormProps>();
 
-  const tokenType = useWatch({ name: `tokens.${index}.type` });
+  const tokenType = useWatch({ name: `tokenList.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
 
-  const rawValue = getValues(`tokens.${index}.value`);
+  const rawValue = getValues(`tokenList.${index}.value`);
   const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (
@@ -29,6 +30,7 @@ const Input: FC<InputProps> = ({ index }) => {
       height="8.15625rem"
       flexDirection="column"
       borderRadius="0.75rem"
+      boxShadow=" 0px 0px 0px 1px #F3F4F61A"
     >
       <HeaderInfo index={index} />
       <Div
@@ -53,9 +55,9 @@ const Input: FC<InputProps> = ({ index }) => {
               ml="-1rem"
               width="100%"
               placeholder="0"
+              fontWeight="400"
               lineHeight="3rem"
               fontFamily="Inter"
-              fontWeight="400"
               disabled={!tokenType}
               fontSize={['2rem', '2.25rem']}
               opacity={isEmpty ? 0.4 : undefined}
@@ -65,21 +67,21 @@ const Input: FC<InputProps> = ({ index }) => {
                 nHover: { border: 'none' },
                 color: isEmpty ? '#6B7280' : '#FFFFFF',
               }}
-              {...register(`tokens.${index}.value`, {
+              {...register(`tokenList.${index}.value`, {
                 onChange: (v: ChangeEvent<HTMLInputElement>) => {
                   const value = parseInputEventToNumberString(v);
-                  setValue(`tokens.${index}.value`, value, {
+                  setValue(`tokenList.${index}.value`, value, {
                     shouldDirty: true,
                   });
                   setValue(
-                    `tokens.${index}.valueBN`,
+                    `tokenList.${index}.valueBN`,
                     FixedPointMath.toBigNumber(value, tokenDecimals || 0)
                   );
                 },
               })}
             />
           </Div>
-          <SelectToken index={index} />
+          <SelectedToken index={index} />
         </Div>
       </Div>
     </Div>

@@ -8,52 +8,53 @@ import AdditionalInfo from './components/additional-info';
 import Input from './components/input';
 
 const Deposit: FC = () => (
-  <Div display="flex" flexDirection="column" gap="0.5rem">
-    <Input index={0} />
-
-    <Div
-      my="-1.55rem"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      zIndex="100"
-    >
-      <Button
-        p="0.5rem"
-        bg="#030712"
-        border="none"
-        width="2.25rem"
-        height="2.25rem"
-        cursor="pointer"
-        borderRadius="0.75rem"
+  <Div display="flex" flexDirection="column" gap="0.75rem">
+    <Div display="flex" flexDirection="column" gap="0.35rem">
+      <Input index={0} />
+      <Div
+        my="-1.3rem"
+        zIndex="100"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
-        <PlusSVG
-          maxWidth="1rem"
-          maxHeight="1rem"
-          width="100%"
-          color="#9CA3AF"
-        />
-      </Button>
+        <Div
+          p="0.75rem"
+          display="flex"
+          bg="#030712"
+          width="2.25rem"
+          height="2.25rem"
+          cursor="pointer"
+          alignItems="center"
+          borderRadius="0.75rem"
+          justifyContent="center"
+        >
+          <PlusSVG
+            width="0.65rem"
+            color="#9CA3AF"
+            maxWidth="0.65rem"
+            maxHeight="0.65rem"
+          />
+        </Div>
+      </Div>
+      <Input index={1} />
     </Div>
-
-    <Input index={1} />
     <AdditionalInfo
       depositRatio="53.73% USDT / 46.27% USDC"
       estimatedApr="68.18%"
     />
     <Button
-      mb="1.5rem"
       border="none"
+      display="flex"
       p="0.5rem 1rem"
       height="3.5rem"
-      display="flex"
-      color="#002A78"
-      fontWeight="500"
       fontSize="1rem"
-      background="#B4C5FF"
-      alignItems="center"
-      fontFamily="Inter"
+      fontWeight="500"
       cursor="pointer"
+      color="#002A78"
+      fontFamily="Inter"
+      alignItems="center"
+      background="#B4C5FF"
       borderRadius="0.75rem"
       justifyContent="center"
     >

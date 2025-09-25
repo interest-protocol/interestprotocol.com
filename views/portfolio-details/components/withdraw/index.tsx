@@ -10,7 +10,6 @@ const Withdraw: FC = () => (
     <Input />
     <Slider />
     <Button
-      mb="1.5rem"
       border="none"
       p="0.5rem 1rem"
       height="3.5rem"

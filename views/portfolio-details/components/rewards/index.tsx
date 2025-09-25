@@ -7,44 +7,58 @@ import TokenPair from './components/token-pair';
 import { RewardsProps } from './rewards.types';
 
 const Rewards: FC<RewardsProps> = ({ claimingFee, pairToken }) => (
-  <Div display="flex" flexDirection="column" gap="0.5rem" mb="2rem">
+  <Div display="flex" flexDirection="column" gap="0.75rem" my="2rem">
     <P
-      mb="0.75rem"
       color="#FFFFFF"
       fontWeight="400"
+      fontSize="1.5rem"
       fontFamily="Inter"
-      lineHeight="1.1375rem"
-      fontSize={['1rem', '1.5rem']}
+      lineHeight="2.25rem"
     >
       Rewards
     </P>
     <Div
       p="1rem"
-      gap="0.5rem"
+      gap="1rem"
       display="flex"
       bg="#9CA3AF1A"
       borderRadius="0.75rem"
       flexDirection="column"
     >
-      <P color="#949E9E" fontSize="1rem" fontWeight="500" fontFamily="Inter">
-        Pending Yield
-      </P>
+      <Div display="flex" flexDirection="column" gap="0.5rem">
+        <P
+          fontSize="1rem"
+          fontWeight="500"
+          color="#9CA3AF"
+          fontFamily="Inter"
+          lineHeight="1.5rem"
+        >
+          Pending Yield
+        </P>
 
-      <Span
-        mb="0.5rem"
-        color="#FFFFFF"
-        fontWeight="500"
-        fontFamily="Inter"
-        fontSize={['1rem', '1.5rem']}
-      >
-        {formatDollars(0.0, 6, 'start')}
-      </Span>
+        <Span
+          fontWeight="500"
+          color="#FFFFFF"
+          fontFamily="Inter"
+          lineHeight="2.25rem"
+          fontSize={['1.25rem', '1.5rem']}
+        >
+          {formatDollars(0.0, 6, 'start')}
+        </Span>
+      </Div>
+      <Div display="flex" flexDirection="column" gap="0.5rem">
+        <P
+          fontSize="1rem"
+          fontWeight="500"
+          color="#9CA3AF"
+          fontFamily="Inter"
+          lineHeight="1.5rem"
+        >
+          Rewards per asset
+        </P>
 
-      <P fontSize="1rem" color="#949E9E" fontWeight="500" fontFamily="Inter">
-        Rewards per asset
-      </P>
-
-      <TokenPair left={pairToken[0]} right={pairToken[1]} />
+        <TokenPair left={pairToken[0]} right={pairToken[1]} />
+      </Div>
     </Div>
 
     <Div display="flex" justifyContent="space-between">

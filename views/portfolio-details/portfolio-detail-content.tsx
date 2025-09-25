@@ -1,6 +1,6 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
-import unikey from 'unikey';
+import { v4 } from 'uuid';
 
 import { useTabState } from '@/hooks/use-tab-manager';
 
@@ -19,7 +19,6 @@ const PortfolioDetailContent: FC = () => {
       display="flex"
       flexDirection="column"
       gap={['1rem', '2rem']}
-      px={['unset', 'unset', 'unset', '1.5rem']}
     >
       <PoolDetailsHeader />
       <Div
@@ -30,7 +29,7 @@ const PortfolioDetailContent: FC = () => {
         <Info />
         <Div gap="0.75rem" display="flex" flexDirection="column">
           <PositionsTabs />
-          {[<Deposit key={unikey()} />, <Withdraw key={unikey()} />][tab]}
+          {[<Deposit key={v4()} />, <Withdraw key={v4()} />][tab]}
         </Div>
       </Div>
     </Div>

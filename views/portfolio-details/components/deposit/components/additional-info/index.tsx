@@ -1,4 +1,4 @@
-import { Div, P } from '@stylin.js/elements';
+import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { AdditionalInfoProps } from './additional-info.types';
@@ -7,9 +7,9 @@ const AdditionalInfo: FC<AdditionalInfoProps> = ({
   depositRatio,
   estimatedApr,
 }) => (
-  <Div display="flex" flexDirection="column">
-    <Div display="flex" justifyContent="space-between">
-      <P
+  <Div display="flex" flexDirection="column" gap="0.5rem">
+    <Div display="flex" justifyContent="space-between" flexWrap="wrap">
+      <Span
         color="#949E9E"
         fontWeight="500"
         fontFamily="Inter"
@@ -17,8 +17,8 @@ const AdditionalInfo: FC<AdditionalInfoProps> = ({
         lineHeight="1.1375rem"
       >
         Deposit Ratio:
-      </P>
-      <P
+      </Span>
+      <Span
         color="#FFFFFF"
         fontWeight="500"
         fontFamily="Inter"
@@ -26,7 +26,7 @@ const AdditionalInfo: FC<AdditionalInfoProps> = ({
         lineHeight="1.1375rem"
       >
         {depositRatio}
-      </P>
+      </Span>
     </Div>
     <Div display="flex" justifyContent="space-between">
       <P

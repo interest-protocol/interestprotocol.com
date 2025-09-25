@@ -2,14 +2,13 @@ import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { MaxBadge } from '@/components/max-badge';
-
-import { CreateWithdraw } from '../input.types';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 const Balance: FC = () => {
-  const { setValue } = useFormContext<CreateWithdraw>();
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
 
   const handleMax = () => {
-    setValue('value', 100);
+    setValue('lpCoin.value', '100');
   };
 
   return <MaxBadge handleMax={handleMax} />;

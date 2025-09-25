@@ -4,14 +4,14 @@ import { useFormContext } from 'react-hook-form';
 
 import { TextField } from '@/components/text-field';
 import { parseInputEventToNumberString } from '@/utils';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import Balance from './components/balance';
 import AmountInDollar from './components/dollar-value';
 import HeaderInfo from './components/header-info';
-import { CreateWithdraw } from './input.types';
 
 const Input: FC = () => {
-  const { register, setValue } = useFormContext<CreateWithdraw>();
+  const { register, setValue } = useFormContext<PortfolioDetailsFormProps>();
 
   return (
     <Div
@@ -46,14 +46,14 @@ const Input: FC = () => {
             nHover: { border: 'none' },
             color: '#FFFFFF',
           }}
-          {...register('value', {
+          {...register('lpCoin.value', {
             onChange: (e: ChangeEvent<HTMLInputElement>) => {
               const raw = e.target.value.replace('%', '');
               const v = parseInputEventToNumberString({
                 ...e,
                 target: { ...e.target, value: raw },
               });
-              setValue('value', Number(v), { shouldDirty: true });
+              setValue('lpCoin.value', v, { shouldDirty: true });
             },
           })}
         />

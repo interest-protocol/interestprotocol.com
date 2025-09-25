@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Props } from 'react-modal';
 
-import { ButtonProps } from '../Button/button.types';
+import { ButtonProps } from '../button/button.types';
 
 interface IOpenState {
   isOpen: boolean;
