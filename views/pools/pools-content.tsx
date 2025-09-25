@@ -9,6 +9,7 @@ import HeaderInfo from '../../components/header-info';
 import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
+import PriceInput from './components/price-input';
 import VolumeChart from './components/volume-chart';
 import { VOLUME_DATA } from './components/volume-chart/volume-chart.data';
 import {
@@ -22,6 +23,7 @@ import {
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
   const [interval, setInterval] = useState('1M');
+  const [minPrice, setMinPrice] = useState(1);
 
   return (
     <Div
@@ -33,6 +35,12 @@ const PoolsContent: FC = () => {
       <Div width="100%" height="18rem">
         <VolumeChart data={VOLUME_DATA} />
       </Div>
+      <PriceInput
+        label="Min price"
+        value={minPrice}
+        onChange={setMinPrice}
+        tokenPair={['USDC', 'USDT']}
+      />
       <Div
         gap="1rem"
         width="100%"
