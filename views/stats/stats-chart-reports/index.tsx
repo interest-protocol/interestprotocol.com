@@ -1,19 +1,21 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import StatsChartTVLReport from './tvl-chart-report';
-import StatsChartVolumeReport from './volume-chart-report';
+import StatsCharts from '../components/stats-chart';
+import ChartTabs from '../components/stats-tabs/chart-tabs';
 
 const StatsChartReports: FC = () => (
-  <Div
-    mb="1rem"
-    gap="1rem"
-    width="100%"
-    display="grid"
-    gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 1fr']}
-  >
-    <StatsChartTVLReport />
-    <StatsChartVolumeReport />
+  <Div mb="1rem">
+    <Div
+      gap="1rem"
+      width="100%"
+      display={['none', 'none', 'none', 'grid']}
+      gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 1fr']}
+    >
+      <StatsCharts />
+    </Div>
+
+    <ChartTabs />
   </Div>
 );
 

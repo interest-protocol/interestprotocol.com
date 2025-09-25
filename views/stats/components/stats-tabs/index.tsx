@@ -1,5 +1,6 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import { v4 } from 'uuid';
 
 import Dropdown from '@/components/dropdown';
 import Tabs from '@/components/tabs';
@@ -29,17 +30,20 @@ const StatsTabs: FC = () => {
       flexDirection={['column', 'column', 'column', 'row']}
     >
       <Tabs
+        key={v4()}
         tab={tab}
         setTab={setTab}
+        activeBg="#B4C5FF33"
         tabs={['Tokens', 'Pools', 'Transactions']}
+        justifyContent={['space-between', 'flex-start']}
       />
 
       {shouldShowControls && (
         <Div
           gap="0.75rem"
-          width={['100%', '100%', '100%', 'max-content']}
           display="flex"
-          flexDirection={['column', 'column', 'column', 'row']}
+          flexDirection={['row-reverse', 'row']}
+          width={['100%', '100%', '100%', 'max-content']}
         >
           {showVolumeFilter && (
             <Dropdown placeholder="Select" options={VOLUME_FILTER_DATA} />
