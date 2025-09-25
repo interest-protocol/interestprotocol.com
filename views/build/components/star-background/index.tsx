@@ -25,7 +25,7 @@ const HeroBackground: FC<StarBackgroundProps> = ({
       width="100vw"
       height="100vh"
       overflow="hidden"
-      style={{ pointerEvents: 'none' }}
+      zIndex={0} // fica atrás do conteúdo
       onMouseMove={handleMouseMove}
     >
       <Motion
@@ -34,34 +34,38 @@ const HeroBackground: FC<StarBackgroundProps> = ({
         left="0"
         width="100%"
         height="100%"
-        backgroundImage={`
-          linear-gradient(to right, rgba(217,217,217,0.025) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(217,217,217,0.025) 1px, transparent 1px)`}
-        backgroundSize="3.75rem 3.75rem"
         animate={{
           x: mouse.x,
           y: mouse.y,
           rotate: mouse.x * 0.02,
           scale: 1.01,
         }}
+        pointerEvents="none"
         transition={{ type: 'spring', stiffness: 10, damping: 40 }}
+        backgroundImage={`
+          linear-gradient(to right, rgba(217,217,217,0.025) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(217,217,217,0.025) 1px, transparent 1px)
+        `}
+        backgroundSize="3.75rem 3.75rem"
       />
+
       <Motion
         zIndex="0"
         top="0"
         left="0"
         width="100%"
         position="absolute"
-        pointerEvents="none"
         height="100%"
         background={`radial-gradient(
-            circle at 50% 40%,         
-            rgba(0, 83, 219, 0.25) 0%, 
-            rgba(0, 83, 219, 0.12) 25%,
-            rgba(0, 83, 219, 0.05) 40%,
-            rgba(0, 83, 219, 0) 55%    
-           )`}
+          circle at 50% 40%,         
+          rgba(0, 83, 219, 0.25) 0%, 
+          rgba(0, 83, 219, 0.12) 25%,
+          rgba(0, 83, 219, 0.05) 40%,
+          rgba(0, 83, 219, 0) 55%
+        )`}
+        pointerEvents="none"
       />
+
       {Array.from({ length: numberOfParticles }, () => (
         <Particle key={unikey()} />
       ))}

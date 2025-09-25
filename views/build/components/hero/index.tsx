@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { Button } from '@/components/button';
+import { Motion } from '@/components/motion';
 
 import { SOCIAL_LINK } from '../social-link.data';
 
@@ -33,29 +34,60 @@ const Hero: FC = () => (
     >
       We&rsquo;ll Be Back Soon
     </Button>
-    <H2
-      color="#FFFFFF"
-      fontWeight="500"
-      fontFamily="Inter"
-      textAlign="center"
-      letterSpacing="3%"
-      fontSize={['2rem', '3.5rem']}
+
+    <Motion
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
     >
-      Our Website is Under Construction
-    </H2>
-    <Span
-      width="50%"
-      fontSize="1rem"
-      color="#ACB5BB"
-      fontWeight="500"
-      fontFamily="Inter"
+      <H2
+        color="#FFFFFF"
+        fontWeight="500"
+        fontFamily="Inter"
+        textAlign="center"
+        letterSpacing="3%"
+        fontSize={['2rem', '3.5rem']}
+      >
+        Our Website is Under Construction
+      </H2>
+    </Motion>
+
+    <Motion
+      display="flex"
       textAlign="center"
+      flexDirection="column"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 0.4 }}
     >
-      We&rsquo;re making improvements and will be back online soon! Thank you
-      for your patience and support. For more information or assistance, feel
-      free to contact us anytime.
-    </Span>
-    <Div display="flex" gap="0.75rem">
+      <Span
+        fontSize="1rem"
+        color="#ACB5BB"
+        fontWeight="500"
+        fontFamily="Inter"
+        textAlign="center"
+      >
+        We&rsquo;re making improvements and will be back online soon! Thank you
+        for your patience and support.
+      </Span>
+      <Span
+        fontSize="1rem"
+        color="#ACB5BB"
+        fontWeight="500"
+        fontFamily="Inter"
+        textAlign="center"
+      >
+        For more information or assistance, feel free to contact us anytime.
+      </Span>
+    </Motion>
+
+    <Motion
+      gap="0.75rem"
+      display="flex"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.6 }}
+    >
       {SOCIAL_LINK.map(({ title, pathname, Icon }) => (
         <Link
           key={v4()}
@@ -86,7 +118,7 @@ const Hero: FC = () => (
           </Div>
         </Link>
       ))}
-    </Div>
+    </Motion>
   </Div>
 );
 
