@@ -3,6 +3,7 @@ import PoolName from '@/components/pool-name';
 
 import { SegmentedControlOptionItemProps } from '../../components/segmented-control/segmented-control.types';
 import { TableRowProps } from '../../components/table/table.types';
+import OverviewTooltip from './components/overview-tooltip';
 
 export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
   [
@@ -70,7 +71,7 @@ export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
       { Title: '$1.53M' },
       { Title: '$234.06K' },
       { Title: '2%' },
-      { Content: '' },
+      { Content: <OverviewTooltip /> },
       { Title: 'Add Liquidity', color: '#B4C5FF' },
     ],
   },
