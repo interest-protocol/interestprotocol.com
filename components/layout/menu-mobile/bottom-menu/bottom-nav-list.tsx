@@ -5,7 +5,7 @@ import BottomNavListItem from './bottom-nav-list-item';
 
 const BottomNavList = () => {
   return (
-    <Div display="flex" bg="#1d1f24">
+    <Div display="flex" bg="#9CA3AF1A">
       {BOTTOM_MENU_ITEMS.map(({ name, path, Icon, isHidden }, index) => (
         <BottomNavListItem
           key={index}

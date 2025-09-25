@@ -9,46 +9,10 @@ const More: FC<SVGProps> = ({ maxWidth, maxHeight, ...props }) => (
     fill="none"
     {...props}
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M3.125 6.5C3.125 3.87479 3.15311 3 6.625 3C10.0969 3 10.125 3.87479 10.125 6.5C10.125 9.12521 10.1361 10 6.625 10C3.11393 10 3.125 9.12521 3.125 6.5Z"
-      stroke="white"
-      strokeOpacity="0.6"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M14.125 6.5C14.125 3.87479 14.1531 3 17.625 3C21.0969 3 21.125 3.87479 21.125 6.5C21.125 9.12521 21.1361 10 17.625 10C14.1139 10 14.125 9.12521 14.125 6.5Z"
-      stroke="white"
-      strokeOpacity="0.6"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M3.125 17.5C3.125 14.8748 3.15311 14 6.625 14C10.0969 14 10.125 14.8748 10.125 17.5C10.125 20.1252 10.1361 21 6.625 21C3.11393 21 3.125 20.1252 3.125 17.5Z"
-      stroke="white"
-      strokeOpacity="0.6"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M14.125 17.5C14.125 14.8748 14.1531 14 17.625 14C21.0969 14 21.125 14.8748 21.125 17.5C21.125 20.1252 21.1361 21 17.625 21C14.1139 21 14.125 20.1252 14.125 17.5Z"
-      stroke="white"
-      strokeOpacity="0.6"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path xmlns="http://www.w3.org/2000/svg" d="M21.625 10.9V4.1C21.625 2.6 20.985 2 19.395 2H15.355C13.765 2 13.125 2.6 13.125 4.1V10.9C13.125 12.4 13.765 13 15.355 13H19.395C20.985 13 21.625 12.4 21.625 10.9Z" fill="white" />
+    <path xmlns="http://www.w3.org/2000/svg" d="M11.125 13.1V19.9C11.125 21.4 10.485 22 8.895 22H4.855C3.265 22 2.625 21.4 2.625 19.9V13.1C2.625 11.6 3.265 11 4.855 11H8.895C10.485 11 11.125 11.6 11.125 13.1Z" fill="white" />
+    <path xmlns="http://www.w3.org/2000/svg" opacity="0.4" d="M21.625 19.9V17.1C21.625 15.6 20.985 15 19.395 15H15.355C13.765 15 13.125 15.6 13.125 17.1V19.9C13.125 21.4 13.765 22 15.355 22H19.395C20.985 22 21.625 21.4 21.625 19.9Z" fill="white" />
+    <path xmlns="http://www.w3.org/2000/svg" opacity="0.4" d="M11.125 6.9V4.1C11.125 2.6 10.485 2 8.895 2H4.855C3.265 2 2.625 2.6 2.625 4.1V6.9C2.625 8.4 3.265 9 4.855 9H8.895C10.485 9 11.125 8.4 11.125 6.9Z" fill="white" />
   </svg>
 );
 

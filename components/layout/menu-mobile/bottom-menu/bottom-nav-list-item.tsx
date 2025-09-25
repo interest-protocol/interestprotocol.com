@@ -6,6 +6,7 @@ import { v4 } from 'uuid';
 
 import MenuMobile from '..';
 import { BottomNavListItemProps } from './bottom-menu.types';
+import { useModal } from '@/hooks';
 
 const BottomNavListItem: FC<BottomNavListItemProps> = ({
   name,
@@ -28,9 +29,15 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
 
   const toggleOpenMenuMore = () => setIsOpenMenuMore(not);
 
+  const { setContent } = useModal();
+
+  // const openModal = () =>
+  //   setContent(<ConnectWalletModal />, {
+  //   });
+
   return (
     <>
-      <MenuMobile closeMenu={toggleOpenMenuMore} isOpen={isOpenMenuMore} />
+     
       <Div flex="1" height="100%">
         <Div
           py="1rem"
@@ -51,9 +58,9 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
           {...(onClick
             ? { onClick }
             : {
-                onClick: () =>
-                  name == 'more' ? toggleOpenMenuMore() : goToPath(path),
-              })}
+              onClick: () =>
+                name == 'more' ? toggleOpenMenuMore() : goToPath(path),
+            })}
         >
           <Div height="2rem" display="flex" alignItems="center">
             <Icon maxHeight="1.5rem" maxWidth="1.5rem" width="1.5rem" />
@@ -64,6 +71,7 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
             nHover={{
               opacity: 0.7,
             }}
+            textTransform="capitalize"
           >
             {name}
           </Span>

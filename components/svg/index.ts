@@ -1,4 +1,5 @@
 export { default as AlertSVG } from './alert';
+export { default as ArrangeSquareSVG } from './arrange-square';
 export { default as ArrowDownSVG } from './arrow-down';
 export { default as ArrowLeftSVG } from './arrow-left';
 export { default as ArrowUpSVG } from './arrow-up';
@@ -50,6 +51,7 @@ export { default as NETHSVG } from './neth';
 export { default as NoSearchSVG } from './no-search';
 export { default as PlusSVG } from './plus';
 export { default as PoolSVG } from './pool';
+export { default as PortfolioSVG } from './portfolio';
 export { default as SearchSVG } from './search';
 export { default as SidebarLogoSVG } from './sidebar-logo';
 export { default as SignOutSVG } from './sign-out';
