@@ -30,7 +30,11 @@ const Input: FC<InputProps> = ({ index }) => {
       flexDirection="column"
       borderRadius="0.75rem"
       bg={error ? '#EF44441A' : '#9CA3AF1A'}
-      border={error ? '1px solid #EF44441A' : undefined}
+      border={`1px solid ${error ? '#EF44441A' : 'transparent'}`}
+      transition="0.3s"
+      nHover={{
+        border: `1px solid ${error ? '#EF44441A' : '#B4C5FF'}`,
+      }}
     >
       <HeaderInfo index={index} />
       <Div

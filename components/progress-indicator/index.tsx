@@ -1,9 +1,9 @@
 import { Div } from '@stylin.js/elements';
 import { FC, PropsWithChildren } from 'react';
 
-import { ProgressIndicatorProps } from '../progress-indicator';
 import { ProgressBar } from './progress-bar';
 import { ProgressCircle } from './progress-circle';
+import { ProgressIndicatorProps } from './progress-indicator.types';
 
 export const ProgressIndicator: FC<
   PropsWithChildren<ProgressIndicatorProps>

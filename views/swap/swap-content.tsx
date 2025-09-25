@@ -19,7 +19,7 @@ const SwapContent: FC = () => {
         borderRadius="3rem"
         alignContent="center"
         justifyContent="center"
-        width={['100%', '100%', '100%', '39.75rem']}
+        width={['100%', '100%', '100%', '30rem']}
       >
         <Div display="flex" flexDirection="column">
           <SwapTabs />

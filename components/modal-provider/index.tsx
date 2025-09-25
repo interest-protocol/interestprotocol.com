@@ -73,8 +73,8 @@ const ModalProvider: FC = () => {
             }}
           >
             <Div
-              p="1rem"
-              gap="1.5rem"
+              pt="1.5rem"
+              gap="1rem"
               width="27rem"
               display="flex"
               color="#ffffff"
@@ -86,13 +86,12 @@ const ModalProvider: FC = () => {
               bg="#121313"
             >
               <Div
-                pr="0.5rem"
-                pt="0.5rem"
+                px="1.5rem"
                 display="flex"
-                justifyContent="space-between"
                 alignItems="center"
+                justifyContent="space-between"
               >
-                <P fontSize="1.25rem" fontWeight="600">
+                <P fontSize="1.25rem" fontFamily="Inter" fontWeight="600">
                   {title}
                 </P>
                 <Div
@@ -108,7 +107,9 @@ const ModalProvider: FC = () => {
                   <TimesSVG maxWidth="100%" maxHeight="100%" width="100%" />
                 </Div>
               </Div>
-              {content}
+              <Div flex="1" overflowY="auto" px="1.5rem" pb="1.5rem">
+                {content}
+              </Div>
             </Div>
           </Motion>
         </Motion>

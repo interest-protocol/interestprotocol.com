@@ -1,17 +1,25 @@
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
-import { not } from 'ramda';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
+import { useModal } from '@/hooks';
 
+import ConnectWalletModal from './connect-wallet';
 import Profile from './profile';
 
 const Wallet: FC = () => {
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const toogleConnected = () => setIsWalletConnected(not);
+  const { setContent } = useModal();
+  const { connected, disconnect } = useAptosWallet();
+
+  const connectModal = () =>
+    setContent(<ConnectWalletModal />, {
+      title: 'Login or Connect wallet',
+    });
+
   return (
     <Div display="flex" justifyContent="flex-end">
-      {isWalletConnected ? (
+      {!connected ? (
         <Button
           all="unset"
           px="2rem"
@@ -22,12 +30,12 @@ const Wallet: FC = () => {
           variant="filled"
           width="fit-content"
           borderRadius="1rem"
-          onClick={toogleConnected}
+          onClick={() => connectModal()}
         >
           Connect Wallet
         </Button>
       ) : (
-        <Profile disconnect={toogleConnected} />
+        <Profile disconnect={disconnect} />
       )}
     </Div>
   );

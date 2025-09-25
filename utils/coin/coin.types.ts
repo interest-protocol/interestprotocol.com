@@ -25,8 +25,8 @@ export interface APIMetadata extends Omit<CoinMetadata, 'iconUri'> {
 export interface ClientMetadata extends Omit<Metadata, 'iconUri'> {
   asset_type: string;
   token_standard: string;
-  supply_v2?: any | null;
-  maximum_v2?: any | null;
+  supply_v2?: unknown | null;
+  maximum_v2?: unknown | null;
   icon_uri?: string | null;
   project_uri?: string | null;
 }

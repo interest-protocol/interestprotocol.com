@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 
-import { Button } from '../Button';
+import { Button } from '../button';
 import { InfoSVG } from '../svg';
 import { TextFieldElementProps } from '../text-field';
 import {
@@ -94,7 +94,11 @@ export const FormFieldBox: FC<
           gap="0.25rem"
           bg="#9CA3AF1A"
           borderRadius="0.75rem"
+          transition="0.3s"
           border={handleBorderStatus() || '1px solid #F3F4F61A'}
+          nHover={{
+            border: '1px solid #B4C5FF',
+          }}
           {...fieldProps}
         >
           <Div width="100%">

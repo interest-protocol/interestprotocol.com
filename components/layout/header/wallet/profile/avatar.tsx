@@ -1,10 +1,9 @@
-import { Network } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import { UserSVG } from '@/components/svg';
-import { EXPLORER_URL } from '@/constants';
+import { EXPLORER_URL, Network } from '@/constants';
 import { formatAddress } from '@/utils';
 
 import { AvatarProps } from './profile.types';

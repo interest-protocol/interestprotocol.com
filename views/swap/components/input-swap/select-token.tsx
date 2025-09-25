@@ -119,11 +119,9 @@ const SelectToken: FC<InputProps> = ({ label }) => {
           maxWidth="12ch"
           color="#9CA3AF"
           overflow="hidden"
+          fontWeight="500"
           whiteSpace="nowrap"
           fontFamily="Inter"
-          width={['0px', 'auto']}
-          fontWeight="500"
-          display={[currentSymbol ? 'none' : 'block', 'block']}
         >
           {formattedSymbol}
         </P>
