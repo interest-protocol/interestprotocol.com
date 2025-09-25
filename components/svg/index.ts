@@ -29,6 +29,7 @@ export { default as DotErrorSVG } from './dot-error';
 export { default as DoubleChevronSVG } from './double-chevron';
 export { default as DownSVG } from './down';
 export { default as ErrorSVG } from './error';
+export { default as Error404SVG } from './error-404';
 export { default as ETHSVG } from './eth';
 export { default as ETHChainSVG } from './eth-chain';
 export { default as EthCircleSVG } from './eth-circle';
