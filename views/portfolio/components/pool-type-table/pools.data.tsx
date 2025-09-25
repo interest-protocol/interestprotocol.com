@@ -7,6 +7,7 @@ import {
   TableRowProps,
 } from '@/components/table/table.types';
 import Tag from '@/components/tag';
+import { Routes, RoutesEnum } from '@/constants';
 import Manage from '@/views/components/manage';
 import PoolName from '@/views/components/pool-name';
 import PriceRange from '@/views/components/price-range';
@@ -41,7 +42,9 @@ export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
         position: 'right',
       },
       {
-        Content: <Manage url="portfolio/details/1" />,
+        Content: (
+          <Manage url={`${Routes[RoutesEnum.PortfolioDetails]}?address=1`} />
+        ),
       },
     ],
   },
@@ -72,7 +75,9 @@ export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
         position: 'right',
       },
       {
-        Content: <Manage url="portfolio/details/1" />,
+        Content: (
+          <Manage url={`${Routes[RoutesEnum.PortfolioDetails]}?address=1`} />
+        ),
       },
     ],
   },

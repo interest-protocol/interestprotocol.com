@@ -23,3 +23,6 @@ export interface TokenPrice {
   price: number;
   priceChange24HoursPercentage: number;
 }
+export interface PortfolioDetailsPageProps {
+  address: string;
+}
