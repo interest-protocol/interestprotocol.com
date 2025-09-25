@@ -2,7 +2,10 @@ import { HeaderInfoProps } from '@/components/header-info/header-info.types';
 import PoolName from '@/components/pool-name';
 
 import { SegmentedControlOptionItemProps } from '../../components/segmented-control/segmented-control.types';
-import { TableRowProps } from '../../components/table/table.types';
+import {
+  TableHeaderTitleProps,
+  TableRowProps,
+} from '../../components/table/table.types';
 import OverviewTooltip from './components/overview-tooltip';
 
 export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
@@ -21,10 +24,10 @@ export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemPro
     },
   ];
 
-export const HEADER_DATA: HeaderInfoProps[] = [
+export const HEADER_DATA: ReadonlyArray<HeaderInfoProps> = [
   {
     title: 'TVL',
-    value: 3250000,
+    value: 12500000,
     symbol: 'USD',
     date: 'May 15, 2025',
   },
@@ -42,25 +45,54 @@ export const HEADER_DATA: HeaderInfoProps[] = [
   },
 ];
 
-export const VERIFIED_POOLS_HEADER_DATA = [
-  'Pool',
-  'TVL',
-  'Volume',
-  'APR',
-  '',
-  '',
-];
+export const VERIFIED_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
+  [
+    { description: 'Pool' },
+    { description: 'TVL' },
+    { description: 'Volume' },
+    { description: 'APR' },
+    { description: '' },
+    { description: '' },
+  ];
 
-export const FEATURES_POOLS_HEADER_DATA = [
-  'Pool',
-  'TVL',
-  'Volume',
-  'APR',
-  '',
-  '',
-];
+export const FEATURES_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
+  [
+    { description: 'Pool' },
+    { description: 'TVL' },
+    { description: 'Volume' },
+    { description: 'APR' },
+    { description: '' },
+    { description: '' },
+  ];
 
 export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
+  {
+    cells: [
+      {
+        Content: (
+          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+        ),
+      },
+      { Title: '$1.53M' },
+      { Title: '$234.06K' },
+      { Title: '2%' },
+      { Content: <OverviewTooltip /> },
+      { Title: 'Add Liquidity', color: '#B4C5FF' },
+    ],
+  },
+  {
+    cells: [
+      {
+        Content: (
+          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
+        ),
+      },
+      { Title: '$1.53M' },
+      { Title: '$234.06K' },
+      { Title: '2%' },
+      { Content: <OverviewTooltip /> },
+    ],
+  },
   {
     cells: [
       {

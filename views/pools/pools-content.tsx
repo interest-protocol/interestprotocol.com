@@ -1,17 +1,13 @@
 import { Div } from '@stylin.js/elements';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import Table from '@/components/table';
 import { useTabState } from '@/hooks/use-tab-manager';
 
-import HeaderInfo from '../../components/header-info';
-import Filter from './components/filter';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
-import PriceInput from './components/price-input';
-import VolumeChart from './components/volume-chart';
-import { VOLUME_DATA } from './components/volume-chart/volume-chart.data';
+import PoolHeaderSummary from './header-summary';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
@@ -22,44 +18,27 @@ import {
 
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
-  const [interval, setInterval] = useState('1M');
-  const [minPrice, setMinPrice] = useState(1);
 
   return (
     <Div
+      mb="4rem"
       gap="1rem"
       display="flex"
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <Div width="100%" height="18rem">
-        <VolumeChart data={VOLUME_DATA} />
-      </Div>
-      <PriceInput
-        label="Min price"
-        value={minPrice}
-        onChange={setMinPrice}
-        tokenPair={['USDC', 'USDT']}
-      />
       <Div
-        gap="1rem"
-        width="100%"
         display="flex"
-        justifyContent="space-between"
-        flexDirection={['column', 'column', 'column', 'row']}
-        alignItems={['flex-start', 'flex-start', 'flex-start', 'end']}
+        p="1rem"
+        gap="1rem"
+        bg="#9CA3AF0D"
+        borderRadius="0.5rem"
+        flexDirection="column"
+        border="1px solid #1F2937"
       >
-        {HEADER_DATA.map((info) => (
-          <HeaderInfo key={v4()} {...info} />
-        ))}
-        <Filter
-          interval={interval}
-          setInterval={setInterval}
-          options={['1W', '1M', '3M', '1Y']}
-        />
+        <PoolHeaderSummary data={HEADER_DATA} />
+        <PoolsChartReports />
       </Div>
-
-      <PoolsChartReports />
 
       <PoolsTabs />
       {
@@ -68,7 +47,7 @@ const PoolsContent: FC = () => {
             key={v4()}
             rows={VERIFIED_POOLS_DATA}
             title={VERIFIED_POOLS_HEADER_DATA}
-            gridTemplateColumns="repeat(6, 1fr)"
+            gridTemplateColumns="4fr repeat(5, 1fr)"
           />,
           <Table
             key={v4()}

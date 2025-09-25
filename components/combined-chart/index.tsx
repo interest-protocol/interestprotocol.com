@@ -13,11 +13,7 @@ import { CombinedChartProps } from './combined-chart.types';
 import TooltipChart from './tooltip-chart';
 
 const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => (
-  <ResponsiveContainer
-    width="100%"
-    height="100%"
-    style={{ background: '#000' }}
-  >
+  <ResponsiveContainer width="100%" height="100%">
     <ComposedChart
       data={data}
       width={500}

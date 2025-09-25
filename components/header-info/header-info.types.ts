@@ -1,8 +1,10 @@
 export interface HeaderInfoProps {
   title: string;
-  value: number | string;
-  symbol?: string;
   date?: string;
+  symbol?: string;
+  right?: boolean;
+  hideDate?: boolean;
+  value: number | string;
 }
 
 export const titleColors: Record<string, string> = {

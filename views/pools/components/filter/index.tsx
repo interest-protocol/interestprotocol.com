@@ -5,11 +5,11 @@ import { FilterProps } from './filter.types';
 
 const Filter: FC<FilterProps> = ({ interval, setInterval, options }) => (
   <Div
+    width="max"
     gap="0.5rem"
-    bg="#9CA3AF1A"
     display="flex"
+    bg="#9CA3AF1A"
     height="2.25rem"
-    width="11rem"
     p="0.25rem 0.5rem"
     borderRadius="9999rem"
     border="1px solid #9CA3AF1A"
