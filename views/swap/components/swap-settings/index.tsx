@@ -2,7 +2,7 @@ import { Div, Input, Label, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
 import { useModal } from '@/hooks/use-modal';
 

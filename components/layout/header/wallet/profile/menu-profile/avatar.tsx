@@ -2,7 +2,7 @@ import { Div, P } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { CopySVG, UserSVG } from '@/components/svg';
 import { EXPLORER_URL, Network } from '@/constants';
 import { copyToClipboard, formatAddress } from '@/utils';
@@ -82,11 +82,12 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
         </Div>
         <Button
           p="0"
-          pb="0.25rem"
           mr="unset"
+          pb="0.25rem"
           border="none"
           cursor="pointer"
           variant="text"
+          color="#E2E2E6"
           nHover={{
             color: '#B4C5FF',
           }}
@@ -94,7 +95,6 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
             e.stopPropagation();
             copyToClipboard(account || '', clipBoardSuccessMessage);
           }}
-          color="#E2E2E6"
         >
           <CopySVG maxHeight="1rem" maxWidth="1rem" width="100%" />
         </Button>

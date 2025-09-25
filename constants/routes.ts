@@ -6,6 +6,7 @@ export enum RoutesEnum {
   CreateToken = 'create-token',
   DCA = 'dca',
   Stats = 'stats',
+  Bridge = 'bridge',
 }
 
 export const Routes: Record<RoutesEnum, string> = {
@@ -16,6 +17,7 @@ export const Routes: Record<RoutesEnum, string> = {
   [RoutesEnum.CreateToken]: '/create-token',
   [RoutesEnum.DCA]: '/dca',
   [RoutesEnum.Stats]: '/stats',
+  [RoutesEnum.Bridge]: 'https://bridge.movementnetwork.xyz/',
 };
 
 export const NavItemsTitle: Record<string, string> = {
@@ -25,4 +27,5 @@ export const NavItemsTitle: Record<string, string> = {
   [RoutesEnum.CreateToken]: 'Create Token',
   [RoutesEnum.DCA]: 'DCA',
   [RoutesEnum.Stats]: 'Stats',
+  [RoutesEnum.Bridge]: 'Bridge',
 };

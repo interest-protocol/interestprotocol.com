@@ -1,5 +1,6 @@
 import { type FC, type PropsWithChildren } from 'react';
 
+import CoinsManager from '../coins-manager';
 import { AptosClientProvider } from './aptos-client';
 import type { AptosProviderProps } from './aptos-provider.types';
 import { NetworkProvider } from './network';
@@ -16,7 +17,10 @@ export const AptosProvider: FC<PropsWithChildren<AptosProviderProps>> = ({
     onChangeNetwork={onChangeNetwork}
   >
     <AptosClientProvider networks={networks}>
-      <WalletProvider>{children}</WalletProvider>
+      <WalletProvider>
+        <CoinsManager />
+        {children}
+      </WalletProvider>
     </AptosClientProvider>
   </NetworkProvider>
 );

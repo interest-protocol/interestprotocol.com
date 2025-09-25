@@ -1,10 +1,13 @@
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import Avatar from './avatar';
 
-const UserInfo: FC = () => (
-  <Div>
+const UserInfo: FC = () => {
+  const { account } = useAptosWallet();
+
+  return (
     <Div
       gap="1.25rem"
       display="flex"
@@ -12,9 +15,9 @@ const UserInfo: FC = () => (
       alignItems="center"
       justifyContent="center"
     >
-      <Avatar accountAddress="0xb5mc...0da6" />
+      <Avatar accountAddress={account?.address ?? ''} />
     </Div>
-  </Div>
-);
+  );
+};
 
 export default UserInfo;

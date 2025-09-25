@@ -1,7 +1,7 @@
 import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import ArrowRight from '@/components/svg/arrow-right';
 
 import { TotalEarningProps } from '../table-summary.types';

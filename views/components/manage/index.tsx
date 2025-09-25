@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 
 import { ManageProps } from './manage.types';
 

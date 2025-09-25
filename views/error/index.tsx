@@ -2,7 +2,7 @@ import { Div, P } from '@stylin.js/elements';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { Motion } from '@/components/motion';
 import { ComputerEyesSVG, DiedComputerSVG } from '@/components/svg';
 

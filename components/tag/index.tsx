@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import { Button } from '@/components/Button';
-
+import { Button } from '../button';
 import { TAG_COLOR } from './tag.data';
 import { TagProps } from './tag.types';
 

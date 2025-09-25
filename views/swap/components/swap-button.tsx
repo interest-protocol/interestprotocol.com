@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
 
 const SwapButton = () => {

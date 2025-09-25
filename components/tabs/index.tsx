@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import { Button } from '../Button';
+import { Button } from '../button';
 import { TabsProps } from './tabs.types';
 
 const Tabs: FC<TabsProps> = ({ setTab, tab, tabs }) => (
