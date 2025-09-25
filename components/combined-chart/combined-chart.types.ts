@@ -1,7 +1,9 @@
 import { TooltipProps } from 'recharts';
 
 export type TooltipChartProps = TooltipProps<number, string> & {
+  title?: string;
   label?: string | number;
+  showPayloadWithName?: boolean;
   payload?: ReadonlyArray<TooltipPayloadProps>;
 };
 
