@@ -1,14 +1,11 @@
-import { Div, DivProps, P } from '@stylin.js/elements';
-import stylin from '@stylin.js/react';
+import { Div, DivElementProps, P } from '@stylin.js/elements';
 import { not } from 'ramda';
-import { FC, RefAttributes, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 
 import { CaretDownSVG } from '@/components/svg';
 
 import { DropdownOptionProps, DropdownProps } from './dropdown.types';
-
-const DivCustom = stylin<DivProps & RefAttributes<HTMLDivElement>>('div')();
 
 const Dropdown: FC<DropdownProps> = ({
   options,
@@ -21,7 +18,7 @@ const Dropdown: FC<DropdownProps> = ({
   const [currentOption, setCurrentOption] = useState<
     DropdownOptionProps | undefined
   >(defaultIndex ? options[defaultIndex] : undefined);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<DivElementProps>(null);
 
   const handleVolumeFilter = (option: DropdownOptionProps) => {
     setCurrentOption(option);
@@ -31,7 +28,12 @@ const Dropdown: FC<DropdownProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node))
+      if (
+        ref.current &&
+        !(ref.current as unknown as HTMLDivElement).contains(
+          event.target as Node
+        )
+      )
         setIsOpen(false);
     };
 
@@ -42,7 +44,7 @@ const Dropdown: FC<DropdownProps> = ({
   }, [isOpen]);
 
   return (
-    <DivCustom ref={ref} position="relative">
+    <Div ref={ref} position="relative">
       <Div
         px="1rem"
         py="0.75rem"
@@ -116,7 +118,7 @@ const Dropdown: FC<DropdownProps> = ({
           ))}
         </Div>
       )}
-    </DivCustom>
+    </Div>
   );
 };
 
