@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
 
 import { SEO } from '@/components';
-import Home from '@/views/home';
+import Build from '@/views/build';
 
 const HomePage: NextPage = () => (
   <>
     <SEO />
-    <Home />
+    <Build />
   </>
 );
 

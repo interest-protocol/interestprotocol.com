@@ -1,9 +1,8 @@
-import { Div, H2, Span } from '@stylin.js/elements';
+import { Button, Div, H2, Span } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import { Button } from '@/components/button';
 import { Motion } from '@/components/motion';
 
 import { SOCIAL_LINK } from '../social-link.data';
@@ -22,15 +21,17 @@ const Hero: FC = () => (
       py="0"
       px="1rem"
       gap="0.375rem"
-      width="8.5rem"
+      width="auto"
       height="1.625rem"
-      variant="outline"
       bg="#FFFFFF0D"
       display="flex"
+      cursor="pointer"
+      color="#FFFFFF"
       alignItems="center"
       justifyContent="center"
       borderRadius="2.875rem"
       border="1px solid #44444A"
+      nHover={{ border: '1px solid #B4C5FF', transaction: '0.4s' }}
     >
       We&rsquo;ll Be Back Soon
     </Button>
