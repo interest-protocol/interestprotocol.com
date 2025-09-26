@@ -1,10 +1,10 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import MainMenu from './main-menu';
 import { MainMenuMobileProps } from './menu.types';
+import MainMenu from './modal-menu';
 
-const MenuMobile: FC<MainMenuMobileProps> = ({ isOpen, closeMenu }) => {
+const MenuMobile: FC<MainMenuMobileProps> = ({ isOpen }) => {
   if (!isOpen) return null;
 
   return (
@@ -21,7 +21,7 @@ const MenuMobile: FC<MainMenuMobileProps> = ({ isOpen, closeMenu }) => {
         bg="#1F1F23"
         display={['block', 'block', 'block', 'block', 'none']}
       >
-        <MainMenu closeMenu={closeMenu} />
+        <MainMenu />
       </Div>
     </Div>
   );

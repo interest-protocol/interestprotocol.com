@@ -1,12 +1,12 @@
 import { Div, Span } from '@stylin.js/elements';
 import { useRouter } from 'next/router';
-import { not } from 'ramda';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import MenuMobile from '..';
-import { BottomNavListItemProps } from './bottom-menu.types';
 import { useModal } from '@/hooks';
+
+import ModalMenu from '../modal-menu';
+import { BottomNavListItemProps } from './bottom-menu.types';
 
 const BottomNavListItem: FC<BottomNavListItemProps> = ({
   name,
@@ -16,7 +16,6 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
   isHidden,
 }) => {
   const { asPath, push } = useRouter();
-  const [isOpenMenuMore, setIsOpenMenuMore] = useState(false);
 
   const goToPath = (path: unknown) => {
     if ((path as string).startsWith('https://'))
@@ -27,17 +26,15 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
 
   if (isHidden) return null;
 
-  const toggleOpenMenuMore = () => setIsOpenMenuMore(not);
-
   const { setContent } = useModal();
 
-  // const openModal = () =>
-  //   setContent(<ConnectWalletModal />, {
-  //   });
+  const openModal = () =>
+    setContent(<ModalMenu />, {
+      title: '',
+    });
 
   return (
     <>
-     
       <Div flex="1" height="100%">
         <Div
           py="1rem"
@@ -58,9 +55,8 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
           {...(onClick
             ? { onClick }
             : {
-              onClick: () =>
-                name == 'more' ? toggleOpenMenuMore() : goToPath(path),
-            })}
+                onClick: () => (name == 'more' ? openModal() : goToPath(path)),
+              })}
         >
           <Div height="2rem" display="flex" alignItems="center">
             <Icon maxHeight="1.5rem" maxWidth="1.5rem" width="1.5rem" />

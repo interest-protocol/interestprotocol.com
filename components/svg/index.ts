@@ -11,6 +11,7 @@ export { default as CaretLeftSGV } from './caret-left';
 export { default as CaretLeftSVG } from './caret-left';
 export { default as CaretRightSVG } from './caret-right';
 export { default as CaretUpSVG } from './caret-up';
+export { default as ChartSquareSVG } from './chart-square';
 export { default as CheckSVG } from './check';
 export { default as CheckedSVG } from './checked';
 export { default as ChevronDoubleLeftSVG } from './chevron-double-left';

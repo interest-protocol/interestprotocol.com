@@ -6,7 +6,7 @@ import SideBarMenuListItem from './menu-list-item';
 import { MENU_MOBILE_ITEMS } from './menu-mobile.data';
 
 const MobileMenuList: FC = () => (
-  <Div display="flex" flexDirection="column" gap="0.5rem">
+  <Div width="100%" display="flex" flexDirection="column" gap="0.5rem">
     {MENU_MOBILE_ITEMS.map((item, index) => (
       <SideBarMenuListItem key={v4()} index={index} {...item} />
     ))}
