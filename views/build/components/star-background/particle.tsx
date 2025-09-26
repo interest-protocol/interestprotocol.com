@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
 
-import { Motion } from '../../../../components/motion';
+import Motion from '@/components/motion';
 
 const Particle: FC = () => {
   const top = useMemo(Math.random, []);

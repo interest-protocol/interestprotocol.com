@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import { Motion } from '@/components/motion';
+import Motion from '@/components/motion';
 
 import { SOCIAL_LINK } from '../social-link.data';
 

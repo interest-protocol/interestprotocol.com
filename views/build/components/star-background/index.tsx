@@ -1,7 +1,8 @@
 import { FC, useState } from 'react';
-import unikey from 'unikey';
+import { v4 } from 'uuid';
 
-import { Motion } from '../../../../components/motion';
+import Motion from '@/components/motion';
+
 import Particle from './particle';
 import { StarBackgroundProps } from './star-background.types';
 
@@ -19,13 +20,13 @@ const HeroBackground: FC<StarBackgroundProps> = ({
 
   return (
     <Motion
+      zIndex={0}
       position="absolute"
       top="0"
       left="0"
       width="100vw"
       height="100vh"
       overflow="hidden"
-      zIndex={0} // fica atrás do conteúdo
       onMouseMove={handleMouseMove}
     >
       <Motion
@@ -67,7 +68,7 @@ const HeroBackground: FC<StarBackgroundProps> = ({
       />
 
       {Array.from({ length: numberOfParticles }, () => (
-        <Particle key={unikey()} />
+        <Particle key={v4()} />
       ))}
     </Motion>
   );
