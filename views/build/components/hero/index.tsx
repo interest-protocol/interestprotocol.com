@@ -107,7 +107,7 @@ const Hero: FC = () => (
             justifyContent="center"
             borderRadius="2.875rem"
             border="1px solid #44444A"
-            nHover={{ color: '#B4C5FF' }}
+            nHover={{ border: '1px solid #B4C5FF', transaction: '0.4s' }}
           >
             <Icon
               width="100%"
