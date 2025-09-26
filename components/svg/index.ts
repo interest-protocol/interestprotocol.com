@@ -1,4 +1,3 @@
-export { default as FacebookSVG } from './facebook';
 export { default as InstagramSVG } from './instagram';
 export { default as LinkedinSVG } from './linkedin';
 export { default as LogoSVG } from './logo';
