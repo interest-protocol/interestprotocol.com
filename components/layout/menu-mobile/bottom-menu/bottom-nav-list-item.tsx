@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 
 import { useModal } from '@/hooks';
 
-import ModalMenu from '../modal-menu';
+import MobileMenu from '..';
 import { BottomNavListItemProps } from './bottom-menu.types';
 
 const BottomNavListItem: FC<BottomNavListItemProps> = ({
@@ -15,6 +15,7 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
   onClick,
   isHidden,
 }) => {
+  const { setContent } = useModal();
   const { asPath, push } = useRouter();
 
   const goToPath = (path: unknown) => {
@@ -26,11 +27,10 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
 
   if (isHidden) return null;
 
-  const { setContent } = useModal();
-
   const openModal = () =>
-    setContent(<ModalMenu />, {
+    setContent(<MobileMenu />, {
       title: '',
+      mobileOnly: true,
     });
 
   return (
@@ -59,7 +59,12 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
               })}
         >
           <Div height="2rem" display="flex" alignItems="center">
-            <Icon maxHeight="1.5rem" maxWidth="1.5rem" width="1.5rem" />
+            <Icon
+              width="1.5rem"
+              maxHeight="1.5rem"
+              maxWidth="1.5rem"
+              color={asPath === path ? '#B4C5FF' : '#FFFFFF'}
+            />
           </Div>
           <Span
             fontSize="0.875rem"

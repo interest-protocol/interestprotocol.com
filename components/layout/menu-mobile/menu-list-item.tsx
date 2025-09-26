@@ -8,6 +8,7 @@ import { v4 } from 'uuid';
 import { Motion } from '@/components/motion';
 import { CaretUpSVG } from '@/components/svg';
 import useClickOutsideListenerRef from '@/hooks/use-click-outside-listener-ref';
+import { useModal } from '@/hooks/use-modal';
 import { noop } from '@/utils';
 
 import AccordionItem from './accordion-item';
@@ -24,6 +25,7 @@ const MobileMenuListItem: FC<MenuMobileItemProps> = ({
   accordionList,
 }) => {
   const { asPath, push } = useRouter();
+  const { handleClose } = useModal();
 
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
@@ -95,7 +97,12 @@ const MobileMenuListItem: FC<MenuMobileItemProps> = ({
           border="1px solid #FFFFFF1A"
           bg={asPath === path ? '#343438' : undefined}
           onClick={
-            disabled || !!accordionList || !path ? noop : () => push(path)
+            disabled || !!accordionList || !path
+              ? noop
+              : () => {
+                  push(path);
+                  handleClose();
+                }
           }
           nHover={{
             bg: !disabled && '#343438',

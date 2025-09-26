@@ -1,12 +1,12 @@
 import { Div, P } from '@stylin.js/elements';
 import { AnimatePresence, motion } from 'motion/react';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import useEventListener from '@/hooks/use-event-listener';
 import { useModal } from '@/hooks/use-modal';
 import { useSafeHeight } from '@/hooks/use-safe-height';
 
-import { TimesSVG } from '../svg';
+import { DividerSVG, TimesSVG } from '../svg';
 
 const Motion = motion.create(Div);
 
@@ -16,11 +16,31 @@ const ModalProvider: FC = () => {
     content,
     onClose,
     allowClose,
+    mobileOnly,
     handleClose,
     overlayProps,
     containerProps,
   } = useModal();
   const safeHeight = useSafeHeight();
+
+  useEffect(() => {
+    if (!mobileOnly) return;
+
+    const mediaQuery = window.matchMedia('(max-width: 990px)');
+    const handler = (e: MediaQueryListEvent) => {
+      if (!e.matches) {
+        handleClose();
+      }
+    };
+
+    mediaQuery.addEventListener('change', handler);
+
+    if (!mediaQuery.matches) {
+      handleClose();
+    }
+
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, [mobileOnly, handleClose]);
 
   const onHandleClose = () => {
     if (!allowClose) return;
@@ -62,7 +82,7 @@ const ModalProvider: FC = () => {
         >
           <Motion
             display="flex"
-            maxWidth={['100vw', '100vw', '95vw']}
+            maxWidth={['100vw', '100vw', '100vw', '95vw']}
             transition={{ duration: 0.5, delay: 0.2 }}
             animate={{ y: ['200vh', '0vh'], scale: [0.5, 1] }}
             maxHeight={[safeHeight * 0.9, safeHeight * 0.9, '90vh']}
@@ -80,10 +100,10 @@ const ModalProvider: FC = () => {
               color="#ffffff"
               maxHeight="100%"
               flexDirection="column"
-              border="1px solid #FFFFFF1A"
               backdropFilter="blur(50px)"
-              borderRadius={['1rem 1rem 0 0', '1rem 1rem 0 0', '1rem']}
               bg="#121313"
+              border={['none', 'none', '1px solid #FFFFFF1A']}
+              borderRadius={['1rem 1rem 0 0', '1rem 1rem 0 0', '1rem']}
             >
               <Div
                 px="1.5rem"
@@ -91,22 +111,44 @@ const ModalProvider: FC = () => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <P fontSize="1.25rem" fontFamily="Inter" fontWeight="600">
+                <P
+                  fontSize="1.25rem"
+                  fontFamily="Inter"
+                  fontWeight="600"
+                  display={['none', 'none', 'block', 'block']}
+                >
                   {title}
                 </P>
+
                 <Div
                   onClick={handleClose}
                   cursor="pointer"
                   color="#9CA3AF"
                   width="0.85rem"
                   height="0.85rem"
-                  nHover={{
-                    color: '#B4C5FF',
-                  }}
+                  nHover={{ color: '#B4C5FF' }}
+                  display={['none', 'none', 'flex']}
                 >
                   <TimesSVG maxWidth="100%" maxHeight="100%" width="100%" />
                 </Div>
+
+                <Div
+                  mb="0.5rem"
+                  width="100%"
+                  cursor="pointer"
+                  onClick={handleClose}
+                  justifyContent="center"
+                  display={['flex', 'flex', 'none']}
+                >
+                  <DividerSVG
+                    width="100%"
+                    maxWidth="3rem"
+                    maxHeight="0.3125rem"
+                    cursor="pointer"
+                  />
+                </Div>
               </Div>
+
               <Div flex="1" overflowY="auto" px="1.5rem" pb="1.5rem">
                 {content}
               </Div>
