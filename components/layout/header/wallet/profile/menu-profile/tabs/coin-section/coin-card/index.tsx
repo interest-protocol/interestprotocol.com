@@ -1,3 +1,4 @@
+import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
@@ -7,8 +8,9 @@ import { toasting } from '@/components/toast';
 import TokenIcon from '@/components/token-icon';
 import { TooltipWrapper } from '@/components/tooltip';
 import { Network } from '@/constants';
-import { COIN_TYPE_TO_FA } from '@/constants/coins';
+import { COIN_TYPE_TO_FA, FA_TO_COIN } from '@/constants/coins';
 import { FixedPointMath } from '@/lib';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 import { formatMoney, ZERO_BIG_NUMBER } from '@/utils';
 
@@ -19,9 +21,22 @@ type CoinType = keyof typeof COIN_TYPE_TO_FA;
 
 const CoinCard: FC<CoinCardProps> = ({ token }) => {
   const symbol = token.symbol;
+  const { coinsMap } = useCoins();
   const decimals = token.decimals;
 
-  const balance = FixedPointMath.toNumber(ZERO_BIG_NUMBER, decimals);
+  const coinType = FA_TO_COIN[token.type];
+
+  const balanceCoin = coinType
+    ? coinsMap[normalizeSuiAddress(coinType)]?.balance
+    : ZERO_BIG_NUMBER;
+
+  const balanceFa =
+    coinsMap[normalizeSuiAddress(token.type)]?.balance ?? ZERO_BIG_NUMBER;
+
+  const balance = FixedPointMath.toNumber(
+    balanceCoin?.plus(balanceFa),
+    decimals
+  );
 
   const handleWrapCoin = async () => {
     const dismiss = toasting.loading({ message: `Wrapping ${symbol}...` });
@@ -50,10 +65,6 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
   };
 
   const isConvertible = (token.type as CoinType) in COIN_TYPE_TO_FA;
-
-  /**TO generate wrapping random ----- TO DELETE */
-  const RANDOM_NUMBER = Math.random() < 0.5;
-  const VALUE = parseFloat(`${Math.random() * 4}`).toFixed(4);
 
   return (
     <CardWrapper
@@ -89,7 +100,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
               {symbol}
             </Span>
           </P>
-          <Div
+          {/* <Div
             mt="0.15rem"
             display="flex"
             alignItems="center"
@@ -108,7 +119,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
             >
               {`${RANDOM_NUMBER ? '+' : '-'}${VALUE}`}
             </P>
-          </Div>
+          </Div> */}
         </Div>
         {isConvertible && (
           <TooltipWrapper
@@ -133,7 +144,6 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
               color="#B4C5FF"
               borderRadius="999px"
               onClick={handleWrapCoin}
-              disabled={RANDOM_NUMBER}
             >
               <WrapSVG maxHeight="1rem" maxWidth="1rem" width="100%" />
             </Button>

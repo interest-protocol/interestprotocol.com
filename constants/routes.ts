@@ -1,7 +1,9 @@
 export enum RoutesEnum {
   Swap = 'swap',
   Pool = 'pools',
+  PoolDetails = 'pools-details',
   Portfolio = 'portfolio',
+  PortfolioDetails = 'portfolio-details',
   CreateToken = 'create-token',
   DCA = 'dca',
   Stats = 'stats',
@@ -11,14 +13,16 @@ export enum RoutesEnum {
 export const Routes: Record<RoutesEnum, string> = {
   [RoutesEnum.Swap]: '/',
   [RoutesEnum.Pool]: '/pools',
+  [RoutesEnum.PoolDetails]: '/pools/details',
   [RoutesEnum.Portfolio]: '/portfolio',
+  [RoutesEnum.PortfolioDetails]: '/portfolio/details',
   [RoutesEnum.CreateToken]: '/create-token',
   [RoutesEnum.DCA]: '/dca',
   [RoutesEnum.Stats]: '/stats',
   [RoutesEnum.Bridge]: 'https://bridge.movementnetwork.xyz/',
 };
 
-export const NavItemsTitle: Record<RoutesEnum, string> = {
+export const NavItemsTitle: Record<string, string> = {
   [RoutesEnum.Swap]: 'Swap',
   [RoutesEnum.Pool]: 'Pool',
   [RoutesEnum.Portfolio]: 'Portfolio',

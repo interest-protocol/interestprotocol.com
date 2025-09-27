@@ -1,45 +1,54 @@
-import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { Button, Div } from '@stylin.js/elements';
+import { FC, useState } from 'react';
+import unikey from 'unikey';
 
-import { SegmentedControlProps } from './segmented-control.types';
+import {
+  SegmentedControlOptionItemProps,
+  SegmentedControlProps,
+} from './segmented-control.types';
 
 const SegmentedControl: FC<SegmentedControlProps> = ({
-  interval,
-  setInterval,
   options,
-}) => (
-  <Div
-    gap="0.5rem"
-    bg="#9CA3AF1A"
-    display="flex"
-    height="2.25rem"
-    width="auto"
-    p="0.25rem 0.5rem"
-    borderRadius="9999rem"
-    border="1px solid #9CA3AF1A"
-  >
-    {options.map((intendedInterval) => (
-      <Div
-        display="flex"
-        fontSize="0.875rem"
-        alignItems="center"
-        borderRadius="9999rem"
-        key={intendedInterval}
-        padding="0.25rem 0.5rem"
-        onClick={() => setInterval(intendedInterval)}
-        color={interval === intendedInterval ? '#FFFFFF' : '#9CA3AF'}
-        pointerEvents={interval === intendedInterval ? 'none' : undefined}
-        backgroundColor={
-          interval === intendedInterval ? '#9CA3AF33' : 'transparent'
-        }
-        style={{
-          cursor: interval === intendedInterval ? 'default' : 'pointer',
-        }}
-      >
-        {intendedInterval}
-      </Div>
-    ))}
-  </Div>
-);
+  onSelect,
+  defaultOption,
+}) => {
+  const [selected, setSelected] = useState(defaultOption);
+
+  const handleClick = (option: SegmentedControlOptionItemProps) => {
+    setSelected(option);
+    onSelect?.(option.value);
+  };
+
+  return (
+    <Div
+      p="0.25rem"
+      display="flex"
+      bg="#9CA3AF1A"
+      width="fit-content"
+      borderRadius="9999px"
+      border="1px solid #9CA3AF1A"
+    >
+      {options.map((option) => (
+        <Button
+          key={unikey()}
+          px="0.5rem"
+          py="0.25rem"
+          border="none"
+          fontWeight="500"
+          fontFamily="Inter"
+          cursor="pointer"
+          fontSize="0.875rem"
+          borderRadius="9999px"
+          transition="all 0.2s ease"
+          onClick={() => handleClick(option)}
+          bg={selected.value === option.value ? '#9CA3AF33' : 'transparent'}
+          color={selected.value === option.value ? '#FFFFFF' : '#9CA3AF'}
+        >
+          {option.label}
+        </Button>
+      ))}
+    </Div>
+  );
+};
 
 export default SegmentedControl;

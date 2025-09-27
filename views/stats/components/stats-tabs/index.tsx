@@ -1,6 +1,5 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
-import { v4 } from 'uuid';
 
 import Dropdown from '@/components/dropdown';
 import Tabs from '@/components/tabs';
@@ -29,14 +28,13 @@ const StatsTabs: FC = () => {
       justifyContent="space-between"
       flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Tabs
-        key={v4()}
-        tab={tab}
-        setTab={setTab}
-        activeBg="#B4C5FF33"
-        tabs={['Tokens', 'Pools', 'Transactions']}
-        justifyContent={['space-between', 'flex-start']}
-      />
+      <Div display="flex" flexWrap="wrap">
+        <Tabs
+          tab={tab}
+          setTab={setTab}
+          tabs={['Tokens', 'Pools', 'Transactions']}
+        />
+      </Div>
 
       {shouldShowControls && (
         <Div

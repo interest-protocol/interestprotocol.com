@@ -11,7 +11,6 @@ export const Tonal: FC<PropsWithChildren<Omit<ButtonProps, 'variant'>>> = ({
     <StylinButton
       all="unset"
       gap="0.5rem"
-      mr="0.75rem"
       display="flex"
       cursor="pointer"
       color="#DBE1FF"
