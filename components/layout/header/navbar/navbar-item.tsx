@@ -17,7 +17,6 @@ const NavbarItem: FC<NavbarItemProps> = ({ title, href }) => {
       <Li
         display="flex"
         alignItems="center"
-        gap="1rem"
         fontSize="1rem"
         cursor="pointer"
         height="1.375rem"
@@ -26,6 +25,7 @@ const NavbarItem: FC<NavbarItemProps> = ({ title, href }) => {
         width="max-content"
         lineHeight="1.5rem"
         alignContent="center"
+        gap={['0.2rem', '1rem']}
         textTransform="capitalize"
         nHover={{ color: '#fff' }}
         transition="all 350ms ease-in-out"

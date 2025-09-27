@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { Button } from '@/components/button';
 import { useModal } from '@/hooks';
 
+import NavbarItem from '../navbar/navbar-item';
 import ConnectWalletModal from './connect-wallet';
 import Profile from './profile';
 
@@ -18,7 +19,16 @@ const Wallet: FC = () => {
     });
 
   return (
-    <Div display="flex" justifyContent="flex-end">
+    <Div
+      display="flex"
+      justifyContent="flex-end"
+      alignItems="center"
+      gap="1rem"
+    >
+      <Div display={['block', 'block', 'block', 'none']}>
+        <NavbarItem title="Bridge" href="https://bridge.movementnetwork.xyz/" />
+      </Div>
+
       {!connected ? (
         <Button
           all="unset"

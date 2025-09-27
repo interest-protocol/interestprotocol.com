@@ -34,7 +34,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
     coinsMap[normalizeSuiAddress(token.type)]?.balance ?? ZERO_BIG_NUMBER;
 
   const balance = FixedPointMath.toNumber(
-    balanceCoin.plus(balanceFa),
+    balanceCoin?.plus(balanceFa),
     decimals
   );
 

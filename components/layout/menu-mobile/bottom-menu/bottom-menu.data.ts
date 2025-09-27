@@ -1,8 +1,8 @@
 import {
-  BridgeSVG,
-  DoubleChevronSVG,
+  ArrangeSquareSVG,
   MoreSVG,
   PoolSVG,
+  PortfolioSVG,
 } from '@/components/svg';
 import { Routes, RoutesEnum } from '@/constants';
 
@@ -11,7 +11,7 @@ import { BottomMenuProps } from './bottom-menu.types';
 export const BOTTOM_MENU_ITEMS: ReadonlyArray<BottomMenuProps> = [
   {
     name: 'swap',
-    Icon: DoubleChevronSVG,
+    Icon: ArrangeSquareSVG,
     path: Routes[RoutesEnum.Swap],
   },
   {
@@ -20,9 +20,9 @@ export const BOTTOM_MENU_ITEMS: ReadonlyArray<BottomMenuProps> = [
     path: Routes[RoutesEnum.Pool],
   },
   {
-    Icon: BridgeSVG,
-    name: 'bridge',
-    path: 'https://bridge.movementnetwork.xyz/',
+    Icon: PortfolioSVG,
+    name: 'Portfolio',
+    path: Routes[RoutesEnum.Portfolio],
   },
   {
     Icon: MoreSVG,
