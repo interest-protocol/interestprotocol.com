@@ -28,7 +28,7 @@ const StatsTabs: FC = () => {
       justifyContent="space-between"
       flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Div display="flex" flexWrap="wrap">
+      <Div display="flex" justifyContent={['space-between', 'flex-start']}>
         <Tabs
           tab={tab}
           setTab={setTab}
@@ -40,7 +40,7 @@ const StatsTabs: FC = () => {
         <Div
           gap="0.75rem"
           display="flex"
-          width={['100%', '100%', '100%', 'max-content']}
+          alignItems="center"
           flexDirection={['row-reverse', 'row-reverse', 'row-reverse', 'row']}
         >
           {showVolumeFilter && (
