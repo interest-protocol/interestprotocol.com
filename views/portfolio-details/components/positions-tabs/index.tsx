@@ -10,14 +10,16 @@ const PositionsTabs: FC = () => {
 
   return (
     <Div
+      mb="1rem"
       gap="1rem"
       width="100%"
-      mb="1rem"
       display="flex"
       justifyContent="space-between"
       flexDirection={['column', 'column', 'row', 'row']}
     >
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+      <Div display="flex">
+        <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+      </Div>
     </Div>
   );
 };

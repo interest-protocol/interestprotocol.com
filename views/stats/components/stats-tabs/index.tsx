@@ -28,11 +28,13 @@ const StatsTabs: FC = () => {
       justifyContent="space-between"
       flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Tabs
-        tab={tab}
-        setTab={setTab}
-        tabs={['Tokens', 'Pools', 'Transactions']}
-      />
+      <Div display="flex" flexWrap="wrap">
+        <Tabs
+          tab={tab}
+          setTab={setTab}
+          tabs={['Tokens', 'Pools', 'Transactions']}
+        />
+      </Div>
 
       {shouldShowControls && (
         <Div

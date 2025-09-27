@@ -2,7 +2,7 @@ import { TokenIcon } from '@/components';
 import Tag from '@/components/tag';
 import { Network } from '@/constants';
 
-import { CollapseCardInfoLineProps } from '../collapse-card-info/collapse-card-info.types';
+import { CollapseCardInfoLineProps } from '../../../components/collapse-card-info/collapse-card-info.types';
 
 export const POSITION_OVERVIEW_DATA: ReadonlyArray<CollapseCardInfoLineProps> =
   [

@@ -1,6 +1,7 @@
 export enum RoutesEnum {
   Swap = 'swap',
   Pool = 'pools',
+  PoolDetails = 'pools-details',
   Portfolio = 'portfolio',
   PortfolioDetails = 'portfolio-details',
   CreateToken = 'create-token',
@@ -12,6 +13,7 @@ export enum RoutesEnum {
 export const Routes: Record<RoutesEnum, string> = {
   [RoutesEnum.Swap]: '/',
   [RoutesEnum.Pool]: '/pools',
+  [RoutesEnum.PoolDetails]: '/pools/details',
   [RoutesEnum.Portfolio]: '/portfolio',
   [RoutesEnum.PortfolioDetails]: '/portfolio/details',
   [RoutesEnum.CreateToken]: '/create-token',

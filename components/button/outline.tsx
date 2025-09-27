@@ -11,7 +11,6 @@ export const Outline: FC<PropsWithChildren<Omit<ButtonProps, 'variant'>>> = ({
     <StylinButton
       all="unset"
       gap="0.5rem"
-      mr="0.75rem"
       display="flex"
       cursor="pointer"
       color="#E2E2E6"

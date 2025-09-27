@@ -3,7 +3,12 @@ import { AnimatePresence } from 'motion/react';
 import { FC, useState } from 'react';
 
 import DirectionalMenu from '@/components/directional-menu';
-import { ChevronDownSVG, LogoLettersSVG, LogoSVG } from '@/components/svg';
+import {
+  ChevronDownSVG,
+  ListSVG,
+  LogoLettersSVG,
+  LogoSVG,
+} from '@/components/svg';
 
 import SidebarContent from './sidebar-content';
 
@@ -30,8 +35,14 @@ const Sidebar: FC = () => {
             height="100%"
           />
         </Div>
+
         <Span color="#9CA3AF" cursor="pointer" onClick={toggleMenu}>
-          <ChevronDownSVG width="100%" maxWidth="0.825rem" />
+          <Span display={['block', 'block', 'block', 'none']}>
+            <ListSVG width="100%" maxWidth="1.25rem" maxHeight="1.25rem" />
+          </Span>
+          <Span display={['none', 'none', 'none', 'block']}>
+            <ChevronDownSVG width="100%" maxWidth="0.825rem" />
+          </Span>
         </Span>
       </Div>
       <AnimatePresence>
