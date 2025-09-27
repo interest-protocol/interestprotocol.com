@@ -1,13 +1,16 @@
 import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import Tabs from '@/components/tabs';
-import { useTabState } from '@/hooks/use-tab-manager';
 
 import StatsCharts from '../../stats-chart';
 
 const ChartTabs: FC = () => {
-  const { tab, setTab } = useTabState();
+  const [chartTabs, setChartTabs] = useState(0);
+
+  const toggleChart = (tabIndex: number) => {
+    setChartTabs(tabIndex);
+  };
 
   return (
     <Div
@@ -19,13 +22,13 @@ const ChartTabs: FC = () => {
     >
       <Div width="100%" display="flex" justifyContent="space-between">
         <Tabs
-          tab={tab}
-          setTab={setTab}
+          tab={chartTabs}
+          setTab={toggleChart}
           color="#B4C5FF33"
           tabs={['TVL', 'Volume']}
         />
       </Div>
-      <StatsCharts tab={tab} />
+      <StatsCharts tab={chartTabs} />
     </Div>
   );
 };
