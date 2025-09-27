@@ -3,9 +3,9 @@ import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { TokenIcon } from '@/components';
-import { Button } from '@/components/Button';
 import { Network } from '@/constants';
 
+import { Button } from '../button';
 import { TAG_COLOR } from './pool-name.data';
 import { PoolNameProps } from './pool-name.types';
 
