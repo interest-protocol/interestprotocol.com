@@ -1,7 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import CollapseCardInfo from '../collapse-card-info';
+import CollapseCardInfo from '../../../components/collapse-card-info';
 import { EARNINGS_FEES_DATA, POSITION_OVERVIEW_DATA } from './info.data';
 import PoolBalance from './pool-balance';
 import YourPositionBanner from './your-position-banner';

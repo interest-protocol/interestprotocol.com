@@ -39,7 +39,6 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
           <Div
             border="0.65rem solid #1e1f1f"
             borderRadius="999px"
-            bg="red"
             display={'flex'}
             width="max-content"
           >

@@ -19,9 +19,11 @@ const PoolsTabs: FC = () => {
       mb="1rem"
       display="flex"
       justifyContent="space-between"
-      flexDirection={['column', 'column', 'row', 'row']}
+      flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+      <Div display="flex">
+        <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+      </Div>
 
       <Div gap="0.75rem" display="flex">
         <SearchInputPool />
