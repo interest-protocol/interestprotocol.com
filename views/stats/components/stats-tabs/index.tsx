@@ -42,8 +42,8 @@ const StatsTabs: FC = () => {
         <Div
           gap="0.75rem"
           display="flex"
-          flexDirection={['row-reverse', 'row']}
           width={['100%', '100%', '100%', 'max-content']}
+          flexDirection={['row-reverse', 'row-reverse', 'row-reverse', 'row']}
         >
           {showVolumeFilter && (
             <Dropdown placeholder="Select" options={VOLUME_FILTER_DATA} />

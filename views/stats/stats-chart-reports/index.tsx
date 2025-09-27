@@ -9,8 +9,8 @@ const StatsChartReports: FC = () => (
     <Div
       gap="1rem"
       width="100%"
-      display={['none', 'none', 'none', 'grid']}
-      gridTemplateColumns={['1fr', '1fr', '1fr', '1fr 1fr']}
+      display={['none', 'none', 'grid', 'grid']}
+      gridTemplateColumns={['1fr', '1fr', '1fr 1fr', '1fr 1fr']}
     >
       <StatsCharts />
     </Div>

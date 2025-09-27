@@ -15,7 +15,7 @@ const ChartTabs: FC = () => {
       gap="1rem"
       width="100%"
       flexDirection="column"
-      display={['flex', 'flex', 'flex', 'none']}
+      display={['flex', 'flex', 'none', 'none']}
     >
       <Tabs
         tab={tab}

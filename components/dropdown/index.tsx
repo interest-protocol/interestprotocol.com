@@ -51,7 +51,6 @@ const Dropdown: FC<DropdownProps> = ({
         bg="#9CA3AF1A"
         cursor="pointer"
         alignItems="center"
-        width={['100%', '100%', '100%', 'max-content']}
         borderRadius={isRounded ? '9999rem' : '0.75rem'}
         justifyContent="space-between"
         border="1px solid #9CA3AF1A"
@@ -61,6 +60,7 @@ const Dropdown: FC<DropdownProps> = ({
         nHover={{
           borderColor: '#B4C5FF',
         }}
+        width={['8.375rem', '8.375rem', '8.375rem', 'max-content']}
       >
         <P
           fontSize="1rem"
