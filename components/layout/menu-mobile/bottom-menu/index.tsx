@@ -14,6 +14,8 @@ const SwapBottomMenu = () => {
       bg="#9CA3AF1A"
       flexDirection="column"
       display={['flex', 'flex', 'flex', 'none', 'none']}
+      backdropFilter="blur(0.5rem)"
+      WebkitBackdropFilter="blur(0.5rem)"
     >
       <BottomNavList />
     </Div>

@@ -63,7 +63,7 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
               width="1.5rem"
               maxHeight="1.5rem"
               maxWidth="1.5rem"
-              color={asPath === path ? '#B4C5FF' : '#FFFFFF'}
+              isSelected={asPath === path}
             />
           </Div>
           <Span
