@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import unikey from 'unikey';
 
-import { SidebarLogoSVG } from '@/components/svg';
+import { LogoSVG } from '@/components/svg';
 
 import { SIDEBAR_SECTIONS } from '../sidebar.data';
 import { SOCIAL_LINK } from '../social-link.data';
@@ -13,7 +13,7 @@ const SidebarContent: FC = () => (
   <>
     <Div display="flex" flexDirection="column" gap="1rem">
       <Div mb="1rem">
-        <SidebarLogoSVG maxWidth="2.5rem" maxHeight="2.5rem" />
+        <LogoSVG maxWidth="2.5rem" maxHeight="2.5rem" color="#FFFFFF" />
       </Div>
       {SIDEBAR_SECTIONS.map((section) => (
         <SidebarSection key={unikey()} section={section} />

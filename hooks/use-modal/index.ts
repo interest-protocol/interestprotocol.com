@@ -12,6 +12,7 @@ interface UseModal {
   content: ReactNode;
   onClose?: () => void;
   allowClose?: boolean;
+  mobileOnly?: boolean;
   handleClose: () => void;
   overlayProps?: MotionProps;
   containerProps?: MotionProps;
@@ -21,6 +22,7 @@ interface UseModal {
       title: string;
       onClose?: () => void;
       allowClose?: boolean;
+      mobileOnly?: boolean;
       overlayProps?: DivProps;
       containerProps?: DivProps;
     }
@@ -31,6 +33,7 @@ const defaultValues = {
   title: '',
   content: null,
   allowClose: true,
+  mobileOnly: false,
   onClose: undefined,
   overlayProps: undefined,
   containerProps: undefined,

@@ -1,4 +1,4 @@
-import { CirclePlusSVG, DefaultSVG, HourglassSVG } from '@/components/svg';
+import { ChartSquareSVG, CirclePlusSVG, HourglassSVG } from '@/components/svg';
 import { Routes, RoutesEnum } from '@/constants';
 
 import { MenuItemProps } from './menu.types';
@@ -22,9 +22,9 @@ export const MENU_MOBILE_ITEMS: ReadonlyArray<
     disabled: false,
   },
   {
-    Icon: DefaultSVG,
-    name: 'Portfolio',
-    path: Routes[RoutesEnum.Portfolio],
+    Icon: ChartSquareSVG,
+    name: 'Stats',
+    path: Routes[RoutesEnum.Stats],
     disabled: false,
   },
 ];
