@@ -7,11 +7,10 @@ import SegmentedControl from '@/components/segmented-control';
 import { formatDate } from '@/utils/date';
 
 import HeadInfo from '../components/head-info';
-import { DATA } from './stats-chart-reports.data';
+import { DATA, SEGMENTED_CONTROL_DATA } from './stats-chart-reports.data';
 
 const StatsChartVolumeReport: FC = () => {
   const [loading, setLoading] = useState(true);
-  const [interval, setInterval] = useState('1M');
 
   useEffect(() => {
     const delay = Math.floor(Math.random() * 5000);
@@ -42,9 +41,11 @@ const StatsChartVolumeReport: FC = () => {
           alignItems="flex-end"
         >
           <SegmentedControl
-            interval={interval}
-            setInterval={setInterval}
-            options={['1W', '1M', '3M']}
+            width="10.4375rem"
+            justifyContent="space-between"
+            options={SEGMENTED_CONTROL_DATA}
+            defaultOption={SEGMENTED_CONTROL_DATA[1]}
+            onSelect={() => {}}
           />
           <P color="#9CA3AF" fontWeight={400} fontSize="0.75rem">
             {formatDate('2025-08-22T05:42:10.123Z')}

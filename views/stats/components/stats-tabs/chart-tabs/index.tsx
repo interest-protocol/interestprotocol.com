@@ -17,16 +17,14 @@ const ChartTabs: FC = () => {
       flexDirection="column"
       display={['flex', 'flex', 'none', 'none']}
     >
-      <Tabs
-        tab={tab}
-        setTab={setTab}
-        width="11.125rem"
-        height="2.1875rem"
-        activeBg="#B4C5FF33"
-        tabs={['TVL', 'Volume']}
-        justifyContent="space-between"
-      />
-
+      <Div width="100%" display="flex" justifyContent="space-between">
+        <Tabs
+          tab={tab}
+          setTab={setTab}
+          color="#B4C5FF33"
+          tabs={['TVL', 'Volume']}
+        />
+      </Div>
       <StatsCharts tab={tab} />
     </Div>
   );
