@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 import SquarePlus from '@/components/svg/square-plus';
 
 const CreatePoolButton: FC = () => (
