@@ -8,14 +8,15 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color }) => (
   <>
     {tabs.map((text, index) => (
       <Button
-        px="1rem"
         key={v4()}
+        px="1rem"
         py="0.5rem"
         display="flex"
         border="none"
         fontSize="1rem"
         cursor="pointer"
         variant="outline"
+        alignItems="center"
         lineHeight="1.7rem"
         borderRadius="9999rem"
         justifyContent="center"

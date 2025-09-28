@@ -1,4 +1,4 @@
-import { Button, Div } from '@stylin.js/elements';
+import { Button, Div, DivProps } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import unikey from 'unikey';
 
@@ -7,10 +7,11 @@ import {
   SegmentedControlProps,
 } from './segmented-control.types';
 
-const SegmentedControl: FC<SegmentedControlProps> = ({
+const SegmentedControl: FC<SegmentedControlProps & DivProps> = ({
   options,
   onSelect,
   defaultOption,
+  ...rest
 }) => {
   const [selected, setSelected] = useState(defaultOption);
 
@@ -27,6 +28,7 @@ const SegmentedControl: FC<SegmentedControlProps> = ({
       width="fit-content"
       borderRadius="9999px"
       border="1px solid #9CA3AF1A"
+      {...rest}
     >
       {options.map((option) => (
         <Button
@@ -41,8 +43,8 @@ const SegmentedControl: FC<SegmentedControlProps> = ({
           borderRadius="9999px"
           transition="all 0.2s ease"
           onClick={() => handleClick(option)}
-          bg={selected.value === option.value ? '#9CA3AF33' : 'transparent'}
-          color={selected.value === option.value ? '#FFFFFF' : '#9CA3AF'}
+          bg={selected?.value === option.value ? '#9CA3AF33' : 'transparent'}
+          color={selected?.value === option.value ? '#FFFFFF' : '#9CA3AF'}
         >
           {option.label}
         </Button>
