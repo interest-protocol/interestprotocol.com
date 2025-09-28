@@ -1,12 +1,14 @@
 import { FC } from 'react';
 
+import { PoolDetailsProps } from '@/views/pool-details/pool-details.types';
+
 import PoolTokenInfoDesktop from './desktop';
 import PoolTokenInfoMobile from './mobile';
 
-const PoolTokenInfo: FC = () => (
+const PoolTokenInfo: FC<PoolDetailsProps> = ({ isV3 }) => (
   <>
     <PoolTokenInfoDesktop />
-    <PoolTokenInfoMobile />
+    <PoolTokenInfoMobile isV3={isV3} />
   </>
 );
 

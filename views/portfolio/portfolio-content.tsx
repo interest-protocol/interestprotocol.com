@@ -4,6 +4,7 @@ import { FC } from 'react';
 import Dropdown from '@/components/dropdown';
 import { useModal } from '@/hooks';
 
+import RewardsModal from '../components/rewards-modal';
 import PoolTypeTable from './components/pool-type-table';
 import {
   POOL_EMPTY_DATA,
@@ -16,7 +17,6 @@ import {
   TableSummaryCustomProps,
   TableSummaryProps,
 } from './components/table-summary/table-summary.types';
-import RewardsModal from './components/table-summary/table-summary-earnings/components/rewards-modal';
 import { TRANSACTION_FILTER_DATA } from './portfolio.data';
 import PortfolioSummary from './portfolio-summary';
 
