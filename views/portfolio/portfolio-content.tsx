@@ -22,8 +22,8 @@ import { TRANSACTION_FILTER_DATA } from './portfolio.data';
 import PortfolioSummary from './portfolio-summary';
 
 const PortfolioContent: FC = () => {
-  const { setContent } = useModal();
   const { tab } = useTabState();
+  const { setContent } = useModal();
 
   const CURVE_HEADER_SUMMARY: TableSummaryProps = {
     onClaim: () =>
@@ -134,13 +134,11 @@ const PortfolioContent: FC = () => {
       px={['unset', 'unset', 'unset', '5.5rem']}
     >
       <PortfolioSummary />
-
       <Div gap="1rem" display={['none', 'block']}>
         {TABLES.map((props, i) => (
           <PoolTypeTable key={i} {...props} />
         ))}
       </Div>
-
       <Div display={['flex', 'none']} flexDirection="column" gap="1rem">
         <PortfolioTabs onGetTotal={TABLES.map((t) => t.rows.length)} />
         <PoolTypeTable {...TABLES[tab]} />

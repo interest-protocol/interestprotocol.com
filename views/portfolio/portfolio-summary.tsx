@@ -1,11 +1,56 @@
+import { AccountAddress } from '@aptos-labs/ts-sdk';
 import { Div } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { FC } from 'react';
-import unikey from 'unikey';
+
+import { MOVE } from '@/constants/coins';
+import { useCoinsPrice } from '@/hooks/use-coins-price';
+import { useGetAccountFarmsData } from '@/hooks/use-get-farm-account-data';
+import { FixedPointMath } from '@/lib';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
+import { formatDollars, ZERO_BIG_NUMBER } from '@/utils';
 
 import MetricInfo from './components/metric-info';
-import { METRIC_INFO_DATA } from './portfolio.data';
 
 const PortfolioSummary: FC = () => {
+  const { coins, coinsMap } = useCoins();
+  const accountFarmsData = useGetAccountFarmsData();
+
+  const { data: coinsPrice } = useCoinsPrice(coins.map((coin) => coin.type));
+
+  const movePrice = coinsPrice?.find(({ coin }) =>
+    MOVE.address.equals(AccountAddress.from(coin))
+  )?.price;
+
+  const netWorthUSD = coinsPrice?.reduce(
+    (acc, { coin, price }) =>
+      acc +
+      (coinsMap[coin]
+        ? price *
+          FixedPointMath.toNumber(
+            coinsMap[coin].balance,
+            coinsMap[coin].decimals
+          )
+        : 0),
+    0
+  );
+
+  const claimableRewards = accountFarmsData.data?.reduce(
+    (acc, reward) =>
+      BigNumber(String(acc)).plus(BigNumber(String(reward.rewards))),
+    ZERO_BIG_NUMBER
+  );
+
+  const claimableRewardsUSD =
+    FixedPointMath.toNumber(claimableRewards ?? ZERO_BIG_NUMBER, 8) *
+    (movePrice ?? 0);
+
+  console.log({
+    movePrice,
+    claimableRewards,
+    claimableRewardsUSD,
+  });
+
   return (
     <Div
       width="100%"
@@ -13,9 +58,14 @@ const PortfolioSummary: FC = () => {
       gap={['0.5rem', '1rem']}
       gridTemplateColumns={['repeat(2, 1fr)', 'repeat(4, 1fr)']}
     >
-      {METRIC_INFO_DATA.map((info) => (
-        <MetricInfo key={unikey()} title={info.title} value={info.value} />
-      ))}
+      <MetricInfo
+        title="Net worth"
+        value={netWorthUSD ? formatDollars(netWorthUSD) : '--'}
+      />
+      <MetricInfo
+        title="Claimable rewards"
+        value={claimableRewardsUSD ? formatDollars(claimableRewardsUSD) : '--'}
+      />
     </Div>
   );
 };
