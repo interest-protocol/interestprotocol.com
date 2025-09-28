@@ -45,12 +45,6 @@ const PortfolioSummary: FC = () => {
     FixedPointMath.toNumber(claimableRewards ?? ZERO_BIG_NUMBER, 8) *
     (movePrice ?? 0);
 
-  console.log({
-    movePrice,
-    claimableRewards,
-    claimableRewardsUSD,
-  });
-
   return (
     <Div
       width="100%"
