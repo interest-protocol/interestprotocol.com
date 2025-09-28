@@ -15,7 +15,7 @@ const TableHeader: FC<Omit<TableHeaderProps, 'rows'>> = ({
       bg="#9CA3AF1A"
       borderTopLeftRadius="0.5rem"
       borderTopRightRadius="0.5rem"
-      minWidth={['1000px', '1000px', '1000px', '800px', 'unset']}
+      minWidth={['1000px', '1000px', '400px', 'unset']}
       gridTemplateColumns={gridTemplateColumns || `repeat(${title.length},1fr)`}
     >
       {title.map(({ description, position }) => (

@@ -1,3 +1,5 @@
+import { SegmentedControlOptionItemProps } from '@/components/segmented-control/segmented-control.types';
+
 export const DATA = [
   { name: '1/3', tokenIn: 2400, tokenOut: 2400, total: 4800 },
   { name: '2/3', tokenIn: 3200, tokenOut: 2800, total: 6000 },
@@ -27,3 +29,19 @@ export const DATA = [
   { name: '26/3', tokenIn: 4800, tokenOut: 5800, total: 10600 },
   { name: '27/3', tokenIn: 6800, tokenOut: 6400, total: 13200 },
 ];
+
+export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
+  [
+    {
+      label: '1W',
+      value: '1W',
+    },
+    {
+      label: '1M',
+      value: '1M',
+    },
+    {
+      label: '3M',
+      value: '3M',
+    },
+  ];

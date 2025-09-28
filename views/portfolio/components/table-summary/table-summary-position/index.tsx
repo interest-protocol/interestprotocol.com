@@ -11,6 +11,8 @@ const TableSummaryPosition: FC<TableSummaryPositionProps> = ({
     display="flex"
     bg="#121621"
     p="0.75rem 1rem"
+    width="fit-content"
+    whiteSpace="nowrap"
     alignItems="center"
     borderRadius="0.75rem"
     border="1px solid #20242f"
@@ -20,7 +22,10 @@ const TableSummaryPosition: FC<TableSummaryPositionProps> = ({
     lineHeight="1.5rem"
   >
     <Span color="#9CA3AF">Position:</Span>
-    <Span color="#34D399">{`${totalPosition} in Range`}</Span>
+    <Span color="#34D399">
+      {totalPosition}
+      <Span display={['none', 'none', 'none', 'inline']}> in Range</Span>
+    </Span>
   </Div>
 );
 

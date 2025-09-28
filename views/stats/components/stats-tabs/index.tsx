@@ -28,18 +28,21 @@ const StatsTabs: FC = () => {
       justifyContent="space-between"
       flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Tabs
-        tab={tab}
-        setTab={setTab}
-        tabs={['Tokens', 'Pools', 'Transactions']}
-      />
+      <Div display="flex" justifyContent={['space-between', 'flex-start']}>
+        <Tabs
+          tab={tab}
+          setTab={setTab}
+          tabs={['Tokens', 'Pools', 'Transactions']}
+        />
+      </Div>
 
       {shouldShowControls && (
         <Div
           gap="0.75rem"
-          width={['100%', '100%', '100%', 'max-content']}
           display="flex"
-          flexDirection={['column', 'column', 'column', 'row']}
+          flexWrap="wrap"
+          alignItems="center"
+          flexDirection={['row-reverse', 'row-reverse', 'row-reverse', 'row']}
         >
           {showVolumeFilter && (
             <Dropdown placeholder="Select" options={VOLUME_FILTER_DATA} />

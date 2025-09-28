@@ -41,7 +41,9 @@ const SwapTabs: FC = () => {
         Swap
       </Span>
       <Div display={['none', 'block']}>
-        <Tabs tabs={['Swap']} setTab={setTab} tab={tab} />
+        <Div display="flex" flexWrap="wrap">
+          <Tabs tabs={['Swap']} setTab={setTab} tab={tab} />
+        </Div>
       </Div>
       <Div
         role="button"

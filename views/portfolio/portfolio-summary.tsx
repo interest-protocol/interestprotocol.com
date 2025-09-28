@@ -8,9 +8,9 @@ import { METRIC_INFO_DATA } from './portfolio.data';
 const PortfolioSummary: FC = () => {
   return (
     <Div
-      gap="1rem"
       width="100%"
       display="grid"
+      gap={['0.5rem', '1rem']}
       gridTemplateColumns={['repeat(2, 1fr)', 'repeat(4, 1fr)']}
     >
       {METRIC_INFO_DATA.map((info) => (

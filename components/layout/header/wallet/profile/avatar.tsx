@@ -65,7 +65,6 @@ const Avatar: FC<AvatarProps> = ({
           width="max-content"
           fontFamily="Inter"
           fontWeight="500"
-          display={['none', 'none', 'none', 'block', 'block']}
         >
           {address.slice(0, 6)}...{address.slice(-4)}
         </P>
