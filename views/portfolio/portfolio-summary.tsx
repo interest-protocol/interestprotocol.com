@@ -14,13 +14,20 @@ import MetricInfo from './components/metric-info';
 
 const PortfolioSummary: FC = () => {
   const { coins, coinsMap } = useCoins();
-  const accountFarmsData = useGetAccountFarmsData();
+  const { data: accountFarmsData, isLoading: isAccountFarmsLoading } =
+    useGetAccountFarmsData();
 
-  const { data: coinsPrice } = useCoinsPrice(coins.map((coin) => coin.type));
+  const { data: coinsPrice, isLoading: isCoinsPriceLoading } = useCoinsPrice(
+    coins.map((coin) => coin.type)
+  );
 
-  const movePrice = coinsPrice?.find(({ coin }) =>
-    MOVE.address.equals(AccountAddress.from(coin))
-  )?.price;
+  const movePrice = coinsPrice?.find(({ coin }) => {
+    try {
+      return MOVE.address.equals(AccountAddress.from(coin));
+    } catch {
+      return false;
+    }
+  })?.price;
 
   const netWorthUSD = coinsPrice?.reduce(
     (acc, { coin, price }) =>
@@ -35,7 +42,7 @@ const PortfolioSummary: FC = () => {
     0
   );
 
-  const claimableRewards = accountFarmsData.data?.reduce(
+  const claimableRewards = accountFarmsData?.reduce(
     (acc, reward) =>
       BigNumber(String(acc)).plus(BigNumber(String(reward.rewards))),
     ZERO_BIG_NUMBER
@@ -54,11 +61,23 @@ const PortfolioSummary: FC = () => {
     >
       <MetricInfo
         title="Net worth"
-        value={netWorthUSD ? formatDollars(netWorthUSD) : '--'}
+        value={
+          netWorthUSD
+            ? formatDollars(netWorthUSD)
+            : isCoinsPriceLoading
+              ? 'Loading...'
+              : '--'
+        }
       />
       <MetricInfo
         title="Claimable rewards"
-        value={claimableRewardsUSD ? formatDollars(claimableRewardsUSD) : '--'}
+        value={
+          claimableRewardsUSD
+            ? formatDollars(claimableRewardsUSD)
+            : isCoinsPriceLoading || isAccountFarmsLoading
+              ? 'Loading...'
+              : '--'
+        }
       />
     </Div>
   );
