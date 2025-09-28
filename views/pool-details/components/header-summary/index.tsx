@@ -4,8 +4,8 @@ import { useFormContext } from 'react-hook-form';
 
 import Breadcrumb from '@/components/breadcrumb';
 import Tabs from '@/components/tabs';
-import { useTabState } from '@/hooks';
-import { noop } from '@/utils';
+import { useModal, useTabState } from '@/hooks';
+import RewardsModal from '@/views/portfolio/components/table-summary/table-summary-earnings/components/rewards-modal';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import BreadcrumbActions from './breadcrumb-actions';
@@ -16,6 +16,7 @@ import PoolTokenInfoAction from './pool-token-info-action';
 const PoolDetailsHeaderSummary: FC = () => {
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
   const { tab, setTab } = useTabState();
+  const { setContent } = useModal();
   const tabs = ['Pool', 'Farm'];
 
   const tokenList = getValues('tokenList');
@@ -50,7 +51,36 @@ const PoolDetailsHeaderSummary: FC = () => {
             <PoolTokenInfoAction
               label="Claim rewards:"
               amount={0.0}
-              onClaim={noop}
+              onClaim={() =>
+                setContent(
+                  <RewardsModal
+                    claimingFee="0.123"
+                    totalEarnings="0.00"
+                    rewardFee="0.00"
+                    rewardsList={[
+                      {
+                        amount: '0.00',
+                        symbol: 'MOVE',
+                      },
+                      {
+                        amount: '0.00',
+                        symbol: 'USDC.e',
+                      },
+                      {
+                        amount: '0.00',
+                        symbol: 'USDT.e',
+                      },
+                      {
+                        amount: '0.00',
+                        symbol: 'WBTC.e',
+                      },
+                    ]}
+                  />,
+                  {
+                    title: 'Rewards',
+                  }
+                )
+              }
             />
           </Div>
         </Div>
