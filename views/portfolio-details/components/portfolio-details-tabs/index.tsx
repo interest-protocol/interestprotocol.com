@@ -6,7 +6,7 @@ import { useTabState } from '@/hooks/use-tab-manager';
 
 const PositionsDetailsTabs: FC = () => {
   const { tab, setTab } = useTabState();
-  const tabs = ['Your Position'];
+  const tabs = ['Your Position', 'Farm'];
 
   return (
     <Div
@@ -14,9 +14,14 @@ const PositionsDetailsTabs: FC = () => {
       gap="1rem"
       width="100%"
       display="flex"
-      justifyContent="space-between"
+      justifyContent={['space-between', 'flex-start']}
     >
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} color="#B4C5FF33" />
+      <Tabs
+        tabs={tabs}
+        setTab={setTab}
+        tab={tab}
+        color={['#B4C5FF33', '#9CA3AF1A']}
+      />
     </Div>
   );
 };

@@ -7,7 +7,6 @@ import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
 
 import { PortfolioDetailsFormProps } from '../../portfolio-details.types';
-import Breadcrumb from '../breadcrumb';
 
 const PoolDetailsHeader: FC = () => {
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
@@ -16,8 +15,6 @@ const PoolDetailsHeader: FC = () => {
 
   return (
     <Div gap="1rem" width="100%" display="flex" flexDirection="column">
-      <Breadcrumb pairPosition={pairPosition} />
-
       <Div display="flex" alignItems="center" justifyContent="space-between">
         <Div gap="1rem" display="flex" alignItems="center" mb={['0', '1rem']}>
           <TokenIcon
