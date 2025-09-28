@@ -19,7 +19,7 @@ const PoolDetailsHeader: FC = () => {
       <Breadcrumb pairPosition={pairPosition} />
 
       <Div display="flex" alignItems="center" justifyContent="space-between">
-        <Div gap="1rem" display="flex" alignItems="center">
+        <Div gap="1rem" display="flex" alignItems="center" mb={['0', '1rem']}>
           <TokenIcon
             withBg
             size="1.52rem"

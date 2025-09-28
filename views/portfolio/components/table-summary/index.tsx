@@ -23,9 +23,10 @@ const TableSummary: FC<TableSummaryProps> = ({
     >
       <TableSummaryTitle title={title} total={total} />
       <Div
-        display={['grid', 'grid', 'grid', 'flex']}
+        display="flex"
         flexWrap="wrap"
-        gap="1rem"
+        gap={['0.5rem', '1rem']}
+        justifyContent="space-between"
       >
         {totalPosition && (
           <TableSummaryPosition totalPosition={totalPosition} />

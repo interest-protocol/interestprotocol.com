@@ -8,9 +8,9 @@ const TableSummaryTitle: FC<TableSummaryTitleProps> = ({ title, total }) => (
     <P
       fontWeight="400"
       color="#FFFFFF"
-      fontSize="1.75rem"
       fontFamily="Inter"
       lineHeight="2.25rem"
+      fontSize={['1.125rem', '1.75rem']}
     >
       {title}
     </P>
