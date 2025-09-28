@@ -40,6 +40,7 @@ const StatsTabs: FC = () => {
         <Div
           gap="0.75rem"
           display="flex"
+          flexWrap="wrap"
           alignItems="center"
           flexDirection={['row-reverse', 'row-reverse', 'row-reverse', 'row']}
         >
