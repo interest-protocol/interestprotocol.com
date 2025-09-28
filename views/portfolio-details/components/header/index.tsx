@@ -5,17 +5,48 @@ import { useFormContext } from 'react-hook-form';
 import Tag from '@/components/tag';
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
-import { useTabState } from '@/hooks';
-import { noop } from '@/utils';
+import { useModal, useTabState } from '@/hooks';
+import RewardsModal from '@/views/components/rewards-modal';
 
 import { PortfolioDetailsFormProps } from '../../portfolio-details.types';
 import FarmTokenInfoAction from '../farm/farm-token-info-action';
 
 const PoolDetailsHeader: FC = () => {
   const { tab } = useTabState();
+  const { setContent } = useModal();
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
 
   const pairPosition = `${getValues('tokenList')[0].symbol}-${getValues('tokenList')[1].symbol}`;
+
+  const onClaim = () =>
+    setContent(
+      <RewardsModal
+        claimingFee="0.123"
+        totalEarnings="0.00"
+        rewardFee="0.00"
+        rewardsList={[
+          {
+            amount: '0.00',
+            symbol: 'MOVE',
+          },
+          {
+            amount: '0.00',
+            symbol: 'USDC.e',
+          },
+          {
+            amount: '0.00',
+            symbol: 'USDT.e',
+          },
+          {
+            amount: '0.00',
+            symbol: 'WBTC.e',
+          },
+        ]}
+      />,
+      {
+        title: 'Rewards',
+      }
+    );
 
   return (
     <Div
@@ -66,7 +97,7 @@ const PoolDetailsHeader: FC = () => {
             <FarmTokenInfoAction
               label="Claim rewards:"
               amount={0.0}
-              onClaim={noop}
+              onClaim={onClaim}
             />
           </Div>,
         ][tab]
