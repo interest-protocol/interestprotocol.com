@@ -1,32 +1,91 @@
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import invariant from 'tiny-invariant';
 
 import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
+import { EXPLORER_URL, Network } from '@/constants';
+import { useInterestV2Sdk } from '@/hooks/use-interest-v2-sdk';
+import { FixedPointMath } from '@/lib';
+import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 
 import { ICreateTokenForm } from '../../create-token.types';
 
 const CreateTokenFormButton: FC = () => {
+  const client = useAptosClient();
+  const v2Sdk = useInterestV2Sdk();
   const [loading, setLoading] = useState(false);
   const { control, reset } = useFormContext<ICreateTokenForm>();
+  const { account, signAndSubmitTransaction } = useAptosWallet();
 
   const values = useWatch({ control });
 
   const handleCreateToken = async (stopLoading: () => void) => {
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.random() * 4000 + 1000)
-    );
+    try {
+      const {
+        name,
+        symbol,
+        supply,
+        decimals,
+        imageUrl: iconURI,
+        projectUrl: projectURI,
+      } = values;
 
-    stopLoading();
-    if (Math.random() > 0.5) {
+      invariant(decimals && supply, 'You must fill the required fields');
+
+      const createFaArgs = {
+        name: name || '',
+        symbol: symbol || '',
+        iconURI,
+        decimals,
+        projectURI,
+        recipient: account!.address,
+        totalSupply: BigInt(
+          FixedPointMath.toBigNumber(supply!, decimals).toString()
+        ),
+      };
+
+      const payload = v2Sdk.createFa(createFaArgs);
+
+      const tx = await signAndSubmitTransaction({ payload });
+
+      invariant(tx.status === 'Approved', 'Rejected by User');
+
+      const txResult = tx.args;
+
+      let waitingTx = true;
+
+      do {
+        await client
+          .waitForTransaction({
+            transactionHash: txResult.hash,
+            options: { checkSuccess: true },
+          })
+          .then(() => {
+            waitingTx = false;
+          })
+          .catch(console.warn);
+      } while (waitingTx);
+
       toasting.success({
-        action: 'Create token',
+        action: 'Create Token',
         message: 'See on explorer',
-        link: '#',
+        link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
       });
       reset();
-    } else throw new Error();
+    } catch (e) {
+      console.warn({ e });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((e as any)?.data?.error_code === 'mempool_is_full')
+        throw new Error('The mempool is full, try again in a few seconds.');
+
+      throw e;
+    } finally {
+      stopLoading();
+    }
   };
 
   const onSubmit = async () => {
