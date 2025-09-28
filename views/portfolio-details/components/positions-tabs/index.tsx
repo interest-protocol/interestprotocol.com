@@ -12,7 +12,7 @@ const PositionsTabs: FC<PortfolioTabsProps> = ({ tab, setTab, tabs }) => {
       gap="1rem"
       width="100%"
       display="flex"
-      justifyContent={['space-between', ['flex-start']]}
+      justifyContent="space-between"
     >
       <Tabs tabs={tabs} setTab={setTab} tab={tab} />
     </Div>
