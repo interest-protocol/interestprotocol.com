@@ -1,32 +1,60 @@
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import invariant from 'tiny-invariant';
 
 import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
+import { EXPLORER_URL, Network } from '@/constants';
+import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 
 const SwapButton = () => {
+  const client = useAptosClient();
   const [loading, setLoading] = useState(false);
-  const { control, reset } = useFormContext();
+  const { control, getValues, reset } = useFormContext();
+  const { account, signAndSubmitTransaction } = useAptosWallet();
 
   const error = useWatch({ control, name: 'error' });
   const valueOut = useWatch({ control, name: 'to.value' });
   const valueIn = useWatch({ control, name: 'from.value' });
 
   const handleSwap = async (stopLoading: () => void) => {
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.random() * 4000 + 1000)
-    );
+    try {
+      if (!account) return;
 
-    stopLoading();
-    if (Math.random() > 0.5) {
+      const { payload } = getValues();
+
+      const tx = await signAndSubmitTransaction({ payload });
+
+      invariant(tx.status === 'Approved', 'Rejected by User');
+
+      const txResult = tx.args;
+
+      await client.waitForTransaction({
+        transactionHash: txResult.hash,
+        options: {
+          checkSuccess: true,
+        },
+      });
+
       toasting.success({
         action: 'Swap',
         message: 'See on explorer',
-        link: '#',
+        link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
       });
+    } catch (e) {
+      console.warn(e);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((e as any)?.data?.error_code === 'mempool_is_full')
+        throw new Error('The mempool is full, try again in a few seconds.');
+
+      throw e;
+    } finally {
       reset();
-    } else throw new Error();
+      stopLoading();
+    }
   };
 
   const onSwap = async () => {
