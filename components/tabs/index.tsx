@@ -27,6 +27,7 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
           justifyContent="center"
           onClick={() => setTab(index)}
           nHover={{ color: '#B4C5FF' }}
+          width={['100%', '100%', '100%', 'unset']}
           fontWeight={tab === index ? '400' : '500'}
           color={tab === index ? '#FFFFFF' : '#9CA3AF'}
           bg={tab === index ? color || '#9CA3AF1A' : 'transparent'}

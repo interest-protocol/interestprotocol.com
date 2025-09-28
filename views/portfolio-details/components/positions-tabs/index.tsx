@@ -7,13 +7,7 @@ import { PortfolioTabsProps } from './positions-tabs.types';
 
 const PositionsTabs: FC<PortfolioTabsProps> = ({ tab, setTab, tabs }) => {
   return (
-    <Div
-      mb="1rem"
-      gap="1rem"
-      width="100%"
-      display="flex"
-      justifyContent={['space-between', 'flex-start']}
-    >
+    <Div mb="1rem" width="100%" display="flex">
       <Tabs tabs={tabs} setTab={setTab} tab={tab} />
     </Div>
   );
