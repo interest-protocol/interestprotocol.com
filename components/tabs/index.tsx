@@ -6,7 +6,7 @@ import { Button } from '../button';
 import { TabsProps } from './tabs.types';
 
 const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
-  <Div display="flex" flexWrap="wrap" gap="0.5rem">
+  <>
     {tabs.map((text, index) => {
       const tabTotal = total?.[index];
 
@@ -57,7 +57,7 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
         </Button>
       );
     })}
-  </Div>
+  </>
 );
 
 export default Tabs;
