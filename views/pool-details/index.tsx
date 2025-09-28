@@ -2,12 +2,13 @@ import { FC } from 'react';
 
 import Layout from '@/components/layout';
 
+import { PoolDetailsProps } from './pool-details.types';
 import PoolDetailsContent from './pool-details-content';
 
-const PoolDetails: FC = () => {
+const PoolDetails: FC<PoolDetailsProps> = ({ isV3 }) => {
   return (
     <Layout>
-      <PoolDetailsContent />
+      <PoolDetailsContent isV3={isV3} />
     </Layout>
   );
 };

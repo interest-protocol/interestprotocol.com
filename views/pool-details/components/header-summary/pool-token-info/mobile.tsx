@@ -5,9 +5,10 @@ import { useFormContext } from 'react-hook-form';
 import { TokenIcon } from '@/components';
 import Tag from '@/components/tag';
 import { Network } from '@/constants';
+import { PoolDetailsProps } from '@/views/pool-details/pool-details.types';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
-const PoolTokenInfoMobile: FC = () => {
+const PoolTokenInfoMobile: FC<PoolDetailsProps> = ({ isV3 }) => {
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
 
   const lpCoin = getValues('lpCoin');
@@ -35,17 +36,19 @@ const PoolTokenInfoMobile: FC = () => {
           {`${tokenList[0].symbol}-${tokenList[1].symbol}`}
         </P>
       </Div>
-      <Div display="flex" gap="0.5rem" alignItems="center">
-        <P
-          fontWeight="500"
-          color="#949E9E"
-          fontSize="0.875rem"
-          lineHeight="1.25rem"
-        >
-          APR
-        </P>
-        <Tag label="29.17%" type="success" />
-      </Div>
+      {!isV3 && (
+        <Div display="flex" gap="0.5rem" alignItems="center">
+          <P
+            fontWeight="500"
+            color="#949E9E"
+            fontSize="0.875rem"
+            lineHeight="1.25rem"
+          >
+            APR
+          </P>
+          <Tag label="29.17%" type="success" />
+        </Div>
+      )}
     </Div>
   );
 };

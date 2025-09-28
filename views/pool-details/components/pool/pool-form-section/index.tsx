@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 
-import PoolDetailsInfo from './pool-details-info';
+import PoolDetailsInfo from '../../pool-details-info';
 import PoolFormDeposit from './pool-form/deposit';
 import PoolFormWithdraw from './pool-form/withdraw';
 

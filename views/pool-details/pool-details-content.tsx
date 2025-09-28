@@ -7,8 +7,10 @@ import { useTabState } from '@/hooks';
 import Farm from './components/farm';
 import PoolDetailsHeaderSummary from './components/header-summary';
 import Pool from './components/pool';
+import V3 from './components/v3';
+import { PoolDetailsProps } from './pool-details.types';
 
-const PoolDetailsContent: FC = () => {
+const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
   const { tab } = useTabState();
 
   return (
@@ -19,8 +21,8 @@ const PoolDetailsContent: FC = () => {
       gap={['1rem', '1rem', '1rem', '2rem']}
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <PoolDetailsHeaderSummary />
-      {[<Pool key={v4()} />, <Farm key={v4()} />][tab]}
+      <PoolDetailsHeaderSummary isV3={isV3} />
+      {isV3 ? <V3 /> : [<Pool key={v4()} />, <Farm key={v4()} />][tab]}
     </Div>
   );
 };

@@ -1,11 +1,16 @@
 import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 const PoolBalance: FC = () => {
+  const { getValues } = useFormContext<PortfolioDetailsFormProps>();
+
+  const tokenList = getValues('tokenList');
   return (
     <Div
       key={v4()}
@@ -40,7 +45,8 @@ const PoolBalance: FC = () => {
           <TokenIcon
             withBg
             size="1rem"
-            symbol="MOVE"
+            url={tokenList[0].iconUri}
+            symbol={tokenList[0].symbol}
             network={Network.MovementMainnet}
           />
           <Span
@@ -57,7 +63,8 @@ const PoolBalance: FC = () => {
           <TokenIcon
             withBg
             size="1rem"
-            symbol="MOVE"
+            url={tokenList[1].iconUri}
+            symbol={tokenList[1].symbol}
             network={Network.MovementMainnet}
           />
           <Span

@@ -1,8 +1,8 @@
 import { Div, Hr } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import PoolDetailsInfo from '../pool-details-info';
 import PoolFormSection from './pool-form-section';
-import PoolDetailsInfo from './pool-form-section/pool-details-info';
 import TransactionList from './transactions-list';
 import VolumeSection from './volume-section';
 
