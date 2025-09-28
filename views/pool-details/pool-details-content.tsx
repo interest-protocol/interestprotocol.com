@@ -4,9 +4,9 @@ import { v4 } from 'uuid';
 
 import { useTabState } from '@/hooks';
 
-import Farm from './farm';
-import PoolDetailsHeaderSummary from './header-summary';
-import Pool from './pool';
+import Farm from './components/farm';
+import PoolDetailsHeaderSummary from './components/header-summary';
+import Pool from './components/pool';
 
 const PoolDetailsContent: FC = () => {
   const { tab } = useTabState();
@@ -14,9 +14,9 @@ const PoolDetailsContent: FC = () => {
   return (
     <Div
       mb="4rem"
-      gap="1rem"
       display="flex"
       flexDirection="column"
+      gap={['1rem', '1rem', '1rem', '2rem']}
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
       <PoolDetailsHeaderSummary />

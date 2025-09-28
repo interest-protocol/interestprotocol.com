@@ -2,8 +2,9 @@ import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 
+import Filter from '@/components/filter';
+
 import HeaderInfo from '../../../components/header-info';
-import Filter from '../components/filter';
 import { HeaderSummaryProps } from './pool-header-summary.types';
 
 const PoolHeaderSummaryDesktop: FC<HeaderSummaryProps> = ({ data }) => {

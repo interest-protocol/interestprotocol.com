@@ -37,7 +37,7 @@ const TooltipChart: FC<TooltipChartProps> = ({
             justifyContent="space-between"
           >
             <Div display="flex" alignItems="center" gap="0.5rem">
-              {!color.startsWith('url') && (
+              {color && !color.startsWith('url') && (
                 <Div
                   width="1rem"
                   height="1rem"

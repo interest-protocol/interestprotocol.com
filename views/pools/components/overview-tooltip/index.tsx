@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Motion } from '@/components/motion';
-
-import Tooltip from '../tooltip';
+import Tooltip from '@/views/components/tooltip';
 
 const OverviewTooltip = () => {
   const [open, setOpen] = useState(false);

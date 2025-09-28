@@ -8,6 +8,7 @@ export interface CollapseCardInfoLineProps {
 export interface CollapseCardIInfoLineElementProps {
   description: string;
   Suffix?: ReactNode;
+  Prefix?: ReactNode;
   type?: CollapseCardInfoLineElementType;
 }
 

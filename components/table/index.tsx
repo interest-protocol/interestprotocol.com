@@ -8,7 +8,7 @@ import { TableHeaderProps } from './table.types';
 const Table: FC<TableHeaderProps> = (props) => {
   return (
     <Div
-      width="100100"
+      width="100%"
       borderStyle="solid"
       borderRadius="0.5rem"
       borderColor=" #1F2937"

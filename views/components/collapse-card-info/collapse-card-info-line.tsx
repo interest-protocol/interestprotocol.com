@@ -23,6 +23,7 @@ const CollapseCardInfoLine: FC<CollapseCardInfoLineProps> = ({
       gap="1rem"
     >
       <Div gap="0.5rem" display="flex" cursor="pointer" alignItems="center">
+        {info.Prefix}
         <P
           fontWeight="400"
           color="#9CA3AF"
@@ -36,6 +37,7 @@ const CollapseCardInfoLine: FC<CollapseCardInfoLineProps> = ({
       </Div>
       <Hr height="1px" border="1px dashed #4B556380" flex="1" />
       <Div gap="0.5rem" display="flex" cursor="pointer" alignItems="center">
+        {value.Prefix}
         <P
           fontWeight="400"
           fontFamily="Inter"

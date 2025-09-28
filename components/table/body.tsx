@@ -24,7 +24,7 @@ const TableBodyContent: FC<TableHeaderProps> = ({
         cursor="pointer"
         borderWidth=" 1px 0px 0px 0px"
         transition="all 150ms ease-in-out"
-        minWidth={['1000px', '1000px', '1000px', '800px', 'unset']}
+        minWidth={['1000px', '1000px', '400px', 'unset']}
         gridTemplateColumns={
           gridTemplateColumns || `repeat(${title.length},1fr)`
         }
