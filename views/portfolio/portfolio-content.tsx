@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import Dropdown from '@/components/dropdown';
-import { useModal } from '@/hooks';
+import { useModal, useTabState } from '@/hooks';
 
 import PoolTypeTable from './components/pool-type-table';
 import {
@@ -12,6 +12,7 @@ import {
   TRANSACTION_DATA,
   TRANSACTION_HEADER_DATA,
 } from './components/pool-type-table/pools.data';
+import PortfolioTabs from './components/portfolio-tabs';
 import {
   TableSummaryCustomProps,
   TableSummaryProps,
@@ -22,6 +23,8 @@ import PortfolioSummary from './portfolio-summary';
 
 const PortfolioContent: FC = () => {
   const { setContent } = useModal();
+  const { tab } = useTabState();
+
   const CURVE_HEADER_SUMMARY: TableSummaryProps = {
     onClaim: () =>
       setContent(
@@ -101,6 +104,25 @@ const PortfolioContent: FC = () => {
     ),
   };
 
+  const TABLES = [
+    {
+      rows: POOL_TYPE_DATA,
+      tableHeader: POOL_TYPE_HEADER_DATA,
+      headerSummary: CURVE_HEADER_SUMMARY,
+    },
+    {
+      rows: POOL_EMPTY_DATA,
+      tableHeader: POOL_TYPE_HEADER_DATA,
+      headerSummary: V3_HEADER_SUMMARY,
+    },
+    {
+      rows: TRANSACTION_DATA,
+      tableHeader: TRANSACTION_HEADER_DATA,
+      headerSummary: TRANSACTION_HEADER_SUMMARY,
+      gridTemplateColumns: '2fr 3fr 4fr 4fr 1fr',
+    },
+  ];
+
   return (
     <Div
       pb="5rem"
@@ -112,22 +134,17 @@ const PortfolioContent: FC = () => {
       px={['unset', 'unset', 'unset', '5.5rem']}
     >
       <PortfolioSummary />
-      <PoolTypeTable
-        rows={POOL_TYPE_DATA}
-        tableHeader={POOL_TYPE_HEADER_DATA}
-        headerSummary={CURVE_HEADER_SUMMARY}
-      />
-      <PoolTypeTable
-        rows={POOL_EMPTY_DATA}
-        tableHeader={POOL_TYPE_HEADER_DATA}
-        headerSummary={V3_HEADER_SUMMARY}
-      />
-      <PoolTypeTable
-        rows={TRANSACTION_DATA}
-        tableHeader={TRANSACTION_HEADER_DATA}
-        headerSummary={TRANSACTION_HEADER_SUMMARY}
-        gridTemplateColumns="2fr 3fr 4fr 4fr 1fr"
-      />
+
+      <Div gap="1rem" display={['none', 'block']}>
+        {TABLES.map((props, i) => (
+          <PoolTypeTable key={i} {...props} />
+        ))}
+      </Div>
+
+      <Div display={['flex', 'none']} flexDirection="column" gap="1rem">
+        <PortfolioTabs onGetTotal={TABLES.map((t) => t.rows.length)} />
+        <PoolTypeTable {...TABLES[tab]} />
+      </Div>
     </Div>
   );
 };

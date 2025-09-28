@@ -2,10 +2,12 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import Tabs from '@/components/tabs';
+import { useTabState } from '@/hooks/use-tab-manager';
 
-import { PortfolioTabsProps } from './positions-tabs.types';
+const PositionsDetailsTabs: FC = () => {
+  const { tab, setTab } = useTabState();
+  const tabs = ['Your Position', 'Farm'];
 
-const PositionsTabs: FC<PortfolioTabsProps> = ({ tab, setTab, tabs }) => {
   return (
     <Div
       mb="1rem"
@@ -16,10 +18,10 @@ const PositionsTabs: FC<PortfolioTabsProps> = ({ tab, setTab, tabs }) => {
       flexDirection={['column', 'column', 'row', 'row']}
     >
       <Div display="flex">
-        <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+        <Tabs tabs={tabs} setTab={setTab} tab={tab} color="#B4C5FF33" />
       </Div>
     </Div>
   );
 };
 
-export default PositionsTabs;
+export default PositionsDetailsTabs;

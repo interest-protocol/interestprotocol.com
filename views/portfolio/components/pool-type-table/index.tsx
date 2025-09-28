@@ -19,7 +19,7 @@ const PoolTypeTable: FC<PoolTypeTableProps> = ({
   headerSummary,
   gridTemplateColumns,
 }) => (
-  <Div width="100%" display="flex" flexDirection="column">
+  <Div width="100%" display="flex" flexDirection="column" mb="1rem">
     {isTableSummaryCustom(headerSummary) ? (
       <TableSummaryTitleCustom
         {...(headerSummary as unknown as TableSummaryCustomProps)}
