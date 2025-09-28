@@ -53,12 +53,14 @@ const Dropdown: FC<DropdownProps> = ({
         bg="#9CA3AF1A"
         cursor="pointer"
         alignItems="center"
-        width={['100%', '100%', '100%', 'max-content']}
-        borderRadius={isRounded ? '9999rem' : '0.75rem'}
+        minWidth="8.375rem"
+        width="fit-content"
+        whiteSpace="nowrap"
         justifyContent="space-between"
         border="1px solid #9CA3AF1A"
         onClick={() => setIsOpen(not)}
         transition="all 250ms ease-in-out"
+        borderRadius={isRounded ? '9999rem' : '0.75rem'}
         borderColor={isOpen ? '#B4C5FF' : '#9CA3AF1A'}
         nHover={{
           borderColor: '#B4C5FF',
@@ -68,12 +70,19 @@ const Dropdown: FC<DropdownProps> = ({
           fontSize="1rem"
           fontWeight="400"
           fontFamily="Inter"
+          whiteSpace="nowrap"
           color={currentOption?.label ? '#fff' : '#6B7280'}
         >
           {currentOption?.label || placeholder || 'Select'}
         </P>
         <Div
+          width="1rem"
           display="flex"
+          flexShrink={0}
+          flex="0 0 auto"
+          height="1.25rem"
+          alignItems="center"
+          justifyContent="center"
           transition="transform 0.3s ease"
           transform={isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}
         >

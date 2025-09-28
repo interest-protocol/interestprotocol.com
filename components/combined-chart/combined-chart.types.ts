@@ -23,7 +23,7 @@ export interface CombinedChartProps {
   };
 }
 
-interface ChartValuesProps {
+export interface ChartValuesProps {
   color: string;
   dataKey: string;
 }

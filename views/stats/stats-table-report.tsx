@@ -19,7 +19,7 @@ const StatsTableReports: FC = () => {
 
   return (
     <>
-      <StatsTabs />
+      <StatsTabs key={v4()} />
       {
         [
           <Table

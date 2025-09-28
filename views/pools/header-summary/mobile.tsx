@@ -2,10 +2,10 @@ import { Div, P } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 
+import Filter from '@/components/filter';
 import { formatDollars } from '@/utils';
 
 import HeaderInfo from '../../../components/header-info';
-import Filter from '../components/filter';
 import { HeaderSummaryProps } from './pool-header-summary.types';
 
 const PoolHeaderSummaryMobile: FC<HeaderSummaryProps> = ({ data }) => {
