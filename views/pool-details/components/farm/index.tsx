@@ -2,10 +2,10 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import CollapseCardInfo from '@/views/components/collapse-card-info';
+import Rewards from '@/views/components/rewards';
 
 import { FARM_INFORMATION_DATA } from '../../pools.data';
 import FarmFormSection from './farm-form-section';
-import Rewards from './rewards';
 
 const Farm: FC = () => (
   <Div
