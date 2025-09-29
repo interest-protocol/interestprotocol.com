@@ -44,7 +44,7 @@ const Dropdown: FC<DropdownProps> = ({
   }, [isOpen]);
 
   return (
-    <Div ref={ref} position="relative" width={['100%', undefined]}>
+    <Div ref={ref} position="relative" width="100%">
       <Div
         px="1rem"
         py="0.75rem"
@@ -54,7 +54,7 @@ const Dropdown: FC<DropdownProps> = ({
         cursor="pointer"
         alignItems="center"
         minWidth="8.375rem"
-        width="fit-content"
+        width="100%"
         whiteSpace="nowrap"
         justifyContent="space-between"
         border="1px solid #9CA3AF1A"
