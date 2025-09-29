@@ -16,16 +16,16 @@ const NavbarItem: FC<NavbarItemProps> = ({ title, href }) => {
     <Link href={href} target={isBridge ? '_blank' : '_self'}>
       <Li
         display="flex"
-        alignItems="center"
         fontSize="1rem"
         cursor="pointer"
         height="1.375rem"
-        borderRadius="0.5rem"
         fontFamily="Inter"
+        alignItems="center"
         width="max-content"
         lineHeight="1.5rem"
+        borderRadius="0.5rem"
         alignContent="center"
-        gap={['0.2rem', '1rem']}
+        gap={['0.2rem', '0.5rem']}
         textTransform="capitalize"
         nHover={{ color: '#fff' }}
         transition="all 350ms ease-in-out"
