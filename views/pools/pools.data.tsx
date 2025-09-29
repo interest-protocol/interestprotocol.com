@@ -1,16 +1,10 @@
-import { Span } from '@stylin.js/elements';
-import Link from 'next/link';
-
 import { HeaderInfoProps } from '@/components/header-info/header-info.types';
-import PoolName from '@/components/pool-name';
-import { Routes, RoutesEnum } from '@/constants';
 
 import { SegmentedControlOptionItemProps } from '../../components/segmented-control/segmented-control.types';
 import {
   TableHeaderTitleProps,
   TableRowProps,
 } from '../../components/table/table.types';
-import OverviewTooltip from './components/overview-tooltip';
 
 export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
   [
@@ -68,102 +62,6 @@ export const FEATURES_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
     { description: '' },
     { description: '' },
   ];
-
-export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-      {
-        Content: (
-          <Link href={Routes[RoutesEnum.PoolDetails]} target="_self">
-            <Span
-              width="100%"
-              color="#B4C5FF"
-              display="block"
-              fontWeight="500"
-              fontFamily="Inter"
-              fontSize="0.875rem"
-              lineHeight="1.12rem"
-            >
-              Add Liquidity
-            </Span>
-          </Link>
-        ),
-      },
-    ],
-  },
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName
-            name="USDT.e • MOVE (v3)"
-            tags={['earn', 'curve', 'stable']}
-          />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-      {
-        Content: (
-          <Link href={`${Routes[RoutesEnum.PoolDetails]}/v3`} target="_self">
-            <Span
-              width="100%"
-              color="#B4C5FF"
-              display="block"
-              fontWeight="500"
-              fontFamily="Inter"
-              fontSize="0.875rem"
-              lineHeight="1.12rem"
-            >
-              Add Liquidity
-            </Span>
-          </Link>
-        ),
-      },
-    ],
-  },
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-      {
-        Content: (
-          <Link href={Routes[RoutesEnum.PoolDetails]} target="_self">
-            <Span
-              width="100%"
-              color="#B4C5FF"
-              display="block"
-              fontWeight="500"
-              fontFamily="Inter"
-              fontSize="0.875rem"
-              lineHeight="1.12rem"
-            >
-              Add Liquidity
-            </Span>
-          </Link>
-        ),
-      },
-    ],
-  },
-];
 
 export const FEATURES_POOLS_DATA: ReadonlyArray<TableRowProps> = [
   {
