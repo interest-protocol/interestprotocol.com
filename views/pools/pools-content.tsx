@@ -12,7 +12,6 @@ import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
   HEADER_DATA,
-  VERIFIED_POOLS_DATA,
   VERIFIED_POOLS_HEADER_DATA,
 } from './pools.data';
 
@@ -45,7 +44,7 @@ const PoolsContent: FC = () => {
         [
           <Table
             key={v4()}
-            rows={VERIFIED_POOLS_DATA}
+            rows={[]}
             title={VERIFIED_POOLS_HEADER_DATA}
             gridTemplateColumns="4fr repeat(5, 1fr)"
           />,
