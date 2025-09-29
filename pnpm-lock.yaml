@@ -53,9 +53,6 @@ importers:
       framer-motion:
         specifier: ^10.11.2
         version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      interest-aptos-curve@latest:
-        specifier: link:@@interest-protocol/interest-aptos-curve@latest
-        version: link:@@interest-protocol/interest-aptos-curve@latest
       interface-template:
         specifier: 'link:'
         version: 'link:'
@@ -1272,6 +1269,7 @@ packages:
 
   '@telegram-apps/bridge@1.9.2':
     resolution: {integrity: sha512-SJLcNWLXhbbZr9MiqFH/g2ceuitSJKMxUIZysK4zUNyTUNuonrQG80Q/yrO+XiNbKUj8WdDNM86NBARhuyyinQ==}
+    deprecated: This package is not supported anymore. Use @tma.js/bridge instead
 
   '@telegram-apps/signals@1.1.2':
     resolution: {integrity: sha512-1P1kdCLX7MfETGPxH7f3UZKIsdE7Tz5S7QmN4Km1sbYQMakD5Bi1NecSMR7/wnHp50gWMI1JzENcMtCEmouhSg==}
