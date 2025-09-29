@@ -2,7 +2,7 @@ import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import { VOLUME_DETAILS_DATA } from '../pool.data';
+import { VOLUME_DETAILS_DATA } from '../pool/pool.data';
 import PoolBalance from '../pool-balance';
 
 const SummaryHeader: FC = () => (

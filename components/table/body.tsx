@@ -42,7 +42,7 @@ const TableBodyContent: FC<TableHeaderProps> = ({
                   ) : (
                     <Span
                       color={color || '#fff'}
-                      width="100%"
+                      width={position ? '100%' : 'unset'}
                       display="block"
                       fontWeight="500"
                       fontFamily="Inter"
