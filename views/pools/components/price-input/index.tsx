@@ -37,8 +37,8 @@ const PriceInput: FC<PriceInputProps> = ({
       gap="0.5rem"
       display="flex"
       height="6.5rem"
-      width="12.41rem"
       bg="#9CA3AF1A"
+      width="100%"
       alignItems="center"
       flexDirection="column"
       borderRadius="0.75rem"
@@ -55,8 +55,8 @@ const PriceInput: FC<PriceInputProps> = ({
       </P>
 
       <Div
-        width="100%"
         gap="1rem"
+        width="100%"
         display="flex"
         alignItems="center"
         justifyContent="space-between"
@@ -83,7 +83,7 @@ const PriceInput: FC<PriceInputProps> = ({
           p="0"
           m="0"
           type="number"
-          width="50%"
+          width="30%"
           border="none"
           nFocus="none"
           outline="none"
@@ -119,6 +119,7 @@ const PriceInput: FC<PriceInputProps> = ({
       <P
         color="#9CA3AF"
         fontWeight="400"
+        textAlign="center"
         fontSize="0.875rem"
         lineHeight="1.25rem"
       >

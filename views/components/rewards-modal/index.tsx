@@ -7,7 +7,7 @@ import { toasting } from '@/components/toast';
 import { useModal } from '@/hooks';
 import { formatDollars } from '@/utils/string';
 
-import { RewardsModalProps } from '../earnings.types';
+import { RewardsModalProps } from './rewards.types';
 import RewardsModalItem from './rewards-modal-item';
 
 const RewardsModal: FC<RewardsModalProps> = ({
