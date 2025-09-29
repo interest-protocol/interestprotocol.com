@@ -16,9 +16,11 @@ const TableSummaryEarnings: FC<TotalEarningProps> = ({ gain, onClaim }) => (
     p="0.75rem 1rem"
     fontFamily="Inter"
     alignItems="center"
+    whiteSpace="nowrap"
     lineHeight="1.5rem"
     borderRadius="0.75rem"
     border="1px solid #9CA3AF1A"
+    width={['100%', 'fit-content']}
     justifyContent="space-between"
   >
     <Div display="flex" gap="0.5rem">

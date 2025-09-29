@@ -30,8 +30,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(axios@1.12.2)(got@11.8.6)(jiti@1.21.7)(postcss@8.4.31)(typescript@5.9.2)(yaml@2.8.1)
       '@interest-protocol/interest-aptos-curve':
-        specifier: ^4.4.1
-        version: 4.5.0(axios@1.12.2)(got@11.8.6)
+        specifier: ^5.4.0
+        version: 5.4.0(axios@1.12.2)(got@11.8.6)
       '@interest-protocol/interest-aptos-v2':
         specifier: ^4.0.1
         version: 4.1.0(axios@1.12.2)(got@11.8.6)
@@ -53,6 +53,9 @@ importers:
       framer-motion:
         specifier: ^10.11.2
         version: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      interest-aptos-curve@latest:
+        specifier: link:@@interest-protocol/interest-aptos-curve@latest
+        version: link:@@interest-protocol/interest-aptos-curve@latest
       interface-template:
         specifier: 'link:'
         version: 'link:'
@@ -743,8 +746,8 @@ packages:
   '@interest-protocol/aptos-sr-amm@1.1.0':
     resolution: {integrity: sha512-2n1rTUtLDYiPjOkxMCRxwVoDGwgsZeIaXvCM1yk1RSeuszcO1U165Y4e5Fi47XYLlAN9vMOePGDniNm6GJnu7w==}
 
-  '@interest-protocol/interest-aptos-curve@4.5.0':
-    resolution: {integrity: sha512-sZw40uK3UldDs8jBRzbc5u1ZD/WS8T3wr15EJ1Nq21K+eHZ/sDKLjEvUX+BaMJYPdw/5NqbJe0scrWnJBuoOuw==}
+  '@interest-protocol/interest-aptos-curve@5.4.0':
+    resolution: {integrity: sha512-MZ6EdAakgAKukuia4tYcZsFwJi3/hvWmnnQlKXjwswCWVMI4OTI/2/W9zxIo/zn3lfHoFIFCDsYp6a6LDl1d8Q==}
 
   '@interest-protocol/interest-aptos-v2@4.1.0':
     resolution: {integrity: sha512-y3Bm66CUsZzXMuaSx1cYE43XyEhnXHYqNbdIALli2r0oUE6rf+TeMiU1pgLluzmkEdolEbMSEGFiwmZJl36Nug==}
@@ -1269,7 +1272,6 @@ packages:
 
   '@telegram-apps/bridge@1.9.2':
     resolution: {integrity: sha512-SJLcNWLXhbbZr9MiqFH/g2ceuitSJKMxUIZysK4zUNyTUNuonrQG80Q/yrO+XiNbKUj8WdDNM86NBARhuyyinQ==}
-    deprecated: This package is not supported anymore. Use @tma.js/bridge instead
 
   '@telegram-apps/signals@1.1.2':
     resolution: {integrity: sha512-1P1kdCLX7MfETGPxH7f3UZKIsdE7Tz5S7QmN4Km1sbYQMakD5Bi1NecSMR7/wnHp50gWMI1JzENcMtCEmouhSg==}
@@ -4912,7 +4914,7 @@ snapshots:
       - typescript
       - yaml
 
-  '@interest-protocol/interest-aptos-curve@4.5.0(axios@1.12.2)(got@11.8.6)':
+  '@interest-protocol/interest-aptos-curve@5.4.0(axios@1.12.2)(got@11.8.6)':
     dependencies:
       '@aptos-labs/ts-sdk': 1.39.0(axios@1.12.2)(got@11.8.6)
       ramda: 0.30.1
@@ -5938,7 +5940,7 @@ snapshots:
   axios@1.7.4:
     dependencies:
       follow-redirects: 1.15.11
-      form-data: 4.0.0
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
