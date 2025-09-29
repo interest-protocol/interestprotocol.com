@@ -25,7 +25,7 @@ const NavbarItem: FC<NavbarItemProps> = ({ title, href }) => {
         width="max-content"
         lineHeight="1.5rem"
         alignContent="center"
-        gap={['0.2rem', '1rem']}
+        gap={['0.2rem', '0.625rem']}
         textTransform="capitalize"
         nHover={{ color: '#fff' }}
         transition="all 350ms ease-in-out"
