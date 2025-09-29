@@ -1,44 +1,45 @@
 import { Div } from '@stylin.js/elements';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import CombinedChart from '@/components/combined-chart';
 
-import { DATA } from './pools-chart-reports.data';
+import usePoolsMetricsOvertime from '../../pools.hooks';
+import { PoolsChartReportsProps } from './pools-chart-reports.types';
 
-const PoolsChartReports: FC = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const delay = Math.floor(Math.random() * 5000);
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, []);
+const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
+  const { data, isLoading } = usePoolsMetricsOvertime(aggregation);
 
   return (
     <Div width="100%" height="18.75rem">
-      {!loading ? (
+      {!isLoading ? (
         <CombinedChart
-          data={DATA}
+          data={
+            data?.map(({ timestamp, tvl, volume, fees }) => ({
+              tvl,
+              fees,
+              volume,
+              name: new Date(timestamp).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+              }),
+            })) ?? []
+          }
           xDataKey="name"
           charts={{
             area: [
               {
-                dataKey: 'tokenOut',
+                dataKey: 'tvl',
                 color: '#9ba2ad',
               },
             ],
             bar: [
               {
-                dataKey: 'total',
+                dataKey: 'fees',
                 color: '#00c779',
               },
               {
-                dataKey: 'tokenIn',
+                dataKey: 'volume',
                 color: '#383cb2',
               },
             ],

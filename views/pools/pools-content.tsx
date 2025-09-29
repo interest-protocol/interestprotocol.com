@@ -5,15 +5,13 @@ import { v4 } from 'uuid';
 import Table from '@/components/table';
 import { useTabState } from '@/hooks/use-tab-manager';
 
-import PoolsChartReports from './components/pools-chart-reports';
 import PoolsTabs from './components/pools-tabs';
-import PoolHeaderSummary from './header-summary';
 import {
   FEATURES_POOLS_DATA,
   FEATURES_POOLS_HEADER_DATA,
-  HEADER_DATA,
   VERIFIED_POOLS_HEADER_DATA,
 } from './pools.data';
+import PoolsHeader from './pools-header';
 
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
@@ -26,19 +24,7 @@ const PoolsContent: FC = () => {
       flexDirection="column"
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
-      <Div
-        display="flex"
-        p="1rem"
-        gap="1rem"
-        bg="#9CA3AF0D"
-        borderRadius="0.5rem"
-        flexDirection="column"
-        border="1px solid #1F2937"
-      >
-        <PoolHeaderSummary data={HEADER_DATA} />
-        <PoolsChartReports />
-      </Div>
-
+      <PoolsHeader />
       <PoolsTabs />
       {
         [

@@ -4,12 +4,10 @@ import Layout from '@/components/layout';
 
 import PoolsContent from './pools-content';
 
-const Pools: FC = () => {
-  return (
-    <Layout>
-      <PoolsContent />
-    </Layout>
-  );
-};
+const Pools: FC = () => (
+  <Layout>
+    <PoolsContent />
+  </Layout>
+);
 
 export default Pools;
