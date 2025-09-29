@@ -7,81 +7,10 @@ import {
   TableRowProps,
 } from '@/components/table/table.types';
 import Tag from '@/components/tag';
-import { Routes, RoutesEnum } from '@/constants';
-import Manage from '@/views/components/manage';
-import PoolName from '@/views/components/pool-name';
-import PriceRange from '@/views/components/price-range';
 
 export const POOL_EMPTY_DATA: ReadonlyArray<TableRowProps> = [];
 
-export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName
-            name="USDT.e • MOVE"
-            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
-          />
-        ),
-      },
-      {
-        Content: <PriceRange price="0.0997-0.998 per USDC.e" />,
-      },
-      {
-        Title: '$25,12K',
-        position: 'right',
-      },
-      {
-        Title: '0.00984Kx',
-        position: 'right',
-        color: '#34D399',
-      },
-      {
-        Title: '$38.36',
-        position: 'right',
-      },
-      {
-        Content: (
-          <Manage url={`${Routes[RoutesEnum.PortfolioDetails]}?address=1`} />
-        ),
-      },
-    ],
-  },
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName
-            name="USDT.e • MOVE"
-            tags={[{ type: 'earn' }, { type: 'curve' }, { type: 'stable' }]}
-          />
-        ),
-      },
-      {
-        Content: <PriceRange price="0.0997-0.998 per USDC.e" />,
-      },
-      {
-        Title: '$25,12K',
-        position: 'right',
-      },
-      {
-        Title: '0.00984Kx',
-        position: 'right',
-        color: '#34D399',
-      },
-      {
-        Title: '$38.36',
-        position: 'right',
-      },
-      {
-        Content: (
-          <Manage url={`${Routes[RoutesEnum.PortfolioDetails]}?address=1`} />
-        ),
-      },
-    ],
-  },
-];
+export const POOL_TYPE_DATA: ReadonlyArray<TableRowProps> = [];
 
 export const TRANSACTION_DATA: ReadonlyArray<TableRowProps> = [
   {
