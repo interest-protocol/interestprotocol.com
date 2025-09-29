@@ -7,6 +7,7 @@ import { VOLUME_DATA } from '@/components/volume-chart/volume-chart.data';
 import PoolDetailsInfo from '../pool-details-info';
 import VolumeWrapper from '../volume-wrapper';
 import MyPositionList from './my-position-list';
+import V3FormSection from './v3-form-section';
 
 const V3: FC = () => {
   return (
@@ -29,7 +30,7 @@ const V3: FC = () => {
         <MyPositionList />
         <PoolDetailsInfo />
       </Div>
-      <Div bg="green" p="1rem"></Div>
+      <V3FormSection />
     </Div>
   );
 };

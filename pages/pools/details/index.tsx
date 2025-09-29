@@ -41,7 +41,7 @@ const PoolDetailsPage: NextPage = () => {
   return (
     <FormProvider {...form}>
       <SEO />
-      <PoolDetails isV3={false} />
+      <PoolDetails />
     </FormProvider>
   );
 };
