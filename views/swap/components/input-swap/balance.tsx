@@ -104,13 +104,12 @@ const Balance: FC<InputProps> = ({ label }) => {
         {loading && (
           <Div
             mx="0.5rem"
-            mt="-1.7rem"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
             <Div position="absolute" justifySelf="flex-end">
-              <ProgressIndicator variant="loading" />
+              <ProgressIndicator size={12} variant="loading" />
             </Div>
           </Div>
         )}
@@ -146,13 +145,12 @@ const Balance: FC<InputProps> = ({ label }) => {
       {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
         <Div
           mx="0.5rem"
-          mt="-1.2rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <Div position="absolute" justifySelf="flex-end">
-            <ProgressIndicator variant="loading" />
+            <ProgressIndicator size={12} variant="loading" />
           </Div>
         </Div>
       )}
