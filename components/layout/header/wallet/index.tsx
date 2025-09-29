@@ -28,7 +28,6 @@ const Wallet: FC = () => {
       <Div display={['block', 'block', 'block', 'none']}>
         <NavbarItem title="Bridge" href="https://bridge.movementnetwork.xyz/" />
       </Div>
-
       {!connected ? (
         <Button
           all="unset"
