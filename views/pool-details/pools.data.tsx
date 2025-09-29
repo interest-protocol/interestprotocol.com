@@ -1,6 +1,5 @@
 import { Button } from '@/components/button';
 import { HeaderInfoProps } from '@/components/header-info/header-info.types';
-import PoolName from '@/components/pool-name';
 import { CopySVG } from '@/components/svg';
 
 import { SegmentedControlOptionItemProps } from '../../components/segmented-control/segmented-control.types';
@@ -9,7 +8,6 @@ import {
   TableRowProps,
 } from '../../components/table/table.types';
 import { CollapseCardInfoLineProps } from '../components/collapse-card-info/collapse-card-info.types';
-import OverviewTooltip from '../pools/components/overview-tooltip';
 
 export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
   [
@@ -67,50 +65,6 @@ export const FEATURES_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
     { description: '' },
     { description: '' },
   ];
-
-export const VERIFIED_POOLS_DATA: ReadonlyArray<TableRowProps> = [
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-      { Title: 'Add Liquidity', color: '#B4C5FF' },
-    ],
-  },
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-    ],
-  },
-  {
-    cells: [
-      {
-        Content: (
-          <PoolName name="USDT.e • MOVE" tags={['earn', 'curve', 'stable']} />
-        ),
-      },
-      { Title: '$1.53M' },
-      { Title: '$234.06K' },
-      { Title: '2%' },
-      { Content: <OverviewTooltip /> },
-      { Title: 'Add Liquidity', color: '#B4C5FF' },
-    ],
-  },
-];
 
 export const FEATURES_POOLS_DATA: ReadonlyArray<TableRowProps> = [
   {
