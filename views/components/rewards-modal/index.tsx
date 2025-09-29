@@ -14,25 +14,19 @@ const RewardsModal: FC<RewardsModalProps> = ({
   totalEarnings,
   rewardsList,
   rewardFee,
+  onClaim,
   claimingFee,
 }) => {
   const { handleClose } = useModal();
   const [loading, setLoading] = useState(false);
 
   const handleClaimRewards = async (stopLoading: () => void) => {
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.random() * 4000 + 1000)
-    );
-
-    stopLoading();
-    if (Math.random() > 0.5) {
-      toasting.success({
-        action: 'Claim Reward',
-        message: 'See on explorer',
-        link: '#',
-      });
+    try {
+      await onClaim?.();
       handleClose();
-    } else throw new Error();
+    } finally {
+      stopLoading();
+    }
   };
 
   const onSubmit = async () => {
@@ -97,43 +91,46 @@ const RewardsModal: FC<RewardsModalProps> = ({
             <RewardsModalItem key={v4()} {...reward} />
           ))}
         </Div>
+        {rewardFee && (
+          <Div display="flex" flexDirection="column" gap="0.5rem">
+            <P
+              fontWeight="500"
+              color="#9CA3AF"
+              fontFamily="Inter"
+              fontSize="0.875rem"
+              lineHeight="1.5rem"
+            >
+              Rewarded Fees
+            </P>
 
-        <Div display="flex" flexDirection="column" gap="0.5rem">
-          <P
-            fontWeight="500"
-            color="#9CA3AF"
-            fontFamily="Inter"
-            fontSize="0.875rem"
-            lineHeight="1.5rem"
-          >
-            Rewarded Fees
+            <Span
+              color="#FFFFFF"
+              fontWeight="500"
+              fontFamily="Inter"
+              fontSize="1.25rem"
+              lineHeight="2.25rem"
+            >
+              {formatDollars(+rewardFee, 6, 'start')}
+            </Span>
+          </Div>
+        )}
+      </Div>
+
+      {claimingFee && (
+        <Div
+          display="flex"
+          fontWeight="500"
+          fontFamily="Inter"
+          fontSize="0.875rem"
+          lineHeight="1.1375rem"
+          justifyContent="space-between"
+        >
+          <P color="#949E9E" letterSpacing="-0.56">
+            Claiming Fee:
           </P>
-
-          <Span
-            color="#FFFFFF"
-            fontWeight="500"
-            fontFamily="Inter"
-            fontSize="1.25rem"
-            lineHeight="2.25rem"
-          >
-            {formatDollars(+rewardFee, 6, 'start')}
-          </Span>
+          <P color="#FFFFFF">{claimingFee} %</P>
         </Div>
-      </Div>
-
-      <Div
-        display="flex"
-        fontWeight="500"
-        fontFamily="Inter"
-        fontSize="0.875rem"
-        lineHeight="1.1375rem"
-        justifyContent="space-between"
-      >
-        <P color="#949E9E" letterSpacing="-0.56">
-          Claiming Fee:
-        </P>
-        <P color="#FFFFFF">{claimingFee} %</P>
-      </Div>
+      )}
       <Button
         variant="filled"
         fontSize="1rem"

@@ -12,29 +12,25 @@ const TableSummary: FC<TableSummaryProps> = ({
   total,
   onClaim,
   totalPosition,
-}) => {
-  return (
+}) => (
+  <Div
+    gap="1rem"
+    mb="1.875rem"
+    display="flex"
+    justifyContent="space-between"
+    flexDirection={['column', 'column', 'column', 'row']}
+  >
+    <TableSummaryTitle title={title} total={total} />
     <Div
-      gap="1rem"
-      mb="1.875rem"
       display="flex"
+      flexWrap="wrap"
+      gap={['0.5rem', '1rem']}
       justifyContent="space-between"
-      flexDirection={['column', 'column', 'column', 'row']}
     >
-      <TableSummaryTitle title={title} total={total} />
-      <Div
-        display="flex"
-        flexWrap="wrap"
-        gap={['0.5rem', '1rem']}
-        justifyContent="space-between"
-      >
-        {totalPosition && (
-          <TableSummaryPosition totalPosition={totalPosition} />
-        )}
-        <TableSummaryEarnings gain={gain} onClaim={onClaim} />
-      </Div>
+      {totalPosition && <TableSummaryPosition totalPosition={totalPosition} />}
+      <TableSummaryEarnings gain={gain} onClaim={onClaim} />
     </Div>
-  );
-};
+  </Div>
+);
 
 export default TableSummary;
