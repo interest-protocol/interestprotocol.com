@@ -22,10 +22,7 @@ const TableSummaryPosition: FC<TableSummaryPositionProps> = ({
     lineHeight="1.5rem"
   >
     <Span color="#9CA3AF">Position:</Span>
-    <Span color="#34D399">
-      {totalPosition}
-      <Span display={['none', 'none', 'none', 'inline']}> in Range</Span>
-    </Span>
+    <Span color="#34D399">{totalPosition}</Span>
   </Div>
 );
 
