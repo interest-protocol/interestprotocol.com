@@ -1,3 +1,3 @@
 export interface PriceRangeProps {
-  price: string;
+  address: string;
 }

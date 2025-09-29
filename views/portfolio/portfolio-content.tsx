@@ -19,6 +19,7 @@ import {
 } from './components/table-summary/table-summary.types';
 import RewardsModal from './components/table-summary/table-summary-earnings/components/rewards-modal';
 import { TRANSACTION_FILTER_DATA } from './portfolio.data';
+import PortfolioCurvePools from './portfolio-curve-pools';
 import PortfolioSummary from './portfolio-summary';
 
 const PortfolioContent: FC = () => {
@@ -135,9 +136,7 @@ const PortfolioContent: FC = () => {
     >
       <PortfolioSummary />
       <Div gap="1rem" display={['none', 'block']}>
-        {TABLES.map((props, i) => (
-          <PoolTypeTable key={i} {...props} />
-        ))}
+        <PortfolioCurvePools />
       </Div>
       <Div display={['flex', 'none']} flexDirection="column" gap="1rem">
         <PortfolioTabs onGetTotal={TABLES.map((t) => t.rows.length)} />
