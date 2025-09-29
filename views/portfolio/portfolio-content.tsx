@@ -8,7 +8,6 @@ import RewardsModal from '../components/rewards-modal';
 import PoolTypeTable from './components/pool-type-table';
 import {
   POOL_EMPTY_DATA,
-  POOL_TYPE_DATA,
   POOL_TYPE_HEADER_DATA,
   TRANSACTION_DATA,
   TRANSACTION_HEADER_DATA,
@@ -107,7 +106,7 @@ const PortfolioContent: FC = () => {
 
   const TABLES = [
     {
-      rows: POOL_TYPE_DATA,
+      rows: [],
       tableHeader: POOL_TYPE_HEADER_DATA,
       headerSummary: CURVE_HEADER_SUMMARY,
     },
