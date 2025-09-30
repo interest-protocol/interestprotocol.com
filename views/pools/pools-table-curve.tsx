@@ -1,7 +1,11 @@
+import { Div } from '@stylin.js/elements';
+import Link from 'next/link';
 import { FC } from 'react';
 
+import { Button } from '@/components/button';
 import PoolName from '@/components/pool-name';
 import Table from '@/components/table';
+import { Routes, RoutesEnum } from '@/constants';
 import { POOLS } from '@/constants/pools';
 import { formatDollars } from '@/utils';
 
@@ -64,7 +68,30 @@ const PoolsTableCurve: FC = () => {
           ),
           position: 'right' as const,
         },
-        { Title: 'Add Liquidity', color: '#B4C5FF' },
+        {
+          Content: (
+            <Div display="flex" justifyContent="flex-end" width="100%">
+              <Link
+                href={`${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`}
+                title="pool name"
+              >
+                <Button
+                  p="unset"
+                  gap="0.2rem"
+                  border="none"
+                  variant="text"
+                  fontWeight="400"
+                  color="#B4C5FF"
+                  fontSize="0.875rem"
+                  lineHeight="1.12rem"
+                  nHover={{ color: '#b4c6ffc1' }}
+                >
+                  Add Liquidity
+                </Button>
+              </Link>
+            </Div>
+          ),
+        },
       ],
     };
   });
