@@ -1,6 +1,7 @@
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import invariant from 'tiny-invariant';
 
 import PoolName from '@/components/pool-name';
@@ -166,7 +167,13 @@ const PortfolioCurvePools: FC = () => {
         title: 'Curve pools',
         total: String(poolsPosition.length),
         totalPosition: formatDollars(usdUserPosition ?? 0),
-        gain: `${claimableRewards ? formatMoney(FixedPointMath.toNumber(claimableRewards), 2) : isAccountFarmsLoading ? 'Loading...' : 0} MOVE`,
+        gain: claimableRewards ? (
+          `${formatMoney(FixedPointMath.toNumber(claimableRewards), 2)} MOVE`
+        ) : isAccountFarmsLoading ? (
+          <Skeleton width={60} height={16} />
+        ) : (
+          '0 MOVE'
+        ),
       }}
       tableHeader={[
         { description: 'Pool' },

@@ -1,5 +1,6 @@
-import { Div, P } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { ProgressIndicator } from '@/components/progress-indicator';
 
@@ -14,7 +15,7 @@ const FetchingToken: FC = () => (
     flexDirection="column"
   >
     <ProgressIndicator variant="loading" />
-    <P>Loading...</P>
+    <Skeleton width={80} height={16} />
   </Div>
 );
 

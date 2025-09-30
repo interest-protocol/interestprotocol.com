@@ -25,7 +25,7 @@ const PoolHeaderSummaryMobile: FC<HeaderSummaryTerminalProps> = ({
     display={['flex', 'flex', 'flex', 'none']}
   >
     <Div display="flex" justifyContent="space-between">
-      <HeaderInfo key={v4()} {...data[0]} hideDate />
+      <HeaderInfo key={v4()} {...data[0]} />
       <Div>
         <Filter
           options={['D', 'W', 'M']}
