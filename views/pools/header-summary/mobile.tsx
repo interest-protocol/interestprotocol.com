@@ -10,9 +10,12 @@ import {
   AGGREGATION_MAP,
   AGGREGATION_REVERSE_MAP,
 } from './header-summary.data';
-import { Aggregation, HeaderSummaryProps } from './pool-header-summary.types';
+import {
+  Aggregation,
+  HeaderSummaryTerminalProps,
+} from './pool-header-summary.types';
 
-const PoolHeaderSummaryMobile: FC<HeaderSummaryProps> = ({
+const PoolHeaderSummaryMobile: FC<HeaderSummaryTerminalProps> = ({
   data,
   aggregation,
   setAggregation,

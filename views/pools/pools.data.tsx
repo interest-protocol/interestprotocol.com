@@ -1,26 +1,9 @@
 import { HeaderInfoProps } from '@/components/header-info/header-info.types';
 
-import { SegmentedControlOptionItemProps } from '../../components/segmented-control/segmented-control.types';
 import {
   TableHeaderTitleProps,
   TableRowProps,
 } from '../../components/table/table.types';
-
-export const SEGMENTED_CONTROL_DATA: ReadonlyArray<SegmentedControlOptionItemProps> =
-  [
-    {
-      label: '1Y',
-      value: '1Y',
-    },
-    {
-      label: '24H',
-      value: '24H',
-    },
-    {
-      label: '7D',
-      value: '7D',
-    },
-  ];
 
 export const HEADER_DATA: ReadonlyArray<HeaderInfoProps> = [
   {

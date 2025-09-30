@@ -4,7 +4,6 @@ import { FC, useState } from 'react';
 import PoolsChartReports from './components/pools-chart-reports';
 import PoolHeaderSummary from './header-summary';
 import { AggregationValue } from './header-summary/pool-header-summary.types';
-import { HEADER_DATA } from './pools.data';
 
 const PoolsHeader: FC = () => {
   const [aggregation, setAggregation] = useState<AggregationValue>('daily');
@@ -20,7 +19,6 @@ const PoolsHeader: FC = () => {
       border="1px solid #1F2937"
     >
       <PoolHeaderSummary
-        data={HEADER_DATA}
         aggregation={aggregation}
         setAggregation={setAggregation}
       />

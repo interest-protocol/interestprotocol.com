@@ -5,7 +5,10 @@ export type AggregationValue = 'daily' | 'weekly' | 'monthly';
 export type Aggregation = 'D' | 'W' | 'M';
 
 export interface HeaderSummaryProps {
-  data: ReadonlyArray<HeaderInfoProps>;
   aggregation: AggregationValue;
   setAggregation: (aggregation: AggregationValue) => void;
+}
+
+export interface HeaderSummaryTerminalProps extends HeaderSummaryProps {
+  data: ReadonlyArray<HeaderInfoProps>;
 }

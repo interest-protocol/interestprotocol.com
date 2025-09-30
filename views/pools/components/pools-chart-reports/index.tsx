@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import CombinedChart from '@/components/combined-chart';
 
-import usePoolsMetricsOvertime from '../../pools.hooks';
+import usePoolsMetricsOvertime from '../../pools.hooks/use-pools-metrics-overtime';
 import { PoolsChartReportsProps } from './pools-chart-reports.types';
 
 const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
@@ -14,18 +14,7 @@ const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
     <Div width="100%" height="18.75rem">
       {!isLoading ? (
         <CombinedChart
-          data={
-            data?.map(({ timestamp, tvl, volume, fees }) => ({
-              tvl,
-              fees,
-              volume,
-              name: new Date(timestamp).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-              }),
-            })) ?? []
-          }
-          xDataKey="name"
+          xDataKey="date"
           charts={{
             area: [
               {
@@ -44,6 +33,17 @@ const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
               },
             ],
           }}
+          data={
+            data?.map(({ timestamp, tvl, volume, fees }) => ({
+              tvl,
+              fees,
+              volume,
+              date: new Date(timestamp).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+              }),
+            })) ?? []
+          }
         />
       ) : (
         <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />

@@ -1,6 +1,7 @@
 export interface HeaderInfoProps {
   title: string;
   date?: string;
+  dateValue?: string;
   symbol?: string;
   right?: boolean;
   hideDate?: boolean;

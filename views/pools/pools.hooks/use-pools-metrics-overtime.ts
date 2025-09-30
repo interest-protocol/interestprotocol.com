@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 import { POOLS } from '@/constants/pools';
 
-import { AggregationValue } from './header-summary/pool-header-summary.types';
+import { AggregationValue } from '../header-summary/pool-header-summary.types';
 
 interface MetricItem {
   apr: string;

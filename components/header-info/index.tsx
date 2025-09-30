@@ -13,8 +13,10 @@ const HeaderInfo: FC<HeaderInfoProps> = ({
   right,
   symbol,
   hideDate,
+  dateValue,
 }) => {
   const formattedValue = formatDollars(+value, 6, 'start');
+  const formattedDateValue = formatDollars(+(dateValue ?? 0), 6, 'start');
   const titleColor = titleColors[title] || titleColors.default;
 
   return (
@@ -53,7 +55,7 @@ const HeaderInfo: FC<HeaderInfoProps> = ({
           lineHeight="1.25rem"
           textAlign={right ? 'right' : 'left'}
         >
-          {formattedValue} {date}
+          {dateValue ? formattedDateValue : formattedValue} since {date}
         </P>
       )}
     </Div>
