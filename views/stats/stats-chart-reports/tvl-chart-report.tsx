@@ -1,10 +1,9 @@
-import { Div, P } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import CombinedChart from '@/components/combined-chart';
 import Filter from '@/components/filter';
-import { formatDate } from '@/utils/date';
 import {
   AGGREGATION_MAP,
   AGGREGATION_REVERSE_MAP,
@@ -13,6 +12,7 @@ import {
   Aggregation,
   AggregationValue,
 } from '@/views/pools/header-summary/pool-header-summary.types';
+import usePoolsMetrics from '@/views/pools/pools.hooks/use-pools-metrics';
 import usePoolsMetricsOvertime from '@/views/pools/pools.hooks/use-pools-metrics-overtime';
 
 import HeadInfo from '../components/head-info';
@@ -20,6 +20,7 @@ import HeadInfo from '../components/head-info';
 const StatsChartTVLReport: FC = () => {
   const [aggregation, setAggregation] = useState<AggregationValue>('daily');
   const { data, isLoading } = usePoolsMetricsOvertime(aggregation);
+  const { data: metricsData } = usePoolsMetrics();
 
   return (
     <Div
@@ -32,7 +33,11 @@ const StatsChartTVLReport: FC = () => {
       border="1px solid #1F2937"
     >
       <Div display="flex" justifyContent="space-between" alignItems="center">
-        <HeadInfo name="IPX TVL" value={312323.12} isLoading={isLoading} />
+        <HeadInfo
+          name="IPX TVL"
+          value={Number(metricsData?.summary?.tvl) ?? 0}
+          isLoading={isLoading}
+        />
         <Div
           gap="0.5rem"
           display="flex"
@@ -48,14 +53,6 @@ const StatsChartTVLReport: FC = () => {
               setAggregation(AGGREGATION_MAP[value as Aggregation])
             }
           />
-
-          <P color="#9CA3AF" fontWeight={400} fontSize="0.75rem">
-            {isLoading ? (
-              <Skeleton width={80} height={12} />
-            ) : (
-              formatDate('2025-08-22T05:42:10.123Z')
-            )}
-          </P>
         </Div>
       </Div>
 
