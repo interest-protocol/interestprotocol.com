@@ -5,15 +5,15 @@ import { Button } from '@/components/button';
 import { ArrowRightSVG } from '@/components/svg';
 import { formatDollars } from '@/utils';
 
-import { PoolTokenInfoActionProps } from './pool-token-info-actions.types';
-import PoolTokenInfoActionsWrapper from './wrapper';
+import { TokenInfoActionProps } from './token-info-actions.types';
+import TokenInfoActionsWrapper from './wrapper';
 
-const PoolTokenInfoAction: FC<PoolTokenInfoActionProps> = ({
+const TokenInfoAction: FC<TokenInfoActionProps> = ({
   label,
   amount,
   onClaim,
 }) => (
-  <PoolTokenInfoActionsWrapper>
+  <TokenInfoActionsWrapper>
     <Div
       display="flex"
       gap="0.5rem"
@@ -40,7 +40,7 @@ const PoolTokenInfoAction: FC<PoolTokenInfoActionProps> = ({
         <ArrowRightSVG width="100%" maxWidth="0.75rem" maxHeight="0.75rem" />
       </Button>
     )}
-  </PoolTokenInfoActionsWrapper>
+  </TokenInfoActionsWrapper>
 );
 
-export default PoolTokenInfoAction;
+export default TokenInfoAction;

@@ -15,9 +15,22 @@ const PositionsDetailsTabs: FC = () => {
       gap="1rem"
       width="100%"
       display="flex"
+      alignItems="center"
       justifyContent="space-between"
+      flexDirection={['column', 'row']}
     >
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} color="#B4C5FF33" />
+      <Div
+        width="100%"
+        display="flex"
+        justifyContent={['space-between', 'flex-start']}
+      >
+        <Tabs
+          tabs={tabs}
+          setTab={setTab}
+          tab={tab}
+          color={['#B4C5FF33', '#9CA3AF1A']}
+        />
+      </Div>
 
       {tab === 1 && (
         <Div width={['100%', 'auto']}>
