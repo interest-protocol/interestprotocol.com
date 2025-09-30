@@ -82,25 +82,6 @@ const Balance: FC<InputProps> = ({ label }) => {
   if (label === 'to')
     return (
       <Div display="flex" gap="0.5rem" alignItems="center">
-        <Div display={['none', 'block']} width="1.38875rem" height="1.25rem">
-          <SubtractBox
-            maxHeight="100%"
-            maxWidth="100%"
-            width="100%"
-            height="100%"
-          />
-        </Div>
-        <P
-          color="#D1D5DB"
-          fontWeight="400"
-          fontSize="0.75rem"
-          fontFamily="Inter"
-          whiteSpace="nowrap"
-        >
-          {type
-            ? `${formatMoney(FixedPointMath.toNumber(balance, decimals))}`
-            : '0'}
-        </P>
         {loading && (
           <Div
             mx="0.5rem"
@@ -113,11 +94,42 @@ const Balance: FC<InputProps> = ({ label }) => {
             </Div>
           </Div>
         )}
+        <Div display={['none', 'block']} width="1.38875rem" height="1.25rem">
+          <SubtractBox
+            maxHeight="100%"
+            maxWidth="100%"
+            width="100%"
+            height="100%"
+          />
+        </Div>
+        <P
+          fontWeight="400"
+          color="#D1D5DB"
+          fontSize="0.75rem"
+          fontFamily="Inter"
+          whiteSpace="nowrap"
+        >
+          {type
+            ? `${formatMoney(FixedPointMath.toNumber(balance, decimals))}`
+            : '0'}
+        </P>
       </Div>
     );
 
   return (
     <Div display="flex" alignItems="center" gap="0.5rem" onClick={handleMax}>
+      {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
+        <Div
+          mx="0.5rem"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Div position="absolute" justifySelf="flex-end">
+            <ProgressIndicator size={12} variant="loading" />
+          </Div>
+        </Div>
+      )}
       <Div display={['none', 'block']} width="1.38875rem" height="1.25rem">
         <SubtractBox
           maxHeight="100%"
@@ -141,19 +153,6 @@ const Balance: FC<InputProps> = ({ label }) => {
           : '0.0000'}
       </P>
       <MaxBadge handleMax={handleMax} />
-
-      {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
-        <Div
-          mx="0.5rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Div position="absolute" justifySelf="flex-end">
-            <ProgressIndicator size={12} variant="loading" />
-          </Div>
-        </Div>
-      )}
     </Div>
   );
 };
