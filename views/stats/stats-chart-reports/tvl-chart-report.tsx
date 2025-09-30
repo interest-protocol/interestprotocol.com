@@ -1,25 +1,26 @@
-import { Div, P } from '@stylin.js/elements';
-import { FC, useEffect, useState } from 'react';
+import { Div } from '@stylin.js/elements';
+import { FC, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import CombinedChart from '@/components/combined-chart';
-import { formatDate } from '@/utils/date';
+import Filter from '@/components/filter';
+import {
+  AGGREGATION_MAP,
+  AGGREGATION_REVERSE_MAP,
+} from '@/views/pools/header-summary/header-summary.data';
+import {
+  Aggregation,
+  AggregationValue,
+} from '@/views/pools/header-summary/pool-header-summary.types';
+import usePoolsMetrics from '@/views/pools/pools.hooks/use-pools-metrics';
+import usePoolsMetricsOvertime from '@/views/pools/pools.hooks/use-pools-metrics-overtime';
 
 import HeadInfo from '../components/head-info';
-import { DATA } from './stats-chart-reports.data';
 
 const StatsChartTVLReport: FC = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const delay = Math.floor(Math.random() * 5000);
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [aggregation, setAggregation] = useState<AggregationValue>('daily');
+  const { data, isLoading } = usePoolsMetricsOvertime(aggregation);
+  const { data: metricsData } = usePoolsMetrics();
 
   return (
     <Div
@@ -32,39 +33,57 @@ const StatsChartTVLReport: FC = () => {
       border="1px solid #1F2937"
     >
       <Div display="flex" justifyContent="space-between" alignItems="center">
-        <HeadInfo name="IPX TVL" value={312323.12} isLoading={loading} />
-        <P color="#9CA3AF" fontWeight={400} fontSize="0.75rem">
-          {loading ? (
-            <Skeleton width={80} height={12} />
-          ) : (
-            formatDate('2025-08-22T05:42:10.123Z')
-          )}
-        </P>
+        <HeadInfo
+          name="IPX TVL"
+          value={Number(metricsData?.summary?.tvl) ?? 0}
+          isLoading={isLoading}
+        />
+        <Div
+          gap="0.5rem"
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-end"
+        >
+          <Filter
+            width="10.4375rem"
+            justifyContent="space-between"
+            options={['D', 'W', 'M']}
+            interval={AGGREGATION_REVERSE_MAP[aggregation]}
+            setInterval={(value) =>
+              setAggregation(AGGREGATION_MAP[value as Aggregation])
+            }
+          />
+        </Div>
       </Div>
 
       <Div width="100%" height="18.75rem">
-        {!loading ? (
+        {!isLoading ? (
           <CombinedChart
-            data={DATA}
-            xDataKey="name"
+            xDataKey="date"
             charts={{
               area: [
                 {
-                  dataKey: 'tokenOut',
+                  dataKey: 'tvl',
                   color: '#9ba2ad',
                 },
               ],
               bar: [
                 {
-                  dataKey: 'total',
+                  dataKey: 'fees',
                   color: '#00c779',
-                },
-                {
-                  dataKey: 'tokenIn',
-                  color: '#383cb2',
                 },
               ],
             }}
+            data={
+              data?.map(({ timestamp, tvl, fees }) => ({
+                tvl,
+                fees,
+                date: new Date(timestamp).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                }),
+              })) ?? []
+            }
           />
         ) : (
           <Skeleton width="100%" height="18.75rem" baseColor="#9CA3AF1A" />
