@@ -3,4 +3,5 @@ export interface HeadProps {
   value: number;
   symbol?: string;
   date?: string;
+  isLoading?: boolean;
 }

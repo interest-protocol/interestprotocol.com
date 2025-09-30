@@ -33,7 +33,12 @@ const StatsChartVolumeReport: FC = () => {
       border="1px solid #1F2937"
     >
       <Div display="flex" justifyContent="space-between" alignItems="center">
-        <HeadInfo symbol="USD" name="IPX Volume" value={312323.12} />
+        <HeadInfo
+          symbol="USD"
+          name="IPX Volume"
+          value={312323.12}
+          isLoading={loading}
+        />
         <Div
           gap="0.5rem"
           display="flex"
@@ -48,7 +53,11 @@ const StatsChartVolumeReport: FC = () => {
             onSelect={() => {}}
           />
           <P color="#9CA3AF" fontWeight={400} fontSize="0.75rem">
-            {formatDate('2025-08-22T05:42:10.123Z')}
+            {loading ? (
+              <Skeleton width={80} height={12} />
+            ) : (
+              formatDate('2025-08-22T05:42:10.123Z')
+            )}
           </P>
         </Div>
       </Div>
