@@ -6,7 +6,7 @@ import { useTabState } from '@/hooks/use-tab-manager';
 
 const PositionsDetailsTabs: FC = () => {
   const { tab, setTab } = useTabState();
-  const tabs = ['Your Position'];
+  const tabs = ['Your Position', 'Farm'];
 
   return (
     <Div

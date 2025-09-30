@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 
 import { useTabState } from '@/hooks';
 
-import Farm from './components/farm';
+import Farm from '../components/farm';
 import PoolDetailsHeaderSummary from './components/header-summary';
 import Pool from './components/pool';
 import V3 from './components/v3';

@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 
 import { useTabState } from '@/hooks/use-tab-manager';
 
+import Farm from '../components/farm';
 import PositionsDetailsTabs from './components/portfolio-details-tabs';
 import Position from './components/position';
 
@@ -20,7 +21,7 @@ const PortfolioDetailContent: FC = () => {
     >
       <Div gap="1rem" flexDirection="column" display={['flex', 'none']}>
         <PositionsDetailsTabs />
-        {[<Position key={v4()} />][tab]}
+        {[<Position key={v4()} />, <Farm key={v4()} />][tab]}
       </Div>
 
       <Div display={['none', 'flex']} flexDirection="column">

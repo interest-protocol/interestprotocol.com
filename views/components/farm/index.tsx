@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 
-import { FARM_INFORMATION_DATA } from '../../pools.data';
+import { FARM_INFORMATION_DATA } from '../../pool-details/pools.data';
 import FarmFormSection from './farm-form-section';
 import Rewards from './rewards';
 
@@ -16,7 +16,7 @@ const Farm: FC = () => (
   >
     <Div display="flex" flexDirection="column" gap="1.5rem">
       <Rewards />
-      <CollapseCardInfo title="Fam Information" data={FARM_INFORMATION_DATA} />
+      <CollapseCardInfo title="Farm Information" data={FARM_INFORMATION_DATA} />
     </Div>
     <FarmFormSection />
   </Div>
