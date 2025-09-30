@@ -1,30 +1,7 @@
-import { HeaderInfoProps } from '@/components/header-info/header-info.types';
-
 import {
   TableHeaderTitleProps,
   TableRowProps,
 } from '../../components/table/table.types';
-
-export const HEADER_DATA: ReadonlyArray<HeaderInfoProps> = [
-  {
-    title: 'TVL',
-    value: 12500000,
-    symbol: 'USD',
-    date: 'May 15, 2025',
-  },
-  {
-    title: 'Total Volume',
-    value: 12500000,
-    symbol: 'USD',
-    date: 'May 15, 2025',
-  },
-  {
-    title: 'Total Fees',
-    value: 450000,
-    symbol: 'USD',
-    date: 'May 15, 2025',
-  },
-];
 
 export const VERIFIED_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
   [
@@ -33,7 +10,6 @@ export const VERIFIED_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
     { description: 'Volume', position: 'right' },
     { description: 'APR', position: 'right' },
     { description: '', position: 'right' },
-    { description: '' },
   ];
 
 export const FEATURES_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =

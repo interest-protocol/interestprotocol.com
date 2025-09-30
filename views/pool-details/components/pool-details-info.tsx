@@ -1,6 +1,5 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import { TokenIcon } from '@/components';
 import { Button } from '@/components/button';
@@ -9,23 +8,22 @@ import { Network } from '@/constants';
 import { formatAddress } from '@/utils';
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 import { POOL_INFORMATION_DATA } from '@/views/pool-details/pools.data';
-import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
+
+import { usePoolDetailsContext } from '../pool-details.context';
 
 const PoolDetailsInfo: FC = () => {
-  const { getValues } = useFormContext<PortfolioDetailsFormProps>();
+  const { pool } = usePoolDetailsContext();
 
-  const tokenList = getValues('tokenList');
-
-  const LIVE_BALANCE_DATA = tokenList.map((token) => ({
+  const LIVE_BALANCE_DATA = pool.tokensMetadata?.map((token) => ({
     info: {
       description: token.symbol,
     },
     value: {
-      description: token.value,
+      description: '0',
     },
   }));
 
-  const ASSETS_DATA = tokenList.map((token) => ({
+  const ASSETS_DATA = pool.tokensMetadata?.map((token) => ({
     info: {
       description: token.symbol,
       Prefix: (
@@ -34,7 +32,7 @@ const PoolDetailsInfo: FC = () => {
           size="0.8rem"
           url={token.iconUri}
           symbol={token.symbol}
-          network={Network.MovementMainnet}
+          network={Network.MAINNET}
         />
       ),
     },
@@ -68,8 +66,8 @@ const PoolDetailsInfo: FC = () => {
         Pool details
       </P>
       <CollapseCardInfo title="Pool information" data={POOL_INFORMATION_DATA} />
-      <CollapseCardInfo title="Live balance" data={LIVE_BALANCE_DATA} />
-      <CollapseCardInfo title="Assets" data={ASSETS_DATA} />
+      <CollapseCardInfo title="Live balance" data={LIVE_BALANCE_DATA ?? []} />
+      <CollapseCardInfo title="Assets" data={ASSETS_DATA ?? []} />
     </Div>
   );
 };

@@ -1,5 +1,5 @@
 export interface PoolTokenInfoActionProps {
   label: string;
-  amount: number;
+  amount: string;
   onClaim?: () => void;
 }
