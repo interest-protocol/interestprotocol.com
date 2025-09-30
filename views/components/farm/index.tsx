@@ -3,11 +3,11 @@ import { FC } from 'react';
 
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 
-import { FARM_INFORMATION_DATA } from '../../pool-details/pools.data';
+import { FarmProps } from './farm.types';
 import FarmFormSection from './farm-form-section';
 import Rewards from './rewards';
 
-const Farm: FC = () => (
+const Farm: FC<FarmProps> = ({ data }) => (
   <Div
     gap={['1rem', '1rem', '1rem', '2rem']}
     display={['flex', 'flex', 'flex', 'grid']}
@@ -16,7 +16,7 @@ const Farm: FC = () => (
   >
     <Div display="flex" flexDirection="column" gap="1.5rem">
       <Rewards />
-      <CollapseCardInfo title="Farm Information" data={FARM_INFORMATION_DATA} />
+      <CollapseCardInfo title="Farm Information" data={data} />
     </Div>
     <FarmFormSection />
   </Div>

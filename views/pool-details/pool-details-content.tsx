@@ -9,6 +9,7 @@ import PoolDetailsHeaderSummary from './components/header-summary';
 import Pool from './components/pool';
 import V3 from './components/v3';
 import { PoolDetailsProps } from './pool-details.types';
+import { FARM_INFORMATION_DATA } from './pools.data';
 
 const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
   const { tab } = useTabState();
@@ -22,7 +23,13 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
       mt={['1rem', '1rem', '1rem', '2.5rem']}
     >
       <PoolDetailsHeaderSummary isV3={isV3} />
-      {isV3 ? <V3 /> : [<Pool key={v4()} />, <Farm key={v4()} />][tab]}
+      {isV3 ? (
+        <V3 />
+      ) : (
+        [<Pool key={v4()} />, <Farm key={v4()} data={FARM_INFORMATION_DATA} />][
+          tab
+        ]
+      )}
     </Div>
   );
 };
