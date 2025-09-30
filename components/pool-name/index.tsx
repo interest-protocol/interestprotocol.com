@@ -1,5 +1,6 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
 import { v4 } from 'uuid';
 
@@ -42,17 +43,20 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
       />
       <Div>
         <P
-          color="#fff"
+          color="#FFFFFF"
           fontWeight="500"
           fontFamily="Inter"
           fontSize="0.875rem"
           lineHeight="1.12rem"
         >
           {symbols?.join(' • ') ??
-            (isLoading
-              ? 'Loading...'
-              : tokensMetadata.map((item) => item.symbol).join(' • '))}
+            (isLoading ? (
+              <Skeleton width={100} height={14} />
+            ) : (
+              tokensMetadata.map((item) => item.symbol).join(' • ')
+            ))}
         </P>
+
         <Div display="flex" gap="0.25rem" mt="0.25rem">
           {[
             ...(isEarn ? ['earn'] : []),

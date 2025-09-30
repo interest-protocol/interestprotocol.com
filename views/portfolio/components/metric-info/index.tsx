@@ -1,9 +1,14 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { MetricInfoProps } from './metric-info.types';
 
-const MetricInfo: FC<MetricInfoProps> = ({ title, value }) => (
+const MetricInfo: FC<MetricInfoProps> = ({
+  title,
+  value,
+  isLoading = false,
+}) => (
   <Div
     px="0.5rem"
     py="0.75rem"
@@ -22,10 +27,10 @@ const MetricInfo: FC<MetricInfoProps> = ({ title, value }) => (
       fontSize="0.875rem"
       lineHeight="1.25rem"
     >
-      {title}
+      {isLoading ? <Skeleton width={100} height={10} /> : title}
     </P>
     <P color="#FFFFFF" fontFamily="Inter" fontSize="1.375rem" lineHeight="2rem">
-      {value}
+      {isLoading ? <Skeleton width={100} height={20} /> : value}
     </P>
   </Div>
 );
