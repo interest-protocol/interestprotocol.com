@@ -5,14 +5,14 @@ import { useFormContext } from 'react-hook-form';
 import Breadcrumb from '@/components/breadcrumb';
 import Tabs from '@/components/tabs';
 import { useModal, useTabState } from '@/hooks';
+import APR from '@/views/components/apr';
 import RewardsModal from '@/views/components/rewards-modal';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
+import TokenInfo from '../../../components/token-info';
+import TokenInfoAction from '../../../components/token-info-action';
 import { PoolDetailsProps } from '../../pool-details.types';
 import BreadcrumbActions from './breadcrumb-actions';
-import PoolTokenInfo from './pool-token-info';
-import APR from './pool-token-info/apr';
-import PoolTokenInfoAction from './pool-token-info-action';
 
 const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
   const { setContent } = useModal();
@@ -72,14 +72,14 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
           gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
           flexDirection={['column', 'column', 'column', 'row']}
         >
-          <PoolTokenInfo isV3={isV3} />
+          <TokenInfo isV3={isV3} />
           <Div
             display="flex"
             gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
             flexDirection={['column', 'column', 'column', 'row']}
           >
-            <PoolTokenInfoAction label="Pending rewards:" amount={0.0} />
-            <PoolTokenInfoAction
+            <TokenInfoAction label="Pending rewards:" amount={0.0} />
+            <TokenInfoAction
               label="Claim rewards:"
               amount={0.0}
               onClaim={onClaim}

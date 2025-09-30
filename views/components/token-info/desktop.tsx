@@ -6,7 +6,7 @@ import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
-const PoolTokenInfoDesktop: FC = () => {
+const TokenInfoDesktop: FC = () => {
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
 
   const lpCoin = getValues('lpCoin');
@@ -37,4 +37,4 @@ const PoolTokenInfoDesktop: FC = () => {
   );
 };
 
-export default PoolTokenInfoDesktop;
+export default TokenInfoDesktop;

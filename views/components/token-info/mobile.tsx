@@ -5,10 +5,11 @@ import { useFormContext } from 'react-hook-form';
 import { TokenIcon } from '@/components';
 import Tag from '@/components/tag';
 import { Network } from '@/constants';
-import { PoolDetailsProps } from '@/views/pool-details/pool-details.types';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
-const PoolTokenInfoMobile: FC<PoolDetailsProps> = ({ isV3 }) => {
+import { TokenInfoProps } from './token-info.types';
+
+const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
 
   const lpCoin = getValues('lpCoin');
@@ -53,4 +54,4 @@ const PoolTokenInfoMobile: FC<PoolDetailsProps> = ({ isV3 }) => {
   );
 };
 
-export default PoolTokenInfoMobile;
+export default TokenInfoMobile;
