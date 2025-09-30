@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
 import Deposit from '../deposit';
-import PoolDetailsHeader from '../header';
 import Info from '../info';
 import PositionsTabs from '../positions-tabs';
 import Rewards from '../rewards';
@@ -28,39 +27,42 @@ const Position: FC = () => {
   }, []);
 
   return (
-    <>
-      <PoolDetailsHeader />
-      <Div
-        gap="2.5rem"
-        display="grid"
-        gridTemplateColumns={['1fr', '1fr', '1fr', '2fr 1fr']}
-      >
-        <Info />
-        <Div gap="0.75rem" display="flex" flexDirection="column">
-          <PositionsTabs tab={tab} setTab={setTab} tabs={tabs} />
-          {
-            [
-              <Deposit key={v4()} />,
-              <Withdraw key={v4()} />,
-              <Div
-                display={['flex', 'none']}
-                flexDirection="column"
-                key={v4()}
-                my="-2rem"
-              >
-                <Rewards
-                  claimingFee="18%"
-                  pairToken={[
-                    { value: 0.0, symbol: 'MOVE', iconUrl: '/eth.png' },
-                    { value: 0.0, symbol: 'MOVE', iconUrl: '/usdt.png' },
-                  ]}
-                />
-              </Div>,
-            ][tab]
-          }
-        </Div>
+    <Div
+      gap="2.5rem"
+      display="grid"
+      gridTemplateColumns={['1fr', '1fr', '1fr', '2fr 1fr']}
+    >
+      <Info />
+      <Div gap="0.75rem" display="flex" flexDirection="column">
+        <PositionsTabs
+          tab={tab}
+          setTab={setTab}
+          tabs={tabs}
+          total={tabs.map((t) => (t === 'Rewards' ? 2 : null))}
+        />
+
+        {
+          [
+            <Deposit key={v4()} />,
+            <Withdraw key={v4()} />,
+            <Div
+              display={['flex', 'none']}
+              flexDirection="column"
+              key={v4()}
+              my="-2rem"
+            >
+              <Rewards
+                claimingFee="18%"
+                pairToken={[
+                  { value: 0.0, symbol: 'MOVE', iconUrl: '/eth.png' },
+                  { value: 0.0, symbol: 'MOVE', iconUrl: '/usdt.png' },
+                ]}
+              />
+            </Div>,
+          ][tab]
+        }
       </Div>
-    </>
+    </Div>
   );
 };
 

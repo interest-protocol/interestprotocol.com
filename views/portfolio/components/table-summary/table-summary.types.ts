@@ -10,7 +10,7 @@ export interface TableSummaryPositionProps {
 }
 
 export interface TotalEarningProps {
-  gain: string;
+  gain?: ReactNode;
   onClaim: () => void;
 }
 

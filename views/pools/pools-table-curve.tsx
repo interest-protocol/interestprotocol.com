@@ -1,6 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { Button } from '@/components/button';
 import PoolName from '@/components/pool-name';
@@ -26,6 +27,7 @@ const PoolsTableCurve: FC = () => {
 
   const rows = POOLS.map(({ poolAddress, tokensAddresses }) => {
     const pool = poolsMetricsMap?.[poolAddress];
+    const isLoading = !pool;
 
     return {
       cells: [
@@ -39,19 +41,27 @@ const PoolsTableCurve: FC = () => {
           ),
         },
         {
-          Title: pool ? formatDollars(Number(pool.metrics.tvl)) : 'Loading...',
+          Title: isLoading ? (
+            <Skeleton width={80} />
+          ) : (
+            formatDollars(Number(pool.metrics.tvl))
+          ),
           position: 'right' as const,
         },
         {
-          Title: pool
-            ? formatDollars(Number(pool.metrics.volume))
-            : 'Loading...',
+          Title: isLoading ? (
+            <Skeleton width={80} />
+          ) : (
+            formatDollars(Number(pool.metrics.volume))
+          ),
           position: 'right' as const,
         },
         {
-          Title: pool
-            ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-            : 'Loading...',
+          Title: isLoading ? (
+            <Skeleton width={60} />
+          ) : (
+            `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
+          ),
           position: 'right' as const,
         },
         {

@@ -1,7 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import { FC, PropsWithChildren } from 'react';
 
-const PoolTokenInfoActionsWrapper: FC<PropsWithChildren> = ({ children }) => (
+const TokenInfoActionsWrapper: FC<PropsWithChildren> = ({ children }) => (
   <Div
     gap="0.5rem"
     display="flex"
@@ -21,4 +21,4 @@ const PoolTokenInfoActionsWrapper: FC<PropsWithChildren> = ({ children }) => (
   </Div>
 );
 
-export default PoolTokenInfoActionsWrapper;
+export default TokenInfoActionsWrapper;

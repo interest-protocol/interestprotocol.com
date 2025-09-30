@@ -2,14 +2,10 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import unikey from 'unikey';
 
-import { useTabState } from '@/hooks/use-tab-manager';
-
 import Swap from './components/swap';
 import SwapTabs from './components/swap-tabs';
 
 const SwapContent: FC = () => {
-  const { tab } = useTabState();
-
   return (
     <Div display="flex" mt={['1rem', '6rem']}>
       <Div
@@ -23,7 +19,7 @@ const SwapContent: FC = () => {
       >
         <Div display="flex" flexDirection="column">
           <SwapTabs />
-          {[<Swap key={unikey()} />][tab]}
+          <Swap key={unikey()} />
         </Div>
       </Div>
     </Div>

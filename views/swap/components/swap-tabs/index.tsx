@@ -5,13 +5,11 @@ import { FormProvider, useFormContext } from 'react-hook-form';
 import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 import { useModal } from '@/hooks/use-modal';
-import { useTabState } from '@/hooks/use-tab-manager';
+import { noop } from '@/utils';
 
 import SwapSettings from '../swap-settings';
 
 const SwapTabs: FC = () => {
-  const { tab, setTab } = useTabState();
-
   const { setContent } = useModal();
   const form = useFormContext();
 
@@ -42,7 +40,7 @@ const SwapTabs: FC = () => {
       </Span>
       <Div display={['none', 'block']}>
         <Div display="flex" flexWrap="wrap">
-          <Tabs tabs={['Swap']} setTab={setTab} tab={tab} />
+          <Tabs tabs={['Swap']} setTab={noop} tab={0} />
         </Div>
       </Div>
       <Div
