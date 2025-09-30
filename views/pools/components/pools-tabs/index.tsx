@@ -4,13 +4,11 @@ import { FC } from 'react';
 import Tabs from '@/components/tabs';
 import { useTabState } from '@/hooks/use-tab-manager';
 
-import CreatePoolButton from '../create-pool-button';
-import FindPool from '../find-pool';
-import SearchInputPool from '../searc-input-pool';
+import SearchInputPool from '../search-input-pool';
 
 const PoolsTabs: FC = () => {
   const { tab, setTab } = useTabState();
-  const tabs = ['Verified pools', 'Features Pools'];
+  const tabs = ['Verified pools'];
 
   return (
     <Div
@@ -24,11 +22,8 @@ const PoolsTabs: FC = () => {
       <Div display="flex">
         <Tabs tabs={tabs} setTab={setTab} tab={tab} />
       </Div>
-
       <Div gap="0.75rem" display="flex">
         <SearchInputPool />
-        <FindPool />
-        <CreatePoolButton />
       </Div>
     </Div>
   );

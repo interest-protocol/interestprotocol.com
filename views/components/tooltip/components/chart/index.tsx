@@ -10,7 +10,11 @@ const Chart: FC<ChartProps> = ({ data, colors }) => (
       <PieChart>
         <Pie data={data} innerRadius={30} outerRadius={45} dataKey="value">
           {data.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index]} />
+            <Cell
+              fill={colors[index]}
+              key={`cell-${index}`}
+              style={{ border: 'none', outline: 'none' }}
+            />
           ))}
         </Pie>
       </PieChart>

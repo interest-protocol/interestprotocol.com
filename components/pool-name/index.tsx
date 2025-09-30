@@ -13,7 +13,7 @@ import { Button } from '../button';
 import { TAG_COLOR } from './pool-name.data';
 import { PoolNameProps } from './pool-name.types';
 
-const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses }) => {
+const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
   const { data: metadata, isLoading } = useSWR(
     ['pool-metadata', tokensAddresses, address],
     () =>
@@ -26,6 +26,9 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses }) => {
 
   const isEarn = !!FARMS_BY_LP[address];
   const isCurve = POOLS.some((pool) => pool.poolAddress === address);
+  const isStable = POOLS.some(
+    (pool) => pool.poolAddress === address && pool.curve === 'stable'
+  );
 
   return (
     <>
@@ -45,35 +48,38 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses }) => {
           fontSize="0.875rem"
           lineHeight="1.12rem"
         >
-          {isLoading
-            ? 'Loading...'
-            : tokensMetadata.map((item) => item.symbol).join(' • ')}
+          {symbols?.join(' • ') ??
+            (isLoading
+              ? 'Loading...'
+              : tokensMetadata.map((item) => item.symbol).join(' • '))}
         </P>
         <Div display="flex" gap="0.25rem" mt="0.25rem">
-          {[...(isEarn ? ['earn'] : []), ...(isCurve ? ['curve'] : [])].map(
-            (item) => (
-              <Button
-                key={v4()}
-                px="0.5rem"
-                py="0.25rem"
-                variant="filled"
-                fontWeight="500"
-                lineHeight="1rem"
-                fontSize="0.75rem"
-                border="1px solid"
-                bg={TAG_COLOR[item].bg}
-                textTransform="capitalize"
-                color={TAG_COLOR[item].color}
-                borderColor={TAG_COLOR[item].color}
-                nHover={{
-                  borderColor: TAG_COLOR[item].bg,
-                  fontWeight: 'bold',
-                }}
-              >
-                {item}
-              </Button>
-            )
-          )}
+          {[
+            ...(isEarn ? ['earn'] : []),
+            ...(isCurve ? ['curve'] : []),
+            isStable ? 'stable' : 'volatile',
+          ].map((item) => (
+            <Button
+              key={v4()}
+              px="0.5rem"
+              py="0.25rem"
+              variant="filled"
+              fontWeight="500"
+              lineHeight="1rem"
+              fontSize="0.75rem"
+              border="1px solid"
+              bg={TAG_COLOR[item]?.bg ?? '#9CA3AF1A'}
+              textTransform="capitalize"
+              color={TAG_COLOR[item]?.color ?? '#9CA3AF'}
+              borderColor={TAG_COLOR[item]?.color ?? '#9CA3AF'}
+              nHover={{
+                borderColor: TAG_COLOR[item]?.bg ?? '#9CA3AF1A',
+                fontWeight: 'bold',
+              }}
+            >
+              {item}
+            </Button>
+          ))}
         </Div>
       </Div>
     </>

@@ -7,9 +7,9 @@ import Rewards from './components/rewards';
 import { TooltipProps } from './tooltip.types';
 
 export const Tooltip: FC<TooltipProps> = ({
-  totalApr,
   fees,
   rewards,
+  totalApr,
   rewardsPerDay,
 }) => {
   const chartData = [
@@ -59,9 +59,8 @@ export const Tooltip: FC<TooltipProps> = ({
       >
         <Chart data={chartData} colors={['#22C55E', '#FF9315']} />
         <Metric label="Fees" value={fees} color="#22C55E" suffix="%" />
-        <Metric label="Rewards" value={rewards} color="#FF9315" />
+        <Metric label="Rewards" value={rewards} color="#FF9315" suffix="%" />
       </Div>
-
       <Rewards tokens={rewardsPerDay} />
     </Div>
   );

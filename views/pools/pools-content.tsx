@@ -6,12 +6,9 @@ import Table from '@/components/table';
 import { useTabState } from '@/hooks/use-tab-manager';
 
 import PoolsTabs from './components/pools-tabs';
-import {
-  FEATURES_POOLS_DATA,
-  FEATURES_POOLS_HEADER_DATA,
-  VERIFIED_POOLS_HEADER_DATA,
-} from './pools.data';
+import { FEATURES_POOLS_DATA, FEATURES_POOLS_HEADER_DATA } from './pools.data';
 import PoolsHeader from './pools-header';
+import PoolsTableCurve from './pools-table-curve';
 
 const PoolsContent: FC = () => {
   const { tab } = useTabState();
@@ -28,12 +25,7 @@ const PoolsContent: FC = () => {
       <PoolsTabs />
       {
         [
-          <Table
-            key={v4()}
-            rows={[]}
-            title={VERIFIED_POOLS_HEADER_DATA}
-            gridTemplateColumns="4fr repeat(5, 1fr)"
-          />,
+          <PoolsTableCurve key={v4()} />,
           <Table
             key={v4()}
             rows={FEATURES_POOLS_DATA}

@@ -29,10 +29,10 @@ export const HEADER_DATA: ReadonlyArray<HeaderInfoProps> = [
 export const VERIFIED_POOLS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
   [
     { description: 'Pool' },
-    { description: 'TVL' },
-    { description: 'Volume' },
-    { description: 'APR' },
-    { description: '' },
+    { description: 'TVL', position: 'right' },
+    { description: 'Volume', position: 'right' },
+    { description: 'APR', position: 'right' },
+    { description: '', position: 'right' },
     { description: '' },
   ];
 

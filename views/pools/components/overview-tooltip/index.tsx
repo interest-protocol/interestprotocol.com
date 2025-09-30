@@ -1,11 +1,17 @@
 import { Div } from '@stylin.js/elements';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Motion } from '@/components/motion';
 import Tooltip from '@/views/components/tooltip';
 
-const OverviewTooltip = () => {
+import { OverviewTooltipProps } from './overview-tooltip.types';
+
+const OverviewTooltip: FC<OverviewTooltipProps> = ({
+  apr,
+  feesApr,
+  rewardsApr,
+}) => {
   const [open, setOpen] = useState(false);
   const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
 
@@ -42,9 +48,9 @@ const OverviewTooltip = () => {
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
           >
             <Tooltip
-              totalApr={157.49}
-              fees={110.13}
-              rewards={47.36}
+              totalApr={apr}
+              fees={feesApr}
+              rewards={rewardsApr}
               rewardsPerDay={[
                 {
                   symbol: 'USDC',
