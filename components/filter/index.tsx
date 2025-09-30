@@ -1,9 +1,14 @@
-import { Div } from '@stylin.js/elements';
+import { Div, DivProps } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import { FilterProps } from './filter.types';
 
-const Filter: FC<FilterProps> = ({ interval, setInterval, options }) => (
+const Filter: FC<FilterProps & DivProps> = ({
+  interval,
+  setInterval,
+  options,
+  ...rest
+}) => (
   <Div
     width="max"
     gap="0.5rem"
@@ -13,6 +18,7 @@ const Filter: FC<FilterProps> = ({ interval, setInterval, options }) => (
     p="0.25rem 0.5rem"
     borderRadius="9999rem"
     border="1px solid #9CA3AF1A"
+    {...rest}
   >
     {options.map((intendedInterval) => (
       <Div
