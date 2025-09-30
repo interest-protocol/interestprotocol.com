@@ -13,11 +13,7 @@ const ORIGIN_TITLE = {
 const SelectTokenFilter: FC = () => {
   const { setValue, control } = useFormContext<SearchTokenForm>();
 
-  const searchValue = useWatch({ control, name: 'search' });
-
   const filterSelected = useWatch({ control, name: 'filter' });
-
-  if (searchValue) return;
 
   return (
     <Div
