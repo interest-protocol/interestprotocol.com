@@ -34,7 +34,13 @@ const Position: FC = () => {
     >
       <Info />
       <Div gap="0.75rem" display="flex" flexDirection="column">
-        <PositionsTabs tab={tab} setTab={setTab} tabs={tabs} />
+        <PositionsTabs
+          tab={tab}
+          setTab={setTab}
+          tabs={tabs}
+          total={tabs.map((t) => (t === 'Rewards' ? 2 : null))}
+        />
+
         {
           [
             <Deposit key={v4()} />,
