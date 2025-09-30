@@ -3,7 +3,6 @@ import { FC } from 'react';
 
 import { Button } from '@/components/button';
 import { ArrowRightSVG } from '@/components/svg';
-import { formatDollars } from '@/utils';
 
 import { PoolTokenInfoActionProps } from './pool-token-info-actions.types';
 import PoolTokenInfoActionsWrapper from './wrapper';
@@ -21,7 +20,7 @@ const PoolTokenInfoAction: FC<PoolTokenInfoActionProps> = ({
       justifyContent="space-between"
     >
       <Span color="#9CA3AF">{label}</Span>
-      <Span color="#FFFFFF">{formatDollars(amount, 2, 'start')}</Span>
+      <Span color="#FFFFFF">${amount}</Span>
     </Div>
     {onClaim && (
       <Button
