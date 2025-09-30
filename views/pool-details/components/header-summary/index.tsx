@@ -17,14 +17,14 @@ import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
 import { FixedPointMath } from '@/lib';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 import { formatMoney, ZERO_BIG_NUMBER } from '@/utils';
+import APR from '@/views/components/apr';
 import RewardsModal from '@/views/components/rewards-modal';
 
+import TokenInfo from '../../../components/token-info';
+import TokenInfoAction from '../../../components/token-info-action';
 import { usePoolDetailsContext } from '../../pool-details.context';
 import { PoolDetailsProps } from '../../pool-details.types';
 import BreadcrumbActions from './breadcrumb-actions';
-import PoolTokenInfo from './pool-token-info';
-import APR from './pool-token-info/apr';
-import PoolTokenInfoAction from './pool-token-info-action';
 
 const TABS = ['Pool', 'Farm'];
 
@@ -143,13 +143,13 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
           gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
           flexDirection={['column', 'column', 'column', 'row']}
         >
-          <PoolTokenInfo isV3={isV3} />
+          <TokenInfo isV3={isV3} />
           <Div
             display="flex"
             gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
             flexDirection={['column', 'column', 'column', 'row']}
           >
-            <PoolTokenInfoAction
+            <TokenInfoAction
               label="Claim rewards:"
               onClaim={onClaim}
               amount={

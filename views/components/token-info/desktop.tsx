@@ -5,7 +5,7 @@ import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 
-const PoolTokenInfoDesktop: FC = () => {
+const TokenInfoDesktop: FC = () => {
   const { pool, loading } = usePoolDetailsContext();
 
   return (
@@ -42,4 +42,4 @@ const PoolTokenInfoDesktop: FC = () => {
   );
 };
 
-export default PoolTokenInfoDesktop;
+export default TokenInfoDesktop;

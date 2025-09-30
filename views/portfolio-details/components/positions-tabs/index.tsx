@@ -5,16 +5,15 @@ import Tabs from '@/components/tabs';
 
 import { PortfolioTabsProps } from './positions-tabs.types';
 
-const PositionsTabs: FC<PortfolioTabsProps> = ({ tab, setTab, tabs }) => {
+const PositionsTabs: FC<PortfolioTabsProps> = ({
+  tab,
+  setTab,
+  tabs,
+  total,
+}) => {
   return (
-    <Div
-      mb="1rem"
-      gap="1rem"
-      width="100%"
-      display="flex"
-      justifyContent="space-between"
-    >
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} />
+    <Div mb="1rem" display="flex">
+      <Tabs tabs={tabs} setTab={setTab} tab={tab} total={total} />
     </Div>
   );
 };

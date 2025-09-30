@@ -4,7 +4,7 @@ export interface HeaderInfoProps {
   dateValue?: string;
   symbol?: string;
   right?: boolean;
-  hideDate?: boolean;
+  isLoading?: boolean;
   value: number | string;
 }
 

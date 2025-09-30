@@ -4,11 +4,11 @@ import { FC } from 'react';
 import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
-import { PoolDetailsProps } from '@/views/pool-details/pool-details.types';
 
-import APR from './apr';
+import APR from '../apr';
+import { TokenInfoProps } from './token-info.types';
 
-const PoolTokenInfoMobile: FC<PoolDetailsProps> = ({ isV3 }) => {
+const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
   const { pool, loading } = usePoolDetailsContext();
 
   return (
@@ -47,4 +47,4 @@ const PoolTokenInfoMobile: FC<PoolDetailsProps> = ({ isV3 }) => {
   );
 };
 
-export default PoolTokenInfoMobile;
+export default TokenInfoMobile;
