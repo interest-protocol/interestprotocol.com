@@ -93,10 +93,10 @@ const PoolDetailsHeader: FC = () => {
             gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
             flexDirection={['column', 'column', 'column', 'row']}
           >
-            <TokenInfoAction label="Pending rewards:" amount={0.0} />
+            <TokenInfoAction label="Pending rewards:" amount={'0.0'} />
             <TokenInfoAction
               label="Claim rewards:"
-              amount={0.0}
+              amount={'0.0'}
               onClaim={onClaim}
             />
           </Div>,
