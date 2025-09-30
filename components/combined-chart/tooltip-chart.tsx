@@ -2,6 +2,8 @@ import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
+import { formatMoney } from '@/utils';
+
 import { TooltipChartProps } from './combined-chart.types';
 
 const TooltipChart: FC<TooltipChartProps> = ({
@@ -53,7 +55,7 @@ const TooltipChart: FC<TooltipChartProps> = ({
                 fontSize="0.875rem"
                 textTransform="capitalize"
               >
-                {`${showPayloadWithName ? name + ': ' : ''} ${value}`}
+                {`${showPayloadWithName ? name + ': ' : ''} ${formatMoney(value)}`}
               </Span>
             </Div>
           </Div>
