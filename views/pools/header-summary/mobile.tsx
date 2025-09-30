@@ -1,9 +1,8 @@
-import { Div, P } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import Filter from '@/components/filter';
-import { formatDollars } from '@/utils';
 
 import HeaderInfo from '../../../components/header-info';
 import {
@@ -35,19 +34,8 @@ const PoolHeaderSummaryMobile: FC<HeaderSummaryTerminalProps> = ({
             setAggregation(AGGREGATION_MAP[value as Aggregation])
           }
         />
-        <P
-          color="#9CA3AF"
-          fontWeight="400"
-          textAlign="right"
-          fontFamily="Inter"
-          fontSize="0.875rem"
-          lineHeight="1.25rem"
-        >
-          {`${formatDollars(+data[0].value, 6, 'start')} ${data[0].date}`}
-        </P>
       </Div>
     </Div>
-
     <Div display="flex" justifyContent="space-between">
       <HeaderInfo key={v4()} {...data[1]} />
       <HeaderInfo key={v4()} {...data[2]} right />
