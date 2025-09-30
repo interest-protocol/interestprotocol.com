@@ -5,13 +5,13 @@ import { useFormContext } from 'react-hook-form';
 import Breadcrumb from '@/components/breadcrumb';
 import Tabs from '@/components/tabs';
 import { useModal, useTabState } from '@/hooks';
+import APR from '@/views/components/apr';
 import RewardsModal from '@/views/components/rewards-modal';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import { PoolDetailsProps } from '../../pool-details.types';
 import BreadcrumbActions from './breadcrumb-actions';
 import PoolTokenInfo from './pool-token-info';
-import APR from './pool-token-info/apr';
 import PoolTokenInfoAction from './pool-token-info-action';
 
 const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
