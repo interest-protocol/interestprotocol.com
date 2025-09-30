@@ -64,10 +64,7 @@ const PoolsTableCurve: FC = () => {
           ),
           position: 'right' as const,
         },
-        {
-          Title: 'Add Liquidity',
-          position: 'right' as const,
-        },
+        { Title: 'Add Liquidity', color: '#B4C5FF' },
       ],
     };
   });

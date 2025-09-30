@@ -3,15 +3,9 @@ import { FC } from 'react';
 
 import Chart from './components/chart';
 import Metric from './components/metric';
-import Rewards from './components/rewards';
 import { TooltipProps } from './tooltip.types';
 
-export const Tooltip: FC<TooltipProps> = ({
-  fees,
-  rewards,
-  totalApr,
-  rewardsPerDay,
-}) => {
+export const Tooltip: FC<TooltipProps> = ({ fees, rewards, totalApr }) => {
   const chartData = [
     { name: 'Fees', value: fees },
     { name: 'Rewards', value: rewards },
@@ -61,7 +55,7 @@ export const Tooltip: FC<TooltipProps> = ({
         <Metric label="Fees" value={fees} color="#22C55E" suffix="%" />
         <Metric label="Rewards" value={rewards} color="#FF9315" suffix="%" />
       </Div>
-      <Rewards tokens={rewardsPerDay} />
+      {/* <Rewards tokens={rewardsPerDay} /> */}
     </Div>
   );
 };
