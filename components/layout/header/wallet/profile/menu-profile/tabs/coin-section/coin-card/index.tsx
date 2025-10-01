@@ -121,10 +121,9 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
             </P>
           </Div> */}
         </Div>
-        {isConvertible && (
+        {!isConvertible && (
           <TooltipWrapper
             bg="#030712"
-            tooltipPosition="top"
             tooltipContent={
               <P
                 color="#fff"
