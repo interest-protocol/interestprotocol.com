@@ -13,7 +13,7 @@ const Deposit: FC = () => (
       <Input index={0} />
       <Div
         my="-1.3rem"
-        zIndex="100"
+        zIndex="10"
         display="flex"
         alignItems="center"
         justifyContent="center"

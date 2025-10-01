@@ -65,7 +65,7 @@ const ModalProvider: FC = () => {
         <Motion
           inset="0"
           bg="#0007"
-          zIndex="99"
+          zIndex="9999"
           width="100vw"
           display="flex"
           position="fixed"
