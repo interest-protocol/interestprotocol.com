@@ -7,7 +7,7 @@ import Tabs from '@/components/tabs';
 import { useModal } from '@/hooks';
 
 import SettingsModal from '../../settings-modal';
-import { ISeetings } from '../../settings-modal/settings-modal.types';
+import { ISettings } from '../../settings-modal/settings-modal.types';
 import FarmForm from './farm-form';
 
 const TABS = ['Stake', 'Unstake'];
@@ -17,7 +17,7 @@ const FarmFormSection: FC = () => {
   const [farmTabs, setFarmTabs] = useState(0);
 
   const form = useFormContext();
-  const { register } = useFormContext<ISeetings>();
+  const { register } = useFormContext<ISettings>();
 
   const handleOpenSettings = () =>
     setContent(
