@@ -8,7 +8,6 @@ import Farm from '../components/farm';
 import PoolDetailsHeader from './components/header';
 import PositionsDetailsTabs from './components/portfolio-details-tabs';
 import Position from './components/position';
-import { FARM_INFORMATION_DATA } from './portfolio-details.data';
 
 const PortfolioDetailContent: FC = () => {
   const { tab } = useTabState();
@@ -28,13 +27,7 @@ const PortfolioDetailContent: FC = () => {
         <PoolDetailsHeader />
         <PositionsDetailsTabs />
       </Div>
-
-      {
-        [
-          <Position key={v4()} />,
-          <Farm key={v4()} data={FARM_INFORMATION_DATA} />,
-        ][tab]
-      }
+      {[<Position key={v4()} />, <Farm key={v4()} />][tab]}
     </Div>
   );
 };
