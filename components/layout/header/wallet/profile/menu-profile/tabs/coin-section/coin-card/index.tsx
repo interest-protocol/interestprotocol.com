@@ -94,6 +94,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
           justifyContent="flex-start"
         >
           <P
+            mb="0.125rem"
             lineHeight="1rem"
             fontSize="0.875rem"
             fontWeight="500"
