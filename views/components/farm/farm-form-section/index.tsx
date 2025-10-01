@@ -6,9 +6,10 @@ import Tabs from '@/components/tabs';
 
 import FarmForm from './farm-form';
 
+const TABS = ['Stake', 'Unstake'];
+
 const FarmFormSection: FC = () => {
   const [farmTabs, setFarmTabs] = useState(0);
-  const tabs = ['Stake', 'Unstake'];
 
   const toggleFarm = (tabIndex: number) => {
     setFarmTabs(tabIndex);
@@ -26,7 +27,7 @@ const FarmFormSection: FC = () => {
         flexDirection="row"
       >
         <Div display="flex">
-          <Tabs tabs={tabs} setTab={toggleFarm} tab={farmTabs} />
+          <Tabs tabs={TABS} setTab={toggleFarm} tab={farmTabs} />
         </Div>
         <Div
           cursor="pointer"

@@ -33,7 +33,7 @@ const TransactionList: FC = () => {
           lineHeight="2.25rem"
           fontSize={['1.125rem', '1.125rem', '1.125rem', '1.75rem']}
         >
-          Transactions
+          Recent Transactions
         </Span>
         <Dropdown
           isRounded

@@ -26,7 +26,7 @@ interface PoolTransactions {
 const usePoolTransactions = (poolAddress: string) =>
   useSWR<PoolTransactions>([usePoolTransactions.name, poolAddress], () =>
     fetch(
-      `https://api.interestlabs.io/v1/movement/mainnet/curve/transactions?pool=${poolAddress}&limit=100&page=1`
+      `https://api.interestlabs.io/v1/movement/mainnet/curve/transactions?pool=${poolAddress}&limit=10&page=1`
     ).then((res) => res.json())
   );
 export default usePoolTransactions;

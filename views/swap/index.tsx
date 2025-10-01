@@ -4,12 +4,10 @@ import Layout from '@/components/layout';
 
 import SwapContent from './swap-content';
 
-const Swap: FC = () => {
-  return (
-    <Layout>
-      <SwapContent />
-    </Layout>
-  );
-};
+const Swap: FC = () => (
+  <Layout>
+    <SwapContent />
+  </Layout>
+);
 
 export default Swap;

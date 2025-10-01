@@ -35,7 +35,6 @@ const Rewards: FC = () => {
           >
             Pending Yield
           </P>
-
           <Span
             fontWeight="500"
             color="#FFFFFF"
