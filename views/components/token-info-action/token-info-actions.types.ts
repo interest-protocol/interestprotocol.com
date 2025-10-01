@@ -1,5 +1,5 @@
 export interface TokenInfoActionProps {
   label: string;
-  amount: number;
+  amount: string;
   onClaim?: () => void;
 }

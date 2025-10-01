@@ -59,3 +59,7 @@ export type IPool = (
   tokensAddresses: ReadonlyArray<string>;
   tokensMetadata?: ReadonlyArray<AssetMetadata>;
 };
+
+export interface PoolPageProps {
+  address: string;
+}

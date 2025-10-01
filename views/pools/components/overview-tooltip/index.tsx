@@ -9,6 +9,7 @@ import { OverviewTooltipProps } from './overview-tooltip.types';
 
 const OverviewTooltip: FC<OverviewTooltipProps> = ({
   apr,
+  title,
   feesApr,
   rewardsApr,
 }) => {
@@ -26,13 +27,15 @@ const OverviewTooltip: FC<OverviewTooltipProps> = ({
 
   return (
     <Div
-      cursor="pointer"
+      width="100%"
+      display="flex"
       color="#B4C5FF"
-      display="inline-block"
+      cursor="pointer"
+      justifyContent="flex-end"
       onMouseEnter={handleEnter}
       onMouseLeave={() => setOpen(false)}
     >
-      Overview
+      {title}
       {open &&
         coords &&
         createPortal(

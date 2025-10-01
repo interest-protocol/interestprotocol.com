@@ -1,49 +1,114 @@
+import { AccountAddress, Network } from '@aptos-labs/ts-sdk';
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
+import invariant from 'tiny-invariant';
 
 import Breadcrumb from '@/components/breadcrumb';
 import Tabs from '@/components/tabs';
-import { useModal, useTabState } from '@/hooks';
+import { toasting } from '@/components/toast';
+import { EXPLORER_URL } from '@/constants';
+import { MOVE } from '@/constants/coins';
+import { FARMS_BY_LP } from '@/constants/farms';
+import { useCoinsPrice, useModal, useTabState } from '@/hooks';
+import { useFarmAccount } from '@/hooks/use-farm-account';
+import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
+import { FixedPointMath } from '@/lib';
+import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
+import { formatMoney, ZERO_BIG_NUMBER } from '@/utils';
 import APR from '@/views/components/apr';
 import RewardsModal from '@/views/components/rewards-modal';
-import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import TokenInfo from '../../../components/token-info';
 import TokenInfoAction from '../../../components/token-info-action';
+import { usePoolDetailsContext } from '../../pool-details.context';
 import { PoolDetailsProps } from '../../pool-details.types';
 import BreadcrumbActions from './breadcrumb-actions';
 
-const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
-  const { setContent } = useModal();
-  const { getValues } = useFormContext<PortfolioDetailsFormProps>();
-  const { tab, setTab } = useTabState();
-  const tabs = ['Pool', 'Farm'];
+const TABS = ['Pool', 'Farm'];
 
-  const tokenList = getValues('tokenList');
+const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
+  const client = useAptosClient();
+  const { setContent } = useModal();
+  const { tab, setTab } = useTabState();
+  const { account } = useAptosWallet();
+  const interestCurveSdk = useInterestCurveSdk();
+  const { pool, loading } = usePoolDetailsContext();
+  const { signAndSubmitTransaction } = useAptosWallet();
+  const { data: farmAccount } = useFarmAccount(pool.poolAddress);
+  const { data: coinsPrice } = useCoinsPrice([MOVE.address.toString()]);
+
+  const movePrice = coinsPrice?.[0]?.price;
+
+  const balance =
+    farmAccount?.rewards.reduce(
+      (acc, curr) =>
+        MOVE.address.equals(AccountAddress.from(curr.fa))
+          ? acc.plus(BigNumber(String(curr.amount)))
+          : acc,
+      ZERO_BIG_NUMBER
+    ) ?? ZERO_BIG_NUMBER;
+
+  const handleClaimReward = async () => {
+    try {
+      invariant(account, 'You must be connected to proceed');
+
+      const payload = interestCurveSdk.harvest({
+        recipient: account.address,
+        rewardFa: MOVE.address.toString(),
+        farm: FARMS_BY_LP[pool.poolAddress].address.toString(),
+      });
+
+      const tx = await signAndSubmitTransaction({ payload });
+
+      invariant(tx.status === 'Approved', 'Rejected by User');
+
+      const txResult = tx.args;
+
+      let waitingTx = true;
+
+      do {
+        await client
+          .waitForTransaction({
+            transactionHash: txResult.hash,
+            options: { checkSuccess: true },
+          })
+          .then(() => {
+            waitingTx = false;
+          })
+          .catch();
+      } while (waitingTx);
+
+      toasting.success({
+        action: 'Claim reward',
+        message: 'See on explorer',
+        link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
+      });
+    } catch (e) {
+      console.warn({ e });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((e as any)?.data?.error_code === 'mempool_is_full')
+        throw new Error('The mempool is full, try again in a few seconds.');
+
+      throw e;
+    }
+  };
 
   const onClaim = () =>
     setContent(
       <RewardsModal
-        claimingFee="0.123"
-        totalEarnings="0.00"
-        rewardFee="0.00"
+        onClaim={handleClaimReward}
+        totalEarnings={
+          movePrice
+            ? String(movePrice * FixedPointMath.toNumber(balance))
+            : '0.00'
+        }
         rewardsList={[
           {
-            amount: '0.00',
+            amount: formatMoney(FixedPointMath.toNumber(balance)),
             symbol: 'MOVE',
-          },
-          {
-            amount: '0.00',
-            symbol: 'USDC.e',
-          },
-          {
-            amount: '0.00',
-            symbol: 'USDT.e',
-          },
-          {
-            amount: '0.00',
-            symbol: 'WBTC.e',
           },
         ]}
       />,
@@ -62,7 +127,13 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
         <Div display="flex" justifyContent="space-between">
           <Breadcrumb
             basePage="Pools"
-            currentPage={`${tokenList[0].symbol}-${tokenList[1].symbol}`}
+            currentPage={
+              loading
+                ? 'loading...'
+                : (pool.tokensMetadata
+                    ?.map((token) => token.symbol)
+                    .join('-') ?? 'none')
+            }
           />
           <BreadcrumbActions />
         </Div>
@@ -78,11 +149,14 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
             gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
             flexDirection={['column', 'column', 'column', 'row']}
           >
-            <TokenInfoAction label="Pending rewards:" amount={0.0} />
             <TokenInfoAction
               label="Claim rewards:"
-              amount={0.0}
               onClaim={onClaim}
+              amount={
+                movePrice
+                  ? String(movePrice * FixedPointMath.toNumber(balance))
+                  : '0.00'
+              }
             />
           </Div>
         </Div>
@@ -96,7 +170,7 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
           flexDirection={['column', 'column', 'row', 'row']}
         >
           <Div display="flex" width={['100%', '100%', '100%', 'unset']}>
-            <Tabs tabs={tabs} setTab={setTab} tab={tab} color="#6067F9" />
+            <Tabs tabs={TABS} setTab={setTab} tab={tab} color="#6067F9" />
           </Div>
           <Div display={['none', 'none', 'none', 'block']}>
             <APR />

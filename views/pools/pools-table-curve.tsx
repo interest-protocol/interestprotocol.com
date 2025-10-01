@@ -57,16 +57,13 @@ const PoolsTableCurve: FC = () => {
           position: 'right' as const,
         },
         {
-          Title: isLoading ? (
-            <Skeleton width={60} />
-          ) : (
-            `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-          ),
-          position: 'right' as const,
-        },
-        {
-          Content: (
+          Title: (
             <OverviewTooltip
+              title={
+                pool
+                  ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
+                  : 'Loading...'
+              }
               feesApr={pool ? Number(pool.metrics.apr) : 0}
               rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
               apr={
