@@ -1,15 +1,13 @@
 import { Div, Input, Label, P } from '@stylin.js/elements';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
 import { useModal } from '@/hooks/use-modal';
 
-import { ISwapSettings } from '../swap.types';
+import { SettingsModalProps } from './settings-modal.types';
 
-const SwapSettings: FC = () => {
-  const { register } = useFormContext<ISwapSettings>();
+const SettingsModal: FC<SettingsModalProps> = ({ register }) => {
   const { handleClose } = useModal();
 
   return (
@@ -83,4 +81,4 @@ const SwapSettings: FC = () => {
   );
 };
 
-export default SwapSettings;
+export default SettingsModal;
