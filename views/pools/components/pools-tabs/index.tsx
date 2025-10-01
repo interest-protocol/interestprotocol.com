@@ -14,7 +14,6 @@ const PoolsTabs: FC = () => {
     <Div
       gap="1rem"
       width="100%"
-      mb="1rem"
       display="flex"
       justifyContent="space-between"
       flexDirection={['column', 'column', 'column', 'row']}

@@ -15,6 +15,7 @@ import { isTableSummaryCustom } from './pool-type-table.utils';
 
 const PoolTypeTable: FC<PoolTypeTableProps> = ({
   rows,
+  isLoading,
   tableHeader,
   headerSummary,
   gridTemplateColumns,
@@ -31,6 +32,7 @@ const PoolTypeTable: FC<PoolTypeTableProps> = ({
       key={v4()}
       rows={rows}
       title={tableHeader}
+      isLoading={isLoading}
       gridTemplateColumns={gridTemplateColumns || '15rem 2fr repeat(4, 1fr)'}
     />
   </Div>

@@ -15,7 +15,7 @@ import { VERIFIED_POOLS_HEADER_DATA } from './pools.data';
 import usePoolsMetrics, { PoolMetrics } from './pools.hooks/use-pools-metrics';
 
 const PoolsTableCurve: FC = () => {
-  const { data: metricsData } = usePoolsMetrics();
+  const { data: metricsData, isLoading } = usePoolsMetrics();
 
   const poolsMetricsMap = metricsData?.data.reduce(
     (acc, pool) => {
@@ -109,6 +109,7 @@ const PoolsTableCurve: FC = () => {
   return (
     <Table
       rows={rows}
+      isLoading={isLoading}
       title={VERIFIED_POOLS_HEADER_DATA}
       gridTemplateColumns="4fr repeat(5, 1fr)"
     />
