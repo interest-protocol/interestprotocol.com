@@ -21,13 +21,13 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
 
   return (
     <Div
+      gap="1rem"
       display="flex"
       cursor="pointer"
       transition="0.3s"
       alignItems="center"
-      boxShadow="0px 1px 2px 0px #0000000D"
       flexDirection="column"
-      gap="1rem"
+      boxShadow="0px 1px 2px 0px #0000000D"
     >
       <Div display="flex" alignItems="flex-end" gap="0.5rem">
         <Div
@@ -37,15 +37,19 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
           alignItems="center"
         >
           <Div
-            border="0.65rem solid #1e1f1f"
+            mb="0.5rem"
+            display="flex"
             borderRadius="999px"
-            display={'flex'}
             width="max-content"
+            alignItems="center"
+            justifyContent="center"
+            border="0.65rem solid #1e1f1f"
+            ml="1.7rem"
           >
             <Div
-              bg="#B4C5FF"
               width="4rem"
               height="4rem"
+              bg="#B4C5FF"
               display="flex"
               overflow="hidden"
               color="#002A78"
@@ -71,8 +75,8 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
                 width="max-content"
                 fontFamily="Inter"
                 fontWeight="600"
-                fontSize="1.25rem"
                 lineHeight="1.5rem"
+                fontSize={['1rem', '1.25rem']}
               >
                 {formatAddress(address)}
               </P>
@@ -95,7 +99,12 @@ const Avatar: FC<AvatarProps> = ({ accountAddress }) => {
             copyToClipboard(account || '', clipBoardSuccessMessage);
           }}
         >
-          <CopySVG maxHeight="1rem" maxWidth="1rem" width="100%" />
+          <CopySVG
+            maxHeight="1rem"
+            maxWidth="1rem"
+            width="100%"
+            color="#949E9E"
+          />
         </Button>
       </Div>
       <BalanceCard />
