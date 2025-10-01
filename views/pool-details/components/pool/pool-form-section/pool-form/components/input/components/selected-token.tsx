@@ -4,7 +4,6 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
-import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 import {
   PortfolioDetailsFormProps,
   PortfolioDetailsToken,
@@ -46,10 +45,11 @@ const SelectedToken: FC<InputProps> = ({ field, Suffix }) => {
         <Div>
           <TokenIcon
             withBg
+            rounded
             size="1.25rem"
             symbol={currentSymbol}
-            rounded={sanitizedToken?.standard === TokenStandard.COIN}
-            network={Network.MovementMainnet}
+            network={Network.MAINNET}
+            url={sanitizedToken?.iconUri}
           />
         </Div>
         <P

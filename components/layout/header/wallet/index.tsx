@@ -11,7 +11,7 @@ import Profile from './profile';
 
 const Wallet: FC = () => {
   const { setContent } = useModal();
-  const { connected, disconnect } = useAptosWallet();
+  const { account, disconnect } = useAptosWallet();
 
   const connectModal = () =>
     setContent(<ConnectWalletModal />, {
@@ -28,7 +28,7 @@ const Wallet: FC = () => {
       <Div display={['block', 'block', 'block', 'none']}>
         <NavbarItem title="Bridge" href="https://bridge.movementnetwork.xyz/" />
       </Div>
-      {!connected ? (
+      {!account ? (
         <Button
           all="unset"
           px="2rem"
