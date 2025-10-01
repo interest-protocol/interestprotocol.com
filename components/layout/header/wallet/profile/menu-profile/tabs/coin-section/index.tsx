@@ -6,6 +6,7 @@ import VerifiedList from './verified-list';
 
 const CoinSection: FC = () => (
   <Div
+    width="100%"
     gap="0.75rem"
     display="flex"
     alignItems="center"

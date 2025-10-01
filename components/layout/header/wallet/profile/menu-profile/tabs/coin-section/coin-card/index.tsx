@@ -89,6 +89,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
           justifyContent="flex-start"
         >
           <P
+            mb="0.125rem"
             lineHeight="1rem"
             fontSize="0.875rem"
             fontWeight="500"
@@ -100,7 +101,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
               {symbol}
             </Span>
           </P>
-          {/* <Div
+          <Div
             mt="0.15rem"
             display="flex"
             alignItems="center"
@@ -108,8 +109,8 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
             border="1px solid #9CA3AF1A"
             px="0.5rem"
             borderRadius="999px"
-            bg={['#16A24A33', '#E53E3E33'][Number(RANDOM_NUMBER)]}
-            color={['#5CD187', '#FF8181'][Number(RANDOM_NUMBER)]}
+            bg="#16A24A33"
+            color="#5CD187"
           >
             <P
               fontSize="0.625rem"
@@ -117,9 +118,9 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
               fontWeight="500"
               fontFamily="Inter"
             >
-              {`${RANDOM_NUMBER ? '+' : '-'}${VALUE}`}
+              0.00
             </P>
-          </Div> */}
+          </Div>
         </Div>
         {isConvertible && (
           <TooltipWrapper
