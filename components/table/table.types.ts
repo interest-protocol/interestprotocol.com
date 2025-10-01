@@ -5,6 +5,7 @@ export interface TableHeaderProps
   extends Pick<DivProps, 'gridTemplateColumns'> {
   title: ReadonlyArray<TableHeaderTitleProps>;
   rows: ReadonlyArray<TableRowProps>;
+  isLoading?: boolean;
 }
 
 export interface TableHeaderTitleProps {

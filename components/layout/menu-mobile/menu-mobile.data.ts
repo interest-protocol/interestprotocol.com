@@ -1,4 +1,4 @@
-import { ChartSquareSVG, CirclePlusSVG, HourglassSVG } from '@/components/svg';
+import { ChartSquareSVG, CirclePlusSVG } from '@/components/svg';
 import { Routes, RoutesEnum } from '@/constants';
 
 import { MenuItemProps } from './menu.types';
@@ -13,12 +13,6 @@ export const MENU_MOBILE_ITEMS: ReadonlyArray<
     Icon: CirclePlusSVG,
     name: 'Create Token',
     path: Routes[RoutesEnum.CreateToken],
-    disabled: false,
-  },
-  {
-    Icon: HourglassSVG,
-    name: 'DCA',
-    path: Routes[RoutesEnum.DCA],
     disabled: false,
   },
   {

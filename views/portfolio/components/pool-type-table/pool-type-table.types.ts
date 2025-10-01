@@ -15,4 +15,5 @@ export interface PoolTypeTableProps
   rows: ReadonlyArray<TableRowProps>;
   tableHeader: ReadonlyArray<TableHeaderTitleProps>;
   headerSummary: TableSummaryProps | TableSummaryCustomProps;
+  isLoading?: boolean;
 }

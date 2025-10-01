@@ -26,18 +26,21 @@ import RewardsModal from '../components/rewards-modal';
 import PoolTypeTable from './components/pool-type-table';
 
 const PortfolioCurvePools: FC = () => {
-  const { coinsMap } = useCoins();
+  const { coinsMap, loading: isCoinsMapLoading } = useCoins();
   const { setContent } = useModal();
   const client = useAptosClient();
   const { account } = useAptosWallet();
-  const { data: metricsData } = useMetrics();
+  const { data: metricsData, isLoading: isMetricsLoading } = useMetrics();
   const interestCurveSdk = useInterestCurveSdk();
-  const { data: lpsPriceMap } = useLPCoinsPrice();
+  const { data: lpsPriceMap, isLoading: isLpsPricesLoading } =
+    useLPCoinsPrice();
   const { signAndSubmitTransaction } = useAptosWallet();
   const { data: accountFarmsData, isLoading: isAccountFarmsLoading } =
     useGetAccountFarmsData();
 
-  const { data: coinsPrice } = useCoinsPrice([MOVE.address.toString()]);
+  const { data: coinsPrice, isLoading: isCoinPriceLoading } = useCoinsPrice([
+    MOVE.address.toString(),
+  ]);
   const movePrice = coinsPrice?.[0]?.price;
 
   const claimableRewards = accountFarmsData?.reduce(
@@ -81,6 +84,12 @@ const PortfolioCurvePools: FC = () => {
         0
       )
     : 0;
+  const isLoading =
+    isAccountFarmsLoading ||
+    isCoinsMapLoading ||
+    isLpsPricesLoading ||
+    isMetricsLoading ||
+    isCoinPriceLoading;
 
   const handleClaimRewards = async () => {
     try {
@@ -162,6 +171,7 @@ const PortfolioCurvePools: FC = () => {
 
   return (
     <PoolTypeTable
+      isLoading={isLoading}
       headerSummary={{
         onClaim,
         title: 'Curve pools',
@@ -215,7 +225,7 @@ const PortfolioCurvePools: FC = () => {
                     accountFarmsData?.find(
                       (farm) =>
                         farm.farm ===
-                        FARMS_BY_LP[poolAddress].address.toString()
+                        FARMS_BY_LP[poolAddress]?.address.toString()
                     )?.rewards ?? 0
                   )
                 )

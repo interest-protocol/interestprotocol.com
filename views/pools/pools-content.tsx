@@ -2,17 +2,11 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
-import Table from '@/components/table';
-import { useTabState } from '@/hooks/use-tab-manager';
-
 import PoolsTabs from './components/pools-tabs';
-import { FEATURES_POOLS_DATA, FEATURES_POOLS_HEADER_DATA } from './pools.data';
 import PoolsHeader from './pools-header';
 import PoolsTableCurve from './pools-table-curve';
 
 const PoolsContent: FC = () => {
-  const { tab } = useTabState();
-
   return (
     <Div
       mb="4rem"
@@ -23,17 +17,7 @@ const PoolsContent: FC = () => {
     >
       <PoolsHeader />
       <PoolsTabs />
-      {
-        [
-          <PoolsTableCurve key={v4()} />,
-          <Table
-            key={v4()}
-            rows={FEATURES_POOLS_DATA}
-            title={FEATURES_POOLS_HEADER_DATA}
-            gridTemplateColumns="repeat(6, 1fr)"
-          />,
-        ][tab]
-      }
+      <PoolsTableCurve key={v4()} />
     </Div>
   );
 };
