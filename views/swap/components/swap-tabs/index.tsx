@@ -6,17 +6,19 @@ import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 import { useModal } from '@/hooks/use-modal';
 import { noop } from '@/utils';
+import { ISeetings } from '@/views/components/settings-modal/settings-modal.types';
 
-import SwapSettings from '../swap-settings';
+import SettingsModal from '../../../components/settings-modal';
 
 const SwapTabs: FC = () => {
   const { setContent } = useModal();
   const form = useFormContext();
+  const { register } = useFormContext<ISeetings>();
 
   const handleOpenSettings = () =>
     setContent(
       <FormProvider {...form}>
-        <SwapSettings />
+        <SettingsModal register={register} />
       </FormProvider>,
       { title: 'Settings' }
     );

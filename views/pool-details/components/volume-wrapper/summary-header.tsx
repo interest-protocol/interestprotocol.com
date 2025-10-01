@@ -13,7 +13,7 @@ const SummaryHeader: FC = () => {
   const { data: poolsMetrics } = usePoolsMetrics();
 
   const poolMetrics = poolsMetrics?.data.find(
-    (metric) => metric.poolId === pool.poolAddress
+    (metric) => metric.poolId === pool?.poolAddress
   );
 
   return (
