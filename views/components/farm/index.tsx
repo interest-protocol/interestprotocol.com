@@ -13,7 +13,7 @@ import Rewards from './rewards';
 
 const Farm: FC = () => {
   const { pool } = usePoolDetailsContext();
-  const { data } = useFarmAccount(pool.poolAddress);
+  const { data } = useFarmAccount(pool?.poolAddress);
 
   const stakedBalance = FixedPointMath.toNumber(BigNumber(data?.amount ?? 0));
   const rewards = FixedPointMath.toNumber(
