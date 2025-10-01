@@ -4,13 +4,14 @@ import { useFormContext } from 'react-hook-form';
 import { useReadLocalStorage } from 'usehooks-ts';
 
 import { LOCAL_STORAGE_VERSION } from '@/constants';
+import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
 
-import { Aggregator, ISwapSettings } from './swap.types';
+import { Aggregator } from './swap.types';
 
 const SwapInitManager: FC = () => {
   const form = useFormContext();
 
-  const settings = useReadLocalStorage<ISwapSettings>(
+  const settings = useReadLocalStorage<ISettings>(
     `${LOCAL_STORAGE_VERSION}-movement-dex-settings`
   ) ?? { slippage: '2', aggregator: Aggregator.Interest };
 

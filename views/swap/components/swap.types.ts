@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { SVGProps } from '@/components/svg/svg.types';
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
-import { ISeetings } from '@/views/components/settings-modal/settings-modal.types';
+import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
 
 export type SwapToken = AssetMetadata & {
   value: string;
@@ -34,7 +34,7 @@ export interface SwapForm {
   explorerLink: string;
   error?: string | null;
   executionTime: string;
-  settings: ISeetings;
+  settings: ISettings;
   path: ReadonlyArray<ReadonlyArray<SwapPath>>;
 }
 
