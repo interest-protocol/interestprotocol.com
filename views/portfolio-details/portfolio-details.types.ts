@@ -8,7 +8,9 @@ export type PortfolioDetailsToken = AssetMetadata & {
 };
 
 export interface PortfolioDetailsFormProps {
+  balanced: boolean;
   poolAddress: string;
   lpCoin: PortfolioDetailsToken;
+  selectedCoinIndex: ReadonlyArray<number>;
   tokenList: ReadonlyArray<PortfolioDetailsToken>;
 }
