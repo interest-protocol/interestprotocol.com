@@ -6,7 +6,7 @@ const SwapBottomMenu = () => {
   return (
     <Div
       left="0"
-      zIndex="5"
+      zIndex="5999"
       bottom="0"
       width="100vw"
       overflow="hidden"

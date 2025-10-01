@@ -1,8 +1,6 @@
+import { DivProps } from '@stylin.js/elements';
 import { ReactNode } from 'react';
 
-import { MotionProps } from '../motion';
-
-export interface TooltipProps extends MotionProps {
+export interface TooltipProps extends DivProps {
   tooltipContent: string | ReactNode;
-  tooltipPosition: 'top' | 'bottom' | 'left' | 'right';
 }

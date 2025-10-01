@@ -57,7 +57,7 @@ const PoolsTableCurve: FC = () => {
           position: 'right' as const,
         },
         {
-          Title: (
+          Title: pool ? (
             <OverviewTooltip
               title={
                 pool
@@ -72,6 +72,8 @@ const PoolsTableCurve: FC = () => {
                   : 0
               }
             />
+          ) : (
+            'Loading'
           ),
           position: 'right' as const,
         },

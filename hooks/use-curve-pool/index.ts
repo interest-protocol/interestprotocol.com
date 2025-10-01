@@ -19,57 +19,66 @@ const useCurvePool = (address: string, withMetadata = true) => {
     data: pool,
     isLoading: loading,
     ...rest
-  } = useSWR<IPool>([useCurvePool.name, address, withMetadata], async () => {
-    const {
-      fas,
-      isStable,
-      address: poolAddress,
-      data: { balances, ...otherData },
-      ...curvePool
-    }: InterestCurvePoolAPI = await fetch(
-      `/api/v1/dex/curve/pool/${address}`
-    ).then((res) => res.json());
+  } = useSWR<IPool>(
+    [useCurvePool.name, address, withMetadata],
+    async () => {
+      const {
+        fas,
+        isStable,
+        address: poolAddress,
+        data: { balances, ...otherData },
+        ...curvePool
+      }: InterestCurvePoolAPI = await fetch(
+        `/api/v1/dex/curve/pool/${address}`
+      ).then((res) => res.json());
 
-    const tokensAddresses = fas.map((tokenAddress) =>
-      AccountAddress.from(tokenAddress).toString()
-    );
+      const tokensAddresses = fas.map((tokenAddress) =>
+        AccountAddress.from(tokenAddress).toString()
+      );
 
-    const newPool = {
-      balances,
-      poolAddress,
-      tokensAddresses,
-      algorithm: 'curve',
-      curve: isStable ? 'stable' : 'volatile',
-      poolExtraData: { ...otherData, ...curvePool },
-    } as unknown as IPool;
+      const newPool = {
+        balances,
+        poolAddress,
+        tokensAddresses,
+        algorithm: 'curve',
+        curve: isStable ? 'stable' : 'volatile',
+        poolExtraData: { ...otherData, ...curvePool },
+      } as unknown as IPool;
 
-    if (!withMetadata) return newPool;
+      if (!withMetadata) return newPool;
 
-    const metadataAddresses = {
-      poolMetadata: normalizeSuiAddress(poolAddress.toString()),
-      tokensMetadata: fas.map((fa) => normalizeSuiAddress(fa.toString())),
-    };
+      const metadataAddresses = {
+        poolMetadata: normalizeSuiAddress(poolAddress.toString()),
+        tokensMetadata: fas.map((fa) => normalizeSuiAddress(fa.toString())),
+      };
 
-    const assetsMetadata = await getCoinsMetadataFromAPI(
-      values(metadataAddresses).flat()
-    );
+      const assetsMetadata = await getCoinsMetadataFromAPI(
+        values(metadataAddresses).flat()
+      );
 
-    const metadata = assetsMetadata.map((apiMetadata) =>
-      parseToMetadata(apiMetadata)
-    );
+      const metadata = assetsMetadata.map((apiMetadata) =>
+        parseToMetadata(apiMetadata)
+      );
 
-    return {
-      ...newPool,
-      poolMetadata: metadata.find(({ type }) =>
-        AccountAddress.from(poolAddress).equals(AccountAddress.from(type))
-      ),
-      tokensMetadata: fas.map((address) =>
-        metadata.find(({ type }) =>
-          AccountAddress.from(address).equals(AccountAddress.from(type))
-        )
-      ),
-    } as IPool;
-  });
+      return {
+        ...newPool,
+        poolMetadata: metadata.find(({ type }) =>
+          AccountAddress.from(poolAddress).equals(AccountAddress.from(type))
+        ),
+        tokensMetadata: fas.map((address) =>
+          metadata.find(({ type }) =>
+            AccountAddress.from(address).equals(AccountAddress.from(type))
+          )
+        ),
+      } as IPool;
+    },
+    {
+      refreshInterval: 0,
+      revalidateOnMount: true,
+      revalidateOnFocus: false,
+      refreshWhenHidden: false,
+    }
+  );
 
   return { loading, pool, ...rest };
 };
