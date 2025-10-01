@@ -1,9 +1,10 @@
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { AnimatePresence } from 'motion/react';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import DirectionalMenu from '@/components/directional-menu';
+import { useModal } from '@/hooks';
 
 import Avatar from './avatar';
 import MenuProfile from './menu-profile';
@@ -11,8 +12,32 @@ import { ProfileProps } from './profile.types';
 
 const Profile: FC<ProfileProps> = ({ disconnect }) => {
   const { account } = useAptosWallet();
+  const { setContent } = useModal();
   const [open, setOpen] = useState(false);
-  const toggleMenu = () => setOpen(!open);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleOpen = () => {
+    if (isMobile) {
+      setContent(<MenuProfile disconnect={disconnect} />, {
+        title: 'Profile',
+        mobileOnly: true,
+      });
+    } else {
+      setOpen(true);
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Div>
@@ -21,7 +46,7 @@ const Profile: FC<ProfileProps> = ({ disconnect }) => {
         bg="#9CA3AF1A"
         cursor="pointer"
         position="relative"
-        onClick={toggleMenu}
+        onClick={handleOpen}
         borderRadius="0.75rem"
         flexDirection="column"
         justifyContent="center"
@@ -39,7 +64,7 @@ const Profile: FC<ProfileProps> = ({ disconnect }) => {
       </Div>
       <AnimatePresence>
         {open && (
-          <DirectionalMenu onClose={toggleMenu} isDirectionalRight>
+          <DirectionalMenu onClose={handleClose} isDirectionalRight>
             <MenuProfile disconnect={disconnect} />
           </DirectionalMenu>
         )}

@@ -20,23 +20,17 @@ const MoveBalanceCard: FC = () => {
   );
 
   return (
-    <Div
-      gap="0.5rem"
-      width="100%"
-      display="flex"
-      flexDirection="column"
-      mr="1.5rem"
-    >
+    <Div gap="0.5rem" width="100%" display="flex" flexDirection="column">
       <P
         fontFamily="Inter"
-        fontSize="1rem"
         fontWeight="500"
         lineHeight="1.3rem"
         color="#949E9E"
         textAlign="center"
+        fontSize={['0.875rem', '1rem']}
       >
         {FixedPointMath.toNumber(balance, MOVE.decimals)}{' '}
-        <Span>{MOVE.symbol}</Span>
+        <Span textAlign="center">{MOVE.symbol}</Span>
       </P>
     </Div>
   );

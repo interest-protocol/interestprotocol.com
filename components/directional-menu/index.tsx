@@ -56,7 +56,7 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
             '100%',
             '100%',
             '100%',
-            isDirectionalRight ? '28rem' : '14.5rem',
+            isDirectionalRight ? '24rem' : '14.5rem',
           ]}
           borderRadius={
             isHovered

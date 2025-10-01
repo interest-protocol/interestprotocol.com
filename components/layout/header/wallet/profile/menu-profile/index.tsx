@@ -12,10 +12,11 @@ const MenuProfile: FC<ProfileProps> = ({ disconnect }) => (
   <>
     <Div
       flex="1"
-      p="1.5rem"
       gap="1.5rem"
       display="flex"
       overflowY="auto"
+      alignItems="center"
+      p={[0, '1.5rem']}
       flexDirection="column"
     >
       <UserInfo />
@@ -24,11 +25,11 @@ const MenuProfile: FC<ProfileProps> = ({ disconnect }) => (
     <Div
       mt="auto"
       py="1rem"
-      px="1.5rem"
       gap="0.5rem"
       display="flex"
       color="#949E9E"
       flexDirection="column"
+      px={[0, '1.5rem']}
       borderTop="1px solid #FFFFFF1A"
     >
       <BottomButton Icon={SignOutSVG} title="Disconnect" onClick={disconnect} />
