@@ -25,7 +25,7 @@ const Balance: FC<InputProps> = ({ index }) => {
 
   const handleMax = () => {
     setValue(`tokens.${index}.valueBN`, ZERO_BIG_NUMBER);
-    setValue(`tokens.${index}.value`, '0');
+    setValue(`tokens.${index}.value`, '');
   };
 
   return (

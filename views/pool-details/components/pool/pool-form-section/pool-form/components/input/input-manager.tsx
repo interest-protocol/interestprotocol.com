@@ -28,7 +28,7 @@ const InputManager: FC<{ name: `tokenList.${number}` | 'lpCoin' }> = ({
     if (pool.algorithm === 'curve') {
       if (name !== 'lpCoin') {
         if (!tokenList.some(({ value }) => Number(value))) {
-          setValue('lpCoin.value', '0');
+          setValue('lpCoin.value', '');
           setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
         } else
           curveDex
@@ -53,7 +53,7 @@ const InputManager: FC<{ name: `tokenList.${number}` | 'lpCoin' }> = ({
       } else {
         if (!Number(getValues('lpCoin.value'))) {
           getValues('tokenList').forEach((_, index) => {
-            setValue(`tokenList.${index}.value`, '0');
+            setValue(`tokenList.${index}.value`, '');
             setValue(`tokenList.${index}.valueBN`, ZERO_BIG_NUMBER);
           });
         } else {
@@ -85,7 +85,7 @@ const InputManager: FC<{ name: `tokenList.${number}` | 'lpCoin' }> = ({
             const tmpIndex = selectedCoinIndex[0];
             const opIndex = selectedCoinIndex[0] ? 0 : 1;
 
-            setValue(`tokenList.${opIndex}.value`, '0');
+            setValue(`tokenList.${opIndex}.value`, '');
             setValue(`tokenList.${opIndex}.valueBN`, ZERO_BIG_NUMBER);
 
             (tokenList[tmpIndex].standard === TokenStandard.COIN
