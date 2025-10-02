@@ -47,8 +47,9 @@ const SelectedToken: FC<InputProps> = ({ field }) => {
           withBg
           size="1.25rem"
           symbol={currentSymbol}
+          network={Network.MAINNET}
+          url={sanitizedToken?.iconUri}
           rounded={sanitizedToken?.standard === TokenStandard.COIN}
-          network={Network.MovementMainnet}
         />
       </Div>
       <P

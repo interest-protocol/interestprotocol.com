@@ -11,9 +11,9 @@ import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-d
 import Balance from './components/balance';
 import AmountInDollar from './components/dollar-value';
 import SelectedToken from './components/selected-token';
-import { InputProps } from './input.types';
+import { FarmInputProps } from './input.types';
 
-const Input: FC<InputProps> = ({ field }) => {
+const Input: FC<FarmInputProps> = ({ field, isStake }) => {
   const { register, setValue } = useFormContext<PortfolioDetailsFormProps>();
 
   const tokenType = useWatch({ name: `${field}.type` });
@@ -95,7 +95,7 @@ const Input: FC<InputProps> = ({ field }) => {
         </Div>
         <Div display="flex" justifyContent="space-between">
           <AmountInDollar field={field} />
-          <Balance field={field} />
+          <Balance field={field} isStake={isStake} />
         </Div>
       </Div>
     </Div>

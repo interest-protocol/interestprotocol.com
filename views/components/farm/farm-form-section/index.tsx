@@ -61,7 +61,7 @@ const FarmFormSection: FC = () => {
           <CogsSVG maxWidth="1.25rem" maxHeight="1.25rem" width="100%" />
         </Div>
       </Div>
-      <FarmForm />
+      <FarmForm isStake={farmTabs === 0} />
     </Div>
   );
 };

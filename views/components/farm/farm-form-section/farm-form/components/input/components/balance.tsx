@@ -1,20 +1,25 @@
 import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ProgressIndicator } from '@/components/progress-indicator';
 import SubtractBox from '@/components/svg/subtract-box';
+import { useFarmAccount } from '@/hooks/use-farm-account';
 import { FixedPointMath } from '@/lib';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
-import { InputProps } from '../input.types';
+import { FarmInputProps } from '../input.types';
 import { MaxBadge } from './max-budget';
 
-const Balance: FC<InputProps> = ({ field }) => {
+const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
   const { coinsMap, loading } = useCoins();
   const { control, setValue } = useFormContext();
+  const { getValues } = useFormContext<PortfolioDetailsFormProps>();
+  const { data } = useFarmAccount(getValues('poolAddress'));
 
   const type = useWatch({ control, name: `${field}.type` });
   const decimals = useWatch({ control, name: `${field}.decimals` });
@@ -50,7 +55,10 @@ const Balance: FC<InputProps> = ({ field }) => {
   const balance =
     coinsMap[normalizeSuiAddress(type)]?.balance ?? ZERO_BIG_NUMBER;
 
-  const numericBalance = FixedPointMath.toNumber(balance, decimals);
+  const numericBalance = FixedPointMath.toNumber(
+    isStake ? balance : BigNumber(data?.amount ?? 0),
+    decimals
+  );
 
   const handleMax = () => {
     const value = balance.minus(
