@@ -64,6 +64,8 @@ const SettingsModal: FC<SettingsModalProps> = ({ register }) => {
           border="none"
           variant="filled"
           fontFamily="Inter"
+          fontSize="1rem"
+          height={['1.5rem', '2rem']}
           nHover={{
             bg: '#8BA5FF',
           }}

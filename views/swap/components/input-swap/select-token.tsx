@@ -72,7 +72,6 @@ const SelectToken: FC<InputProps> = ({ label }) => {
       {
         title: 'Select Token',
         showTitleOnMobile: true,
-        titleAlign: 'left',
       }
     );
 
