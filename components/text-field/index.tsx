@@ -27,6 +27,19 @@ const TextFieldElement = stylin<TextFieldElementProps & RefAttributes<unknown>>(
       display: 'none',
     },
   },
+  '&:-webkit-autofill': {
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
+    WebkitTextFillColor: '#FFFFFF',
+    transition: 'background-color 5000s ease-in-out 0s',
+  },
+  '&:-webkit-autofill:focus': {
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
+    WebkitTextFillColor: '#FFFFFF',
+  },
+  '&:-webkit-autofill:hover': {
+    WebkitBoxShadow: '0 0 0px 1000px transparent inset',
+    WebkitTextFillColor: '#FFFFFF',
+  },
 });
 
 const LabelElement = stylin<LabelElementProps>('label')();
@@ -142,6 +155,7 @@ export const TextField: FC<PropsWithRef<TextFieldProps>> = forwardRef(
               fontFamily="Inter"
               lineHeight="1.5rem"
               fontWeight="500"
+              autoComplete="off"
               disabled={disabled}
               onBlur={handleBlur}
               onFocus={handleFocus}
