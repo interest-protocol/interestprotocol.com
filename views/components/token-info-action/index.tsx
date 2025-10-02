@@ -31,9 +31,7 @@ const TokenInfoAction: FC<TokenInfoActionProps> = ({
         variant="text"
         color="#B4C5FF"
         onClick={onClaim}
-        nHover={{
-          color: '#b4c6ffc1',
-        }}
+        nHover={{ color: '#b4c6ffc1' }}
       >
         Claim
         <ArrowRightSVG width="100%" maxWidth="0.75rem" maxHeight="0.75rem" />

@@ -2,11 +2,11 @@ import { Div } from '@stylin.js/elements';
 import { FC, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
-import Deposit from '../deposit';
+import PoolFormDeposit from '@/views/pool-details/components/pool/pool-form-section/pool-form/deposit';
+import PoolFormWithdraw from '@/views/pool-details/components/pool/pool-form-section/pool-form/withdraw';
+
 import Info from '../info';
 import PositionsTabs from '../positions-tabs';
-import Rewards from '../rewards';
-import Withdraw from '../withdraw';
 
 const Position: FC = () => {
   const [tab, setTab] = useState(0);
@@ -41,27 +41,7 @@ const Position: FC = () => {
           tabs={tabs}
           total={tabs.map((t) => (t === 'Rewards' ? 2 : null))}
         />
-
-        {
-          [
-            <Deposit key={v4()} />,
-            <Withdraw key={v4()} />,
-            <Div
-              key={v4()}
-              my="-2rem"
-              flexDirection="column"
-              display={['flex', 'flex', 'flex', 'none']}
-            >
-              <Rewards
-                claimingFee="18%"
-                pairToken={[
-                  { value: 0.0, symbol: 'MOVE', iconUrl: '/eth.png' },
-                  { value: 0.0, symbol: 'MOVE', iconUrl: '/usdt.png' },
-                ]}
-              />
-            </Div>,
-          ][tab]
-        }
+        {[<PoolFormDeposit key={v4()} />, <PoolFormWithdraw key={v4()} />][tab]}
       </Div>
     </Div>
   );

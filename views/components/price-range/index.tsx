@@ -2,13 +2,13 @@ import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import Tag from '@/components/tag';
-import { useV2LPPrice } from '@/hooks/use-v2-lp-price';
+import { useCurveLPPrice } from '@/hooks/use-v2-lp-price';
 import { formatDollars } from '@/utils';
 
 import { PriceRangeProps } from './price-range.types';
 
 const PriceRange: FC<PriceRangeProps> = ({ address }) => {
-  const { data } = useV2LPPrice(address);
+  const { data } = useCurveLPPrice(address);
 
   const price = data?.lpPrice;
 

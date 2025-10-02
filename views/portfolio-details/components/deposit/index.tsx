@@ -3,7 +3,6 @@ import { FC } from 'react';
 
 import { PlusSVG } from '@/components/svg';
 
-import Rewards from '../rewards';
 import AdditionalInfo from './components/additional-info';
 import Input from './components/input';
 
@@ -60,16 +59,6 @@ const Deposit: FC = () => (
     >
       Connect Wallet
     </Button>
-
-    <Div display={['none', 'flex']} flexDirection="column">
-      <Rewards
-        claimingFee="18%"
-        pairToken={[
-          { value: 0.0, symbol: 'MOVE', iconUrl: '/eth.png' },
-          { value: 0.0, symbol: 'MOVE', iconUrl: '/usdt.png' },
-        ]}
-      />
-    </Div>
   </Div>
 );
 

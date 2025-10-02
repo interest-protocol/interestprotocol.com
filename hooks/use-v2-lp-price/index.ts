@@ -2,9 +2,9 @@ import useSWR from 'swr';
 
 import { V2LPPriceProps } from './use-v2-lp-price.types';
 
-export const useV2LPPrice = (poolAddress?: string) => {
+export const useCurveLPPrice = (poolAddress?: string) => {
   const { data, error, isLoading } = useSWR<V2LPPriceProps>(
-    poolAddress ? [useV2LPPrice.name, poolAddress] : null,
+    poolAddress ? [useCurveLPPrice.name, poolAddress] : null,
     () =>
       fetch(
         `https://api.interestlabs.io/v1/movement/mainnet/curve/lp-price/${poolAddress}`

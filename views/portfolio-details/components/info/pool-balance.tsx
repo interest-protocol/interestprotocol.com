@@ -1,20 +1,27 @@
 import { Div, P, Span } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
+import { FixedPointMath } from '@/lib';
 import { formatMoney } from '@/utils';
-
-import { PortfolioDetailsFormProps } from '../../portfolio-details.types';
+import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 
 const PoolBalance: FC = () => {
-  const { getValues } = useFormContext<PortfolioDetailsFormProps>();
+  const { pool } = usePoolDetailsContext();
 
-  const tokenList = getValues('tokenList');
+  const liveBalanceData =
+    pool.tokensMetadata?.map((token, index) => ({
+      token,
+      balance: +FixedPointMath.toNumber(
+        BigNumber(String(pool.balances?.[index] ?? 0)),
+        18
+      ).toFixed(6),
+    })) ?? [];
 
-  const allBalance = +tokenList[0].value + +tokenList[1].value;
+  const total = liveBalanceData.reduce((acc, { balance }) => acc + balance, 0);
 
   return (
     <Div gap="0.75rem" width="100%" display="flex" flexDirection="column">
@@ -28,7 +35,7 @@ const PoolBalance: FC = () => {
         Pool Balances
       </P>
       <Div display="flex" alignItems="center" justifyContent="space-between">
-        {tokenList.map((token) => (
+        {liveBalanceData.map(({ token, balance }) => (
           <Div gap="0.4rem" key={v4()} display="flex" alignItems="center">
             <P
               fontWeight="500"
@@ -36,7 +43,7 @@ const PoolBalance: FC = () => {
               fontFamily="Inter"
               fontSize={['1rem', '1.5rem']}
             >
-              {formatMoney(+token.value)}
+              {formatMoney(balance)}
             </P>
             <TokenIcon
               withBg
@@ -58,7 +65,7 @@ const PoolBalance: FC = () => {
           </Div>
         ))}
       </Div>
-      {allBalance ? (
+      {total ? (
         <Div
           gap="0.2rem"
           width="100%"
@@ -67,10 +74,10 @@ const PoolBalance: FC = () => {
           overflow="hidden"
           borderRadius="1rem"
         >
-          {tokenList.map((token, index) => (
+          {liveBalanceData.map(({ balance }, index) => (
             <Div
               key={v4()}
-              width={`${(+token.value / allBalance) * 100}%`}
+              width={`${(balance / total) * 100}%`}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -78,7 +85,7 @@ const PoolBalance: FC = () => {
               color={index === 0 ? '#FFFFFF' : '#000000'}
               background={index === 0 ? '#2774CA' : '#00B989'}
             >
-              {((+token.value / allBalance) * 100).toFixed(2)}%
+              {((balance / total) * 100).toFixed(2)}%
             </Div>
           ))}
         </Div>
