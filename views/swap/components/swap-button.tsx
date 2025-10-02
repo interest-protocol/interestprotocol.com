@@ -87,15 +87,21 @@ const SwapButton = () => {
         disabled={disabled || loading}
         cursor={disabled || loading ? 'not-allowed' : 'pointer'}
         nDisabled={{
-          bg: error ? '#f6465d' : '#9CA3AF1A',
-          color: '#909094',
+          bg: error ? '#f6465d' : '#111721',
+          color: error ? '#FFF' : '#9CA3AF',
           ':hover': {
-            background: error ? '#f6465d' : '#9CA3AF1A',
-            color: '#909094',
+            background: error ? '#f6465d' : '#111721',
+            color: error ? '#FFF' : '#9CA3AF',
           },
         }}
       >
-        {loading ? 'Swapping...' : error ? error : 'Confirm Swap'}
+        {loading
+          ? 'Swapping...'
+          : error
+            ? error
+            : valueIn
+              ? 'Swap'
+              : 'Enter an amount'}
       </Button>
     </Div>
   );

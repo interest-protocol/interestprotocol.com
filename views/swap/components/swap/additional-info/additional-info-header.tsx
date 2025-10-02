@@ -58,7 +58,9 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
                   +BigNumber(amount)
                     .times(BigNumber(price[0].price))
                     .toNumber()
-                    .toFixed(3)
+                    .toFixed(3),
+                  4,
+                  'start'
                 )
               : '--'
             : '--'}
