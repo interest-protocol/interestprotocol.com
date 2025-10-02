@@ -29,6 +29,7 @@ const Profile: FC<ProfileProps> = ({ disconnect }) => {
       setContent(<MenuProfile disconnect={disconnect} />, {
         title: 'Profile',
         mobileOnly: true,
+        showTitleOnMobile: false,
       });
     } else {
       setOpen(true);

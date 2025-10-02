@@ -69,7 +69,10 @@ const SelectToken: FC<InputProps> = ({ label }) => {
         closeModal={handleClose}
         isOutput={label === 'to'}
       />,
-      { title: 'Select Token' }
+      {
+        title: 'Select Token',
+        showTitleOnMobile: true,
+      }
     );
 
   const isToWithoutToken = label === 'to' && !currentSymbol;

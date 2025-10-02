@@ -17,9 +17,11 @@ const ModalProvider: FC = () => {
     onClose,
     allowClose,
     mobileOnly,
+    titleAlign,
     handleClose,
     overlayProps,
     containerProps,
+    showTitleOnMobile,
   } = useModal();
   const safeHeight = useSafeHeight();
 
@@ -95,13 +97,13 @@ const ModalProvider: FC = () => {
             <Div
               pt="1.5rem"
               gap="1rem"
-              width={['100vw', '100vw', '100vw', '27rem']}
               display="flex"
               color="#ffffff"
+              bg="#121313"
               maxHeight="100%"
               flexDirection="column"
               backdropFilter="blur(50px)"
-              bg="#121313"
+              width={['100vw', '100vw', '100vw', '32rem']}
               border={['none', 'none', 'none', '1px solid #FFFFFF1A']}
               borderRadius={[
                 '1rem 1rem 0 0',
@@ -113,14 +115,29 @@ const ModalProvider: FC = () => {
               <Div
                 px="1.5rem"
                 display="flex"
-                alignItems="center"
                 justifyContent="space-between"
+                flexDirection={[
+                  'column-reverse',
+                  'column-reverse',
+                  'column-reverse',
+                  'row',
+                ]}
               >
                 <P
-                  fontSize="1.25rem"
+                  flex="1"
+                  fontWeight="700"
                   fontFamily="Inter"
-                  fontWeight="600"
-                  display={['none', 'none', 'none', 'block']}
+                  fontSize={['1rem', '1.125rem']}
+                  textAlign={
+                    showTitleOnMobile
+                      ? [titleAlign || 'left', 'left']
+                      : ['left', 'left']
+                  }
+                  display={
+                    showTitleOnMobile
+                      ? ['block', 'block', 'block', 'block']
+                      : ['none', 'none', 'none', 'block']
+                  }
                 >
                   {title}
                 </P>
