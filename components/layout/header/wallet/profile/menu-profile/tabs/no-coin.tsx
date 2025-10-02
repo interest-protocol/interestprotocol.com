@@ -5,7 +5,7 @@ import { ExclamationCircleSVG } from '@/components/svg';
 
 const NoCoin: FC = () => (
   <Div
-    gap="1rem"
+    gap="0.75rem"
     display="flex"
     color="#9CA3AF"
     alignItems="center"

@@ -15,13 +15,17 @@ interface UseModal {
   mobileOnly?: boolean;
   handleClose: () => void;
   overlayProps?: MotionProps;
+  showTitleOnMobile?: boolean;
   containerProps?: MotionProps;
+  titleAlign?: 'left' | 'center';
   setContent: (
     content: ReactNode,
     options: {
       title: string;
       onClose?: () => void;
       allowClose?: boolean;
+      showTitleOnMobile?: boolean;
+      titleAlign?: 'left' | 'center';
       mobileOnly?: boolean;
       overlayProps?: DivProps;
       containerProps?: DivProps;

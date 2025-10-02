@@ -39,7 +39,7 @@ const ModalTokenBody: FC<ModalTokenBodyProps> = ({
             <ProgressIndicator variant="loading" size={15} />
           </Div>
         )}
-        <Div gap="0.75rem" width="100%">
+        <Div gap="0.75rem" width="100%" mt="1rem">
           {filteredTokens.length ? (
             filteredTokens.map((token) => (
               <TokenModalItem
