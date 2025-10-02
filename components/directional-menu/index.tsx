@@ -27,11 +27,10 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
       onClick={onClose}
       minHeight="100vh"
       alignItems="stretch"
-      exit={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       backdropFilter="blur(10px)"
-      transition={{ duration: 0.4, ease: 'easeInOut' }}
+      exit={{ opacity: 0, transition: { delay: 0.4 } }}
+      animate={{ opacity: 1, transition: { duration: 0.1 } }}
       justifyContent={isDirectionalRight ? 'flex-end' : 'flex-start'}
     >
       <Div
@@ -45,13 +44,19 @@ const DirectionalMenu: FC<PropsWithChildren<IDirectionalMenuProps>> = ({
           overflowY="auto"
           border="1px solid"
           flexDirection="column"
-          animate={{ x: '0rem' }}
+          animate={{
+            x: '0rem',
+            transition: { duration: 0.4, ease: 'easeInOut' },
+          }}
           borderColor="#FFFFFF1A"
           justifyContent="space-between"
           onClick={(e) => e.stopPropagation()}
           p={isDirectionalRight ? 'unset' : '1.5rem'}
-          exit={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
-          initial={{ x: isDirectionalRight ? '20rem' : '-20rem' }}
+          exit={{
+            x: isDirectionalRight ? '30rem' : '-40rem',
+            transition: { duration: 0.4, ease: 'easeInOut' },
+          }}
+          initial={{ x: isDirectionalRight ? '30rem' : '-40rem' }}
           width={[
             '100%',
             '100%',

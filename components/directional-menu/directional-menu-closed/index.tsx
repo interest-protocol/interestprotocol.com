@@ -1,6 +1,6 @@
-import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
+import { Motion } from '@/components/motion';
 import { CaretLeftSVG, CaretRightSVG } from '@/components/svg';
 
 import { IDirectionalClosedProps } from './directional-menu-closed.types';
@@ -11,11 +11,15 @@ const DirectionalMenuClosed: FC<IDirectionalClosedProps> = ({
   isDirectionalRight,
 }) => {
   return (
-    <Div
+    <Motion
       p="1rem"
-      width="3.5rem"
       height="100%"
+      width="3.5rem"
       display="block"
+      animate={{ x: '0rem' }}
+      exit={{ x: isDirectionalRight ? '30rem' : '-40rem' }}
+      initial={{ x: isDirectionalRight ? '30rem' : '-40rem' }}
+      transition={{ duration: 0.4, ease: 'easeInOut' }}
       nHover={{
         bg: '#12131380',
         borderRadius: isDirectionalRight
@@ -40,7 +44,7 @@ const DirectionalMenuClosed: FC<IDirectionalClosedProps> = ({
           onClick={onClose}
         />
       )}
-    </Div>
+    </Motion>
   );
 };
 

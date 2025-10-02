@@ -1,6 +1,6 @@
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 
 import DirectionalMenu from '@/components/directional-menu';

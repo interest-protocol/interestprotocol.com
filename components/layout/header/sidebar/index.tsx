@@ -1,5 +1,5 @@
 import { Div, Span } from '@stylin.js/elements';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence } from 'framer-motion';
 import { FC, useState } from 'react';
 
 import DirectionalMenu from '@/components/directional-menu';
@@ -55,4 +55,5 @@ const Sidebar: FC = () => {
     </Div>
   );
 };
+
 export default Sidebar;

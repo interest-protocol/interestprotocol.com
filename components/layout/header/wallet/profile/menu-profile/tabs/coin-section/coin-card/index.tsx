@@ -80,8 +80,8 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
           withBg
           size="1.25rem"
           symbol={symbol}
-          network={Network.MovementMainnet}
           url={token.iconUri}
+          network={Network.MovementMainnet}
           rounded={token.standard === TokenStandard.COIN}
         />
       }
