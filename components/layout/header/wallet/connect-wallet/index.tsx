@@ -44,6 +44,7 @@ const ConnectWalletModal: FC = () => {
           fontFamily="Inter"
           color="#949E9E"
           fontWeight="400"
+          textAlign={['center', 'center', 'left', 'left']}
         >
           Login with one of your socials to start interacting on Interest
           Protocol
