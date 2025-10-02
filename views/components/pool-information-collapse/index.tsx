@@ -2,36 +2,29 @@ import {
   StablePool,
   VolatilePool,
 } from '@interest-protocol/interest-aptos-curve';
-import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
-import { Div, P } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { TokenIcon } from '@/components';
 import { Button } from '@/components/button';
 import { CopySVG } from '@/components/svg';
-import { Network } from '@/constants';
 import { FixedPointMath } from '@/lib';
-import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
 import { formatAddress, formatDollars, formatMoney } from '@/utils';
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 import { CollapseCardInfoLineProps } from '@/views/components/collapse-card-info/collapse-card-info.types';
 
-import { usePoolDetailsContext } from '../pool-details.context';
+import { usePoolDetailsContext } from '../../pool-details/pool-details.context';
+import { PoolInformationCollapseProps } from './pool-information-collapse.types';
 
-const PoolDetailsInfo: FC = () => {
+const PoolDetailsInformation: FC<PoolInformationCollapseProps> = ({
+  title,
+}) => {
   const { query } = useRouter();
   const { pool } = usePoolDetailsContext();
 
   if (!pool) return 'Loading...';
 
   if (!pool?.poolExtraData || !pool?.tokensMetadata) return 'Loading...';
-
-  const metadata = pool.tokensMetadata?.reduce(
-    (acc, curr) => ({ ...acc, [curr.type]: curr }),
-    {} as Record<string, AssetMetadata>
-  );
 
   const isVolatile = pool.curve == 'volatile';
 
@@ -155,69 +148,12 @@ const PoolDetailsInfo: FC = () => {
       : []),
   ];
 
-  const LIVE_BALANCE_DATA = pool.tokensMetadata?.map((token, index) => ({
-    info: {
-      description: token.symbol,
-    },
-    value: {
-      description: `${formatMoney(
-        +FixedPointMath.toNumber(
-          BigNumber(String(pool.balances?.[index] ?? 0)),
-          pool.algorithm === 'curve'
-            ? 18
-            : (metadata?.[normalizeSuiAddress(token.type)]?.decimals ?? 8)
-        ).toFixed(6)
-      )}`,
-    },
-  }));
-
-  const ASSETS_DATA = pool.tokensMetadata?.map((token) => ({
-    info: {
-      description: token.symbol,
-      Prefix: (
-        <TokenIcon
-          withBg
-          size="0.8rem"
-          url={token.iconUri}
-          symbol={token.symbol}
-          network={Network.MAINNET}
-        />
-      ),
-    },
-    value: {
-      description: formatAddress(token.type),
-      Suffix: (
-        <Button
-          p="unset"
-          border="none"
-          color="#fff"
-          variant="text"
-          nHover={{
-            color: '#B4C5FF',
-          }}
-        >
-          <CopySVG maxWidth="1rem" maxHeight="1rem" width="1rem" />
-        </Button>
-      ),
-    },
-  }));
-
   return (
-    <Div display="flex" gap="1rem" flexDirection="column" width="100%">
-      <P
-        color="#fff"
-        fontWeight="400"
-        fontSize="1.5rem"
-        lineHeight="2.25rem"
-        letterSpacing="-0.75px"
-      >
-        Pool details
-      </P>
-      <CollapseCardInfo title="Pool information" data={POOL_INFORMATION_DATA} />
-      <CollapseCardInfo title="Live balance" data={LIVE_BALANCE_DATA ?? []} />
-      <CollapseCardInfo title="Assets" data={ASSETS_DATA ?? []} />
-    </Div>
+    <CollapseCardInfo
+      title={title || 'Pool information'}
+      data={POOL_INFORMATION_DATA}
+    />
   );
 };
 
-export default PoolDetailsInfo;
+export default PoolDetailsInformation;

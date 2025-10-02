@@ -61,13 +61,17 @@ const PortfolioSummary: FC = () => {
     >
       <MetricInfo
         title="Net worth"
-        value={netWorthUSD ? formatDollars(netWorthUSD) : '--'}
+        value={netWorthUSD ? formatDollars(+netWorthUSD.toFixed(4)) : '--'}
         isLoading={isCoinsPriceLoading}
       />
 
       <MetricInfo
         title="Claimable rewards"
-        value={claimableRewardsUSD ? formatDollars(claimableRewardsUSD) : '--'}
+        value={
+          claimableRewardsUSD
+            ? formatDollars(+claimableRewardsUSD.toFixed(4))
+            : '--'
+        }
         isLoading={isCoinsPriceLoading || isAccountFarmsLoading}
       />
     </Div>

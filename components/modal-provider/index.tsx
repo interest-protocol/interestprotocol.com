@@ -77,7 +77,7 @@ const ModalProvider: FC = () => {
           animate={{ opacity: [0, 1] }}
           transition={{ duration: 0.5 }}
           pt={`calc(100vh - ${safeHeight}px)`}
-          alignItems={['flex-end', 'flex-end', 'center']}
+          alignItems={['flex-end', 'flex-end', 'flex-end', 'center']}
           {...overlayProps}
         >
           <Motion
@@ -95,15 +95,20 @@ const ModalProvider: FC = () => {
             <Div
               pt="1.5rem"
               gap="1rem"
-              width="27rem"
+              width={['100vw', '100vw', '100vw', '27rem']}
               display="flex"
               color="#ffffff"
               maxHeight="100%"
               flexDirection="column"
               backdropFilter="blur(50px)"
               bg="#121313"
-              border={['none', 'none', '1px solid #FFFFFF1A']}
-              borderRadius={['1rem 1rem 0 0', '1rem 1rem 0 0', '1rem']}
+              border={['none', 'none', 'none', '1px solid #FFFFFF1A']}
+              borderRadius={[
+                '1rem 1rem 0 0',
+                '1rem 1rem 0 0',
+                '1rem 1rem 0 0',
+                '1rem',
+              ]}
             >
               <Div
                 px="1.5rem"
@@ -115,7 +120,7 @@ const ModalProvider: FC = () => {
                   fontSize="1.25rem"
                   fontFamily="Inter"
                   fontWeight="600"
-                  display={['none', 'none', 'block', 'block']}
+                  display={['none', 'none', 'none', 'block']}
                 >
                   {title}
                 </P>
@@ -127,7 +132,7 @@ const ModalProvider: FC = () => {
                   width="0.85rem"
                   height="0.85rem"
                   nHover={{ color: '#B4C5FF' }}
-                  display={['none', 'none', 'flex']}
+                  display={['none', 'none', 'none', 'flex']}
                 >
                   <TimesSVG maxWidth="100%" maxHeight="100%" width="100%" />
                 </Div>
@@ -138,7 +143,7 @@ const ModalProvider: FC = () => {
                   cursor="pointer"
                   onClick={handleClose}
                   justifyContent="center"
-                  display={['flex', 'flex', 'none']}
+                  display={['flex', 'flex', 'flex', 'none']}
                 >
                   <DividerSVG
                     width="100%"

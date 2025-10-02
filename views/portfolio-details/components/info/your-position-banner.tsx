@@ -59,7 +59,7 @@ const YourPositionBanner: FC = () => {
         lineHeight="1.5rem"
       >
         {formatDollars(
-          FixedPointMath.toNumber(balance, lpToken.decimals),
+          FixedPointMath.toNumber(balance, lpToken?.decimals),
           6,
           'start'
         )}
