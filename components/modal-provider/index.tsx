@@ -18,6 +18,7 @@ const ModalProvider: FC = () => {
     allowClose,
     mobileOnly,
     titleAlign,
+    modalWidth,
     handleClose,
     overlayProps,
     containerProps,
@@ -103,7 +104,7 @@ const ModalProvider: FC = () => {
               maxHeight="100%"
               flexDirection="column"
               backdropFilter="blur(50px)"
-              width={['100vw', '100vw', '100vw', '32rem']}
+              width={['100vw', '100vw', '100vw', modalWidth || '32rem']}
               border={['none', 'none', 'none', '1px solid #FFFFFF1A']}
               borderRadius={[
                 '1rem 1rem 0 0',
