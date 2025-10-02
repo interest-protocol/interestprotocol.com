@@ -1,14 +1,27 @@
 import { Div, Span } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
+import { FixedPointMath } from '@/lib';
 
 import { usePoolDetailsContext } from '../pool-details.context';
 
 const PoolBalance: FC = () => {
   const { pool } = usePoolDetailsContext();
+
+  const liveBalanceData =
+    pool.tokensMetadata?.map((token, index) => ({
+      token,
+      balance: +FixedPointMath.toNumber(
+        BigNumber(String(pool.balances?.[index] ?? 0)),
+        18
+      ).toFixed(6),
+    })) ?? [];
+
+  const total = liveBalanceData.reduce((acc, { balance }) => acc + balance, 0);
 
   return (
     <Div
@@ -40,7 +53,7 @@ const PoolBalance: FC = () => {
         alignItems="center"
         justifyContent="flex-end"
       >
-        {pool?.tokensMetadata?.map((token) => (
+        {liveBalanceData.map(({ token, balance }) => (
           <Div display="flex" gap="0.5rem" key={v4()}>
             <TokenIcon
               withBg
@@ -55,7 +68,7 @@ const PoolBalance: FC = () => {
               lineHeight={['2rem', '2rem', '2rem', '1.75rem']}
               fontSize={['1.125rem', '1.125rem', '1.125rem', '0.875rem']}
             >
-              76.45%
+              {+((balance / total) * 100).toFixed(2)}%
             </Span>
           </Div>
         ))}
