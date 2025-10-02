@@ -165,6 +165,8 @@ const PortfolioCurvePools: FC = () => {
         />,
         {
           title: 'Rewards',
+          titleAlign: 'center',
+          showTitleOnMobile: true,
         }
       );
   };

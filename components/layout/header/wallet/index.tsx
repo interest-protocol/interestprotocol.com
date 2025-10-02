@@ -16,6 +16,9 @@ const Wallet: FC = () => {
   const connectModal = () =>
     setContent(<ConnectWalletModal />, {
       title: 'Login or Connect wallet',
+      titleAlign: 'center',
+      modalWidth: '24.125rem',
+      showTitleOnMobile: true,
     });
 
   return (

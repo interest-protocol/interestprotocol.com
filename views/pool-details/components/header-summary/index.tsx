@@ -114,6 +114,8 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
       />,
       {
         title: 'Rewards',
+        titleAlign: 'center',
+        showTitleOnMobile: true,
       }
     );
 

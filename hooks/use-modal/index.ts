@@ -12,6 +12,7 @@ interface UseModal {
   content: ReactNode;
   onClose?: () => void;
   allowClose?: boolean;
+  modalWidth?: string;
   mobileOnly?: boolean;
   handleClose: () => void;
   overlayProps?: MotionProps;
@@ -27,6 +28,7 @@ interface UseModal {
       showTitleOnMobile?: boolean;
       titleAlign?: 'left' | 'center';
       mobileOnly?: boolean;
+      modalWidth?: string;
       overlayProps?: DivProps;
       containerProps?: DivProps;
     }
