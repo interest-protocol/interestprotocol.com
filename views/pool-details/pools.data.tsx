@@ -115,37 +115,3 @@ export const FARM_INFORMATION_DATA: ReadonlyArray<CollapseCardInfoLineProps> = [
     },
   },
 ];
-
-export const POOL_INFORMATION_DATA: ReadonlyArray<CollapseCardInfoLineProps> = [
-  {
-    info: { description: 'Address' },
-    value: {
-      description: '0x54c8...b285',
-      Suffix: (
-        <Button
-          p="unset"
-          border="none"
-          color="#fff"
-          variant="text"
-          nHover={{
-            color: '#B4C5FF',
-          }}
-        >
-          <CopySVG maxWidth="1rem" maxHeight="1rem" width="1rem" />
-        </Button>
-      ),
-    },
-  },
-  {
-    info: { description: 'Pool type' },
-    value: { description: 'Curve' },
-  },
-  {
-    info: { description: 'Algorithm' },
-    value: { description: 'Stable' },
-  },
-  {
-    info: { description: 'A' },
-    value: { description: '150.000' },
-  },
-];
