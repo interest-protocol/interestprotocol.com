@@ -25,6 +25,8 @@ interface UseModal {
       title: string;
       onClose?: () => void;
       allowClose?: boolean;
+      showTitleOnMobile?: boolean;
+      titleAlign?: 'left' | 'center';
       mobileOnly?: boolean;
       modalWidth?: string;
       overlayProps?: DivProps;

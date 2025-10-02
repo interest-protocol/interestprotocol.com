@@ -105,6 +105,8 @@ const PoolDetailsHeader: FC = () => {
       />,
       {
         title: 'Rewards',
+        titleAlign: 'center',
+        showTitleOnMobile: true,
       }
     );
 

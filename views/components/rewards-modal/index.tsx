@@ -136,6 +136,7 @@ const RewardsModal: FC<RewardsModalProps> = ({
         fontSize="1rem"
         onClick={onSubmit}
         disabled={loading}
+        height={['1.5rem', '2rem']}
       >
         {loading ? 'Claiming' : 'Claim'}
       </Button>
