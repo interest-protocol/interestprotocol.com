@@ -22,7 +22,12 @@ const PortfolioDetailContent: FC = () => {
       <Div
         gap="1rem"
         display="flex"
-        flexDirection={['column-reverse', 'column']}
+        flexDirection={[
+          'column-reverse',
+          'column-reverse',
+          'column-reverse',
+          'column',
+        ]}
       >
         <PoolDetailsHeader />
         <PositionsDetailsTabs />

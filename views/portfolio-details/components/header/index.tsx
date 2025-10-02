@@ -59,10 +59,10 @@ const PoolDetailsHeader: FC = () => {
     >
       <Div
         gap="1rem"
-        width={['100%', 'auto']}
         display="flex"
         alignItems="center"
         mb={['0', '1rem']}
+        width={['100%', '100%', '100%', 'auto']}
       >
         <TokenIcon
           withBg
@@ -83,13 +83,13 @@ const PoolDetailsHeader: FC = () => {
       </Div>
       {
         [
-          <Div width={['100%', 'auto']} key="farm-tag">
+          <Div width={['100%', '100%', '100%', 'auto']} key="farm-tag">
             <Tag key="tag" type="success" label="In Range" />,
           </Div>,
           <Div
             display="flex"
             key="farm-actions"
-            width={['100%', 'auto']}
+            width={['100%', '100%', '100%', 'auto']}
             gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
             flexDirection={['column', 'column', 'column', 'row']}
           >

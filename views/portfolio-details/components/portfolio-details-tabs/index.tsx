@@ -17,23 +17,20 @@ const PositionsDetailsTabs: FC = () => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      flexDirection={['column', 'row']}
+      flexDirection={['column', 'column', 'column', 'row']}
     >
-      <Div
-        width="100%"
-        display="flex"
-        justifyContent={['space-between', 'flex-start']}
-      >
-        <Tabs
-          tabs={tabs}
-          setTab={setTab}
-          tab={tab}
-          color={['#B4C5FF33', '#9CA3AF1A']}
-        />
+      <Div width="100%">
+        <Div width={['100%', '60%', '60%', '100%']} display="flex">
+          <Tabs
+            tab={tab}
+            tabs={tabs}
+            setTab={setTab}
+            color={['#B4C5FF33', '#B4C5FF33', '#B4C5FF33', '#9CA3AF1A']}
+          />
+        </Div>
       </Div>
-
       {tab === 1 && (
-        <Div width={['100%', 'auto']}>
+        <Div width={['100%', '100%', '100%', 'auto']}>
           <APR />
         </Div>
       )}
