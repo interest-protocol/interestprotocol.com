@@ -12,14 +12,10 @@ import SelectedToken from './components/selected-token';
 import { InputProps } from './input.types';
 
 const Input: FC<InputProps> = ({ index }) => {
-  const { register, setValue, getValues } =
-    useFormContext<PortfolioDetailsFormProps>();
+  const { register, setValue } = useFormContext<PortfolioDetailsFormProps>();
 
   const tokenType = useWatch({ name: `tokenList.${index}.type` });
   const tokenDecimals = useWatch({ name: `tokens.${index}.decimals` });
-
-  const rawValue = getValues(`tokenList.${index}.value`);
-  const isEmpty = !rawValue || isNaN(+rawValue) || +rawValue <= 0;
 
   return (
     <Div
@@ -60,12 +56,14 @@ const Input: FC<InputProps> = ({ index }) => {
               fontFamily="Inter"
               disabled={!tokenType}
               fontSize={['2rem', '2.25rem']}
-              opacity={isEmpty ? 0.4 : undefined}
               fieldProps={{
                 width: '100%',
                 border: 'none',
                 nHover: { border: 'none' },
-                color: isEmpty ? '#6B7280' : '#FFFFFF',
+                color: '#FFFFFF',
+              }}
+              nPlaceholder={{
+                color: '#6B7280',
               }}
               {...register(`tokenList.${index}.value`, {
                 onChange: (v: ChangeEvent<HTMLInputElement>) => {

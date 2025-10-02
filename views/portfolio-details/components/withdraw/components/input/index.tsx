@@ -40,6 +40,9 @@ const Input: FC = () => {
           fontFamily="Inter"
           fontWeight="400"
           fontSize={['2rem', '2.25rem']}
+          nPlaceholder={{
+            color: '#6B7280',
+          }}
           fieldProps={{
             width: '100%',
             border: 'none',

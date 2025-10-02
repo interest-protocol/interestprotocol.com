@@ -206,27 +206,31 @@ const TokenIcon: FC<TokenIconProps> = ({
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
+            display="flex"
             overflow="hidden"
+            position="relative"
+            alignItems="center"
+            justifyContent="center"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
             borderRadius={rounded ? '999rem' : '0.5rem'}
           >
             {loading && (
-              <Div position="absolute" top="-0.5rem" left="0.9rem">
+              <Div position="absolute">
                 <ProgressIndicator size={loaderSize} variant="loading" />
               </Div>
             )}
             <img
               src={url}
-              width="100%"
               alt={symbol}
+              width="100%"
               onLoad={stopLoad}
               onError={errorOnLoad}
               style={{
+                zIndex: 10,
                 objectFit: 'cover',
                 width: `calc(${size} * 1.66)`,
                 height: `calc(${size} * 1.66)`,
-                position: 'absolute',
               }}
             />
           </Div>
@@ -265,14 +269,18 @@ const TokenIcon: FC<TokenIconProps> = ({
           border={withBorder ? '1px solid #FFFFFF' : undefined}
         >
           <Div
+            display="flex"
             overflow="hidden"
+            position="relative"
+            alignItems="center"
+            justifyContent="center"
             width={`calc(${size} * 1.66)`}
             height={`calc(${size} * 1.66)`}
             borderRadius={rounded ? '999rem' : '0.5rem'}
             border={withBorder ? '1px solid #FFFFFF' : undefined}
           >
             {isLoading && (
-              <Div position="absolute" top="-0.5rem" left="0.9rem">
+              <Div position="absolute">
                 <ProgressIndicator size={loaderSize} variant="loading" />
               </Div>
             )}
@@ -287,6 +295,7 @@ const TokenIcon: FC<TokenIconProps> = ({
                   objectFit: 'cover',
                   width: `calc(${size} * 1.66)`,
                   height: `calc(${size} * 1.66)`,
+                  zIndex: 888,
                   position: 'absolute',
                   border: `${withBorder ? '1px solid #FFFFFFF' : 'none'}`,
                 }}
