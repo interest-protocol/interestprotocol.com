@@ -31,8 +31,6 @@ interface UseModal {
       modalWidth?: string;
       overlayProps?: DivProps;
       containerProps?: DivProps;
-      showTitleOnMobile?: boolean;
-      titleAlign?: 'left' | 'center';
     }
   ) => void;
 }
