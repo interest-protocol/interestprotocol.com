@@ -1,6 +1,7 @@
 import { Button, Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import Skeleton from 'react-loading-skeleton';
 
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
@@ -21,13 +22,15 @@ const SelectedToken: FC<InputProps> = ({ field }) => {
   });
 
   const sanitizedToken = currentToken as PortfolioDetailsToken;
-  const { symbol: currentSymbol } = sanitizedToken ?? {};
+  const { symbol: currentSymbol, iconUri: url } = sanitizedToken ?? {};
 
   const formattedSymbol = currentSymbol ?? 'Select token';
 
   const isTokenWithoutSymbol = !currentSymbol;
 
-  return (
+  return isTokenWithoutSymbol ? (
+    <Skeleton height="1.5rem" width="6rem" />
+  ) : (
     <Button
       gap="0.5rem"
       pr="0.75rem"
@@ -45,10 +48,10 @@ const SelectedToken: FC<InputProps> = ({ field }) => {
       <Div>
         <TokenIcon
           withBg
+          url={url}
           size="1.25rem"
           symbol={currentSymbol}
           network={Network.MAINNET}
-          url={sanitizedToken?.iconUri}
           rounded={sanitizedToken?.standard === TokenStandard.COIN}
         />
       </Div>

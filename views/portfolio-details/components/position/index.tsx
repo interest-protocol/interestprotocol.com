@@ -18,6 +18,7 @@ const Position: FC = () => {
         setTabs(['Deposit', 'Withdraw', 'Rewards']);
       } else {
         setTabs(['Deposit', 'Withdraw']);
+        setTab((prev) => (prev > 1 ? 0 : prev));
       }
     };
 
@@ -46,10 +47,10 @@ const Position: FC = () => {
             <Deposit key={v4()} />,
             <Withdraw key={v4()} />,
             <Div
-              display={['flex', 'none']}
-              flexDirection="column"
               key={v4()}
               my="-2rem"
+              flexDirection="column"
+              display={['flex', 'flex', 'flex', 'none']}
             >
               <Rewards
                 claimingFee="18%"

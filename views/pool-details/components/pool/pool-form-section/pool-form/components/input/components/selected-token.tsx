@@ -1,6 +1,7 @@
 import { Button, Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import Skeleton from 'react-loading-skeleton';
 
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
@@ -26,7 +27,9 @@ const SelectedToken: FC<InputProps> = ({ field, Suffix }) => {
 
   const isTokenWithoutSymbol = !currentSymbol;
 
-  return (
+  return isTokenWithoutSymbol ? (
+    <Skeleton height="1.5rem" width="6rem" />
+  ) : (
     <>
       <Button
         gap="0.5rem"

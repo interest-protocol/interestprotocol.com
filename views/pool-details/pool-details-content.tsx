@@ -21,10 +21,10 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
   const form = useForm<PortfolioDetailsFormProps>({
     defaultValues: {
       poolAddress: pool.poolAddress,
-      lpCoin: { ...pool.poolMetadata, value: '0', valueBN: ZERO_BIG_NUMBER },
+      lpCoin: { ...pool.poolMetadata, value: '', valueBN: ZERO_BIG_NUMBER },
       tokenList: pool.tokensMetadata?.map((token) => ({
         ...token,
-        value: '0',
+        value: '',
         valueBN: ZERO_BIG_NUMBER,
       })),
     },
@@ -35,7 +35,7 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
 
     form.setValue('lpCoin', {
       ...pool.poolMetadata,
-      value: '0',
+      value: '',
       valueBN: ZERO_BIG_NUMBER,
     });
 
@@ -43,7 +43,7 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
       'tokenList',
       pool.tokensMetadata?.map((token) => ({
         ...token,
-        value: '0',
+        value: '',
         valueBN: ZERO_BIG_NUMBER,
       }))
     );
