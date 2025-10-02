@@ -22,7 +22,7 @@ const PortfolioDetailsPage: NextPage<PortfolioDetailsPageProps> = ({
         ...(parseToMetadata(
           TOKENS[2] as unknown as CoinMetadata | FAMetadata
         ) as AssetMetadata),
-        value: '0',
+        value: '',
         valueBN: ZERO_BIG_NUMBER,
       },
       tokenList: [
