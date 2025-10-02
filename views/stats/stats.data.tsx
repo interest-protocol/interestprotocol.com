@@ -21,12 +21,12 @@ export const TOKENS_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> = [
 
 export const POOLS_STATS_HEADER_DATA = [
   { description: '#' },
-  { description: 'Token Name' },
-  { description: 'Transactions' },
+  { description: 'Pool Name' },
   { description: 'TVL' },
   { description: '24h Volume' },
-  { description: '7D Volume' },
-  { description: '1D APR' },
+  { description: 'All Time Volume' },
+  { description: '24h Fees' },
+  { description: 'All Time Fees' },
 ];
 
 export const TRANSACTION_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =
@@ -34,9 +34,8 @@ export const TRANSACTION_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps>
     { description: 'Time' },
     { description: 'Type' },
     { description: 'USD Amount' },
-    { description: 'Token Amount' },
-    { description: 'Token Amount' },
-    { description: 'Wallet' },
+    { description: 'Amount per Token' },
+    { description: 'Amount per Token' },
   ];
 
 export const TOKEN_STATS_DATA: ReadonlyArray<TableRowProps> = [
