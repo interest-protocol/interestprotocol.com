@@ -7,20 +7,22 @@ import { Error404SVG } from '@/components/svg';
 
 const NotFoundContent: FC = () => (
   <Div
-    mt={['1rem', '6rem']}
     gap="1rem"
+    width="100%"
     display="flex"
     alignItems="center"
+    mt={['1rem', '6rem']}
     flexDirection="column"
     justifyContent="center"
+    height={['46dvh', '53vh', '50vh', '70vh']}
   >
     <Error404SVG width="100%" maxWidth="29.76rem" maxHeight="29.5125rem" />
     <H2
       color="#FFFFFF"
       fontWeight="600"
       fontFamily="Inter"
-      fontSize="2.25rem"
       lineHeight="2.25rem"
+      fontSize={['1.5rem', '2.25rem']}
     >
       Page Not Found
     </H2>
