@@ -53,7 +53,7 @@ const PortfolioContent: FC = () => {
         />,
         {
           title: 'Rewards',
-          titleAlign: 'left',
+          titleAlign: 'center',
           showTitleOnMobile: true,
         }
       ),
