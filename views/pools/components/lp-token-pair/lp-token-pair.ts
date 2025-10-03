@@ -1,4 +1,5 @@
 export interface LpTokenPairProps {
   lp: string;
-  tokenPair: ReadonlyArray<string>;
+  tokenPair: string;
+  value?: number;
 }
