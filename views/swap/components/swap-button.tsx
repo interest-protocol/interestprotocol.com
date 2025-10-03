@@ -6,6 +6,7 @@ import invariant from 'tiny-invariant';
 
 import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
+import WalletGuardButton from '@/components/wallet-guard-button';
 import { EXPLORER_URL, Network } from '@/constants';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 
@@ -78,31 +79,33 @@ const SwapButton = () => {
 
   return (
     <Div display="flex" flexDirection="column" mt="0.75rem">
-      <Button
-        p="1rem"
-        onClick={onSwap}
-        variant="filled"
-        fontSize="1rem"
-        lineHeight="1.5rem"
-        disabled={disabled || loading}
-        cursor={disabled || loading ? 'not-allowed' : 'pointer'}
-        nDisabled={{
-          bg: error ? '#f6465d' : '#111721',
-          color: error ? '#FFF' : '#9CA3AF',
-          ':hover': {
-            background: error ? '#f6465d' : '#111721',
+      <WalletGuardButton>
+        <Button
+          p="1rem"
+          onClick={onSwap}
+          variant="filled"
+          fontSize="1rem"
+          lineHeight="1.5rem"
+          disabled={disabled || loading}
+          cursor={disabled || loading ? 'not-allowed' : 'pointer'}
+          nDisabled={{
+            bg: error ? '#f6465d' : '#111721',
             color: error ? '#FFF' : '#9CA3AF',
-          },
-        }}
-      >
-        {loading
-          ? 'Swapping...'
-          : error
-            ? error
-            : valueIn
-              ? 'Swap'
-              : 'Enter an amount'}
-      </Button>
+            ':hover': {
+              background: error ? '#f6465d' : '#111721',
+              color: error ? '#FFF' : '#9CA3AF',
+            },
+          }}
+        >
+          {loading
+            ? 'Swapping...'
+            : error
+              ? error
+              : valueIn
+                ? 'Swap'
+                : 'Enter an amount'}
+        </Button>
+      </WalletGuardButton>
     </Div>
   );
 };

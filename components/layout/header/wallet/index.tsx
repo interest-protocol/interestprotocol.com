@@ -2,7 +2,7 @@ import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import { Button } from '@/components/button';
+import WalletGuardButton from '@/components/wallet-guard-button';
 import { useModal } from '@/hooks';
 
 import NavbarItem from '../navbar/navbar-item';
@@ -32,20 +32,9 @@ const Wallet: FC = () => {
         <NavbarItem title="Bridge" href="https://bridge.movementnetwork.xyz/" />
       </Div>
       {!account ? (
-        <Button
-          all="unset"
-          px="2rem"
-          py="1rem"
-          bg="#B4C5FF"
-          fontWeight="500"
-          cursor="pointer"
-          variant="filled"
-          width="fit-content"
-          borderRadius="1rem"
-          onClick={() => connectModal()}
-        >
+        <WalletGuardButton onClick={() => connectModal()} width="max-content">
           Connect Wallet
-        </Button>
+        </WalletGuardButton>
       ) : (
         <Profile disconnect={disconnect} />
       )}
