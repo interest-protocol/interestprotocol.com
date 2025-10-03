@@ -131,7 +131,7 @@ const ModalProvider: FC = () => {
                   fontSize={['1rem', '1.125rem']}
                   textAlign={
                     showTitleOnMobile
-                      ? [...Array(4).fill(titleAlign || 'left'), 'left']
+                      ? [titleAlign, titleAlign, titleAlign, 'left']
                       : 'left'
                   }
                   display={
