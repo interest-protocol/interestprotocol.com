@@ -2,8 +2,6 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import unikey from 'unikey';
 
-import OverviewModal from '../pools/components/overview-modal';
-import { OVERVIEW_DATA } from '../pools/components/overview-modal/overview-modal.data';
 import Swap from './components/swap';
 import SwapTabs from './components/swap-tabs';
 
@@ -22,14 +20,6 @@ const SwapContent: FC = () => {
         <Div display="flex" flexDirection="column">
           <SwapTabs />
           <Swap key={unikey()} />
-
-          <OverviewModal
-            lp="as"
-            token="sdsd"
-            poolLiquidity={OVERVIEW_DATA}
-            poolVolume={OVERVIEW_DATA}
-            value={11}
-          />
         </Div>
       </Div>
     </Div>
