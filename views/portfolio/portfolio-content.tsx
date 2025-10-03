@@ -53,6 +53,8 @@ const PortfolioContent: FC = () => {
         />,
         {
           title: 'Rewards',
+          titleAlign: 'center',
+          showTitleOnMobile: true,
         }
       ),
     gain: '38.88 MOVE',
