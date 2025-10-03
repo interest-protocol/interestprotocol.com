@@ -69,6 +69,7 @@ const SelectToken: FC<InputProps> = ({ index }) => {
       />,
       {
         title: 'Select Token',
+        titleAlign: 'left',
       }
     );
 
