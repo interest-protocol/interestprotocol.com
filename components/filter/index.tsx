@@ -7,6 +7,7 @@ const Filter: FC<FilterProps & DivProps> = ({
   interval,
   setInterval,
   options,
+  labels,
   ...rest
 }) => (
   <Div
@@ -20,7 +21,7 @@ const Filter: FC<FilterProps & DivProps> = ({
     border="1px solid #9CA3AF1A"
     {...rest}
   >
-    {options.map((intendedInterval) => (
+    {options.map((intendedInterval, index) => (
       <Div
         display="flex"
         fontSize="0.875rem"
@@ -38,7 +39,7 @@ const Filter: FC<FilterProps & DivProps> = ({
           cursor: interval === intendedInterval ? 'default' : 'pointer',
         }}
       >
-        {intendedInterval}
+        {labels ? labels[index] || intendedInterval : intendedInterval}
       </Div>
     ))}
   </Div>

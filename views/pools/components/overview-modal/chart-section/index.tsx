@@ -1,19 +1,12 @@
 import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import VolumeChart from '@/components/volume-chart';
 
 import { ChartSectionProps } from './chart-section.types';
 
-const ChartSection: FC<ChartSectionProps> = ({ title, data }) => {
-  const formattedData = data.map((d) => ({
-    name: new Date(d.timestamp).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-    }),
-    value: d.volume ?? d.liquidity ?? 0,
-  }));
-
+const ChartSection: FC<ChartSectionProps> = ({ title, data, loading }) => {
   return (
     <Div>
       <Div
@@ -44,7 +37,11 @@ const ChartSection: FC<ChartSectionProps> = ({ title, data }) => {
           width="100%"
           height={['10.5rem', '10.5rem', '10.5rem', '11.75rem']}
         >
-          <VolumeChart data={formattedData} />
+          {loading ? (
+            <Skeleton width="100%" height="100%" baseColor="#9CA3AF1A" />
+          ) : (
+            <VolumeChart data={data} />
+          )}
         </Div>
       </Div>
     </Div>

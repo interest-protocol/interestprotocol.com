@@ -5,17 +5,30 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Button } from '@/components/button';
 import PoolName from '@/components/pool-name';
+import { ProgressIndicator } from '@/components/progress-indicator';
 import Table from '@/components/table';
 import { Routes, RoutesEnum } from '@/constants';
 import { POOLS } from '@/constants/pools';
+import { useModal } from '@/hooks';
 import { formatDollars } from '@/utils';
 
+import OverviewModal from './components/overview-modal';
+import { OverviewModalProps } from './components/overview-modal/overview-modal.types';
 import OverviewTooltip from './components/overview-tooltip';
 import { VERIFIED_POOLS_HEADER_DATA } from './pools.data';
 import usePoolsMetrics, { PoolMetrics } from './pools.hooks/use-pools-metrics';
 
 const PoolsTableCurve: FC = () => {
+  const { setContent } = useModal();
   const { data: metricsData, isLoading } = usePoolsMetrics();
+
+  const PollOverview = (overviewModalProps: OverviewModalProps) =>
+    setContent(<OverviewModal {...overviewModalProps} />, {
+      title: 'Overview',
+      titleAlign: 'center',
+      modalWidth: '32rem',
+      showTitleOnMobile: true,
+    });
 
   const poolsMetricsMap = metricsData?.data.reduce(
     (acc, pool) => {
@@ -76,6 +89,36 @@ const PoolsTableCurve: FC = () => {
             'Loading'
           ),
           position: 'right' as const,
+        },
+        {
+          Content: (
+            <Div display="flex" justifyContent="flex-end" width="100%">
+              <Button
+                p="unset"
+                gap="0.2rem"
+                border="none"
+                variant="text"
+                fontWeight="400"
+                color="#B4C5FF"
+                fontSize="0.875rem"
+                lineHeight="1.12rem"
+                onClick={() =>
+                  PollOverview({
+                    apr: pool
+                      ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
+                      : '0',
+                    address: poolAddress,
+                    symbols: pool?.symbols,
+                    tokensAddresses: pool?.coins ?? tokensAddresses,
+                  })
+                }
+                nHover={{ color: '#b4c6ffc1' }}
+              >
+                Overview{' '}
+                {!pool && <ProgressIndicator size={12} variant="loading" />}
+              </Button>
+            </Div>
+          ),
         },
         {
           Content: (

@@ -1,6 +1,6 @@
-import { OverviewModalProps } from '../overview-modal.types';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ChartSectionProps {
+  data: any;
   title: string;
-  data: OverviewModalProps['poolVolume'] | OverviewModalProps['poolLiquidity'];
+  loading: boolean;
 }
