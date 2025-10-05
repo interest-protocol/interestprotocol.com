@@ -97,7 +97,12 @@ const PoolsTableMobile: FC = () => {
                 />
               </>
             )}
-            <Div display="grid" gridTemplateColumns="1fr 1fr" gap="0.5rem">
+            <Div
+              mt="0.5rem"
+              gap="0.5rem"
+              display="grid"
+              gridTemplateColumns="1fr"
+            >
               <Button
                 px="1rem"
                 display="flex"
