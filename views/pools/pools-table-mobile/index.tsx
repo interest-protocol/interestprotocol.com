@@ -19,6 +19,7 @@ import usePoolsMetrics, {
 
 import OverviewModal from '../components/overview-modal';
 import { OverviewModalProps } from '../components/overview-modal/overview-modal.types';
+import OverviewTooltip from '../components/overview-tooltip';
 
 const PoolsTableMobile: FC = () => {
   const { setContent } = useModal();
@@ -93,7 +94,23 @@ const PoolsTableMobile: FC = () => {
                 />
                 <TableMobileLine
                   label="APR"
-                  value={`${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`}
+                  value={
+                    <OverviewTooltip
+                      title={
+                        pool
+                          ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
+                          : 'Loading...'
+                      }
+                      feesApr={pool ? Number(pool.metrics.apr) : 0}
+                      rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
+                      apr={
+                        pool
+                          ? Number(pool.metrics.apr) +
+                            Number(pool.metrics.farmApr)
+                          : 0
+                      }
+                    />
+                  }
                 />
               </>
             )}

@@ -1,6 +1,5 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
-import { useEffect, useState } from 'react';
 
 import { TooltipWrapper } from '@/components/tooltip';
 import { useModal } from '@/hooks/use-modal';
@@ -15,14 +14,6 @@ const OverviewTooltip: FC<OverviewTooltipProps> = ({
   rewardsApr,
 }) => {
   const { setContent } = useModal();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 992);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
 
   const tooltipContent = (
     <Tooltip
@@ -53,15 +44,25 @@ const OverviewTooltip: FC<OverviewTooltipProps> = ({
       justifyContent="flex-end"
       position={['relative', 'relative', 'relative', 'unset']}
     >
-      {isMobile ? (
-        <Div color="#B4C5FF" onClick={openModal}>
-          {title}
-        </Div>
-      ) : (
+      <Div
+        color="#FFF"
+        fontSize="0.75rem"
+        onClick={openModal}
+        textDecoration="underline dotted"
+        display={['flex', 'flex', 'flex', 'none']}
+      >
+        {title}
+      </Div>
+      <Div
+        cursor="pointer"
+        alignItems="center"
+        justifyContent="flex-end"
+        display={['none', 'none', 'none', 'flex']}
+      >
         <TooltipWrapper position="absolute" tooltipContent={tooltipContent}>
           <Div color="#B4C5FF">{title}</Div>
         </TooltipWrapper>
-      )}
+      </Div>
     </Div>
   );
 };

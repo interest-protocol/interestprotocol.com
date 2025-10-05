@@ -12,6 +12,9 @@ const Tooltip: FC<TooltipProps> = ({ fees, rewards, totalApr }) => {
     { name: 'Rewards', value: rewards },
   ];
 
+  const feesPercentage = totalApr > 0 ? (fees / totalApr) * 100 : 0;
+  const rewardsPercentage = totalApr > 0 ? (rewards / totalApr) * 100 : 0;
+
   return (
     <>
       <TotalAprHeader
@@ -44,8 +47,18 @@ const Tooltip: FC<TooltipProps> = ({ fees, rewards, totalApr }) => {
           justifyContent="space-between"
         >
           <Chart data={chartData} colors={['#22C55E', '#FF9315']} />
-          <Metric label="Fees" value={fees} color="#22C55E" suffix="%" />
-          <Metric label="Rewards" value={rewards} color="#FF9315" suffix="%" />
+          <Metric
+            label="Fees"
+            value={feesPercentage}
+            color="#22C55E"
+            suffix="%"
+          />
+          <Metric
+            label="Rewards"
+            value={rewardsPercentage}
+            color="#FF9315"
+            suffix="%"
+          />
         </Div>
         {/* <Rewards tokens={rewardsPerDay} /> */}
       </Div>
