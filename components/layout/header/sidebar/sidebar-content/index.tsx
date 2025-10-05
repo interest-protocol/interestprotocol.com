@@ -1,4 +1,4 @@
-import { Div, P } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
 import unikey from 'unikey';
@@ -20,15 +20,6 @@ const SidebarContent: FC = () => (
       ))}
     </Div>
     <Div>
-      <P
-        mb="1rem"
-        color="#9CA3AF"
-        fontWeight="600"
-        fontSize="0.75rem"
-        lineHeight="1.5rem"
-      >
-        Social
-      </P>
       <Div display="flex" gap="1.5rem">
         {SOCIAL_LINK.map(({ title, pathname, Icon }) => (
           <Link
