@@ -17,12 +17,13 @@ import { OverviewModalProps } from './components/overview-modal/overview-modal.t
 import OverviewTooltip from './components/overview-tooltip';
 import { VERIFIED_POOLS_HEADER_DATA } from './pools.data';
 import usePoolsMetrics, { PoolMetrics } from './pools.hooks/use-pools-metrics';
+import PoolsTableMobile from './pools-table-mobile';
 
 const PoolsTableCurve: FC = () => {
   const { setContent } = useModal();
   const { data: metricsData, isLoading } = usePoolsMetrics();
 
-  const PollOverview = (overviewModalProps: OverviewModalProps) =>
+  const PoolOverview = (overviewModalProps: OverviewModalProps) =>
     setContent(<OverviewModal {...overviewModalProps} />, {
       title: 'Overview',
       titleAlign: 'center',
@@ -103,7 +104,7 @@ const PoolsTableCurve: FC = () => {
                 fontSize="0.875rem"
                 lineHeight="1.12rem"
                 onClick={() =>
-                  PollOverview({
+                  PoolOverview({
                     apr: pool
                       ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
                       : '0',
@@ -149,12 +150,17 @@ const PoolsTableCurve: FC = () => {
   });
 
   return (
-    <Table
-      rows={rows}
-      isLoading={isLoading}
-      title={VERIFIED_POOLS_HEADER_DATA}
-      gridTemplateColumns="4fr repeat(5, 1fr)"
-    />
+    <>
+      <Div display={['none', 'none', 'none', 'flex']}>
+        <Table
+          rows={rows}
+          isLoading={isLoading}
+          title={VERIFIED_POOLS_HEADER_DATA}
+          gridTemplateColumns="3fr repeat(5, 1fr)"
+        />
+      </Div>
+      <PoolsTableMobile />
+    </>
   );
 };
 

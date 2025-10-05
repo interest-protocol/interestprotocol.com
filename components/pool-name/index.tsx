@@ -56,13 +56,13 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
         gap="0.5rem"
       >
         <P
-          color="#FFFFFF"
-          fontWeight="500"
-          fontFamily="Inter"
-          fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
-          lineHeight="1.12rem"
-          whiteSpace="nowrap"
           flexShrink={0}
+          fontWeight="500"
+          color="#FFFFFF"
+          fontFamily="Inter"
+          whiteSpace="nowrap"
+          lineHeight="1.12rem"
+          fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
         >
           {symbols?.join(' • ') ??
             (isLoading ? (

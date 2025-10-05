@@ -7,7 +7,7 @@ import { formatAddress, formatDollars } from '@/utils';
 import { formatTimeAgo } from '@/utils/date';
 import TableMobileSkeleton from '@/views/components/table-mobile-skeleton';
 
-import TableMobileLine from '../../components/table-mobile-line';
+import TableMobileLine from '../../../components/table-mobile-line';
 import { TRANSACTION_STATS_HEADER_DATA } from '../../stats.data';
 
 const StatsTransactionTableMobile: FC = () => {

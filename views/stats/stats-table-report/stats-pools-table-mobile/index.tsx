@@ -7,7 +7,7 @@ import { formatDollars } from '@/utils';
 import TableMobileSkeleton from '@/views/components/table-mobile-skeleton';
 import usePoolsMetrics from '@/views/pools/pools.hooks/use-pools-metrics';
 
-import TableMobileLine from '../../components/table-mobile-line';
+import TableMobileLine from '../../../components/table-mobile-line';
 
 const StatsPoolsTableMobile: FC = () => {
   const { data: metricsData, isLoading } = usePoolsMetrics();
