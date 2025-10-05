@@ -56,8 +56,13 @@ const PortfolioSummary: FC = () => {
     <Div
       width="100%"
       display="grid"
-      gap={['0.5rem', '1rem']}
-      gridTemplateColumns={['repeat(2, 1fr)', 'repeat(4, 1fr)']}
+      gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
+      gridTemplateColumns={[
+        'repeat(2, 1fr)',
+        'repeat(2, 1fr)',
+        'repeat(2, 1fr)',
+        'repeat(4, 1fr)',
+      ]}
     >
       <MetricInfo
         title="Net worth"

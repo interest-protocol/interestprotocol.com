@@ -1,7 +1,6 @@
-import { Div, Span } from '@stylin.js/elements';
+import { P } from '@stylin.js/elements';
 import { FC } from 'react';
 
-import Tag from '@/components/tag';
 import { useCurveLPPrice } from '@/hooks/use-v2-lp-price';
 import { formatDollars } from '@/utils';
 
@@ -13,19 +12,14 @@ const PriceRange: FC<PriceRangeProps> = ({ address }) => {
   const price = data?.lpPrice;
 
   return (
-    <Div
-      display="flex"
-      alignItems="center"
-      justifyContent="flex-end"
-      flexWrap="wrap"
-      gap="0.5rem"
+    <P
       width="100%"
+      color="#FFFFFF"
+      textAlign="right"
+      fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
     >
-      <Span color="#FFFFFF" textAlign="right">
-        {formatDollars(price ?? 0)}
-      </Span>
-      <Tag type="success" label="In Range" />
-    </Div>
+      {formatDollars(price ? +price.toFixed(4) : 0)}
+    </P>
   );
 };
 

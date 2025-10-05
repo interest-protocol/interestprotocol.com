@@ -16,7 +16,7 @@ const PortfolioTabs: FC<PortfolioTabsProps> = ({ onGetTotal }) => {
         setTab={setTab}
         color="#B4C5FF33"
         total={onGetTotal}
-        tabs={['Curve Pool', 'v3', 'Transactions']}
+        tabs={['Curve Pool']}
       />
     </Div>
   );

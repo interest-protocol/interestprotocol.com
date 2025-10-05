@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 
 import Table from '@/components/table';
 
+import PortfolioTableMobile from '../portfolio-table-mobile';
 import TableSummary from '../table-summary';
 import {
   TableSummaryCustomProps,
@@ -28,13 +29,16 @@ const PoolTypeTable: FC<PoolTypeTableProps> = ({
     ) : (
       <TableSummary {...(headerSummary as unknown as TableSummaryProps)} />
     )}
-    <Table
-      key={v4()}
-      rows={rows}
-      title={tableHeader}
-      isLoading={isLoading}
-      gridTemplateColumns={gridTemplateColumns || '15rem 2fr repeat(4, 1fr)'}
-    />
+    <Div display={['none', 'none', 'none', 'flex']}>
+      <Table
+        key={v4()}
+        rows={rows}
+        title={tableHeader}
+        isLoading={isLoading}
+        gridTemplateColumns={gridTemplateColumns || '14rem 2fr repeat(4, 1fr)'}
+      />
+    </Div>
+    <PortfolioTableMobile />
   </Div>
 );
 

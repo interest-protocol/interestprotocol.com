@@ -15,16 +15,21 @@ const TableSummary: FC<TableSummaryProps> = ({
 }) => (
   <Div
     gap="1rem"
-    mb="1.875rem"
     display="flex"
+    mb={['0.75rem', '0.75rem', '0.75rem', '1.875rem']}
     justifyContent="space-between"
-    flexDirection={['column', 'column', 'column', 'row']}
+    flexDirection={[
+      'column-reverse',
+      'column-reverse',
+      'column-reverse',
+      'row',
+    ]}
   >
     <TableSummaryTitle title={title} total={total} />
     <Div
       display="flex"
       flexWrap="wrap"
-      gap={['0.5rem', '1rem']}
+      gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
       justifyContent="space-between"
     >
       {totalPosition && <TableSummaryPosition totalPosition={totalPosition} />}

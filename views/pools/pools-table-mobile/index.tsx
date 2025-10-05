@@ -101,7 +101,7 @@ const PoolsTableMobile: FC = () => {
               mt="0.5rem"
               gap="0.5rem"
               display="grid"
-              gridTemplateColumns="1fr"
+              gridTemplateColumns="1fr 1fr"
             >
               <Button
                 px="1rem"

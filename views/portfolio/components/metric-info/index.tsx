@@ -17,8 +17,13 @@ const MetricInfo: FC<MetricInfoProps> = ({
     height="auto"
     flexDirection="column"
     borderRadius="0.75rem"
-    bg={['#9CA3AF0D', 'transparent']}
-    border={['1px solid #9CA3AF1A', 'none']}
+    bg={['#9CA3AF0D', '#9CA3AF0D', '#9CA3AF0D', 'transparent']}
+    border={[
+      '1px solid #9CA3AF1A',
+      '1px solid #9CA3AF1A',
+      '1px solid #9CA3AF1A',
+      'none',
+    ]}
   >
     <P
       color="#9CA3AF"

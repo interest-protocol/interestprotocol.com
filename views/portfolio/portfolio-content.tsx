@@ -132,14 +132,18 @@ const PortfolioContent: FC = () => {
       width="100%"
       display="flex"
       flexDirection="column"
-      gap={['1rem', '2rem']}
-      px={['unset', 'unset', 'unset', '5.5rem']}
+      gap={['1rem', '1rem', '1rem', '2rem']}
+      px={['unset', 'unset', 'unset', '3.5rem']}
     >
       <PortfolioSummary />
-      <Div gap="1rem" display={['none', 'block']}>
+      <Div gap="1rem" display={['none', 'none', 'none', 'block']}>
         <PortfolioCurvePools />
       </Div>
-      <Div display={['flex', 'none']} flexDirection="column" gap="1rem">
+      <Div
+        display={['flex', 'flex', 'flex', 'none']}
+        flexDirection="column"
+        gap="1rem"
+      >
         <PortfolioTabs onGetTotal={TABLES.map((t) => t.rows.length)} />
         <PoolTypeTable {...TABLES[tab]} />
       </Div>

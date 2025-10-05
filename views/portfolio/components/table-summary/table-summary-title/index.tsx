@@ -10,7 +10,7 @@ const TableSummaryTitle: FC<TableSummaryTitleProps> = ({ title, total }) => (
       color="#FFFFFF"
       fontFamily="Inter"
       lineHeight="2.25rem"
-      fontSize={['1.125rem', '1.75rem']}
+      fontSize={['1.125rem', '1.125rem', '1.125rem', '1.75rem']}
     >
       {title}
     </P>
