@@ -2,6 +2,7 @@ import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
+import NoCoin from '@/components/layout/header/wallet/profile/menu-profile/tabs/no-coin';
 import PoolName from '@/components/pool-name';
 import { formatDollars } from '@/utils';
 import TableMobileSkeleton from '@/views/components/table-mobile-skeleton';
@@ -11,59 +12,68 @@ import TableMobileLine from '../../../components/table-mobile-line';
 
 const StatsPoolsTableMobile: FC = () => {
   const { data: metricsData, isLoading } = usePoolsMetrics();
-  return isLoading ? (
-    <TableMobileSkeleton />
-  ) : (
+
+  if (isLoading) return <TableMobileSkeleton />;
+
+  const noPools = !metricsData?.data?.length;
+
+  return (
     <Div
       width="100%"
+      bg="#030712"
       borderStyle="solid"
       flexDirection="column"
       borderRadius="0.5rem"
       borderColor="#1F2937"
-      borderWidth="1px 1px 0px 1px"
+      borderWidth={noPools ? '1px 1px 1px 1px' : '1px 1px 0px 1px'}
       display={['flex', 'flex', 'flex', 'none']}
-      bg="#030712"
+      py={noPools ? ['1.5rem', '1.5rem', '1.5rem', 0] : undefined}
+      height={noPools ? ['11.75rem', '11.75rem', '11.75rem', 0] : undefined}
     >
-      {metricsData?.data.map((pool) => (
-        <Div
-          key={v4()}
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          gap="0.5rem"
-          borderStyle="solid"
-          borderColor="#1F2937"
-          borderWidth="0px 0px 1px 0px"
-        >
-          <Div display="flex" alignItems="center" gap="0.5rem">
-            <PoolName
-              address={pool.poolId}
-              symbols={pool.symbols}
-              tokensAddresses={pool.coins}
+      {noPools ? (
+        <NoCoin />
+      ) : (
+        metricsData?.data.map((pool) => (
+          <Div
+            key={v4()}
+            p="1rem"
+            display="flex"
+            flexDirection="column"
+            gap="0.5rem"
+            borderStyle="solid"
+            borderColor="#1F2937"
+            borderWidth="0px 0px 1px 0px"
+          >
+            <Div display="flex" alignItems="center" gap="0.5rem">
+              <PoolName
+                address={pool.poolId}
+                symbols={pool.symbols}
+                tokensAddresses={pool.coins}
+              />
+            </Div>
+            <TableMobileLine
+              label="TVL"
+              value={formatDollars(Number(pool.metrics.tvl), 6, 'start')}
+            />
+            <TableMobileLine
+              label="24h Volume"
+              value={formatDollars(Number(pool.metrics.volume1D), 6, 'start')}
+            />
+            <TableMobileLine
+              label="All time volume"
+              value={formatDollars(Number(pool.metrics.volume), 6, 'start')}
+            />
+            <TableMobileLine
+              label="24h Fees"
+              value={formatDollars(Number(pool.metrics.fees1D), 6, 'start')}
+            />
+            <TableMobileLine
+              label="All time fees"
+              value={formatDollars(Number(pool.metrics.fees), 6, 'start')}
             />
           </Div>
-          <TableMobileLine
-            label="TVL"
-            value={formatDollars(Number(pool.metrics.tvl), 6, 'start')}
-          />
-          <TableMobileLine
-            label="24h Volume"
-            value={formatDollars(Number(pool.metrics.volume1D), 6, 'start')}
-          />
-          <TableMobileLine
-            label="All time volume"
-            value={formatDollars(Number(pool.metrics.volume), 6, 'start')}
-          />
-          <TableMobileLine
-            label="24h Fees"
-            value={formatDollars(Number(pool.metrics.fees1D), 6, 'start')}
-          />
-          <TableMobileLine
-            label="All time fees"
-            value={formatDollars(Number(pool.metrics.fees), 6, 'start')}
-          />
-        </Div>
-      ))}
+        ))
+      )}
     </Div>
   );
 };

@@ -11,6 +11,13 @@ const NoCoin: FC = () => (
     alignItems="center"
     flexDirection="column"
     justifyContent="center"
+    borderRadius="0.5rem"
+    border={[
+      '0.5px solid #030712',
+      '0.5px solid #030712',
+      '0.5px solid #030712',
+      'none',
+    ]}
   >
     <ExclamationCircleSVG
       width="1.25rem"
@@ -18,15 +25,20 @@ const NoCoin: FC = () => (
       maxHeight="100%"
       maxWidth="100%"
     />
-    <P fontFamily="Inter" fontWeight="700" fontSize="1rem" lineHeight="1.5rem">
+    <P
+      fontFamily="Inter"
+      fontWeight="700"
+      lineHeight="1.5rem"
+      fontSize={['0.875rem', '0.875rem', '0.875rem', '1rem']}
+    >
       No tokens found
     </P>
     <P
       fontWeight="400"
-      fontSize="0.875rem"
       fontFamily="Inter"
       lineHeight="1.5rem"
       textAlign="center"
+      fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
     >
       We couldn&apos;t find any tokens matching your criteria.
     </P>

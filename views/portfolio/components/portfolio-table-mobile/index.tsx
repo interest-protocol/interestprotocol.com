@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { Button } from '@/components/button';
+import NoCoin from '@/components/layout/header/wallet/profile/menu-profile/tabs/no-coin';
 import PoolName from '@/components/pool-name';
 import { Routes, RoutesEnum } from '@/constants';
 import { FARMS_BY_LP } from '@/constants/farms';
@@ -21,7 +22,6 @@ import TableMobileSkeleton from '@/views/components/table-mobile-skeleton';
 const PortfolioTableMobile: FC = () => {
   const { coinsMap, loading: isCoinsMapLoading } = useCoins();
   const { data: metricsData, isLoading: isMetricsLoading } = useMetrics();
-
   const { data: accountFarmsData, isLoading: isAccountFarmsLoading } =
     useGetAccountFarmsData();
 
@@ -34,9 +34,10 @@ const PortfolioTableMobile: FC = () => {
     (isCoinsMapLoading && !coinsMap) ||
     (isMetricsLoading && !metricsData);
 
-  return isLoading ? (
-    <TableMobileSkeleton />
-  ) : (
+  if (isLoading) return <TableMobileSkeleton />;
+
+  const noPools = !poolsPosition.length;
+  return (
     <Div
       width="100%"
       bg="#030712"
@@ -44,87 +45,95 @@ const PortfolioTableMobile: FC = () => {
       flexDirection="column"
       borderRadius="0.5rem"
       borderColor="#1F2937"
-      borderWidth="1px 1px 0px 1px"
       display={['flex', 'flex', 'flex', 'none']}
+      borderWidth={noPools ? '1px 1px 1px 1px' : '1px 1px 0px 1px'}
+      py={noPools ? ['1.5rem', '1.5rem', '1.5rem', 0] : undefined}
+      height={noPools ? ['11.75rem', '11.75rem', '11.75rem', 0] : undefined}
     >
-      {poolsPosition.map(({ poolAddress, tokensAddresses }) => (
-        <Div
-          key={v4()}
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          gap="0.5rem"
-          borderStyle="solid"
-          borderColor="#1F2937"
-          borderWidth="0px 0px 1px 0px"
-        >
-          <Div display="flex" alignItems="center" gap="0.5rem">
-            <PoolName address={poolAddress} tokensAddresses={tokensAddresses} />
-          </Div>
-          <TableMobileLine
-            label="Price"
-            value={<PriceRange address={poolAddress} />}
-          />
-          <TableMobileLine
-            label="Liquidity"
-            value={formatDollars(
-              Number(
-                metricsData?.data.find(({ poolId }) => poolId === poolAddress)
-                  ?.metrics.tvl
-              )
-            )}
-          />
-          <TableMobileLine
-            label="APR"
-            color="#34D399"
-            value={`${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`}
-          />
-
-          <TableMobileLine
-            label="Rewards"
-            value={`${formatMoney(
-              FixedPointMath.toNumber(
-                BigNumber(
-                  String(
-                    accountFarmsData?.find(
-                      (farm) =>
-                        farm.farm ===
-                        FARMS_BY_LP[poolAddress]?.address.toString()
-                    )?.rewards ?? 0
-                  )
-                )
-              ),
-              4
-            )} MOVE`}
-          />
+      {noPools ? (
+        <NoCoin />
+      ) : (
+        poolsPosition.map(({ poolAddress, tokensAddresses }) => (
           <Div
-            mt="0.5rem"
+            key={v4()}
+            p="1rem"
+            display="flex"
+            flexDirection="column"
             gap="0.5rem"
-            display="grid"
-            gridTemplateColumns="1fr"
+            borderStyle="solid"
+            borderColor="#1F2937"
+            borderWidth="0px 0px 1px 0px"
           >
-            <Link
-              title="Pool Transaction"
-              href={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}
+            <Div display="flex" alignItems="center" gap="0.5rem">
+              <PoolName
+                address={poolAddress}
+                tokensAddresses={tokensAddresses}
+              />
+            </Div>
+            <TableMobileLine
+              label="Price"
+              value={<PriceRange address={poolAddress} />}
+            />
+            <TableMobileLine
+              label="Liquidity"
+              value={formatDollars(
+                Number(
+                  metricsData?.data.find(({ poolId }) => poolId === poolAddress)
+                    ?.metrics.tvl
+                )
+              )}
+            />
+            <TableMobileLine
+              label="APR"
+              color="#34D399"
+              value={`${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`}
+            />
+            <TableMobileLine
+              label="Rewards"
+              value={`${formatMoney(
+                FixedPointMath.toNumber(
+                  BigNumber(
+                    String(
+                      accountFarmsData?.find(
+                        (farm) =>
+                          farm.farm ===
+                          FARMS_BY_LP[poolAddress]?.address.toString()
+                      )?.rewards ?? 0
+                    )
+                  )
+                ),
+                4
+              )} MOVE`}
+            />
+            <Div
+              mt="0.5rem"
+              gap="0.5rem"
+              display="grid"
+              gridTemplateColumns="1fr"
             >
-              <Button
-                px="1rem"
-                display="flex"
-                width="fill-available"
-                variant="tonal"
-                color="#B4C5FF"
-                fontSize="0.875rem"
-                lineHeight="1.25rem"
-                borderRadius="0.65rem"
-                borderColor="#B4C5FF"
-                justifyContent="center"
+              <Link
+                title="Pool Transaction"
+                href={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}
               >
-                Manage
-              </Button>
-            </Link>
+                <Button
+                  px="1rem"
+                  display="flex"
+                  width="fill-available"
+                  variant="tonal"
+                  color="#B4C5FF"
+                  fontSize="0.875rem"
+                  lineHeight="1.25rem"
+                  borderRadius="0.65rem"
+                  borderColor="#B4C5FF"
+                  justifyContent="center"
+                >
+                  Manage
+                </Button>
+              </Link>
+            </Div>
           </Div>
-        </Div>
-      ))}
+        ))
+      )}
     </Div>
   );
 };
