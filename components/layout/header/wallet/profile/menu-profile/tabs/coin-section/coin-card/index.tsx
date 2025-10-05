@@ -131,7 +131,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
               fontWeight="500"
               fontFamily="Inter"
             >
-              {`${!priceChange24HoursPercentage ? '' : priceChange24HoursPercentage >= 0 ? '+' : '-'}${+(priceChange24HoursPercentage ?? 0).toFixed(2)}%`}
+              {`${!priceChange24HoursPercentage ? '' : priceChange24HoursPercentage >= 0 ? '+' : ''}${+(priceChange24HoursPercentage ?? 0).toFixed(2)}%`}
             </P>
           </Div>
         </Div>
