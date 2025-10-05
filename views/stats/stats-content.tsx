@@ -11,6 +11,7 @@ const StatsContent: FC = () => (
     display="flex"
     flexDirection="column"
     mt={['1.5rem', '2.5rem']}
+    px={['unset', 'unset', 'unset', '3.5rem']}
   >
     <StatsChartReports />
     <StatsTableReports />
