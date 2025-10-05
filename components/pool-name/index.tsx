@@ -8,6 +8,7 @@ import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
 import { FARMS_BY_LP } from '@/constants/farms';
 import { POOLS } from '@/constants/pools';
+import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 import { getCoinMetadata, parseToMetadata } from '@/utils';
 
 import { Button } from '../button';
@@ -35,19 +36,33 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
     <>
       <TokenIcon
         withBg
-        rounded
         size="20px"
         network={Network.MAINNET}
         url={poolMetadata?.iconUri}
         symbol={poolMetadata?.symbol || address}
+        rounded={poolMetadata?.standard === TokenStandard.COIN}
       />
-      <Div>
+      <Div
+        width="100%"
+        display="flex"
+        alignItems={['center', 'center', 'center', 'flex-start']}
+        justifyContent={[
+          'space-between',
+          'space-between',
+          'space-between',
+          'flex-start',
+        ]}
+        flexDirection={['row', 'row', 'row', 'column']}
+        gap="0.5rem"
+      >
         <P
           color="#FFFFFF"
           fontWeight="500"
           fontFamily="Inter"
-          fontSize="0.875rem"
+          fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
           lineHeight="1.12rem"
+          whiteSpace="nowrap"
+          flexShrink={0}
         >
           {symbols?.join(' • ') ??
             (isLoading ? (
@@ -57,7 +72,13 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
             ))}
         </P>
 
-        <Div display="flex" gap="0.25rem" mt="0.25rem">
+        <Div
+          display="flex"
+          gap="0.25rem"
+          flexWrap="wrap"
+          justifyContent="flex-end"
+          alignItems="center"
+        >
           {[
             ...(isEarn ? ['earn'] : []),
             ...(isCurve ? ['curve'] : []),
@@ -76,6 +97,7 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
               textTransform="capitalize"
               color={TAG_COLOR[item]?.color ?? '#9CA3AF'}
               borderColor={TAG_COLOR[item]?.color ?? '#9CA3AF'}
+              whiteSpace="nowrap"
               nHover={{
                 borderColor: TAG_COLOR[item]?.bg ?? '#9CA3AF1A',
                 fontWeight: 'bold',
