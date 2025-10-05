@@ -104,7 +104,6 @@ const PortfolioTableMobile: FC = () => {
             gridTemplateColumns="1fr"
           >
             <Link
-              target="_blank"
               title="Pool Transaction"
               href={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}
             >
