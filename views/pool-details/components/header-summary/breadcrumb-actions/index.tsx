@@ -7,7 +7,7 @@ import { noop } from '@/utils';
 import BreadcrumbActionWrapper from './wrapper';
 
 const BreadcrumbActions: FC = () => (
-  <Div display="flex" gap="0.5rem">
+  <Div display="none" gap="0.5rem">
     <BreadcrumbActionWrapper onClick={noop}>
       <BoxSVG maxHeight="100%" maxWidth="100%" width="100%" />
     </BreadcrumbActionWrapper>

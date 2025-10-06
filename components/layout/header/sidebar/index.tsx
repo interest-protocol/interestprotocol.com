@@ -1,4 +1,4 @@
-import { Div, Span } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import { AnimatePresence } from 'framer-motion';
 import { FC, useState } from 'react';
 
@@ -36,14 +36,14 @@ const Sidebar: FC = () => {
           />
         </Div>
 
-        <Span color="#9CA3AF" cursor="pointer" onClick={toggleMenu}>
-          <Span display={['block', 'block', 'block', 'none']}>
+        <Div color="#9CA3AF" cursor="pointer" onClick={toggleMenu}>
+          <Div display={['flex', 'flex', 'flex', 'none']} alignItems="center">
             <ListSVG width="100%" maxWidth="1.25rem" maxHeight="1.25rem" />
-          </Span>
-          <Span display={['none', 'none', 'none', 'block']}>
+          </Div>
+          <Div display={['none', 'none', 'none', 'block']}>
             <ChevronDownSVG width="100%" maxWidth="0.825rem" />
-          </Span>
-        </Span>
+          </Div>
+        </Div>
       </Div>
       <AnimatePresence>
         {open && (

@@ -35,7 +35,7 @@ const StatsChartVolumeReport: FC = () => {
       <Div display="flex" justifyContent="space-between" alignItems="center">
         <HeadInfo
           symbol="USD"
-          name="IPX Volume"
+          name="Volume"
           value={Number(metricsData?.summary?.volume) ?? 0}
           isLoading={isLoading}
         />

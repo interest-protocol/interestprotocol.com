@@ -72,10 +72,10 @@ const treatMoneyDecimals = (
 export const formatMoney = (
   money: number,
   maxFractionDigits = 20,
-  allowK: boolean = false
+  allowK: boolean = true
 ): string => {
   const { integralDigits, newMoney, decimalDigits } = treatMoneyDecimals(
-    money,
+    +money.toFixed(4),
     maxFractionDigits,
     allowK
   );

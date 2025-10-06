@@ -178,7 +178,9 @@ const PortfolioCurvePools: FC = () => {
         onClaim,
         title: 'Curve pools',
         total: String(poolsPosition.length),
-        totalPosition: formatDollars(usdUserPosition ?? 0),
+        totalPosition: usdUserPosition
+          ? formatDollars(usdUserPosition ?? 0)
+          : undefined,
         gain: claimableRewards ? (
           `${formatMoney(FixedPointMath.toNumber(claimableRewards), 2)} MOVE`
         ) : isAccountFarmsLoading ? (
@@ -195,6 +197,7 @@ const PortfolioCurvePools: FC = () => {
         { description: 'Rewards', position: 'right' },
       ]}
       rows={poolsPosition.map(({ poolAddress, tokensAddresses }) => ({
+        link: `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`,
         cells: [
           {
             Content: (

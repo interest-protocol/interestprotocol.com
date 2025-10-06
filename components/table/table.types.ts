@@ -22,5 +22,7 @@ export interface TableCellProps extends Pick<SpanProps, 'color'> {
 }
 
 export interface TableRowProps {
+  link?: string;
+  target?: string;
   cells: ReadonlyArray<TableCellProps>;
 }
