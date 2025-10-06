@@ -63,6 +63,8 @@ const TransactionList: FC = () => {
           ]}
           rows={
             data?.data.map(({ timestamp, eventType, usd, coins }) => ({
+              link: EXPLORER_URL[Network.MAINNET](`transaction/${timestamp}`),
+              target: '_blank',
               cells: [
                 {
                   color: '#FFFFFF',

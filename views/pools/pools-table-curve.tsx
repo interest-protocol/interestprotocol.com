@@ -44,6 +44,7 @@ const PoolsTableCurve: FC = () => {
     const isLoading = !pool;
 
     return {
+      link: `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`,
       cells: [
         {
           Content: (
@@ -103,7 +104,9 @@ const PoolsTableCurve: FC = () => {
                 color="#B4C5FF"
                 fontSize="0.875rem"
                 lineHeight="1.12rem"
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   PoolOverview({
                     apr: pool
                       ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
@@ -111,8 +114,8 @@ const PoolsTableCurve: FC = () => {
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
-                  })
-                }
+                  });
+                }}
                 nHover={{ color: '#b4c6ffc1' }}
               >
                 Overview{' '}
