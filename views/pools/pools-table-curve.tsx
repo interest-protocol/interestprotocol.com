@@ -69,7 +69,7 @@ const PoolsTableCurve: FC = () => {
           Title: isLoading ? (
             <Skeleton width={80} />
           ) : (
-            formatDollars(Number(pool.metrics.tvl))
+            formatDollars(Number(Number(pool.metrics.tvl).toFixed(2)))
           ),
           position: 'right' as const,
         },
@@ -77,7 +77,7 @@ const PoolsTableCurve: FC = () => {
           Title: isLoading ? (
             <Skeleton width={80} />
           ) : (
-            formatDollars(Number(pool.metrics.volume))
+            formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
           ),
           position: 'right' as const,
         },
