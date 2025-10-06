@@ -24,7 +24,6 @@ import TokenInfo from '../../../components/token-info';
 import TokenInfoAction from '../../../components/token-info-action';
 import { usePoolDetailsContext } from '../../pool-details.context';
 import { PoolDetailsProps } from '../../pool-details.types';
-import BreadcrumbActions from './breadcrumb-actions';
 
 const TABS = ['Pool', 'Farm'];
 
@@ -137,7 +136,6 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
                     .join('-') ?? 'none')
             }
           />
-          <BreadcrumbActions />
         </Div>
         <Div
           display="flex"
