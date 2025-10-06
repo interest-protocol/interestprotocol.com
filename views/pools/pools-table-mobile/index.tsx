@@ -1,6 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
+import { useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
@@ -24,6 +25,7 @@ import OverviewTooltip from '../components/overview-tooltip';
 const PoolsTableMobile: FC = () => {
   const { setContent } = useModal();
   const { data: metricsData, isLoading } = usePoolsMetrics();
+  const search = useWatch({ name: 'search' }) as string;
 
   const PoolOverview = (overviewModalProps: OverviewModalProps) =>
     setContent(<OverviewModal {...overviewModalProps} />, {
@@ -41,6 +43,15 @@ const PoolsTableMobile: FC = () => {
     {} as Record<string, PoolMetrics>
   );
 
+  const filteredPools = useMemo(() => {
+    if (!search) return POOLS;
+    return POOLS.filter(({ poolAddress }) => {
+      const pool = poolsMetricsMap?.[poolAddress];
+      const symbols = pool?.symbols?.join(' ') ?? '';
+      return symbols.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [search, poolsMetricsMap]);
+
   return isLoading ? (
     <TableMobileSkeleton />
   ) : (
@@ -54,7 +65,7 @@ const PoolsTableMobile: FC = () => {
       borderWidth="1px 1px 0px 1px"
       display={['flex', 'flex', 'flex', 'none']}
     >
-      {POOLS.map(({ poolAddress, tokensAddresses }) => {
+      {filteredPools.map(({ poolAddress, tokensAddresses }) => {
         const pool = poolsMetricsMap?.[poolAddress];
         const isLoadingPool = !pool;
 
