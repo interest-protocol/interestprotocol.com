@@ -18,16 +18,19 @@ const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
           charts={{
             area: [
               {
+                label: 'TVL',
                 dataKey: 'tvl',
                 color: '#9ba2ad',
               },
             ],
             bar: [
               {
+                label: 'Fees',
                 dataKey: 'fees',
                 color: '#00c779',
               },
               {
+                label: 'Volume',
                 dataKey: 'volume',
                 color: '#383cb2',
               },

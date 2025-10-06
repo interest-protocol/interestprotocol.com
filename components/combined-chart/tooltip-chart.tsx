@@ -11,7 +11,6 @@ const TooltipChart: FC<TooltipChartProps> = ({
   title,
   active,
   payload,
-  showPayloadWithName,
 }) => {
   if (active && payload && payload.length) {
     return (
@@ -53,9 +52,8 @@ const TooltipChart: FC<TooltipChartProps> = ({
                 fontWeight="700"
                 fontFamily="Inter"
                 fontSize="0.875rem"
-                textTransform="capitalize"
               >
-                {`${showPayloadWithName ? name + ': ' : ''} ${formatMoney(value)}`}
+                {`${name}: ${formatMoney(value)}`}
               </Span>
             </Div>
           </Div>

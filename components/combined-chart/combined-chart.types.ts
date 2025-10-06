@@ -26,4 +26,5 @@ export interface CombinedChartProps {
 export interface ChartValuesProps {
   color: string;
   dataKey: string;
+  label?: string;
 }
