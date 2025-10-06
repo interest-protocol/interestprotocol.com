@@ -23,6 +23,7 @@ export const FA_TO_COIN: Record<string, string> = {
 };
 
 export const MOVE = {
+  type: '0x1::aptos_coin::AptosCoin',
   address: AccountAddress.from('0xa'),
   decimals: 8,
   iconUri: 'https://explorer.movementnetwork.xyz/logo.png',
