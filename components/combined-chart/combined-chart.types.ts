@@ -1,18 +1,18 @@
 import { TooltipProps } from 'recharts';
 
-export type TooltipChartProps = TooltipProps<number, string> & {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TooltipChartProps = TooltipProps<any, any> & {
   title?: string;
   label?: string | number;
   showPayloadWithName?: boolean;
   payload?: ReadonlyArray<TooltipPayloadProps>;
+  labelMap?: Record<string, string>;
 };
-
 interface TooltipPayloadProps {
   value: number;
-  name: string;
+  name: string | number;
   color: string;
 }
-
 export interface CombinedChartProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Array<any>;

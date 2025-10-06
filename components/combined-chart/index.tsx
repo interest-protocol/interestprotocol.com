@@ -50,17 +50,16 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => {
           </linearGradient>
         </defs>
         <XAxis dataKey={xDataKey} />
+
         <Tooltip
           cursor={{
             opacity: 0.5,
             strokeWidth: 1,
             strokeDasharray: '1 5',
           }}
-          content={<TooltipChart />}
-          formatter={(value, name: string) => {
-            return [value, LABEL_MAP[name] ?? name];
-          }}
+          content={(props) => <TooltipChart {...props} labelMap={LABEL_MAP} />}
         />
+
         {charts.bar.map((barItem) => (
           <Bar
             key={v4()}

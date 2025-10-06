@@ -25,7 +25,7 @@ const PoolsChartReports: FC<PoolsChartReportsProps> = ({ aggregation }) => {
             ],
             bar: [
               {
-                label: 'Fees',
+                label: 'Fee',
                 dataKey: 'fees',
                 color: '#00c779',
               },

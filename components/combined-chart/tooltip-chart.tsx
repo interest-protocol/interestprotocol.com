@@ -11,6 +11,7 @@ const TooltipChart: FC<TooltipChartProps> = ({
   title,
   active,
   payload,
+  labelMap = {},
 }) => {
   if (active && payload && payload.length) {
     return (
@@ -28,36 +29,33 @@ const TooltipChart: FC<TooltipChartProps> = ({
           </P>
         </Div>
 
-        {payload.map(({ color, value, name }) => (
-          <Div
-            key={v4()}
-            gap="1rem"
-            mb="0.5rem"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Div display="flex" alignItems="center" gap="0.5rem">
-              {color && !color.startsWith('url') && (
-                <Div
-                  width="1rem"
-                  height="1rem"
-                  borderRadius="5px"
-                  style={{ backgroundColor: color }}
-                />
-              )}
+        {payload.map(({ color, value, name }) => {
+          const displayName = labelMap[name] ?? name;
+          return (
+            <Div key={v4()} display="flex" justifyContent="space-between">
+              <Div display="flex" alignItems="center" gap="0.5rem">
+                {color && !color.startsWith('url') && (
+                  <Div
+                    width="1rem"
+                    height="1rem"
+                    borderRadius="5px"
+                    style={{ backgroundColor: color }}
+                  />
+                )}
 
-              <Span
-                color="#fff"
-                fontWeight="700"
-                fontFamily="Inter"
-                fontSize="0.875rem"
-              >
-                {`${name}: ${formatMoney(value)}`}
-              </Span>
+                <Span
+                  color="#fff"
+                  fontWeight="700"
+                  fontFamily="Inter"
+                  fontSize="0.875rem"
+                  textTransform="capitalize"
+                >
+                  {`${displayName}: ${formatMoney(value)}`}
+                </Span>
+              </Div>
             </Div>
-          </Div>
-        ))}
+          );
+        })}
       </Div>
     );
   }
