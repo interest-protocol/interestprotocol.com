@@ -3,10 +3,16 @@ import { FC } from 'react';
 
 import Chart from './components/chart';
 import Metric from './components/metric';
+import Rewards from './components/rewards';
 import TotalAprHeader from './components/total-apr-header';
 import { TooltipProps } from './tooltip.types';
 
-const Tooltip: FC<TooltipProps> = ({ fees, rewards, totalApr }) => {
+const Tooltip: FC<TooltipProps> = ({
+  fees,
+  rewards,
+  totalApr,
+  rewardsPerDay,
+}) => {
   const chartData = [
     { name: 'Fees', value: fees },
     { name: 'Rewards', value: rewards },
@@ -60,7 +66,7 @@ const Tooltip: FC<TooltipProps> = ({ fees, rewards, totalApr }) => {
             suffix="%"
           />
         </Div>
-        {/* <Rewards tokens={rewardsPerDay} /> */}
+        <Rewards tokens={rewardsPerDay} />
       </Div>
     </>
   );

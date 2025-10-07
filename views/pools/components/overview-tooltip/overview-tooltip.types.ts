@@ -3,4 +3,5 @@ export interface OverviewTooltipProps {
   title: string;
   feesApr: number;
   rewardsApr: number;
+  rewardsPerDay: ReadonlyArray<string>;
 }
