@@ -18,6 +18,22 @@ const Chart: FC = () => {
     (metric) => metric.poolId === pool.poolAddress
   );
 
+  const LABEL_MAP = {
+    ...([
+      {
+        label: 'Volume',
+        dataKey: 'Volume',
+        color: '#2A5ADA',
+      },
+    ].reduce(
+      (acc, { dataKey, label }) => {
+        if (label) acc[dataKey] = label;
+        return acc;
+      },
+      {} as Record<string, string>
+    ) ?? {}),
+  };
+  console.log(LABEL_MAP, '>>>>volume');
   return (
     <>
       <Div display="flex" gap="0.25rem" flexDirection="column">
@@ -64,6 +80,11 @@ const Chart: FC = () => {
               value: Number(volume),
             })) ?? []
           }
+          chartInfo={{
+            label: 'volume',
+            dataKey: 'volume',
+            color: '#2A5ADA',
+          }}
         />
       </Div>
     </>

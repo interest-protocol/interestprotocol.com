@@ -2,5 +2,6 @@
 export interface ChartSectionProps {
   data: any;
   title: string;
+  label?: string;
   loading: boolean;
 }

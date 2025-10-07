@@ -14,20 +14,20 @@ import TooltipChart from './tooltip-chart';
 
 const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => {
   const LABEL_MAP = {
-    ...charts.area.reduce(
+    ...(charts.area?.reduce(
       (acc, { dataKey, label }) => {
         if (label) acc[dataKey] = label;
         return acc;
       },
       {} as Record<string, string>
-    ),
-    ...charts.bar.reduce(
+    ) ?? {}),
+    ...(charts.bar?.reduce(
       (acc, { dataKey, label }) => {
         if (label) acc[dataKey] = label;
         return acc;
       },
       {} as Record<string, string>
-    ),
+    ) ?? {}),
   };
 
   return (
@@ -60,7 +60,7 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => {
           content={(props) => <TooltipChart {...props} labelMap={LABEL_MAP} />}
         />
 
-        {charts.bar.map((barItem) => (
+        {charts.bar?.map((barItem) => (
           <Bar
             key={v4()}
             barSize={6}
@@ -69,7 +69,8 @@ const CombinedChart: FC<CombinedChartProps> = ({ charts, data, xDataKey }) => {
             radius={[10, 10, 0, 0]}
           />
         ))}
-        {charts.area.map((areaItem) => (
+
+        {charts.area?.map((areaItem) => (
           <Area
             key={v4()}
             type="natural"

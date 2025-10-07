@@ -69,10 +69,7 @@ const StatsChartVolumeReport: FC = () => {
               ],
               bar: [
                 {
-                  dataKey: 'fees',
-                  color: '#00c779',
-                },
-                {
+                  label: 'Volume',
                   dataKey: 'volume',
                   color: '#383cb2',
                 },

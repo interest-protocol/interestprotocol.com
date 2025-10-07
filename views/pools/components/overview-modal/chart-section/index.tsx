@@ -6,7 +6,12 @@ import VolumeChart from '@/components/volume-chart';
 
 import { ChartSectionProps } from './chart-section.types';
 
-const ChartSection: FC<ChartSectionProps> = ({ title, data, loading }) => {
+const ChartSection: FC<ChartSectionProps> = ({
+  title,
+  data,
+  label,
+  loading,
+}) => {
   return (
     <Div>
       <Div
@@ -40,7 +45,14 @@ const ChartSection: FC<ChartSectionProps> = ({ title, data, loading }) => {
           {loading ? (
             <Skeleton width="100%" height="100%" baseColor="#9CA3AF1A" />
           ) : (
-            <VolumeChart data={data} />
+            <VolumeChart
+              data={data}
+              chartInfo={{
+                dataKey: 'volume',
+                color: '#2A5ADA',
+                label: label || title,
+              }}
+            />
           )}
         </Div>
       </Div>

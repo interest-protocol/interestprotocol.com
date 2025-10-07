@@ -18,8 +18,8 @@ export interface CombinedChartProps {
   data: Array<any>;
   xDataKey: string;
   charts: {
-    area: ReadonlyArray<ChartValuesProps>;
-    bar: ReadonlyArray<ChartValuesProps>;
+    area?: ReadonlyArray<ChartValuesProps>;
+    bar?: ReadonlyArray<ChartValuesProps>;
   };
 }
 
