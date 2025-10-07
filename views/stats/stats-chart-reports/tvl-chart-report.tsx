@@ -63,14 +63,9 @@ const StatsChartTVLReport: FC = () => {
             charts={{
               area: [
                 {
+                  label: 'TVL',
                   dataKey: 'tvl',
                   color: '#9ba2ad',
-                },
-              ],
-              bar: [
-                {
-                  dataKey: 'fees',
-                  color: '#00c779',
                 },
               ],
             }}

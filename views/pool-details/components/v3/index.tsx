@@ -24,7 +24,14 @@ const V3: FC = () => {
       >
         <VolumeWrapper>
           <Div width="100%" height={['7.4rem', '7.4rem', '7.4rem', '17rem']}>
-            <VolumeChart data={VOLUME_DATA} />
+            <VolumeChart
+              data={VOLUME_DATA}
+              chartInfo={{
+                label: 'volume',
+                dataKey: 'volume',
+                color: '#2A5ADA',
+              }}
+            />
           </Div>
         </VolumeWrapper>
         <MyPositionList />

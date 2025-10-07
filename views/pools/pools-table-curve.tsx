@@ -1,6 +1,7 @@
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC } from 'react';
+import { useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 
 import { Button } from '@/components/button';
@@ -23,13 +24,7 @@ const PoolsTableCurve: FC = () => {
   const { setContent } = useModal();
   const { data: metricsData, isLoading } = usePoolsMetrics();
 
-  const PoolOverview = (overviewModalProps: OverviewModalProps) =>
-    setContent(<OverviewModal {...overviewModalProps} />, {
-      title: 'Overview',
-      titleAlign: 'center',
-      modalWidth: '32rem',
-      showTitleOnMobile: true,
-    });
+  const search = useWatch({ name: 'search' }) as string;
 
   const poolsMetricsMap = metricsData?.data.reduce(
     (acc, pool) => {
@@ -39,9 +34,25 @@ const PoolsTableCurve: FC = () => {
     {} as Record<string, PoolMetrics>
   );
 
-  const rows = POOLS.map(({ poolAddress, tokensAddresses }) => {
+  const filteredPools = POOLS.filter(({ poolAddress }) => {
+    const pool = poolsMetricsMap?.[poolAddress];
+    if (!pool || !search) return true;
+    return pool.symbols.some((symbol) =>
+      symbol.toLowerCase().includes(search.toLowerCase())
+    );
+  });
+
+  const rows = filteredPools.map(({ poolAddress, tokensAddresses }) => {
     const pool = poolsMetricsMap?.[poolAddress];
     const isLoading = !pool;
+
+    const PoolOverview = (overviewModalProps: OverviewModalProps) =>
+      setContent(<OverviewModal {...overviewModalProps} />, {
+        title: 'Overview',
+        titleAlign: 'center',
+        modalWidth: '32rem',
+        showTitleOnMobile: true,
+      });
 
     return {
       link: `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`,
@@ -59,7 +70,7 @@ const PoolsTableCurve: FC = () => {
           Title: isLoading ? (
             <Skeleton width={80} />
           ) : (
-            formatDollars(Number(pool.metrics.tvl))
+            formatDollars(Number(Number(pool.metrics.tvl).toFixed(2)))
           ),
           position: 'right' as const,
         },
@@ -67,7 +78,7 @@ const PoolsTableCurve: FC = () => {
           Title: isLoading ? (
             <Skeleton width={80} />
           ) : (
-            formatDollars(Number(pool.metrics.volume))
+            formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
           ),
           position: 'right' as const,
         },

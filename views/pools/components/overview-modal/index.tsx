@@ -49,11 +49,17 @@ const OverviewModal: FC<OverviewModalProps> = (props) => {
         aggregation={aggregation}
         setAggregation={setAggregation}
       />
-      <ChartSection title="Pool Volume" data={volumeData} loading={isLoading} />
       <ChartSection
-        title="Pool Liquidity"
-        data={liquidityData}
+        label="Volume"
+        data={volumeData}
+        title="Pool Volume"
         loading={isLoading}
+      />
+      <ChartSection
+        label="Liquidity"
+        loading={isLoading}
+        data={liquidityData}
+        title="Pool Liquidity"
       />
     </Div>
   );

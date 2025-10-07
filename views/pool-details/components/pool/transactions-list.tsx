@@ -1,7 +1,7 @@
 import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, Span } from '@stylin.js/elements';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import Dropdown from '@/components/dropdown';
 import { ExternalLinkSVG } from '@/components/svg';
@@ -19,6 +19,15 @@ const TransactionList: FC = () => {
   const { pool } = usePoolDetailsContext();
 
   const { data } = usePoolTransactions(pool.poolAddress);
+
+  const [filter, setFilter] = useState('all');
+
+  const filteredData = useMemo(() => {
+    if (!data?.data) return [];
+    if (filter === 'all') return data.data;
+
+    return data.data.filter((tx) => tx.eventType.split('::')[2] === filter);
+  }, [data, filter]);
 
   return (
     <Div
@@ -43,8 +52,9 @@ const TransactionList: FC = () => {
         <Div display={['none', 'none', 'none', 'flex']}>
           <Dropdown
             isRounded
-            placeholder="transaction"
+            placeholder="All transactions"
             options={TRANSACTION_FILTER_DATA}
+            onClick={(val) => setFilter(val)}
           />
         </Div>
       </Div>
@@ -62,7 +72,7 @@ const TransactionList: FC = () => {
             })) ?? []),
           ]}
           rows={
-            data?.data.map(({ timestamp, eventType, usd, coins }) => ({
+            filteredData.map(({ timestamp, eventType, usd, coins }) => ({
               link: EXPLORER_URL[Network.MAINNET](`transaction/${timestamp}`),
               target: '_blank',
               cells: [
