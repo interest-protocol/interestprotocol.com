@@ -10,7 +10,7 @@ const PortfolioTabs: FC<PortfolioTabsProps> = ({ onGetTotal }) => {
   const { tab, setTab } = useTabState();
 
   return (
-    <Div display="flex" flexWrap="wrap">
+    <Div display={['none', 'none', 'none', 'flex']} flexWrap="wrap">
       <Tabs
         tab={tab}
         setTab={setTab}
