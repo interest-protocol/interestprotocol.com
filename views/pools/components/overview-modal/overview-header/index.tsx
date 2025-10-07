@@ -5,6 +5,7 @@ import useSWR from 'swr';
 
 import { TokenIcon } from '@/components';
 import Filter from '@/components/filter';
+import Tag from '@/components/tag';
 import { Network } from '@/constants';
 import { getCoinMetadata, parseToMetadata } from '@/utils';
 import {
@@ -17,6 +18,8 @@ import { OverviewHeaderProps } from './overview-header.types';
 
 const OverviewHeader: FC<OverviewHeaderProps> = ({
   apr,
+  tvl,
+  volume,
   address,
   symbols,
   aggregation,
@@ -44,7 +47,7 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
           network={Network.MovementMainnet}
           symbol={poolMetadata?.symbol || address}
         />
-        <Div gap="0.25rem" display="flex" flexDirection="column">
+        <Div gap="0.5rem" display="flex" flexDirection="column">
           <P
             color="#FFFFFF"
             fontWeight="500"
@@ -58,15 +61,11 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
                 tokensMetadata.map((item) => item.symbol).join(' • ')
               ))}
           </P>
-          <P
-            fontWeight="400"
-            color="#9CA3AF"
-            fontFamily="Inter"
-            lineHeight="1.25rem"
-            fontSize="0.86125rem"
-          >
-            {apr}
-          </P>
+          <Div display="flex" gap="0.5rem" flexWrap="wrap">
+            <Tag type="success" label={'APR: ' + apr} />
+            <Tag type="staked" label={'Volume: ' + volume} />
+            <Tag type="staked" label={'TVL: ' + tvl} />
+          </Div>
         </Div>
       </Div>
 

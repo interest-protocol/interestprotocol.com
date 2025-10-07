@@ -6,6 +6,8 @@ export interface PoolData {
 
 export interface OverviewModalProps {
   apr?: string;
+  volume?: string;
+  tvl?: string;
   address: string;
   symbols?: ReadonlyArray<string>;
   tokensAddresses: ReadonlyArray<string>;

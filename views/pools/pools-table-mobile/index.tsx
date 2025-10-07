@@ -154,6 +154,10 @@ const PoolsTableMobile: FC = () => {
                       apr: pool
                         ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
                         : '0',
+                      volume: pool
+                        ? formatDollars(Number(pool.metrics.volume))
+                        : '0',
+                      tvl: pool ? formatDollars(Number(pool.metrics.tvl)) : '0',
                       address: poolAddress,
                       symbols: pool?.symbols,
                       tokensAddresses: pool?.coins ?? tokensAddresses,
