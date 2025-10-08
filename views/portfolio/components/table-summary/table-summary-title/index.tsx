@@ -4,7 +4,11 @@ import { FC } from 'react';
 import { TableSummaryTitleProps } from '../table-summary.types';
 
 const TableSummaryTitle: FC<TableSummaryTitleProps> = ({ title, total }) => (
-  <Div gap="0.5rem" display="flex" alignItems="center">
+  <Div
+    gap="0.5rem"
+    display={['none', 'none', 'none', 'flex']}
+    alignItems="center"
+  >
     <P
       fontWeight="400"
       color="#FFFFFF"

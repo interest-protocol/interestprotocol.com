@@ -33,6 +33,18 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
       mobileOnly: true,
     });
 
+  const isActive = () => {
+    if (!path && name.toLowerCase() !== 'more') return false;
+
+    if (name.toLowerCase() === 'more') {
+      return asPath.startsWith('/create-token') || asPath.startsWith('/stats');
+    }
+
+    return asPath === path || asPath.startsWith(`${path}/`);
+  };
+
+  const active = isActive();
+
   return (
     <>
       <Div flex="1" height="100%">
@@ -50,12 +62,12 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
           flexDirection="column"
           justifyContent="center"
           transition="all 350ms ease-in-out"
-          color={asPath === path ? '#B4C5FF' : '#ffffff9d'}
-          nHover={{ color: asPath !== path ? '#909094' : '' }}
+          color={active ? '#B4C5FF' : '#FFFFFF9D'}
+          nHover={{ color: !active ? '#909094' : '' }}
           {...(onClick
             ? { onClick }
             : {
-                onClick: () => (name == 'more' ? openModal() : goToPath(path)),
+                onClick: () => (name === 'more' ? openModal() : goToPath(path)),
               })}
         >
           <Div height="2rem" display="flex" alignItems="center">
@@ -63,15 +75,13 @@ const BottomNavListItem: FC<BottomNavListItemProps> = ({
               width="1.5rem"
               maxHeight="1.5rem"
               maxWidth="1.5rem"
-              isSelected={asPath === path}
+              isSelected={active}
             />
           </Div>
           <Span
             fontSize="0.875rem"
             width="max-content"
-            nHover={{
-              opacity: 0.7,
-            }}
+            nHover={{ opacity: 0.7 }}
             textTransform="capitalize"
           >
             {name}
