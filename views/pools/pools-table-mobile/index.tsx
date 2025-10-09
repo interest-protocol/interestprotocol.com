@@ -119,9 +119,9 @@ const PoolsTableMobile: FC = () => {
                             ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
                             : 'Loading...'
                         }
+                        poolAddress={poolAddress}
                         feesApr={pool ? Number(pool.metrics.apr) : 0}
                         rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
-                        rewardsPerDay={pool?.coins ?? tokensAddresses}
                         apr={
                           pool
                             ? Number(pool.metrics.apr) +
