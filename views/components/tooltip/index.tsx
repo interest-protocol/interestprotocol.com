@@ -11,7 +11,7 @@ const Tooltip: FC<TooltipProps> = ({
   fees,
   rewards,
   totalApr,
-  rewardsPerDay,
+  poolAddress,
 }) => {
   const chartData = [
     { name: 'Fees', value: fees },
@@ -45,14 +45,22 @@ const Tooltip: FC<TooltipProps> = ({
           totalApr={totalApr}
           display={['none', 'none', 'none', 'flex']}
         />
-
         <Div
           gap="1rem"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
         >
-          <Chart data={chartData} colors={['#22C55E', '#FF9315']} />
+          {fees || rewards ? (
+            <Chart data={chartData} colors={['#22C55E', '#FF9315']} />
+          ) : (
+            <Div
+              width="6rem"
+              height="6rem"
+              borderRadius="999px"
+              border="20px solid #d9d9d9"
+            />
+          )}
           <Metric
             label="Fees"
             value={feesPercentage}
@@ -66,7 +74,7 @@ const Tooltip: FC<TooltipProps> = ({
             suffix="%"
           />
         </Div>
-        <Rewards tokens={rewardsPerDay} />
+        <Rewards poolAddress={poolAddress} />
       </Div>
     </>
   );

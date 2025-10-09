@@ -15,7 +15,7 @@ const Position: FC = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
-        setTabs(['Deposit', 'Withdraw', 'Rewards']);
+        setTabs(['Deposit', 'Withdraw']);
       } else {
         setTabs(['Deposit', 'Withdraw']);
         setTab((prev) => (prev > 1 ? 0 : prev));

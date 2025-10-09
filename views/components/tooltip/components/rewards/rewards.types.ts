@@ -1,3 +1,3 @@
 export interface RewardsProps {
-  tokens: ReadonlyArray<string>;
+  poolAddress: string;
 }

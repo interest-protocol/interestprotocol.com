@@ -8,5 +8,5 @@ export interface TooltipProps {
   fees: number;
   rewards: number;
   totalApr: number;
-  rewardsPerDay: ReadonlyArray<string>;
+  poolAddress: string;
 }

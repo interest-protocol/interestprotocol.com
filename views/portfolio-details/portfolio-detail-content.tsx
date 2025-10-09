@@ -50,6 +50,7 @@ const PortfolioDetailContent: FC = () => {
 
   return (
     <Div
+      mb="5rem"
       width="100%"
       display="flex"
       flexDirection="column"

@@ -50,7 +50,7 @@ const PoolsTableCurve: FC = () => {
       setContent(<OverviewModal {...overviewModalProps} />, {
         title: 'Overview',
         titleAlign: 'center',
-        modalWidth: '34rem',
+        modalWidth: '32rem',
         showTitleOnMobile: true,
       });
 
@@ -90,9 +90,9 @@ const PoolsTableCurve: FC = () => {
                   ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
                   : 'Loading...'
               }
+              poolAddress={poolAddress}
               feesApr={pool ? Number(pool.metrics.apr) : 0}
               rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
-              rewardsPerDay={pool?.coins ?? tokensAddresses}
               apr={
                 pool
                   ? Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
@@ -123,10 +123,6 @@ const PoolsTableCurve: FC = () => {
                     apr: pool
                       ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
                       : '0',
-                    volume: pool
-                      ? formatDollars(Number(pool.metrics.volume))
-                      : '0',
-                    tvl: pool ? formatDollars(Number(pool.metrics.tvl)) : '0',
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,

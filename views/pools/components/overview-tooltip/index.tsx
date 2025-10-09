@@ -12,7 +12,7 @@ const OverviewTooltip: FC<OverviewTooltipProps> = ({
   title,
   feesApr,
   rewardsApr,
-  rewardsPerDay,
+  poolAddress,
 }) => {
   const { setContent } = useModal();
 
@@ -21,7 +21,7 @@ const OverviewTooltip: FC<OverviewTooltipProps> = ({
       totalApr={apr}
       fees={feesApr}
       rewards={rewardsApr}
-      rewardsPerDay={rewardsPerDay}
+      poolAddress={poolAddress}
     />
   );
 
