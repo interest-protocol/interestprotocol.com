@@ -13,7 +13,7 @@ import TableMobileLine from '../../../components/table-mobile-line';
 const StatsPoolsTableMobile: FC = () => {
   const { data: metricsData, isLoading } = usePoolsMetrics();
 
-  if (isLoading) return <TableMobileSkeleton />;
+  if (isLoading) return <TableMobileSkeleton buttons={0} linesCount={5} />;
 
   const noPools = !metricsData?.data?.length;
 

@@ -14,7 +14,7 @@ import { TRANSACTION_STATS_HEADER_DATA } from '../../stats.data';
 const StatsTransactionTableMobile: FC = () => {
   const { data: transactionsData, isLoading } = useCurveTransactions();
 
-  if (isLoading) return <TableMobileSkeleton />;
+  if (isLoading) return <TableMobileSkeleton buttons={0} linesCount={5} />;
 
   const noTransactions = !transactionsData?.data?.length;
 
