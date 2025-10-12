@@ -49,5 +49,6 @@ export const TOKEN_ICONS: DefaultTokenIcons = {
   [Network.BARDOCK]: {},
   [Network.APTOS_TESTNET]: {},
   [Network.MovementMainnet]: DEFAULT_TOKEN_ICON,
+  [Network.CUSTOM]: DEFAULT_TOKEN_ICON,
   [Network.MAINNET]: DEFAULT_TOKEN_ICON,
 };

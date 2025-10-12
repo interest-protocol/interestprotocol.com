@@ -10,7 +10,7 @@ import Avatar from './avatar';
 import MenuProfile from './menu-profile';
 
 const Profile: FC = () => {
-  const { account, disconnect } = useAptosWallet();
+  const { account } = useAptosWallet();
   const { setContent } = useModal();
   const [open, setOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const Profile: FC = () => {
 
   const handleOpen = () => {
     if (isMobile) {
-      setContent(<MenuProfile disconnect={disconnect} />, {
+      setContent(<MenuProfile />, {
         title: 'Profile',
         mobileOnly: true,
         showTitleOnMobile: false,
@@ -65,7 +65,7 @@ const Profile: FC = () => {
       <AnimatePresence>
         {open && (
           <DirectionalMenu onClose={handleClose} isDirectionalRight>
-            <MenuProfile disconnect={disconnect} />
+            <MenuProfile />
           </DirectionalMenu>
         )}
       </AnimatePresence>
