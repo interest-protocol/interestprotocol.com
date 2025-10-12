@@ -21,7 +21,12 @@ const PoolsDetailsTableMobile: FC = () => {
   const { data, isLoading } = usePoolTransactions(pool.poolAddress);
 
   return isLoading ? (
-    <TableMobileSkeleton />
+    <>
+      {data?.data.length &&
+        data?.data.map(() => (
+          <TableMobileSkeleton key={v4()} buttons={0} linesCount={4} />
+        ))}
+    </>
   ) : (
     <Div
       width="100%"

@@ -2,7 +2,6 @@ import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC, useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
-import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
 import { Button } from '@/components/button';
@@ -55,9 +54,7 @@ const PoolsTableMobile: FC = () => {
 
   const noPools = !POOLS.length;
 
-  return isLoading ? (
-    <TableMobileSkeleton />
-  ) : (
+  return (
     <Div
       width="100%"
       bg="#030712"
@@ -72,10 +69,12 @@ const PoolsTableMobile: FC = () => {
     >
       {noPools ? (
         <NoCoin />
+      ) : isLoading ? (
+        filteredPools.map(() => <TableMobileSkeleton key={v4()} />)
       ) : (
         filteredPools.map(({ poolAddress, tokensAddresses }) => {
           const pool = poolsMetricsMap?.[poolAddress];
-          const isLoadingPool = !pool;
+
           return (
             <Div
               key={v4()}
@@ -94,45 +93,32 @@ const PoolsTableMobile: FC = () => {
                   tokensAddresses={pool?.coins ?? tokensAddresses}
                 />
               </Div>
-              {isLoadingPool ? (
-                <>
-                  <Skeleton width="100%" height="1rem" />
-                  <Skeleton width="100%" height="1rem" />
-                  <Skeleton width="100%" height="1rem" />
-                </>
-              ) : (
-                <>
-                  <TableMobileLine
-                    label="TVL"
-                    value={formatDollars(Number(pool.metrics.tvl))}
-                  />
-                  <TableMobileLine
-                    label="Volume"
-                    value={formatDollars(Number(pool.metrics.volume))}
-                  />
-                  <TableMobileLine
-                    label="APR"
-                    value={
-                      <OverviewTooltip
-                        title={
-                          pool
-                            ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-                            : 'Loading...'
-                        }
-                        poolAddress={poolAddress}
-                        feesApr={pool ? Number(pool.metrics.apr) : 0}
-                        rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
-                        apr={
-                          pool
-                            ? Number(pool.metrics.apr) +
-                              Number(pool.metrics.farmApr)
-                            : 0
-                        }
-                      />
+
+              <TableMobileLine
+                label="TVL"
+                value={formatDollars(Number(pool?.metrics.tvl))}
+              />
+              <TableMobileLine
+                label="Volume"
+                value={formatDollars(Number(pool?.metrics.volume))}
+              />
+              <TableMobileLine
+                label="APR"
+                value={
+                  <OverviewTooltip
+                    title={`${(
+                      Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
+                    ).toFixed(2)}%`}
+                    poolAddress={poolAddress}
+                    feesApr={Number(pool?.metrics.apr)}
+                    rewardsApr={Number(pool?.metrics.farmApr)}
+                    apr={
+                      Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
                     }
                   />
-                </>
-              )}
+                }
+              />
+
               <Div
                 mt="0.5rem"
                 gap="0.5rem"
@@ -151,13 +137,12 @@ const PoolsTableMobile: FC = () => {
                   justifyContent="center"
                   onClick={() =>
                     PoolOverview({
-                      apr: pool
-                        ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-                        : '0',
-                      volume: pool
-                        ? formatDollars(Number(pool.metrics.volume))
-                        : '0',
-                      tvl: pool ? formatDollars(Number(pool.metrics.tvl)) : '0',
+                      apr: `${(
+                        Number(pool?.metrics.apr) +
+                        Number(pool?.metrics.farmApr)
+                      ).toFixed(2)}%`,
+                      volume: formatDollars(Number(pool?.metrics.volume)),
+                      tvl: formatDollars(Number(pool?.metrics.tvl)),
                       address: poolAddress,
                       symbols: pool?.symbols,
                       tokensAddresses: pool?.coins ?? tokensAddresses,

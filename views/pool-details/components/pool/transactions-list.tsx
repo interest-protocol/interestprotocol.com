@@ -2,6 +2,7 @@ import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, Span } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC, useMemo, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import Dropdown from '@/components/dropdown';
 import { ExternalLinkSVG } from '@/components/svg';
@@ -18,14 +19,13 @@ import PoolsDetailsTableMobile from '../../pools-details-table-mobile';
 const TransactionList: FC = () => {
   const { pool } = usePoolDetailsContext();
 
-  const { data } = usePoolTransactions(pool.poolAddress);
+  const { data, isLoading } = usePoolTransactions(pool.poolAddress);
 
   const [filter, setFilter] = useState('all');
 
   const filteredData = useMemo(() => {
     if (!data?.data) return [];
     if (filter === 'all') return data.data;
-
     return data.data.filter((tx) => tx.eventType.split('::')[2] === filter);
   }, [data, filter]);
 
@@ -78,34 +78,52 @@ const TransactionList: FC = () => {
               cells: [
                 {
                   color: '#FFFFFF',
-                  Title: formatTimeAgo(timestamp),
+                  Title: isLoading ? (
+                    <Skeleton width={80} height={15} />
+                  ) : (
+                    formatTimeAgo(timestamp)
+                  ),
                 },
                 {
                   color: '#9CA3AF',
-                  Title: eventType.split('::')[2],
+                  Title: isLoading ? (
+                    <Skeleton width={80} height={15} />
+                  ) : (
+                    eventType.split('::')[2]
+                  ),
                 },
                 {
                   color: '#FFFFFF',
-                  Title: formatDollars(+usd, 4),
+                  Title: isLoading ? (
+                    <Skeleton width={80} height={15} />
+                  ) : (
+                    formatDollars(+usd, 4)
+                  ),
                   position: 'right',
                 },
                 ...(pool.tokensMetadata?.map(({ type }) => ({
                   color: '#FFFFFF',
-                  Title: formatDollars(
-                    +(
-                      coins.find(
-                        ({ token }) =>
-                          normalizeSuiAddress(token) ===
-                          normalizeSuiAddress(type)
-                      )?.amount ?? 0
-                    ),
-                    4
+                  Title: isLoading ? (
+                    <Skeleton width={80} height={15} />
+                  ) : (
+                    formatDollars(
+                      +(
+                        coins.find(
+                          ({ token }) =>
+                            normalizeSuiAddress(token) ===
+                            normalizeSuiAddress(type)
+                        )?.amount ?? 0
+                      ),
+                      4
+                    )
                   ),
                   position: 'right' as const,
                 })) ?? []),
                 {
                   color: '#FFFFFF',
-                  Content: (
+                  Content: isLoading ? (
+                    <Skeleton width={15} height={15} />
+                  ) : (
                     <Link
                       target="_blank"
                       title="Pool Transaction"

@@ -1,7 +1,6 @@
 import { Div, Span } from '@stylin.js/elements';
 import Link from 'next/link';
 import { FC, isValidElement } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 
 import NotFound from '@/views/components/select-token-modal/not-found';
@@ -11,32 +10,9 @@ import { TableHeaderProps } from './table.types';
 const TableBodyContent: FC<TableHeaderProps> = ({
   rows,
   title,
-  isLoading,
   gridTemplateColumns,
 }) =>
-  isLoading ? (
-    <Div
-      key={v4()}
-      display="flex"
-      borderStyle="solid"
-      borderColor=" #1F2937"
-      nHover={{
-        bg: '#9CA3AF1A',
-      }}
-      cursor="pointer"
-      borderWidth=" 1px 0px 0px 0px"
-      transition="all 150ms ease-in-out"
-      minWidth={['1000px', '1000px', '400px', 'unset']}
-      gridTemplateColumns={gridTemplateColumns || `repeat(${title.length},1fr)`}
-    >
-      <Div width="100%">
-        <Skeleton width="100%" height="40px" />
-        <Skeleton width="100%" height="40px" />
-        <Skeleton width="100%" height="40px" />
-        <Skeleton width="100%" height="40px" />
-      </Div>
-    </Div>
-  ) : rows.length ? (
+  rows.length ? (
     rows.map(({ cells, link, target }) => (
       <Link
         href={link || '#'}

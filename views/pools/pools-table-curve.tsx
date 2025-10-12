@@ -6,13 +6,13 @@ import Skeleton from 'react-loading-skeleton';
 
 import { Button } from '@/components/button';
 import PoolName from '@/components/pool-name';
-import { ProgressIndicator } from '@/components/progress-indicator';
 import Table from '@/components/table';
 import { Routes, RoutesEnum } from '@/constants';
 import { POOLS } from '@/constants/pools';
 import { useModal } from '@/hooks';
 import { formatDollars } from '@/utils';
 
+import PoolNameSkeleton from '../components/pool-name-skeleton';
 import OverviewModal from './components/overview-modal';
 import { OverviewModalProps } from './components/overview-modal/overview-modal.types';
 import OverviewTooltip from './components/overview-tooltip';
@@ -22,7 +22,7 @@ import PoolsTableMobile from './pools-table-mobile';
 
 const PoolsTableCurve: FC = () => {
   const { setContent } = useModal();
-  const { data: metricsData, isLoading } = usePoolsMetrics();
+  const { data: metricsData } = usePoolsMetrics();
 
   const search = useWatch({ name: 'search' }) as string;
 
@@ -58,7 +58,9 @@ const PoolsTableCurve: FC = () => {
       link: `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`,
       cells: [
         {
-          Content: (
+          Content: isLoading ? (
+            <PoolNameSkeleton />
+          ) : (
             <PoolName
               address={poolAddress}
               symbols={pool?.symbols}
@@ -68,7 +70,7 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Skeleton width={80} />
+            <Skeleton width={80} height={15} />
           ) : (
             formatDollars(Number(Number(pool.metrics.tvl).toFixed(2)))
           ),
@@ -76,36 +78,32 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Skeleton width={80} />
+            <Skeleton width={80} height={15} />
           ) : (
             formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
           ),
           position: 'right' as const,
         },
         {
-          Title: pool ? (
-            <OverviewTooltip
-              title={
-                pool
-                  ? `${+(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-                  : 'Loading...'
-              }
-              poolAddress={poolAddress}
-              feesApr={pool ? Number(pool.metrics.apr) : 0}
-              rewardsApr={pool ? Number(pool.metrics.farmApr) : 0}
-              apr={
-                pool
-                  ? Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
-                  : 0
-              }
-            />
+          Title: isLoading ? (
+            <Skeleton width={60} height={15} />
           ) : (
-            'Loading'
+            <OverviewTooltip
+              title={`${(
+                Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
+              ).toFixed(2)}%`}
+              poolAddress={poolAddress}
+              feesApr={Number(pool.metrics.apr)}
+              rewardsApr={Number(pool.metrics.farmApr)}
+              apr={Number(pool.metrics.apr) + Number(pool.metrics.farmApr)}
+            />
           ),
           position: 'right' as const,
         },
         {
-          Content: (
+          Content: isLoading ? (
+            <Skeleton width={70} height={15} />
+          ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Button
                 p="unset"
@@ -120,9 +118,9 @@ const PoolsTableCurve: FC = () => {
                   e.preventDefault();
                   e.stopPropagation();
                   PoolOverview({
-                    apr: pool
-                      ? `${(Number(pool.metrics.apr) + Number(pool.metrics.farmApr)).toFixed(2)}%`
-                      : '0',
+                    apr: `${(
+                      Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
+                    ).toFixed(2)}%`,
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
@@ -130,14 +128,15 @@ const PoolsTableCurve: FC = () => {
                 }}
                 nHover={{ color: '#b4c6ffc1' }}
               >
-                Overview{' '}
-                {!pool && <ProgressIndicator size={12} variant="loading" />}
+                Overview
               </Button>
             </Div>
           ),
         },
         {
-          Content: (
+          Content: isLoading ? (
+            <Skeleton width={90} height={15} />
+          ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Link
                 href={`${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`}
@@ -169,7 +168,6 @@ const PoolsTableCurve: FC = () => {
       <Div display={['none', 'none', 'none', 'flex']}>
         <Table
           rows={rows}
-          isLoading={isLoading}
           title={VERIFIED_POOLS_HEADER_DATA}
           gridTemplateColumns="3fr repeat(5, 1fr)"
         />

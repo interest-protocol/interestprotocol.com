@@ -21,6 +21,7 @@ import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { formatDollars, formatMoney, ZERO_BIG_NUMBER } from '@/utils';
 
 import Manage from '../components/manage';
+import PoolNameSkeleton from '../components/pool-name-skeleton';
 import PriceRange from '../components/price-range';
 import RewardsModal from '../components/rewards-modal';
 import PoolTypeTable from './components/pool-type-table';
@@ -200,47 +201,69 @@ const PortfolioCurvePools: FC = () => {
         link: `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`,
         cells: [
           {
-            Content: (
+            Content: isLoading ? (
+              <PoolNameSkeleton />
+            ) : (
               <PoolName
                 address={poolAddress}
                 tokensAddresses={tokensAddresses}
               />
             ),
           },
-          { Content: <PriceRange address={poolAddress} /> },
           {
-            Title: formatDollars(
-              Number(
-                metricsData?.data.find(({ poolId }) => poolId === poolAddress)
-                  ?.metrics.tvl
+            Content: isLoading ? (
+              <Skeleton width={80} height={15} />
+            ) : (
+              <PriceRange address={poolAddress} />
+            ),
+          },
+          {
+            Title: isLoading ? (
+              <Skeleton width={80} height={15} />
+            ) : (
+              formatDollars(
+                Number(
+                  metricsData?.data.find(({ poolId }) => poolId === poolAddress)
+                    ?.metrics.tvl
+                )
               )
             ),
             position: 'right',
           },
           {
-            Title: `${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`,
+            Title: isLoading ? (
+              <Skeleton width={80} height={15} />
+            ) : (
+              `${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`
+            ),
             position: 'right',
             color: '#34D399',
           },
           {
-            Title: `${formatMoney(
-              FixedPointMath.toNumber(
-                BigNumber(
-                  String(
-                    accountFarmsData?.find(
-                      (farm) =>
-                        farm.farm ===
-                        FARMS_BY_LP[poolAddress]?.address.toString()
-                    )?.rewards ?? 0
+            Title: isLoading ? (
+              <Skeleton width={80} height={15} />
+            ) : (
+              `${formatMoney(
+                FixedPointMath.toNumber(
+                  BigNumber(
+                    String(
+                      accountFarmsData?.find(
+                        (farm) =>
+                          farm.farm ===
+                          FARMS_BY_LP[poolAddress]?.address.toString()
+                      )?.rewards ?? 0
+                    )
                   )
-                )
-              ),
-              4
-            )} MOVE`,
+                ),
+                4
+              )} MOVE`
+            ),
             position: 'right',
           },
           {
-            Content: (
+            Content: isLoading ? (
+              <Skeleton width={80} height={15} />
+            ) : (
               <Manage
                 url={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}
               />

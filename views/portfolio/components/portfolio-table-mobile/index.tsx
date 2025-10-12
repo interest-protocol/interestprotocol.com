@@ -34,7 +34,16 @@ const PortfolioTableMobile: FC = () => {
     (isCoinsMapLoading && !coinsMap) ||
     (isMetricsLoading && !metricsData);
 
-  if (isLoading) return <TableMobileSkeleton />;
+  if (isLoading) {
+    return (
+      <>
+        {poolsPosition.length > 0 &&
+          poolsPosition.map(() => (
+            <TableMobileSkeleton key={v4()} buttons={1} />
+          ))}
+      </>
+    );
+  }
 
   const noPools = !poolsPosition.length;
   return (
