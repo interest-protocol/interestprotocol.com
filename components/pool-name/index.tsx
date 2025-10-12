@@ -72,13 +72,7 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
             ))}
         </P>
 
-        <Div
-          display="flex"
-          gap="0.25rem"
-          flexWrap="wrap"
-          justifyContent="flex-end"
-          alignItems="center"
-        >
+        <Div display="flex" gap="0.25rem" flexWrap="wrap" alignItems="center">
           {[
             ...(isEarn ? ['earn'] : []),
             ...(isCurve ? ['curve'] : []),

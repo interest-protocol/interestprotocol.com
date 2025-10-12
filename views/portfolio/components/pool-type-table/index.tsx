@@ -35,7 +35,7 @@ const PoolTypeTable: FC<PoolTypeTableProps> = ({
         rows={rows}
         title={tableHeader}
         isLoading={isLoading}
-        gridTemplateColumns={gridTemplateColumns || '14rem 2fr repeat(4, 1fr)'}
+        gridTemplateColumns={gridTemplateColumns || '20rem repeat(5, 1fr)'}
       />
     </Div>
     <PortfolioTableMobile />

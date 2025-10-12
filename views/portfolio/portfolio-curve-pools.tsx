@@ -1,4 +1,5 @@
 import { useAptosWallet } from '@razorlabs/wallet-kit';
+import { Div } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -212,14 +213,18 @@ const PortfolioCurvePools: FC = () => {
           },
           {
             Content: isLoading ? (
-              <Skeleton width={80} height={15} />
+              <Div width="100%">
+                <Skeleton width="100%" height={15} />
+              </Div>
             ) : (
               <PriceRange address={poolAddress} />
             ),
           },
           {
             Title: isLoading ? (
-              <Skeleton width={80} height={15} />
+              <Div width="100%">
+                <Skeleton width="100%" height={15} />
+              </Div>
             ) : (
               formatDollars(
                 Number(
@@ -232,7 +237,9 @@ const PortfolioCurvePools: FC = () => {
           },
           {
             Title: isLoading ? (
-              <Skeleton width={80} height={15} />
+              <Div width="100%">
+                <Skeleton width="100%" height={15} />
+              </Div>
             ) : (
               `${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`
             ),
@@ -241,7 +248,9 @@ const PortfolioCurvePools: FC = () => {
           },
           {
             Title: isLoading ? (
-              <Skeleton width={80} height={15} />
+              <Div width="100%">
+                <Skeleton width="100%" height={15} />
+              </Div>
             ) : (
               `${formatMoney(
                 FixedPointMath.toNumber(
@@ -262,7 +271,9 @@ const PortfolioCurvePools: FC = () => {
           },
           {
             Content: isLoading ? (
-              <Skeleton width={80} height={15} />
+              <Div width="100%">
+                <Skeleton width="100%" height={15} />
+              </Div>
             ) : (
               <Manage
                 url={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}

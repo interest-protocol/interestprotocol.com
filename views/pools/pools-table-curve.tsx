@@ -70,7 +70,9 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Skeleton width={80} height={15} />
+            <Div width="100%">
+              <Skeleton width="100%" height={15} />
+            </Div>
           ) : (
             formatDollars(Number(Number(pool.metrics.tvl).toFixed(2)))
           ),
@@ -78,7 +80,9 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Skeleton width={80} height={15} />
+            <Div width="100%">
+              <Skeleton width="100%" height={15} />
+            </Div>
           ) : (
             formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
           ),
@@ -86,7 +90,9 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Skeleton width={60} height={15} />
+            <Div width="100%">
+              <Skeleton width="100%" height={15} />
+            </Div>
           ) : (
             <OverviewTooltip
               title={`${(
@@ -102,7 +108,9 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Content: isLoading ? (
-            <Skeleton width={70} height={15} />
+            <Div width="100%">
+              <Skeleton width="100%" height={15} />
+            </Div>
           ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Button
@@ -135,7 +143,9 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Content: isLoading ? (
-            <Skeleton width={90} height={15} />
+            <Div width="100%">
+              <Skeleton width="100%" height={15} />
+            </Div>
           ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Link
