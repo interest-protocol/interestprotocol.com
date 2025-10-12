@@ -42,7 +42,3 @@ export interface AvatarProps {
   withNameOrAddress?: boolean;
   nameOrAddressPosition?: 'left' | 'right';
 }
-
-export interface ProfileProps {
-  disconnect: () => void;
-}

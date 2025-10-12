@@ -8,10 +8,9 @@ import { useModal } from '@/hooks';
 
 import Avatar from './avatar';
 import MenuProfile from './menu-profile';
-import { ProfileProps } from './profile.types';
 
-const Profile: FC<ProfileProps> = ({ disconnect }) => {
-  const { account } = useAptosWallet();
+const Profile: FC = () => {
+  const { account, disconnect } = useAptosWallet();
   const { setContent } = useModal();
   const [open, setOpen] = useState(false);
 

@@ -1,6 +1,7 @@
 export const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 export enum Network {
+  CUSTOM = 'custom',
   BARDOCK = 'bardock',
   MAINNET = 'mainnet',
   APTOS_TESTNET = 'aptos_testnet',
@@ -21,6 +22,11 @@ export const RPC_URL = {
     'https://rpc.sentio.xyz/ubhXreFT5WIvDL5f8KGmhOyTBfRpCrhx/movement/v1',
   [Network.MovementMainnet]:
     'https://rpc.sentio.xyz/ubhXreFT5WIvDL5f8KGmhOyTBfRpCrhx/movement/v1',
+};
+
+export const CHAIN_ID = {
+  [Network.MAINNET]: 126,
+  [Network.MovementMainnet]: 126,
 };
 
 export const INDEXER_URL = {

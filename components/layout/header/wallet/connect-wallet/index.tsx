@@ -1,9 +1,12 @@
+import { Network } from '@aptos-labs/ts-sdk';
+import { getAptosWallets, NetworkInfo } from '@aptos-labs/wallet-standard';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div, P, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { toasting } from '@/components/toast';
+import { CHAIN_ID, RPC_URL } from '@/constants';
 import { useModal } from '@/hooks';
 
 import { CUSTOM_WALLETS } from './connect-wallet.data';
@@ -11,6 +14,8 @@ import WalletItem from './wallet-item';
 
 const ConnectWalletModal: FC = () => {
   const { handleClose } = useModal();
+  const wallets = getAptosWallets();
+  const aptosWallets = wallets.aptosWallets;
   const { allAvailableWallets, select } = useAptosWallet();
 
   const handleConnect = async (name: string) => {
@@ -19,6 +24,17 @@ const ConnectWalletModal: FC = () => {
 
     const dismiss = toasting.loading({ message: 'Connecting...' });
     try {
+      const networkInfo: NetworkInfo = {
+        name: Network.CUSTOM,
+        url: RPC_URL[Network.MAINNET],
+        chainId: CHAIN_ID[Network.MAINNET],
+      };
+
+      const wallet = aptosWallets.find((w) => w.name === name)!;
+
+      if (wallet.name === 'Nightly')
+        await wallet.features['aptos:connect'].connect(false, networkInfo);
+
       await select(name);
     } catch (e) {
       toasting.error({
