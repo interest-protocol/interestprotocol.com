@@ -5,6 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import TokenIcon from '@/components/token-icon';
 import { Network } from '@/constants';
+import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
 import {
   PortfolioDetailsFormProps,
   PortfolioDetailsToken,
@@ -21,7 +22,7 @@ const SelectedToken: FC<InputProps> = ({ field, Suffix }) => {
   });
 
   const sanitizedToken = currentToken as PortfolioDetailsToken;
-  const { symbol: currentSymbol } = sanitizedToken ?? {};
+  const { symbol: currentSymbol, standard } = sanitizedToken ?? {};
 
   const formattedSymbol = currentSymbol ?? 'Select token';
 
@@ -48,11 +49,11 @@ const SelectedToken: FC<InputProps> = ({ field, Suffix }) => {
         <Div>
           <TokenIcon
             withBg
-            rounded
             size="1.25rem"
             symbol={currentSymbol}
             network={Network.MAINNET}
             url={sanitizedToken?.iconUri}
+            rounded={standard === TokenStandard.COIN}
           />
         </Div>
         <P

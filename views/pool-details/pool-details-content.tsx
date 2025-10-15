@@ -20,6 +20,7 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
 
   const form = useForm<PortfolioDetailsFormProps>({
     defaultValues: {
+      selectedCoinIndex: [0, 1],
       poolAddress: pool.poolAddress,
       lpCoin: { ...pool.poolMetadata, value: '', valueBN: ZERO_BIG_NUMBER },
       tokenList: pool.tokensMetadata?.map((token) => ({

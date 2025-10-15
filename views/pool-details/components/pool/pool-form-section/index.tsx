@@ -1,34 +1,33 @@
 import { Div } from '@stylin.js/elements';
 import { FC, useState } from 'react';
-import { FormProvider, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
-import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
-import { useModal } from '@/hooks';
-import SettingsModal from '@/views/components/settings-modal';
-import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
+import { ZERO_BIG_NUMBER } from '@/utils';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import PoolDetailsInfo from '../../pool-details-info';
+import PoolFormSectionSettings from './form-settings';
 import PoolFormDeposit from './pool-form/deposit';
 import PoolFormWithdraw from './pool-form/withdraw';
 
 const TABS = ['Deposit', 'Withdraw'];
 
 const PoolFormSection: FC = () => {
-  const { setContent } = useModal();
-
   const [poolTabs, setPoolTabs] = useState(0);
-  const form = useFormContext();
-  const { register } = useFormContext<ISettings>();
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
 
-  const handleOpenSettings = () =>
-    setContent(
-      <FormProvider {...form}>
-        <SettingsModal register={register} />
-      </FormProvider>,
-      { title: 'Settings' }
-    );
+  const onHandle = (tab: number) => {
+    setPoolTabs(tab);
+    setValue('lpCoin.value', '');
+    setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.0.value', '');
+    setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.1.value', '');
+    setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+    setValue('selectedCoinIndex', [0, 1]);
+  };
 
   return (
     <Div
@@ -48,23 +47,10 @@ const PoolFormSection: FC = () => {
           justifyContent="space-between"
         >
           <Div display="flex">
-            <Tabs tabs={TABS} setTab={setPoolTabs} tab={poolTabs} />
+            <Tabs tabs={TABS} setTab={onHandle} tab={poolTabs} />
           </Div>
 
-          <Div
-            role="button"
-            lineHeight="0"
-            display="flex"
-            cursor="pointer"
-            color="#9CA3AF"
-            alignItems="center"
-            aria-label="Settings"
-            onClick={handleOpenSettings}
-            transition="transform 500ms ease-in-out"
-            nHover={{ transform: 'rotate(180deg)', color: '#B4C5FF' }}
-          >
-            <CogsSVG maxWidth="1.25rem" maxHeight="1.25rem" width="100%" />
-          </Div>
+          <PoolFormSectionSettings />
         </Div>
         {
           [<PoolFormDeposit key={v4()} />, <PoolFormWithdraw key={v4()} />][
