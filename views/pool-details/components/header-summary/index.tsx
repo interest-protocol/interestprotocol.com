@@ -3,6 +3,7 @@ import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import invariant from 'tiny-invariant';
 
 import Breadcrumb from '@/components/breadcrumb';
@@ -126,16 +127,20 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
         gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
       >
         <Div display="flex" justifyContent="space-between">
-          <Breadcrumb
-            basePage="Pools"
-            currentPage={
-              loading
-                ? 'loading...'
-                : (pool.tokensMetadata
-                    ?.map((token) => token.symbol)
-                    .join('-') ?? 'none')
-            }
-          />
+          {loading ? (
+            <Skeleton width={100} height={20} />
+          ) : (
+            <Breadcrumb
+              basePage="Pools"
+              currentPage={
+                loading
+                  ? 'loading...'
+                  : (pool.tokensMetadata
+                      ?.map((token) => token.symbol)
+                      .join('-') ?? 'none')
+              }
+            />
+          )}
         </Div>
         <Div
           display="flex"

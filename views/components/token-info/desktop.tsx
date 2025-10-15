@@ -1,5 +1,6 @@
 import { Div, P } from '@stylin.js/elements';
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
@@ -14,30 +15,40 @@ const TokenInfoDesktop: FC = () => {
       alignItems="center"
       display={['none', 'none', 'none', 'flex']}
     >
-      <TokenIcon
-        withBg
-        size="1.52rem"
-        network={Network.MAINNET}
-        url={loading ? undefined : pool.poolMetadata?.iconUri}
-        symbol={
-          loading
-            ? 'loading...'
-            : (pool.tokensMetadata?.map((token) => token.symbol).join('-') ??
-              'none')
-        }
-      />
-      <P
-        fontWeight="600"
-        color="#E5E7EB"
-        fontFamily="Inter"
-        fontSize="1.75rem"
-        lineHeight="2.8125rem"
-      >
-        {loading
-          ? 'loading...'
-          : (pool.tokensMetadata?.map((token) => token.symbol).join('-') ??
-            'none')}
-      </P>
+      {loading ? (
+        <>
+          <Skeleton circle width={40} height={40} />
+          <Skeleton width={100} height={20} />
+        </>
+      ) : (
+        <>
+          <TokenIcon
+            withBg
+            size="1.52rem"
+            network={Network.MAINNET}
+            url={loading ? undefined : pool.poolMetadata?.iconUri}
+            symbol={
+              loading
+                ? 'loading...'
+                : (pool.tokensMetadata
+                    ?.map((token) => token.symbol)
+                    .join('-') ?? 'none')
+            }
+          />
+          <P
+            fontWeight="600"
+            color="#E5E7EB"
+            fontFamily="Inter"
+            fontSize="1.75rem"
+            lineHeight="2.8125rem"
+          >
+            {loading
+              ? 'loading...'
+              : (pool.tokensMetadata?.map((token) => token.symbol).join('-') ??
+                'none')}
+          </P>
+        </>
+      )}
     </Div>
   );
 };
