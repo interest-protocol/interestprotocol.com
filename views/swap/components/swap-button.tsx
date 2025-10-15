@@ -44,6 +44,7 @@ const SwapButton = () => {
         message: 'See on explorer',
         link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
       });
+      reset();
     } catch (e) {
       console.warn(e);
 
@@ -53,7 +54,6 @@ const SwapButton = () => {
 
       throw e;
     } finally {
-      reset();
       stopLoading();
     }
   };
