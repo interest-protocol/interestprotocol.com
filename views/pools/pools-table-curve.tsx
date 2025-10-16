@@ -34,12 +34,23 @@ const PoolsTableCurve: FC = () => {
     {} as Record<string, PoolMetrics>
   );
 
-  const filteredPools = POOLS.filter(({ poolAddress }) => {
+  const filteredPools = POOLS.filter(({ poolAddress, tokensAddresses }) => {
     const pool = poolsMetricsMap?.[poolAddress];
-    if (!pool || !search) return true;
-    return pool.symbols.some((symbol) =>
-      symbol.toLowerCase().includes(search.toLowerCase())
+    if (!search) return true;
+
+    const normalizedSearch = search.trim().toLowerCase();
+
+    const matchesSymbol = pool?.symbols?.some((symbol) =>
+      symbol.toLowerCase().includes(normalizedSearch)
     );
+
+    const matchesPoolAddress = poolAddress.toLowerCase() === normalizedSearch;
+
+    const matchesTokenAddress = tokensAddresses?.some(
+      (address) => address.toLowerCase() === normalizedSearch
+    );
+
+    return matchesSymbol || matchesPoolAddress || matchesTokenAddress;
   });
 
   const rows = filteredPools.map(({ poolAddress, tokensAddresses }) => {
