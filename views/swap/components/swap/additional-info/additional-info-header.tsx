@@ -7,6 +7,7 @@ import { Motion } from '@/components/motion';
 import { ChevronDownSVG } from '@/components/svg';
 import { useCoinsPrice } from '@/hooks/use-coins-price';
 import { formatDollars, formatMoney } from '@/utils';
+import { formatNumber } from '@/utils/number';
 
 import { SwapForm } from '../../swap.types';
 import { AdditionalInfoHeaderProps } from './additional-info.types';
@@ -42,7 +43,8 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
         letterSpacing="-0.035rem"
         color="#B8C4C4"
       >
-        1 {fromSymbol} = {`${formatMoney(Number(amount))} ${to.symbol} `}
+        1 {fromSymbol} ={' '}
+        {`${formatMoney(formatNumber(amount, 2))} ${to.symbol} `}
         <Span
           fontWeight="400"
           fontSize="0.875rem"
