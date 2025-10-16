@@ -50,13 +50,18 @@ const Balance: FC<InputProps> = ({ label }) => {
   const balance =
     coinsMap[normalizeSuiAddress(type)]?.balance ?? ZERO_BIG_NUMBER;
 
-  const numericBalance = FixedPointMath.toNumber(balance, decimals);
+  const numericBalance = FixedPointMath.toNumber(
+    balance.minus(
+      FixedPointMath.toBigNumber(isAptos(type) && label === 'from' ? 1 : 0)
+    ),
+    decimals
+  );
 
   const handleMax = () => {
     if (label === 'to') return;
 
     const value = balance.minus(
-      FixedPointMath.toBigNumber(isAptos(type) ? 0.01 : 0)
+      FixedPointMath.toBigNumber(isAptos(type) ? 1 : 0)
     );
 
     if (isAptos(type) && !value.isPositive()) {
