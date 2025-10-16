@@ -138,8 +138,10 @@ const PoolsTableCurve: FC = () => {
                   e.stopPropagation();
                   PoolOverview({
                     apr: `${(
-                      Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
+                      Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
                     ).toFixed(2)}%`,
+                    volume: formatDollars(Number(pool?.metrics.volume)),
+                    tvl: formatDollars(Number(pool?.metrics.tvl)),
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,

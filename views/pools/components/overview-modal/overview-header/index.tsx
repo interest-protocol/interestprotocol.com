@@ -63,8 +63,8 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
           </P>
           <Div display="flex" gap="0.5rem" flexWrap="wrap">
             <Tag type="success" label={'APR: ' + apr} />
-            <Tag type="staked" label={'Volume: ' + volume} />
-            <Tag type="staked" label={'TVL: ' + tvl} />
+            <Tag type="staked" label={'Volume: ' + (volume ?? '0.00')} />
+            <Tag type="staked" label={'TVL: ' + (tvl ?? '0.00')} />
           </Div>
         </Div>
       </Div>
