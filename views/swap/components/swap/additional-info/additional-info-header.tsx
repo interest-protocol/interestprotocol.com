@@ -44,7 +44,7 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
         color="#B8C4C4"
       >
         1 {fromSymbol} ={' '}
-        {`${formatMoney(formatNumber(amount, 2))} ${to.symbol} `}
+        {`${formatMoney(Number(formatNumber(amount, 2)))} ${to.symbol} `}
         <Span
           fontWeight="400"
           fontSize="0.875rem"
