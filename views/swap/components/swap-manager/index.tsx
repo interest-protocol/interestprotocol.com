@@ -4,13 +4,15 @@ import { values } from 'ramda';
 import { FC, memo, useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useDebounce } from 'use-debounce';
+import { useReadLocalStorage } from 'usehooks-ts';
 
-import { TREASURY } from '@/constants';
+import { LOCAL_STORAGE_VERSION, TREASURY } from '@/constants';
 import { EXCHANGE_FEE_BPS } from '@/constants/fees';
 import { FixedPointMath } from '@/lib';
 import { ZERO_BIG_NUMBER } from '@/utils';
+import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
 
-import { MosaicQuoteResponse } from '../swap.types';
+import { Aggregator, MosaicQuoteResponse } from '../swap.types';
 import { SwapErrorManager } from './swap-error-manager';
 
 const SwapManager: FC = () => {
@@ -20,6 +22,10 @@ const SwapManager: FC = () => {
   const [refreshInterval, setRefreshInterval] = useState(0);
 
   const { account } = useAptosWallet();
+
+  const settings = useReadLocalStorage<ISettings>(
+    `${LOCAL_STORAGE_VERSION}-movement-dex-settings`
+  ) ?? { slippage: '0.5', aggregator: Aggregator.Interest };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,7 +47,8 @@ const SwapManager: FC = () => {
 
     const to = getValues('to');
     const from = getValues('from');
-    const slippage = (getValues('settings.slippage') * 100).toFixed(0);
+
+    const slippage = (Number(settings.slippage) * 100).toFixed(0);
 
     fetch(
       `https://api.mosaic.ag/v1/quote?srcAsset=${from.type}&dstAsset=${

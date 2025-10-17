@@ -13,7 +13,7 @@ import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.h
 const SwapButton = () => {
   const client = useAptosClient();
   const [loading, setLoading] = useState(false);
-  const { control, getValues, reset } = useFormContext();
+  const { control, getValues } = useFormContext();
   const { account, signAndSubmitTransaction } = useAptosWallet();
 
   const error = useWatch({ control, name: 'error' });
@@ -44,7 +44,6 @@ const SwapButton = () => {
         message: 'See on explorer',
         link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
       });
-      reset();
     } catch (e) {
       console.warn(e);
 

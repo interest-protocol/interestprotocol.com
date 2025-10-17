@@ -1,14 +1,23 @@
 import { Div, Input, Label, P } from '@stylin.js/elements';
 import { FC } from 'react';
+import { useForm, useFormContext } from 'react-hook-form';
 
 import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
+import { LOCAL_STORAGE_VERSION } from '@/constants';
 import { useModal } from '@/hooks/use-modal';
+import { Aggregator, SwapForm } from '@/views/swap/components/swap.types';
 
-import { SettingsModalProps } from './settings-modal.types';
+import { ISettings } from './settings-modal.types';
 
-const SettingsModal: FC<SettingsModalProps> = ({ register }) => {
+const SettingsModal: FC = () => {
   const { handleClose } = useModal();
+
+  const form = useFormContext<SwapForm>();
+
+  const { register, getValues } = useForm<ISettings>({
+    defaultValues: form.getValues('settings'),
+  });
 
   return (
     <Div gap="0.75rem" display="flex" flexDirection="column">
@@ -48,7 +57,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ register }) => {
             fontSize="1rem"
             type="number"
             className="remove-spinner"
-            {...register('slippageTolerance')}
+            {...register('slippage')}
           />
           <Label color="#9CA3AF">%</Label>
         </Label>
@@ -73,6 +82,14 @@ const SettingsModal: FC<SettingsModalProps> = ({ register }) => {
             toasting.success({
               action: 'Settings changed',
             });
+            form.setValue('settings.slippage', getValues('slippage'));
+            localStorage.setItem(
+              `${LOCAL_STORAGE_VERSION}-movement-dex-settings`,
+              JSON.stringify({
+                slippage: getValues('slippage'),
+                aggregator: Aggregator.Interest,
+              })
+            );
             handleClose();
           }}
         >

@@ -13,7 +13,7 @@ const SwapInitManager: FC = () => {
 
   const settings = useReadLocalStorage<ISettings>(
     `${LOCAL_STORAGE_VERSION}-movement-dex-settings`
-  ) ?? { slippage: '2', aggregator: Aggregator.Interest };
+  ) ?? { slippage: '0.5', aggregator: Aggregator.Interest };
 
   useEffect(() => {
     form.reset();
