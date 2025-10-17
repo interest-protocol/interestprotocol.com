@@ -14,12 +14,7 @@ const TableBodyContent: FC<TableHeaderProps> = ({
 }) =>
   rows.length ? (
     rows.map(({ cells, link, target }) => (
-      <Link
-        href={link || '#'}
-        title="pool name"
-        target={link && target}
-        key={v4()}
-      >
+      <Link href={link || '#'} target={link && target} key={v4()}>
         <Div
           display="grid"
           borderStyle="solid"
