@@ -35,7 +35,7 @@ const StatsChartTVLReport: FC = () => {
       <Div display="flex" justifyContent="space-between" alignItems="center">
         <HeadInfo
           name="TVL"
-          value={Number(metricsData?.summary?.tvl) ?? 0}
+          value={Number(metricsData?.summary?.tvl) || 0}
           isLoading={isLoading}
         />
         <Div

@@ -36,7 +36,7 @@ const StatsChartVolumeReport: FC = () => {
         <HeadInfo
           symbol="USD"
           name="Volume"
-          value={Number(metricsData?.summary?.volume) ?? 0}
+          value={Number(metricsData?.summary?.volume) || 0}
           isLoading={isLoading}
         />
         <Div
