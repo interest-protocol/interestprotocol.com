@@ -23,7 +23,7 @@ export const SIDEBAR_SECTIONS: ReadonlyArray<ISidebarSection> = [
     items: [
       {
         label: 'Documentation',
-        href: 'https://docs.platform.com',
+        href: 'https://docs.interestprotocol.com',
         isExternal: true,
       },
       {
@@ -31,7 +31,11 @@ export const SIDEBAR_SECTIONS: ReadonlyArray<ISidebarSection> = [
         href: 'https://docs.interestprotocol.com/overview/audits',
         isExternal: true,
       },
-      { label: 'Brand Assets', href: '/brand-assets', isExternal: true },
+      {
+        label: 'Brand Assets',
+        href: 'https://drive.google.com/drive/mobile/folders/176q4-80OZaHCJEfBiZHsHYHIH0Z_ipgf?usp=share_link',
+        isExternal: true,
+      },
     ],
   },
 ];

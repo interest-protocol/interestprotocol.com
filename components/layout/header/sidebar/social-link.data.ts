@@ -10,7 +10,7 @@ export const SOCIAL_LINK: ReadonlyArray<ISocialLinkProps> = [
   },
   {
     title: 'Discord',
-    pathname: 'https://discord.com/invite/interestprotocol',
+    pathname: 'https://discord.gg/interestlabs',
     Icon: DiscordSVG,
   },
   {
