@@ -6,14 +6,14 @@ import { Button } from '@/components/button';
 import { toasting } from '@/components/toast';
 import { LOCAL_STORAGE_VERSION } from '@/constants';
 import { useModal } from '@/hooks/use-modal';
-import { Aggregator, SwapForm } from '@/views/swap/components/swap.types';
+import { Aggregator } from '@/views/swap/components/swap.types';
 
 import { ISettings } from './settings-modal.types';
 
 const SettingsModal: FC = () => {
   const { handleClose } = useModal();
 
-  const form = useFormContext<SwapForm>();
+  const form = useFormContext();
 
   const { register, getValues } = useForm<ISettings>({
     defaultValues: form.getValues('settings'),

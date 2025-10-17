@@ -5,18 +5,16 @@ import { FormProvider, useFormContext } from 'react-hook-form';
 import { CogsSVG } from '@/components/svg';
 import { useModal } from '@/hooks';
 import SettingsModal from '@/views/components/settings-modal';
-import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
 
 const PoolFormSectionSettings: FC = () => {
   const { setContent } = useModal();
 
   const form = useFormContext();
-  const { register } = useFormContext<ISettings>();
 
   const handleOpenSettings = () =>
     setContent(
       <FormProvider {...form}>
-        <SettingsModal register={register} />
+        <SettingsModal />
       </FormProvider>,
       { title: 'Settings' }
     );
