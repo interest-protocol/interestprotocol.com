@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { v4 } from 'uuid';
 
 import { formatDollars } from '@/utils';
+import { formatNumber } from '@/utils/number';
 import usePoolsMetrics from '@/views/pools/pools.hooks/use-pools-metrics';
 
 import { usePoolDetailsContext } from '../../pool-details.context';
@@ -27,23 +28,31 @@ const SummaryHeader: FC = () => {
       {[
         {
           label: 'TVL',
-          amount: formatDollars(Number(poolMetrics?.metrics.tvl), 6, 'start'),
+          amount: formatDollars(
+            Number(formatNumber(poolMetrics?.metrics.tvl)),
+            6,
+            'start'
+          ),
         },
         {
           label: '24H Volume',
           amount: formatDollars(
-            Number(poolMetrics?.metrics.volume),
+            Number(formatNumber(poolMetrics?.metrics.volume)),
             6,
             'start'
           ),
         },
         {
           label: '24H Fees',
-          amount: formatDollars(Number(poolMetrics?.metrics.fees), 6, 'start'),
+          amount: formatDollars(
+            Number(formatNumber(poolMetrics?.metrics.fees)),
+            6,
+            'start'
+          ),
         },
         {
           label: 'Total APR',
-          amount: `${+(+(poolMetrics?.metrics.apr ?? 0) + +(poolMetrics?.metrics.farmApr ?? 0)).toFixed(2)}%`,
+          amount: `${+(+(formatNumber(poolMetrics?.metrics.apr) ?? 0) + +(formatNumber(poolMetrics?.metrics.farmApr) ?? 0)).toFixed(2)}%`,
         },
       ].map(({ label, amount }, index) => (
         <Div

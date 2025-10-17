@@ -34,12 +34,23 @@ const PoolsTableCurve: FC = () => {
     {} as Record<string, PoolMetrics>
   );
 
-  const filteredPools = POOLS.filter(({ poolAddress }) => {
+  const filteredPools = POOLS.filter(({ poolAddress, tokensAddresses }) => {
     const pool = poolsMetricsMap?.[poolAddress];
-    if (!pool || !search) return true;
-    return pool.symbols.some((symbol) =>
-      symbol.toLowerCase().includes(search.toLowerCase())
+    if (!search) return true;
+
+    const normalizedSearch = search.trim().toLowerCase();
+
+    const matchesSymbol = pool?.symbols?.some((symbol) =>
+      symbol.toLowerCase().includes(normalizedSearch)
     );
+
+    const matchesPoolAddress = poolAddress.toLowerCase() === normalizedSearch;
+
+    const matchesTokenAddress = tokensAddresses?.some(
+      (address) => address.toLowerCase() === normalizedSearch
+    );
+
+    return matchesSymbol || matchesPoolAddress || matchesTokenAddress;
   });
 
   const rows = filteredPools.map(({ poolAddress, tokensAddresses }) => {
@@ -127,8 +138,10 @@ const PoolsTableCurve: FC = () => {
                   e.stopPropagation();
                   PoolOverview({
                     apr: `${(
-                      Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
+                      Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
                     ).toFixed(2)}%`,
+                    volume: formatDollars(Number(pool?.metrics.volume)),
+                    tvl: formatDollars(Number(pool?.metrics.tvl)),
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
