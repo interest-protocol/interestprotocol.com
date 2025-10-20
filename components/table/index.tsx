@@ -1,11 +1,25 @@
 import { Div } from '@stylin.js/elements';
-import { FC } from 'react';
+import { not } from 'ramda';
+import { FC, useEffect, useState } from 'react';
 
 import TableBodyContent from './body';
 import TableHeader from './header';
 import { TableHeaderProps } from './table.types';
+import { onSort } from './table.utils';
 
-const Table: FC<TableHeaderProps> = (props) => {
+const Table: FC<TableHeaderProps> = ({ rows, ...props }) => {
+  const [isAsc, setIsAsc] = useState(true);
+  const [currentRows, setCurrentRows] = useState(rows);
+
+  const handleSort = (index: number) => {
+    setCurrentRows(onSort(rows, index, isAsc ? 'asc' : 'desc'));
+    setIsAsc(not);
+  };
+
+  useEffect(() => {
+    setCurrentRows(rows);
+  }, [rows]);
+
   return (
     <Div
       width="100%"
@@ -15,8 +29,8 @@ const Table: FC<TableHeaderProps> = (props) => {
       borderWidth="0px 1px 1px 1px"
       overflow="auto"
     >
-      <TableHeader {...props} />
-      <TableBodyContent {...props} />
+      <TableHeader sortRows={handleSort} {...props} />
+      <TableBodyContent rows={currentRows} {...props} />
     </Div>
   );
 };

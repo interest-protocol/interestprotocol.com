@@ -100,7 +100,12 @@ const PoolsTableCurve: FC = () => {
           position: 'right' as const,
         },
         {
-          Title: isLoading ? (
+          Title: isLoading
+            ? '0'
+            : `${(
+                Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
+              ).toFixed(2)}%`,
+          Content: isLoading ? (
             <Div width="100%">
               <Skeleton width="100%" height={15} />
             </Div>

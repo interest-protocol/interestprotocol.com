@@ -193,8 +193,8 @@ const PortfolioCurvePools: FC = () => {
       }}
       tableHeader={[
         { description: 'Pool' },
-        { description: 'Price', position: 'right' },
-        { description: 'Liquidity', position: 'right' },
+        { description: 'Price', position: 'right', isSortable: true },
+        { description: 'Liquidity', position: 'right', isSortable: true },
         { description: 'APR', position: 'right' },
         { description: 'Rewards', position: 'right' },
       ]}
@@ -212,7 +212,7 @@ const PortfolioCurvePools: FC = () => {
             ),
           },
           {
-            Content: isLoading ? (
+            Title: isLoading ? (
               <Div width="100%">
                 <Skeleton width="100%" height={15} />
               </Div>

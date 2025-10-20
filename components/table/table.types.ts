@@ -7,9 +7,18 @@ export interface TableHeaderProps
   rows: ReadonlyArray<TableRowProps>;
   isLoading?: boolean;
 }
+export interface CustomTableHeaderProps extends TableHeaderProps {
+  sortRows: (index: number) => void;
+}
+
+export interface TableHeaderColumnProps extends TableHeaderTitleProps {
+  index: number;
+  sortRows: (index: number) => void;
+}
 
 export interface TableHeaderTitleProps {
   description: string;
+  isSortable?: boolean;
   position?: 'left' | 'center' | 'right';
 }
 
