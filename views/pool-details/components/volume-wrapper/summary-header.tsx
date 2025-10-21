@@ -48,7 +48,7 @@ const SummaryHeader: FC = () => {
         {
           label: '24H Volume',
           amount: formatDollars(
-            Number(formatNumber(poolMetrics?.metrics.volume)),
+            Number(formatNumber(poolMetrics?.metrics.volume1D)),
             6,
             'start'
           ),
