@@ -13,6 +13,13 @@ export const validationSchema = yup.object({
     ),
   projectUrl: yup
     .string()
+    .transform((value) => {
+      if (!value) return value;
+      if (!/^https?:\/\//i.test(value)) {
+        return `https://${value}`;
+      }
+      return value;
+    })
     .url('You must provide an URL')
     .notOneOf(
       [yup.ref('name'), yup.ref('symbol')],
