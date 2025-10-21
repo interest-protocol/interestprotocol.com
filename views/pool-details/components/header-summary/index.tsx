@@ -3,6 +3,7 @@ import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
+import { useFormContext } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 import invariant from 'tiny-invariant';
 
@@ -20,6 +21,7 @@ import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.h
 import { formatMoney, ZERO_BIG_NUMBER } from '@/utils';
 import APR from '@/views/components/apr';
 import RewardsModal from '@/views/components/rewards-modal';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import TokenInfo from '../../../components/token-info';
 import TokenInfoAction from '../../../components/token-info-action';
@@ -38,6 +40,7 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
   const { signAndSubmitTransaction } = useAptosWallet();
   const { data: farmAccount } = useFarmAccount(pool.poolAddress);
   const { data: coinsPrice } = useCoinsPrice([MOVE.address.toString()]);
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
 
   const movePrice = coinsPrice?.[0]?.price;
 
@@ -119,6 +122,17 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
       }
     );
 
+  const onHandle = (tab: number) => {
+    setTab(tab);
+    setValue('lpCoin.value', '');
+    setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.0.value', '');
+    setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.1.value', '');
+    setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+    setValue('selectedCoinIndex', [0, 1]);
+    setValue('balanced', false);
+  };
   return (
     <>
       <Div
@@ -175,7 +189,7 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
           flexDirection={['column', 'column', 'row', 'row']}
         >
           <Div display="flex" width={['100%', '100%', '100%', 'unset']}>
-            <Tabs tabs={TABS} setTab={setTab} tab={tab} color="#6067F9" />
+            <Tabs tabs={TABS} setTab={onHandle} tab={tab} color="#6067F9" />
           </Div>
           <Div display={['none', 'none', 'none', 'block']}>
             <APR />

@@ -51,19 +51,19 @@ const PoolDetailsContent: FC<PoolDetailsProps> = ({ isV3 }) => {
   }, [pool]);
 
   return (
-    <Div
-      mb="4rem"
-      display="flex"
-      flexDirection="column"
-      gap={['1rem', '1rem', '1rem', '2rem']}
-      mt={['1rem', '1rem', '1rem', '2.5rem']}
-      px={['unset', 'unset', 'unset', '3.5rem']}
-    >
-      <PoolDetailsHeaderSummary isV3={isV3} />
-      <FormProvider {...form}>
+    <FormProvider {...form}>
+      <Div
+        mb="4rem"
+        display="flex"
+        flexDirection="column"
+        gap={['1rem', '1rem', '1rem', '2rem']}
+        mt={['1rem', '1rem', '1rem', '2.5rem']}
+        px={['unset', 'unset', 'unset', '3.5rem']}
+      >
+        <PoolDetailsHeaderSummary isV3={isV3} />
         {isV3 ? <V3 /> : [<Pool key={v4()} />, <Farm key={v4()} />][tab]}
-      </FormProvider>
-    </Div>
+      </Div>
+    </FormProvider>
   );
 };
 
