@@ -2,7 +2,7 @@ import { Div } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
 
-import { useFarmAccount } from '@/hooks/use-farm-account';
+import { useFarms } from '@/hooks/use-farms';
 import { FixedPointMath } from '@/lib';
 import { formatMoney } from '@/utils';
 import CollapseCardInfo from '@/views/components/collapse-card-info';
@@ -13,11 +13,16 @@ import Rewards from './rewards';
 
 const Farm: FC = () => {
   const { pool } = usePoolDetailsContext();
-  const { data } = useFarmAccount(pool?.poolAddress);
 
-  const stakedBalance = FixedPointMath.toNumber(BigNumber(data?.amount ?? 0));
+  const { data: farms } = useFarms([pool?.poolAddress ?? '']);
+  const data = farms?.[0];
+
+  const stakedBalance = FixedPointMath.toNumber(
+    BigNumber(data?.stakedBalance ?? 0),
+    9
+  );
   const rewards = FixedPointMath.toNumber(
-    BigNumber(data?.rewards[0].amount ?? 0)
+    BigNumber(data?.rewards[0].rewardsPerSecond ?? 0)
   );
 
   return (
@@ -35,7 +40,7 @@ const Farm: FC = () => {
             {
               info: { description: 'Staked Balance' },
               value: {
-                description: formatMoney(stakedBalance),
+                description: formatMoney(stakedBalance, 4),
               },
             },
             {
