@@ -1,3 +1,4 @@
+import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
@@ -60,9 +61,34 @@ const PortfolioCurvePools: FC = () => {
     ZERO_BIG_NUMBER
   );
 
-  const poolsPosition = POOLS.filter(
-    (pool) => coinsMap[pool.tokensAddresses[0]]?.balance
+  const accountFarmsRecord = accountFarmsData?.reduce(
+    (acc, item) => {
+      acc[item.farm] = {
+        rewards: item.rewards,
+        amount: item.amount,
+      };
+      return acc;
+    },
+    {} as Record<string, { rewards: bigint; amount: bigint }>
   );
+
+  const poolsPosition =
+    !isAccountFarmsLoading && accountFarmsRecord
+      ? POOLS.filter((pool) => {
+          const farm = FARMS_BY_LP[pool.poolAddress];
+          if (!farm) return false;
+
+          const accountFarm =
+            accountFarmsRecord[normalizeSuiAddress(farm.address.toString())];
+
+          if (!accountFarm) return false;
+
+          return (
+            !BigNumber(String(accountFarm.amount)).isZero() ||
+            !BigNumber(String(accountFarm.rewards)).isZero()
+          );
+        })
+      : [];
 
   const stakedAmounts: ReadonlyArray<[string, BigNumber]> =
     accountFarmsData?.flatMap((farm) =>
