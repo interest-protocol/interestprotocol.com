@@ -28,17 +28,27 @@ import RewardsModal from '../components/rewards-modal';
 import PoolTypeTable from './components/pool-type-table';
 
 const PortfolioCurvePools: FC = () => {
-  const { coinsMap, loading: isCoinsMapLoading } = useCoins();
+  const {
+    coinsMap,
+    loading: isCoinsMapLoading,
+    mutate: mutateCoins,
+  } = useCoins();
   const { setContent } = useModal();
   const client = useAptosClient();
   const { account } = useAptosWallet();
   const { data: metricsData, isLoading: isMetricsLoading } = useMetrics();
   const interestCurveSdk = useInterestCurveSdk();
-  const { data: lpsPriceMap, isLoading: isLpsPricesLoading } =
-    useLPCoinsPrice();
+  const {
+    data: lpsPriceMap,
+    isLoading: isLpsPricesLoading,
+    mutate: mutateLpsPrices,
+  } = useLPCoinsPrice();
   const { signAndSubmitTransaction } = useAptosWallet();
-  const { data: accountFarmsData, isLoading: isAccountFarmsLoading } =
-    useGetAccountFarmsData();
+  const {
+    data: accountFarmsData,
+    isLoading: isAccountFarmsLoading,
+    mutate: mutateAccountFarms,
+  } = useGetAccountFarmsData();
 
   const { data: coinsPrice, isLoading: isCoinPriceLoading } = useCoinsPrice([
     MOVE.address.toString(),
@@ -131,6 +141,12 @@ const PortfolioCurvePools: FC = () => {
           })
           .catch();
       } while (waitingTx);
+
+      await Promise.all([
+        mutateAccountFarms(),
+        mutateCoins(),
+        mutateLpsPrices(),
+      ]);
 
       toasting.success({
         action: 'Claim rewards',
