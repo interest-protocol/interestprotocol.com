@@ -49,31 +49,31 @@ const PortfolioDetailContent: FC = () => {
   }, [pool]);
 
   return (
-    <Div
-      mb="5rem"
-      width="100%"
-      display="flex"
-      flexDirection="column"
-      gap={['1rem', '2rem']}
-      mt={['1rem', '2.5rem']}
-    >
+    <FormProvider {...form}>
       <Div
-        gap="1rem"
+        mb="5rem"
+        width="100%"
         display="flex"
-        flexDirection={[
-          'column-reverse',
-          'column-reverse',
-          'column-reverse',
-          'column',
-        ]}
+        flexDirection="column"
+        gap={['1rem', '2rem']}
+        mt={['1rem', '2.5rem']}
       >
-        <PoolDetailsHeader />
-        <PositionsDetailsTabs />
-      </Div>
-      <FormProvider {...form}>
+        <Div
+          gap="1rem"
+          display="flex"
+          flexDirection={[
+            'column-reverse',
+            'column-reverse',
+            'column-reverse',
+            'column',
+          ]}
+        >
+          <PoolDetailsHeader />
+          <PositionsDetailsTabs />
+        </Div>
         {[<Position key={v4()} />, <Farm key={v4()} />][tab]}
-      </FormProvider>
-    </Div>
+      </Div>
+    </FormProvider>
   );
 };
 

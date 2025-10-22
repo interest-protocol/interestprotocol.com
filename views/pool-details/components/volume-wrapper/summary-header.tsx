@@ -1,21 +1,32 @@
 import { Div, Span } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 import { formatDollars } from '@/utils';
 import { formatNumber } from '@/utils/number';
 import usePoolsMetrics from '@/views/pools/pools.hooks/use-pools-metrics';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import { usePoolDetailsContext } from '../../pool-details.context';
 import PoolBalance from '../pool-balance';
 
 const SummaryHeader: FC = () => {
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
   const { pool } = usePoolDetailsContext();
-  const { data: poolsMetrics } = usePoolsMetrics();
+  const { data: poolsMetrics, isLoading } = usePoolsMetrics();
 
   const poolMetrics = poolsMetrics?.data.find(
     (metric) => metric.poolId === pool?.poolAddress
   );
+
+  useEffect(() => {
+    !isLoading &&
+      setValue(
+        'tvl',
+        poolMetrics?.metrics.tvl ? poolMetrics?.metrics.tvl : '0'
+      );
+  }, [isLoading, poolsMetrics]);
 
   return (
     <Div
@@ -37,7 +48,7 @@ const SummaryHeader: FC = () => {
         {
           label: '24H Volume',
           amount: formatDollars(
-            Number(formatNumber(poolMetrics?.metrics.volume)),
+            Number(formatNumber(poolMetrics?.metrics.volume1D)),
             6,
             'start'
           ),

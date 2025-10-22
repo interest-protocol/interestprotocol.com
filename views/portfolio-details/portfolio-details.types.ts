@@ -13,4 +13,6 @@ export interface PortfolioDetailsFormProps {
   lpCoin: PortfolioDetailsToken;
   selectedCoinIndex: ReadonlyArray<number>;
   tokenList: ReadonlyArray<PortfolioDetailsToken>;
+  ratio: ReadonlyArray<number>;
+  tvl?: string;
 }

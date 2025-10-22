@@ -18,6 +18,7 @@ const PoolsContent: FC = () => {
         display="flex"
         flexDirection="column"
         mt={['1rem', '1rem', '1rem', '2.5rem']}
+        px={['unset', 'unset', 'unset', '3.5rem']}
       >
         <PoolsHeader />
         <PoolsTabs />

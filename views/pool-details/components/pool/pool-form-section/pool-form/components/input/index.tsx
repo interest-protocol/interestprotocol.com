@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { VolatilePool } from '@interest-protocol/interest-aptos-curve';
 import { Div, P } from '@stylin.js/elements';
+import BigNumber from 'bignumber.js';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
+import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import Balance from './components/balance';
@@ -22,9 +25,73 @@ const Input: FC<InputProps> = ({
   shortView,
   onlyField,
 }) => {
-  const { register, setValue } = useFormContext<PortfolioDetailsFormProps>();
+  const { register, setValue, getValues } =
+    useFormContext<PortfolioDetailsFormProps>();
+
+  const { loading, pool } = usePoolDetailsContext();
 
   const tokenDecimals = useWatch({ name: `${field}.decimals` });
+
+  const handleChange = (v: ChangeEvent<HTMLInputElement>) => {
+    if (loading || !pool) return;
+    const amount = parseInputEventToNumberString(v);
+
+    if (getValues('balanced')) {
+      const index = field == 'tokenList.0' ? 0 : 1;
+      const newIndex = +(index != 1);
+
+      setValue(`tokenList.${index}.value`, amount);
+      setValue(
+        `tokenList.${index}.valueBN`,
+        FixedPointMath.toBigNumber(
+          amount,
+          getValues(`tokenList.${index}.decimals`)
+        )
+      );
+
+      if (pool.curve == 'stable') {
+        const ratio = getValues('ratio');
+        const tvl = getValues('tvl') || 0;
+
+        setValue(
+          `tokenList.${newIndex}.value`,
+          `${parseFloat((+amount * (+tvl >= 100 ? ratio[index] : 1)).toFixed(6))}`
+        );
+        setValue(
+          `tokenList.${newIndex}.valueBN`,
+          FixedPointMath.toBigNumber(
+            +amount * (+tvl >= 100 ? ratio[index] : 1),
+            getValues(`tokenList.${newIndex}.decimals`)
+          )
+        );
+      } else {
+        const poolExtraData = pool.poolExtraData as unknown as VolatilePool;
+
+        const priceRaw = poolExtraData?.prices[pool.tokensAddresses[1]];
+        const price = priceRaw?.price
+          ? FixedPointMath.toNumber(BigNumber(String(priceRaw?.price)), 18)
+          : 0;
+
+        const newAmount = String(
+          (newIndex ? +amount / price : +amount * price).toFixed(4)
+        );
+        setValue(`tokenList.${newIndex}.value`, newAmount);
+        setValue(
+          `tokenList.${newIndex}.valueBN`,
+          FixedPointMath.toBigNumber(
+            newAmount,
+            getValues(`tokenList.${newIndex}.decimals`)
+          )
+        );
+      }
+    } else {
+      setValue(`${field}.value`, amount);
+      setValue(
+        `${field}.valueBN`,
+        FixedPointMath.toBigNumber(amount, tokenDecimals || 0)
+      );
+    }
+  };
 
   return (
     <>
@@ -97,16 +164,7 @@ const Input: FC<InputProps> = ({
                   color: '#fff',
                 }}
                 {...register(`${field}.value` as any, {
-                  onChange: (v: ChangeEvent<HTMLInputElement>) => {
-                    const value = parseInputEventToNumberString(v);
-                    setValue(`${field}.value` as any, value, {
-                      shouldDirty: true,
-                    });
-                    setValue(
-                      `${field}.valueBN` as any,
-                      FixedPointMath.toBigNumber(value, tokenDecimals || 0)
-                    );
-                  },
+                  onChange: handleChange,
                 })}
               />
             </Div>

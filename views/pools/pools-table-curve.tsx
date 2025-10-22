@@ -193,7 +193,7 @@ const PoolsTableCurve: FC = () => {
 
   return (
     <>
-      <Div display={['none', 'none', 'none', 'flex']}>
+      <Div display={['none', 'none', 'none', 'flex']} mb="75vh">
         <Table
           rows={rows}
           title={VERIFIED_POOLS_HEADER_DATA}

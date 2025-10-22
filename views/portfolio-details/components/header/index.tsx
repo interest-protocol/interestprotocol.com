@@ -27,8 +27,12 @@ const PoolDetailsHeader: FC = () => {
   const interestCurveSdk = useInterestCurveSdk();
   const { pool, loading } = usePoolDetailsContext();
   const { signAndSubmitTransaction } = useAptosWallet();
-  const { data: farmAccount } = useFarmAccount(pool.poolAddress);
-  const { data: coinsPrice } = useCoinsPrice([MOVE.address.toString()]);
+  const { data: farmAccount, mutate: mutateFarmAccount } = useFarmAccount(
+    pool.poolAddress
+  );
+  const { data: coinsPrice, mutate: mutateCoinPrice } = useCoinsPrice([
+    MOVE.address.toString(),
+  ]);
 
   const movePrice = coinsPrice?.[0]?.price;
 
@@ -70,6 +74,8 @@ const PoolDetailsHeader: FC = () => {
           })
           .catch();
       } while (waitingTx);
+
+      await Promise.all([mutateFarmAccount(), mutateCoinPrice()]);
 
       toasting.success({
         action: 'Claim reward',
