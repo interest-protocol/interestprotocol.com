@@ -18,7 +18,7 @@ const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
       display={['flex', 'flex', 'flex', 'none']}
     >
       <Div gap="0.5rem" display="flex" alignItems="center">
-        {loading ? (
+        {loading || !pool?.poolMetadata ? (
           <>
             <Skeleton circle width={40} height={40} />
             <Skeleton width={100} height={20} />
@@ -31,11 +31,11 @@ const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
               network={Network.MAINNET}
               url={loading ? undefined : pool.poolMetadata?.iconUri}
               symbol={
-                loading
+                loading || !pool?.poolMetadata
                   ? 'loading...'
                   : (pool.tokensMetadata
                       ?.map((token) => token.symbol)
-                      .join('-') ?? 'none')
+                      .join('-') ?? '--')
               }
             />
             <P
@@ -45,11 +45,11 @@ const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
               fontSize="1.25rem"
               lineHeight="1.875rem"
             >
-              {loading
+              {loading || !pool?.poolMetadata
                 ? 'loading...'
                 : (pool.tokensMetadata
                     ?.map((token) => token.symbol)
-                    .join('-') ?? 'none')}
+                    .join('-') ?? '--')}
             </P>
           </>
         )}
