@@ -1,32 +1,29 @@
-import { Button, Div, P, Span } from '@stylin.js/elements';
+import { Div, P, Span } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-import { Motion } from '@/components/motion';
-import { ChevronDownSVG } from '@/components/svg';
-import { useCoinsPrice } from '@/hooks/use-coins-price';
+import { useCoinsPrice } from '@/hooks';
 import { formatDollars, formatMoney } from '@/utils';
 
 import { SwapForm } from '../../swap.types';
 import { AdditionalInfoHeaderProps } from './additional-info.types';
 
-const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
-  toggle,
-  isOpen,
-  amount,
-}) => {
-  const { control } = useFormContext<SwapForm>();
-  const fromSymbol = useWatch({
-    control,
-    name: 'from.symbol',
-  });
-  const to = useWatch({
-    control,
-    name: 'to',
-  });
+const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({ toggle }) => {
+  const { watch } = useFormContext<SwapForm>();
 
-  const { data: price } = useCoinsPrice(to.type);
+  const [fromValue, toValue, fromSymbol, toSymbol, toType] = watch([
+    'from.value',
+    'to.value',
+    'from.symbol',
+    'to.symbol',
+    'to.type',
+  ]);
+
+  const quote = fromValue ? Number(toValue) / Number(fromValue) : null;
+
+  const { data: price } = useCoinsPrice(toType);
+
   return (
     <Div
       display="flex"
@@ -43,7 +40,7 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
         color="#B8C4C4"
       >
         1 {fromSymbol} ={' '}
-        {`${Number(amount) ? formatMoney(Number(amount)) : '--'} ${to.symbol} `}
+        {`${quote ? formatMoney(Number(quote)) : '--'} ${toSymbol} `}
         <Span
           fontWeight="400"
           fontSize="0.875rem"
@@ -53,10 +50,10 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
           color="#949E9E"
         >
           (
-          {amount != '--'
+          {quote && price
             ? price?.length && price[0].price
               ? formatDollars(
-                  +BigNumber(amount)
+                  +BigNumber(quote)
                     .times(BigNumber(price[0].price))
                     .toNumber()
                     .toFixed(3),
@@ -68,20 +65,6 @@ const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({
           )
         </Span>
       </P>
-      <Motion
-        animate={{ rotate: isOpen ? 180 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-      >
-        <Button
-          p="unset"
-          bg="transparent"
-          border="none"
-          color="#949E9E"
-          cursor="pointer"
-        >
-          <ChevronDownSVG maxHeight="0.361rem" maxWidth="0.6rem" width="100%" />
-        </Button>
-      </Motion>
     </Div>
   );
 };
