@@ -2,6 +2,8 @@ import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 import { v4 } from 'uuid';
 
+import { CaretUpDownSVG } from '@/components/svg';
+
 import { TableHeaderColumnProps } from '../table.types';
 
 const TableHeaderColumn: FC<TableHeaderColumnProps> = ({
@@ -15,8 +17,11 @@ const TableHeaderColumn: FC<TableHeaderColumnProps> = ({
     <Div
       key={v4()}
       width="100%"
+      gap="0.5rem"
       px="0.75rem"
       py="0.875rem"
+      display="flex"
+      alignItems="center"
       cursor={isSortable ? 'pointer' : 'default'}
       nHover={{
         opacity: isSortable ? '.6' : '1',
@@ -37,6 +42,14 @@ const TableHeaderColumn: FC<TableHeaderColumnProps> = ({
       >
         {description}
       </Span>
+      {isSortable && (
+        <CaretUpDownSVG
+          maxWidth="1rem"
+          maxHeight="1rem"
+          color="#9CA3AF"
+          width="100%"
+        />
+      )}
     </Div>
   );
 };

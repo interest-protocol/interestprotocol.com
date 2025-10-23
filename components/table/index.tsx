@@ -1,19 +1,36 @@
 import { Div } from '@stylin.js/elements';
-import { not } from 'ramda';
 import { FC, useEffect, useState } from 'react';
 
 import TableBodyContent from './body';
 import TableHeader from './header';
 import { TableHeaderProps } from './table.types';
-import { onSort } from './table.utils';
 
 const Table: FC<TableHeaderProps> = ({ rows, ...props }) => {
   const [isAsc, setIsAsc] = useState(true);
   const [currentRows, setCurrentRows] = useState(rows);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSort = (index: number) => {
-    setCurrentRows(onSort(rows, index, isAsc ? 'asc' : 'desc'));
-    setIsAsc(not);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const parse = (v: any) => {
+      const raw = String(v?.cells[index]?.Title ?? '').replace(/[^\d.-]/g, '');
+      const num = parseFloat(raw);
+      if (isNaN(num)) return 0;
+
+      const str = String(v?.cells[index]?.Title ?? '').toUpperCase();
+      if (str.includes('M')) return num * 1_000_000;
+      if (str.includes('K')) return num * 1_000;
+      return num;
+    };
+
+    const sorted = [...rows].sort((a, b) => {
+      const valA = parse(a);
+      const valB = parse(b);
+      return isAsc ? valA - valB : valB - valA;
+    });
+
+    setCurrentRows(sorted);
+    setIsAsc(!isAsc);
   };
 
   useEffect(() => {
