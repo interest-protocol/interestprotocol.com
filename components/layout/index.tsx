@@ -22,9 +22,11 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       display={['flex', 'flex', 'flex', 'grid']}
       px={['1.5rem', '3rem']}
     >
-      <Header />
-      <Div pb={['8rem', '8rem', '8rem', 'unset']}>{children}</Div>
-      <SwapBottomMenu />
+      <Div maxWidth="1440px" mx="auto" width="100%">
+        <Header />
+        <Div pb={['8rem', '8rem', '8rem', 'unset']}>{children}</Div>
+        <SwapBottomMenu />
+      </Div>
     </Main>
   );
 };
