@@ -165,3 +165,46 @@ export const removeLeadingZeros = (hexString: string) =>
 
 export const truncate = (str: string, max = 14) =>
   str.length > max ? str.slice(0, max) + '…' : str;
+
+export const parseFormattedMoney = (formattedValue: string): number => {
+  let value = formattedValue.trim();
+
+  const hasPercentage = value.includes('%');
+  value = value.replace('%', '');
+
+  value = value.replace('$', '');
+
+  value = value.trim();
+
+  let multiplier = 1;
+  const lastChar = value.slice(-1).toUpperCase();
+
+  if (['K', 'M', 'B', 'T'].includes(lastChar)) {
+    value = value.slice(0, -1);
+
+    switch (lastChar) {
+      case 'K':
+        multiplier = 1_000;
+        break;
+      case 'M':
+        multiplier = 1_000_000;
+        break;
+      case 'B':
+        multiplier = 1_000_000_000;
+        break;
+      case 'T':
+        multiplier = 1_000_000_000_000;
+        break;
+    }
+  }
+
+  value = value.replace(/,/g, '');
+
+  const numericValue = parseFloat(value);
+
+  if (hasPercentage) {
+    return numericValue;
+  }
+
+  return numericValue * multiplier;
+};

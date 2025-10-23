@@ -17,6 +17,7 @@ const PriceRange: FC<PriceRangeProps> = ({ address }) => {
       color="#FFFFFF"
       textAlign="right"
       fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
+      data-sort-value={formatDollars(price ? +price.toFixed(4) : 0)}
     >
       {formatDollars(price ? +price.toFixed(4) : 0)}
     </P>
