@@ -13,15 +13,12 @@ const SwapRefreshCounter: FC = () => {
   const lastQuote = watch('lastQuote');
 
   useEffect(() => {
-    console.log({ lastQuote });
-
     const interval = setInterval(() => {
       if (!lastQuote) return;
 
       const timeBetween = lastQuote + INTERVAL_IN_SECONDS * 1000 - Date.now();
 
       const timeBetweenInSecs = timeBetween / 1000;
-      console.log({ timeBetweenInSecs });
 
       if (timeBetweenInSecs > 0) return setTimer(timeBetweenInSecs);
 
