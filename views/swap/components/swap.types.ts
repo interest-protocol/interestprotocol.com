@@ -31,10 +31,11 @@ export interface SwapForm {
   from: SwapToken;
   loading: boolean;
   swapping: boolean;
+  settings: ISettings;
   explorerLink: string;
   error?: string | null;
   executionTime: string;
-  settings: ISettings;
+  lastQuote: number | null;
   path: ReadonlyArray<ReadonlyArray<SwapPath>>;
 }
 

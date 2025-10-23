@@ -16,10 +16,9 @@ import { Aggregator, MosaicQuoteResponse } from '../swap.types';
 import { SwapErrorManager } from './swap-error-manager';
 
 const SwapManager: FC = () => {
-  const { control, setValue, getValues } = useFormContext();
+  const { control, setValue, getValues, watch } = useFormContext();
   const [hasNoMarket, setHasNoMarket] = useState(false);
   const [value] = useDebounce(useWatch({ control, name: 'from.value' }), 800);
-  const [refreshInterval, setRefreshInterval] = useState(0);
 
   const { account } = useAptosWallet();
 
@@ -27,13 +26,7 @@ const SwapManager: FC = () => {
     `${LOCAL_STORAGE_VERSION}-movement-dex-settings`
   ) ?? { slippage: '0.5', aggregator: Aggregator.Interest };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRefreshInterval((currentTime) => currentTime + 1);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const lastQuote = watch('lastQuote');
 
   useEffect(() => {
     setValue('error', null);
@@ -44,6 +37,8 @@ const SwapManager: FC = () => {
       setHasNoMarket(false);
       return;
     }
+
+    if (lastQuote) return;
 
     const to = getValues('to');
     const from = getValues('from');
@@ -74,6 +69,7 @@ const SwapManager: FC = () => {
           throw new Error('Not successfully');
         }
 
+        setValue('lastQuote', Date.now());
         const value = BigNumber(data.data.dstAmount);
 
         setValue('to.valueBN', value);
@@ -95,7 +91,7 @@ const SwapManager: FC = () => {
         setValue('to.value', '0');
         setValue('error', 'Failed to quote');
       });
-  }, [value, refreshInterval, setValue, getValues]);
+  }, [value, lastQuote]);
 
   return <SwapErrorManager hasNoMarket={hasNoMarket} />;
 };

@@ -9,3 +9,5 @@ export enum SwapMessagesEnum {
   swapFailure = 'Your swap failed, please try to increment your slippage and try again or contact the support team',
   swapSuccess = 'Your swap was successfully, and you can check it on the Explorer',
 }
+
+export const INTERVAL_IN_SECONDS = 10;

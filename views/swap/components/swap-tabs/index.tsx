@@ -9,6 +9,7 @@ import { noop } from '@/utils';
 
 import SettingsModal from '../../../components/settings-modal';
 import { SwapForm } from '../swap.types';
+import SwapRefreshCounter from '../swap-refresh-counter';
 
 const SwapTabs: FC = () => {
   const { setContent } = useModal();
@@ -44,19 +45,22 @@ const SwapTabs: FC = () => {
           <Tabs tabs={['Swap']} setTab={noop} tab={0} />
         </Div>
       </Div>
-      <Div
-        role="button"
-        lineHeight="0"
-        display="flex"
-        cursor="pointer"
-        color="#9CA3AF"
-        alignItems="center"
-        aria-label="Settings"
-        onClick={handleOpenSettings}
-        transition="transform 500ms ease-in-out"
-        nHover={{ transform: 'rotate(180deg)', color: '#B4C5FF' }}
-      >
-        <CogsSVG maxWidth="1.25rem" maxHeight="1.25rem" width="100%" />
+      <Div display="flex" alignItems="center" gap="0.5rem">
+        <SwapRefreshCounter />
+        <Div
+          role="button"
+          lineHeight="0"
+          display="flex"
+          cursor="pointer"
+          color="#9CA3AF"
+          alignItems="center"
+          aria-label="Settings"
+          onClick={handleOpenSettings}
+          transition="transform 500ms ease-in-out"
+          nHover={{ transform: 'rotate(180deg)', color: '#B4C5FF' }}
+        >
+          <CogsSVG maxWidth="1.25rem" maxHeight="1.25rem" width="100%" />
+        </Div>
       </Div>
     </Div>
   );
