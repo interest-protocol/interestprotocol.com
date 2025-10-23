@@ -25,8 +25,8 @@ export const POOLS_STATS_HEADER_DATA = [
   { description: 'TVL', isSortable: true },
   { description: '24h Volume', isSortable: true },
   { description: 'All Time Volume', isSortable: true },
-  { description: '24h Fees' },
-  { description: 'All Time Fees' },
+  { description: '24h Fees', isSortable: true },
+  { description: 'All Time Fees', isSortable: true },
 ];
 
 export const TRANSACTION_STATS_HEADER_DATA: ReadonlyArray<TableHeaderTitleProps> =

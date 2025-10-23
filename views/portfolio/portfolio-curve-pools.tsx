@@ -237,8 +237,8 @@ const PortfolioCurvePools: FC = () => {
         { description: 'Pool' },
         { description: 'Price', position: 'right', isSortable: true },
         { description: 'Liquidity', position: 'right', isSortable: true },
-        { description: 'APR', position: 'right' },
-        { description: 'Rewards', position: 'right' },
+        { description: 'APR', position: 'right', isSortable: true },
+        { description: 'Rewards', position: 'right', isSortable: true },
       ]}
       rows={poolsPosition.map(({ poolAddress, tokensAddresses }) => ({
         link: `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`,
