@@ -14,16 +14,18 @@ import Rewards from './rewards';
 const Farm: FC = () => {
   const { pool } = usePoolDetailsContext();
 
-  const { data: farms } = useFarms([pool?.poolAddress ?? '']);
-  const data = farms?.[0];
+  const { data: farm, isLoading } = useFarms([pool?.poolAddress ?? '']);
+  const data = farm?.[0];
 
-  const stakedBalance = FixedPointMath.toNumber(
-    BigNumber(data?.stakedBalance ?? 0),
-    9
-  );
-  const rewards = FixedPointMath.toNumber(
-    BigNumber(data?.rewards[0].rewardsPerSecond ?? 0)
-  );
+  const stakedBalance = isLoading
+    ? 0
+    : FixedPointMath.toNumber(BigNumber(data?.stakedBalance ?? 0), 9);
+
+  const rewards = isLoading
+    ? 0
+    : FixedPointMath.toNumber(
+        BigNumber(data?.rewards[0].rewardsPerSecond ?? 0)
+      );
 
   return (
     <Div
@@ -46,7 +48,7 @@ const Farm: FC = () => {
             {
               info: { description: 'Rewards' },
               value: {
-                description: `${formatMoney(rewards)} MOVE`,
+                description: `${formatMoney(rewards * 86400)} MOVE per day`,
               },
             },
           ]}

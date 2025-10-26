@@ -147,7 +147,7 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
         gap={['0.5rem', '0.5rem', '0.5rem', '1rem']}
       >
         <Div display="flex" justifyContent="space-between">
-          {loading ? (
+          {loading || !pool.tokensMetadata ? (
             <Skeleton width={100} height={20} />
           ) : (
             <Breadcrumb
@@ -157,7 +157,7 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
                   ? 'loading...'
                   : (pool.tokensMetadata
                       ?.map((token) => token.symbol)
-                      .join('-') ?? 'none')
+                      .join('-') ?? '--')
               }
             />
           )}

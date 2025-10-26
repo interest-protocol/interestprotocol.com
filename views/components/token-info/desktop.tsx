@@ -15,7 +15,7 @@ const TokenInfoDesktop: FC = () => {
       alignItems="center"
       display={['none', 'none', 'none', 'flex']}
     >
-      {loading ? (
+      {loading || !pool.poolMetadata ? (
         <>
           <Skeleton circle width={40} height={40} />
           <Skeleton width={100} height={20} />
@@ -32,7 +32,7 @@ const TokenInfoDesktop: FC = () => {
                 ? 'loading...'
                 : (pool.tokensMetadata
                     ?.map((token) => token.symbol)
-                    .join('-') ?? 'none')
+                    .join('-') ?? '--')
             }
           />
           <P
@@ -42,10 +42,10 @@ const TokenInfoDesktop: FC = () => {
             fontSize="1.75rem"
             lineHeight="2.8125rem"
           >
-            {loading
+            {loading || !pool.tokensMetadata
               ? 'loading...'
               : (pool.tokensMetadata?.map((token) => token.symbol).join('-') ??
-                'none')}
+                '--')}
           </P>
         </>
       )}

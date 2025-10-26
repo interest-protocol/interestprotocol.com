@@ -162,6 +162,8 @@ const PoolsTableMobile: FC = () => {
                     fontSize="0.875rem"
                     lineHeight="1.25rem"
                     borderRadius="0.65rem"
+                    border="1px solid"
+                    borderColor="#B4C5FF"
                   >
                     Add Liquidity
                     <SquarePlus maxWidth="1rem" maxHeight="1rem" width="100%" />
