@@ -12,7 +12,7 @@ const AdditionalInfo: FC = () => {
 
   const toggleAccordion = () => setIsOpen(!isOpen);
 
-  if (!valueIn) return;
+  if (!Number(valueIn)) return;
 
   return (
     <Div mt="0.813rem">
