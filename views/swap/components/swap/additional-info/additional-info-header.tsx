@@ -1,7 +1,7 @@
 import { Div, P, Span } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useCoinsPrice } from '@/hooks';
 import { formatDollars, formatMoney } from '@/utils';
@@ -10,15 +10,12 @@ import { SwapForm } from '../../swap.types';
 import { AdditionalInfoHeaderProps } from './additional-info.types';
 
 const AdditionalInfoHeader: FC<AdditionalInfoHeaderProps> = ({ toggle }) => {
-  const { watch } = useFormContext<SwapForm>();
+  const { control } = useFormContext<SwapForm>();
 
-  const [fromValue, toValue, fromSymbol, toSymbol, toType] = watch([
-    'from.value',
-    'to.value',
-    'from.symbol',
-    'to.symbol',
-    'to.type',
-  ]);
+  const [fromValue, toValue, fromSymbol, toSymbol, toType] = useWatch({
+    control,
+    name: ['from.value', 'to.value', 'from.symbol', 'to.symbol', 'to.type'],
+  });
 
   const quote = fromValue ? Number(toValue) / Number(fromValue) : null;
 
