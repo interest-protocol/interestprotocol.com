@@ -1,8 +1,9 @@
 import { Div, P } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ToggleButton } from '@/components/toggle';
+import { ZERO_BIG_NUMBER } from '@/utils';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 const DepositBalanced: FC = () => {
@@ -12,6 +13,17 @@ const DepositBalanced: FC = () => {
     control,
     name: 'balanced',
   });
+
+  useEffect(() => {
+    if (!balanced) {
+      setValue('lpCoin.value', '');
+      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.0.value', '');
+      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.1.value', '');
+      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+    }
+  }, [balanced]);
 
   return (
     <Div display="flex" justifyContent="space-between" alignItems="center">
