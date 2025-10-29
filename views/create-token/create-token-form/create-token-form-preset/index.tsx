@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FormFieldBox } from '@/components/form-field-box';
-import { InfoSVG } from '@/components/svg';
 
 import { ICreateTokenForm } from '../../create-token.types';
 import CreateTokenFormButton from '../create-token-form-button';
@@ -98,21 +97,7 @@ const CreateTokenFormPreset: FC = () => {
             isTextArea
           />
         </Div>
-        <Div display="flex" flexDirection="column" gap="1rem">
-          <CreateTokenFormButton />
-          <Div
-            gap="0.25rem"
-            display="flex"
-            color="#B4C5FF"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Div width="1rem" height="1rem" color="#B4C5FF">
-              <InfoSVG maxWidth="100%" maxHeight="100%" width="100%" />
-            </Div>
-            <P fontSize="0.75rem">Pay 1 MOVE and Create</P>
-          </Div>
-        </Div>
+        <CreateTokenFormButton />
       </Div>
     </>
   );

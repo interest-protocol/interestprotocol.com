@@ -101,10 +101,36 @@ const CreateTokenFormButton: FC = () => {
     } finally {
       setLoading(false);
     }
-    return;
   };
 
-  const isRequiredFieldsFilled = !!(values.name && values.symbol);
+  const isRequiredFieldsFilled = Object.entries(values)
+    .filter(([key]) => key !== 'description')
+    .every(([key, value]) => {
+      const val = String(value ?? '').trim();
+
+      if (key === 'dropImageUrl')
+        return val !== '' || String(values.imageUrl ?? '').trim() !== '';
+      if (key === 'imageUrl')
+        return val !== '' || String(values.dropImageUrl ?? '').trim() !== '';
+
+      return val !== '';
+    });
+
+  const buttonText = loading
+    ? 'Creating token...'
+    : isRequiredFieldsFilled
+      ? 'Pay 1 MOVE and Create'
+      : 'Create Token';
+
+  const buttonStyles = isRequiredFieldsFilled
+    ? {
+        backgroundColor: '#B4C5FF',
+        color: '#002A78',
+      }
+    : {
+        backgroundColor: '#9CA3AF1A',
+        color: '#9CA3AF',
+      };
 
   return (
     <Div
@@ -121,8 +147,9 @@ const CreateTokenFormButton: FC = () => {
         lineHeight="1.5rem"
         disabled={!isRequiredFieldsFilled || loading}
         onClick={onSubmit}
+        style={buttonStyles}
       >
-        {loading ? 'Creating token...' : 'Create Token'}
+        {buttonText}
       </Button>
     </Div>
   );
