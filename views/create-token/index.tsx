@@ -7,7 +7,13 @@ import CreateTokenForm from './create-token-form';
 
 const CreateToken: FC = () => (
   <Layout>
-    <Div width="100%" display="flex" alignItems="center" flexDirection="column">
+    <Div
+      pb="10rem"
+      width="100%"
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+    >
       <Div
         mt={['1rem', '1rem', '1rem', '2.5rem']}
         display="flex"
