@@ -1,6 +1,5 @@
 import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
-import unikey from 'unikey';
 
 import Swap from './components/swap';
 import SwapTabs from './components/swap-tabs';
@@ -19,7 +18,7 @@ const SwapContent: FC = () => {
       >
         <Div display="flex" flexDirection="column">
           <SwapTabs />
-          <Swap key={unikey()} />
+          <Swap />
         </Div>
       </Div>
     </Div>

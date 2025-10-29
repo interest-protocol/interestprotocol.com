@@ -9,11 +9,12 @@ import { toasting } from '@/components/toast';
 import WalletGuardButton from '@/components/wallet-guard-button';
 import { EXPLORER_URL, Network } from '@/constants';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
+import { ZERO_BIG_NUMBER } from '@/utils';
 
 const SwapButton = () => {
   const client = useAptosClient();
   const [loading, setLoading] = useState(false);
-  const { control, getValues } = useFormContext();
+  const { control, getValues, setValue } = useFormContext();
   const { account, signAndSubmitTransaction } = useAptosWallet();
 
   const error = useWatch({ control, name: 'error' });
@@ -38,7 +39,10 @@ const SwapButton = () => {
           checkSuccess: true,
         },
       });
-
+      setValue('to.value', '');
+      setValue('from.value', '');
+      setValue('to.valueBN', ZERO_BIG_NUMBER);
+      setValue('from.valueBN', ZERO_BIG_NUMBER);
       toasting.success({
         action: 'Swap',
         message: 'See on explorer',
