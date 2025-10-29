@@ -25,7 +25,7 @@ type CoinType = keyof typeof COIN_TYPE_TO_FA;
 
 const CoinCard: FC<CoinCardProps> = ({ token }) => {
   const symbol = token.symbol;
-  const { coinsMap } = useCoins();
+  const { coinsMap, mutate } = useCoins();
   const [wasWrapped, setWasWrapped] = useState(false);
   const { account, signAndSubmitTransaction } = useAptosWallet();
   const decimals = token.decimals;
@@ -66,6 +66,7 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
         link: '#',
       });
       setWasWrapped(true);
+      mutate();
     } catch (e) {
       dismiss();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
