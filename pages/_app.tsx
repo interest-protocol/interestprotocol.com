@@ -38,10 +38,12 @@ const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
           <ModalProvider />
           <Toaster
             position="bottom-right"
+            containerStyle={{
+              zIndex: '999999',
+            }}
             toastOptions={{
               duration: TOAST_DURATION,
               style: {
-                zIndex: 100,
                 maxWidth: '20rem',
                 overflow: 'hidden',
                 position: 'relative',

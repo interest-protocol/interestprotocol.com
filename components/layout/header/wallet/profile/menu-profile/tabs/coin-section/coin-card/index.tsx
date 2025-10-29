@@ -1,6 +1,9 @@
+import { InterestDex } from '@interest-protocol/aptos-move-dex';
 import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div, P, Span } from '@stylin.js/elements';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import invariant from 'tiny-invariant';
 
 import { Button } from '@/components/button';
 import { WrapSVG } from '@/components/svg';
@@ -23,6 +26,8 @@ type CoinType = keyof typeof COIN_TYPE_TO_FA;
 const CoinCard: FC<CoinCardProps> = ({ token }) => {
   const symbol = token.symbol;
   const { coinsMap } = useCoins();
+  const [wasWrapped, setWasWrapped] = useState(false);
+  const { account, signAndSubmitTransaction } = useAptosWallet();
   const decimals = token.decimals;
 
   const { data } = useCoinsPrice([token.type]);
@@ -35,23 +40,41 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
     coin?.balance ?? ZERO_BIG_NUMBER,
     coin?.decimals ?? decimals
   );
+
+  const dexV2 = new InterestDex();
+
   const handleWrapCoin = async () => {
     const dismiss = toasting.loading({ message: `Wrapping ${symbol}...` });
     try {
-      await new Promise((resolve) =>
-        setTimeout(resolve, Math.random() * 4000 + 1000)
-      );
+      invariant(account, 'You should have this coin in your wallet');
+      invariant(coin, 'You should have this coin in your wallet');
+
+      const payload = dexV2.wrapCoin({
+        coinType: token.type,
+        amount: BigInt(coin.balance.toString()),
+        recipient: account.address,
+      });
+
+      const tx = await signAndSubmitTransaction({ payload });
+
+      invariant(tx.status === 'Approved', 'Rejected by User');
 
       dismiss();
-      if (Math.random() > 0.5) {
-        toasting.success({
-          action: 'Wrap',
-          message: 'See on explorer',
-          link: '#',
-        });
-      } else throw new Error();
+      toasting.success({
+        action: 'Wrap',
+        message: 'See on explorer',
+        link: '#',
+      });
+      setWasWrapped(true);
     } catch (e) {
       dismiss();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((e as any).data.error_code === 'mempool_is_full')
+        toasting.error({
+          action: 'Wrap',
+          message: 'The mempool is full, try again in a few seconds.',
+        });
+
       toasting.error({
         action: 'Wrap',
         message: (e as Error).message ?? 'Error executing transaction',
@@ -60,6 +83,8 @@ const CoinCard: FC<CoinCardProps> = ({ token }) => {
       dismiss();
     }
   };
+
+  if (wasWrapped) return;
 
   const isConvertible = (token.type as CoinType) in COIN_TYPE_TO_FA;
 
