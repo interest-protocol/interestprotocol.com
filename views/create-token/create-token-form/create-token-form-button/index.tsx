@@ -5,6 +5,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import invariant from 'tiny-invariant';
 
 import { Button } from '@/components/button';
+import { InfoSVG } from '@/components/svg';
 import { toasting } from '@/components/toast';
 import { EXPLORER_URL, Network } from '@/constants';
 import { useInterestV2Sdk } from '@/hooks/use-interest-v2-sdk';
@@ -106,6 +107,22 @@ const CreateTokenFormButton: FC = () => {
 
   const isRequiredFieldsFilled = !!(values.name && values.symbol);
 
+  const buttonText = loading
+    ? 'Creating token...'
+    : isRequiredFieldsFilled
+      ? ' Pay 1 MOVE and Create'
+      : 'Create Token';
+
+  const buttonStyles = isRequiredFieldsFilled
+    ? {
+        backgroundColor: '#B4C5FF',
+        color: '#002A78',
+      }
+    : {
+        backgroundColor: '#9CA3AF1A',
+        color: '#9CA3AF',
+      };
+
   return (
     <Div
       gap="1.5rem"
@@ -119,10 +136,23 @@ const CreateTokenFormButton: FC = () => {
         variant="filled"
         fontSize="1rem"
         lineHeight="1.5rem"
-        disabled={!isRequiredFieldsFilled || loading}
+        style={buttonStyles}
         onClick={onSubmit}
+        disabled={!isRequiredFieldsFilled || loading}
       >
-        {loading ? 'Creating token...' : 'Create Token'}
+        {isRequiredFieldsFilled && (
+          <Div
+            ml="0.5rem"
+            width="1rem"
+            height="1rem"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <InfoSVG maxWidth="100%" maxHeight="100%" width="100%" />
+          </Div>
+        )}
+        {buttonText}
       </Button>
     </Div>
   );
