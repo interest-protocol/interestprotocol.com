@@ -106,8 +106,7 @@ const FarmFormButton: FC<FarmFormProps> = ({ isStake }) => {
         });
       }
     } catch (e) {
-      console.warn({ e });
-
+      //console.warn(e);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((e as any)?.data?.error_code === 'mempool_is_full')
         throw new Error('The mempool is full, try again in a few seconds.');

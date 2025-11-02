@@ -43,9 +43,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .appendHeader('Cache-Control', `public, max-age=${CACHE_CONFIG.FARM}`)
       .json(parsedData);
   } catch (e) {
-    console.warn(e);
-    console.warn('>> Error in curve farm API');
-
+    //console.warn(e);
     res.status(500).send(e);
   }
 };

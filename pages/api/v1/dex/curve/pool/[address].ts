@@ -93,9 +93,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .appendHeader('Cache-Control', `public, max-age=${CACHE_CONFIG.POOL}`)
       .json(parsedData);
   } catch (e) {
-    console.warn(e);
-    console.warn('>> Error in curve pool API');
-
+    //console.warn(e);
     res.status(500).send(e);
   }
 };

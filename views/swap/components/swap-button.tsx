@@ -9,9 +9,11 @@ import { toasting } from '@/components/toast';
 import WalletGuardButton from '@/components/wallet-guard-button';
 import { EXPLORER_URL, Network } from '@/constants';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { ZERO_BIG_NUMBER } from '@/utils';
 
 const SwapButton = () => {
+  const { mutate } = useCoins();
   const client = useAptosClient();
   const [loading, setLoading] = useState(false);
   const { control, getValues, setValue } = useFormContext();
@@ -48,9 +50,9 @@ const SwapButton = () => {
         message: 'See on explorer',
         link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
       });
+      mutate();
     } catch (e) {
-      console.warn(e);
-
+      //console.warn({ e });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((e as any)?.data?.error_code === 'mempool_is_full')
         throw new Error('The mempool is full, try again in a few seconds.');

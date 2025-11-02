@@ -51,8 +51,7 @@ const CoinsManager: FC = () => {
 
         setCoins?.(coins);
       } catch (e) {
-        console.warn('error: ', e);
-
+        //console.warn(e);
         setError((e as Error).message);
       } finally {
         setLoading(false);

@@ -9,6 +9,7 @@ import { useReadLocalStorage } from 'usehooks-ts';
 import { LOCAL_STORAGE_VERSION, TREASURY } from '@/constants';
 import { EXCHANGE_FEE_BPS } from '@/constants/fees';
 import { FixedPointMath } from '@/lib';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { ZERO_BIG_NUMBER } from '@/utils';
 import { ISettings } from '@/views/components/settings-modal/settings-modal.types';
 
@@ -18,6 +19,7 @@ import { SwapErrorManager } from './swap-error-manager';
 const SwapManager: FC = () => {
   const { control, setValue, getValues, watch } = useFormContext();
   const [hasNoMarket, setHasNoMarket] = useState(false);
+  const { mutate } = useCoins();
   const [value] = useDebounce(useWatch({ control, name: 'from.value' }), 800);
 
   const { account } = useAptosWallet();
@@ -35,6 +37,11 @@ const SwapManager: FC = () => {
       setValue('to.value', '0');
       setValue('to.valueBN', ZERO_BIG_NUMBER);
       setHasNoMarket(false);
+      if (!lastQuote) {
+        setValue('lastQuote', Date.now());
+        mutate();
+      }
+
       return;
     }
 
@@ -86,8 +93,8 @@ const SwapManager: FC = () => {
         setHasNoMarket(false);
         setValue('focus', false);
       })
-      .catch((e) => {
-        console.warn(e);
+      .catch(() => {
+        //console.warn({ e });
         setValue('to.value', '0');
         setValue('error', 'Failed to quote');
       });
