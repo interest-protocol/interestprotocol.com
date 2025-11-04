@@ -1,3 +1,4 @@
+import { Div } from '@stylin.js/elements';
 import { FC, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -31,7 +32,18 @@ const SwapRefreshCounter: FC = () => {
 
   if (!lastQuote) return null;
 
-  return <ProgressIndicator size={16} value={timer * 10} />;
+  return (
+    <Div
+      onClick={() => setValue('lastQuote', null)}
+      cursor="pointer"
+      transition="all 300ms ease-in-out"
+      nHover={{
+        transform: 'scale(1.2)',
+      }}
+    >
+      <ProgressIndicator size={16} value={timer * 10} />
+    </Div>
+  );
 };
 
 export default SwapRefreshCounter;

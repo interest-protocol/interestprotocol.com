@@ -29,6 +29,7 @@ const SwapPage: NextPage = () => {
         value: '',
         valueBN: ZERO_BIG_NUMBER,
       },
+      lastQuote: Date.now(),
       settings: {
         slippage: '1',
       },
