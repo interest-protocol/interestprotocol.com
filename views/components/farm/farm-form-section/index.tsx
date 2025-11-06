@@ -5,6 +5,8 @@ import { FormProvider, useFormContext } from 'react-hook-form';
 import { CogsSVG } from '@/components/svg';
 import Tabs from '@/components/tabs';
 import { useModal } from '@/hooks';
+import { ZERO_BIG_NUMBER } from '@/utils';
+import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
 import SettingsModal from '../../settings-modal';
 import FarmForm from './farm-form';
@@ -12,6 +14,7 @@ import FarmForm from './farm-form';
 const TABS = ['Stake', 'Unstake'];
 
 const FarmFormSection: FC = () => {
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
   const { setContent } = useModal();
   const [farmTabs, setFarmTabs] = useState(0);
 
@@ -27,6 +30,11 @@ const FarmFormSection: FC = () => {
 
   const toggleFarm = (tabIndex: number) => {
     setFarmTabs(tabIndex);
+    setValue(`lpCoin.valueBN`, ZERO_BIG_NUMBER);
+    setValue(`lpCoin.valueBN`, ZERO_BIG_NUMBER);
+    setValue(`lpCoin.value`, '', {
+      shouldDirty: true,
+    });
   };
 
   return (
