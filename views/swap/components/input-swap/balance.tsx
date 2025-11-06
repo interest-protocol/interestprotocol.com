@@ -87,6 +87,8 @@ const Balance: FC<InputProps> = ({ label }) => {
     setValue('focus', false);
 
     setValue(`${label}.valueBN`, value);
+
+    setValue('lastQuote', null);
   };
 
   if (label === 'to')
