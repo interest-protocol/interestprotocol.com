@@ -10,6 +10,7 @@ import { EXPLORER_URL, Network } from '@/constants';
 import { useModal } from '@/hooks';
 import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
@@ -18,6 +19,7 @@ import { PoolFormButtonProps } from './pool-form.types';
 const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
   const client = useAptosClient();
   const { setContent } = useModal();
+  const { mutate } = useCoins();
   const [loading, setLoading] = useState(false);
   const interestCurveSdk = useInterestCurveSdk();
   const { account, signAndSubmitTransaction } = useAptosWallet();
@@ -97,6 +99,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
           message: 'See on explorer',
           link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
         });
+        mutate();
       }
     } catch (e) {
       //console.warn({ e });
@@ -165,6 +168,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
           message: 'See on explorer',
           link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
         });
+        mutate();
       }
     } catch (e) {
       //console.warn({ e });

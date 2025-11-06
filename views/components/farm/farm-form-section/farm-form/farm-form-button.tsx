@@ -11,6 +11,7 @@ import { FARMS_BY_LP } from '@/constants/farms';
 import { useModal } from '@/hooks';
 import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
+import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
@@ -18,6 +19,7 @@ import { FarmFormProps } from '../farm-form.types';
 
 const FarmFormButton: FC<FarmFormProps> = ({ isStake }) => {
   const client = useAptosClient();
+  const { mutate } = useCoins();
   const { setContent } = useModal();
   const [loading, setLoading] = useState(false);
   const interestCurveSdk = useInterestCurveSdk();
@@ -104,6 +106,7 @@ const FarmFormButton: FC<FarmFormProps> = ({ isStake }) => {
           message: 'See on explorer',
           link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
         });
+        mutate();
       }
     } catch (e) {
       //console.warn(e);

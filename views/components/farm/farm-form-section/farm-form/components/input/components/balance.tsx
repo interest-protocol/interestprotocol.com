@@ -109,13 +109,12 @@ const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
         isLoading && (
           <Div
             mx="0.5rem"
-            mt="-1.2rem"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
             <Div position="absolute" justifySelf="flex-end">
-              <ProgressIndicator variant="loading" />
+              <ProgressIndicator size={16} variant="loading" />
             </Div>
           </Div>
         )}
