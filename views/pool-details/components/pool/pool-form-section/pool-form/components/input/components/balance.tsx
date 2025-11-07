@@ -12,7 +12,7 @@ import { formatMoney, isAptos, ZERO_BIG_NUMBER } from '@/utils';
 import { InputProps } from '../input.types';
 import { MaxBadge } from './max-budget';
 
-const Balance: FC<InputProps> = ({ field }) => {
+const Balance: FC<InputProps> = ({ field, onHandleChange }) => {
   const { coinsMap, loading } = useCoins();
   const { control, setValue } = useFormContext();
 
@@ -56,6 +56,10 @@ const Balance: FC<InputProps> = ({ field }) => {
     const value = balance.minus(
       FixedPointMath.toBigNumber(isAptos(type) ? 0.01 : 0)
     );
+    if (onHandleChange) {
+      onHandleChange(FixedPointMath.toNumber(value, decimals).toString());
+      return;
+    }
 
     setValue(
       `${field}.value`,
