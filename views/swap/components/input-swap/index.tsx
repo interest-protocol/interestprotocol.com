@@ -73,6 +73,7 @@ const InputSwap: FC<InputProps> = ({ label }) => {
                         const value = parseInputEventToNumberString(v);
                         setValue('lock', false);
                         setValue?.(`${label}.value`, value);
+                        setValue('lastQuote', null);
                         setValue?.(
                           `${label}.valueBN`,
                           FixedPointMath.toBigNumber(

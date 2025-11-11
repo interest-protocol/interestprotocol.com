@@ -19,7 +19,7 @@ const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
   const { coinsMap, loading } = useCoins();
   const { control, setValue } = useFormContext();
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
-  const { data } = useFarmAccount(getValues('poolAddress'));
+  const { data, isLoading } = useFarmAccount(getValues('poolAddress'));
 
   const type = useWatch({ control, name: `${field}.type` });
   const decimals = useWatch({ control, name: `${field}.decimals` });
@@ -61,9 +61,9 @@ const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
   );
 
   const handleMax = () => {
-    const value = balance.minus(
-      FixedPointMath.toBigNumber(isAptos(type) ? 0.01 : 0)
-    );
+    const value = isStake
+      ? balance.minus(FixedPointMath.toBigNumber(isAptos(type) ? 0.01 : 0))
+      : BigNumber(data?.amount ?? 0);
 
     setValue(
       `${field}.value`,
@@ -74,7 +74,13 @@ const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
   };
 
   return (
-    <Div display="flex" alignItems="center" gap="0.5rem" onClick={handleMax}>
+    <Div
+      display="flex"
+      alignItems="center"
+      color="red"
+      gap="0.5rem"
+      onClick={handleMax}
+    >
       <Div display={['none', 'block']} width="1.38875rem" height="1.25rem">
         <SubtractBox
           maxHeight="100%"
@@ -98,20 +104,20 @@ const Balance: FC<FarmInputProps> = ({ field, isStake }) => {
           : '0.0000'}
       </P>
       <MaxBadge handleMax={handleMax} />
-
-      {!coinsMap[normalizeSuiAddress(type)]?.balance && loading && (
-        <Div
-          mx="0.5rem"
-          mt="-1.2rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Div position="absolute" justifySelf="flex-end">
-            <ProgressIndicator variant="loading" />
+      {!coinsMap[normalizeSuiAddress(type)]?.balance &&
+        loading &&
+        isLoading && (
+          <Div
+            mx="0.5rem"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Div position="absolute" justifySelf="flex-end">
+              <ProgressIndicator size={16} variant="loading" />
+            </Div>
           </Div>
-        </Div>
-      )}
+        )}
     </Div>
   );
 };

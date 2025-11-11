@@ -65,7 +65,7 @@ const PortfolioSummary: FC = () => {
       ]}
     >
       <MetricInfo
-        title="Net worth"
+        title="Wallet"
         value={netWorthUSD ? formatDollars(+netWorthUSD.toFixed(4)) : '--'}
         isLoading={isCoinsPriceLoading}
       />

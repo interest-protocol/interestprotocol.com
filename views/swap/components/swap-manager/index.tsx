@@ -17,7 +17,7 @@ import { Aggregator, MosaicQuoteResponse } from '../swap.types';
 import { SwapErrorManager } from './swap-error-manager';
 
 const SwapManager: FC = () => {
-  const { control, setValue, getValues, watch } = useFormContext();
+  const { control, setValue, getValues } = useFormContext();
   const [hasNoMarket, setHasNoMarket] = useState(false);
   const { mutate } = useCoins();
   const [value] = useDebounce(useWatch({ control, name: 'from.value' }), 800);
@@ -28,7 +28,10 @@ const SwapManager: FC = () => {
     `${LOCAL_STORAGE_VERSION}-movement-dex-settings`
   ) ?? { slippage: '0.5', aggregator: Aggregator.Interest };
 
-  const lastQuote = watch('lastQuote');
+  const [lastQuote] = useDebounce(
+    useWatch({ control, name: 'lastQuote' }),
+    800
+  );
 
   useEffect(() => {
     setValue('error', null);

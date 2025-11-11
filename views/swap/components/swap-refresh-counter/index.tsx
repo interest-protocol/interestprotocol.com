@@ -30,7 +30,18 @@ const SwapRefreshCounter: FC = () => {
     return () => clearInterval(interval);
   }, [lastQuote]);
 
-  if (!lastQuote) return null;
+  if (!lastQuote)
+    return (
+      <Div
+        cursor="pointer"
+        transition="all 300ms ease-in-out"
+        nHover={{
+          transform: 'scale(1.2)',
+        }}
+      >
+        <ProgressIndicator size={16} variant="loading" />
+      </Div>
+    );
 
   return (
     <Div

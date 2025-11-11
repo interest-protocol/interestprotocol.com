@@ -87,6 +87,8 @@ const Balance: FC<InputProps> = ({ label }) => {
     setValue('focus', false);
 
     setValue(`${label}.valueBN`, value);
+
+    setValue('lastQuote', null);
   };
 
   if (label === 'to')
@@ -120,8 +122,10 @@ const Balance: FC<InputProps> = ({ label }) => {
           whiteSpace="nowrap"
         >
           {type
-            ? `${formatMoney(FixedPointMath.toNumber(balance, decimals))}`
-            : '0'}
+            ? FixedPointMath.toNumber(balance, decimals) === 0
+              ? '0.0000'
+              : formatMoney(FixedPointMath.toNumber(balance, decimals), 4)
+            : '0.0000'}
         </P>
       </Div>
     );

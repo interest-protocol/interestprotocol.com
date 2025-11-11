@@ -32,9 +32,8 @@ const Input: FC<InputProps> = ({
 
   const tokenDecimals = useWatch({ name: `${field}.decimals` });
 
-  const handleChange = (v: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (amount: string) => {
     if (loading || !pool) return;
-    const amount = parseInputEventToNumberString(v);
 
     if (getValues('balanced')) {
       const index = field == 'tokenList.0' ? 0 : 1;
@@ -164,7 +163,10 @@ const Input: FC<InputProps> = ({
                   color: '#fff',
                 }}
                 {...register(`${field}.value` as any, {
-                  onChange: handleChange,
+                  onChange: (v: ChangeEvent<HTMLInputElement>) => {
+                    const value = parseInputEventToNumberString(v);
+                    handleChange(value);
+                  },
                 })}
               />
             </Div>
@@ -174,7 +176,9 @@ const Input: FC<InputProps> = ({
           </Div>
           <Div display="flex" justifyContent="space-between">
             <AmountInDollar field={field} />
-            {!shortView ? <Balance field={field} /> : null}
+            {!shortView ? (
+              <Balance field={field} onHandleChange={handleChange} />
+            ) : null}
           </Div>
         </Div>
       </Div>

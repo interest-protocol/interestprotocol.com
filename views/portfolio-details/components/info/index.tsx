@@ -38,7 +38,7 @@ const Info: FC = () => {
   const EARNINGS_FEES_DATA: ReadonlyArray<CollapseCardInfoLineProps> = [
     {
       info: {
-        description: 'Pooled MOVE',
+        description: 'MOVE',
         Suffix: (
           <>
             <TokenIcon

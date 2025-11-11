@@ -7,6 +7,7 @@ export interface InputProps {
   onlyField?: boolean;
   shortView?: boolean;
   field: `tokenList.${number}` | 'lpCoin';
+  onHandleChange?: (amount: string) => void;
 }
 
 export interface MaxBadgeProps {
