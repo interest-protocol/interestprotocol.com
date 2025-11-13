@@ -143,6 +143,7 @@ const PoolsTableMobile: FC = () => {
                       ).toFixed(2)}%`,
                       volume: formatDollars(Number(pool?.metrics.volume)),
                       tvl: formatDollars(Number(pool?.metrics.tvl)),
+                      fees: formatDollars(Number(pool?.metrics.fees1D)),
                       address: poolAddress,
                       symbols: pool?.symbols,
                       tokensAddresses: pool?.coins ?? tokensAddresses,

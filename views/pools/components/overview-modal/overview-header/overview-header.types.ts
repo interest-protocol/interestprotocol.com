@@ -6,3 +6,8 @@ export interface OverviewHeaderProps extends OverviewModalProps {
   aggregation: AggregationValue;
   setAggregation: (aggregation: AggregationValue) => void;
 }
+
+export interface OverviewHeaderItemProps {
+  title: string;
+  value: string;
+}

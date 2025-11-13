@@ -145,8 +145,9 @@ const PoolsTableCurve: FC = () => {
                     apr: `${(
                       Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
                     ).toFixed(2)}%`,
-                    volume: formatDollars(Number(pool?.metrics.volume)),
+                    volume: formatDollars(Number(pool?.metrics.volume1D)),
                     tvl: formatDollars(Number(pool?.metrics.tvl)),
+                    fees: formatDollars(Number(pool?.metrics.fees1D)),
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
