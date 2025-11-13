@@ -100,7 +100,7 @@ const PoolsTableMobile: FC = () => {
               />
               <TableMobileLine
                 label="Volume"
-                value={formatDollars(Number(pool?.metrics.volume))}
+                value={formatDollars(Number(pool?.metrics.volume1D))}
               />
               <TableMobileLine
                 label="APR"

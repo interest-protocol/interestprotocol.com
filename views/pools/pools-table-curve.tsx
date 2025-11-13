@@ -95,7 +95,7 @@ const PoolsTableCurve: FC = () => {
               <Skeleton width="100%" height={15} />
             </Div>
           ) : (
-            formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
+            formatDollars(Number(Number(pool.metrics.volume1D).toFixed(2)))
           ),
           position: 'right' as const,
         },
