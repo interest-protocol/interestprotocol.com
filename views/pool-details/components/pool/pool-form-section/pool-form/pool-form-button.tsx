@@ -122,7 +122,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
       let payload, txResult;
       const selectedCoinIndex = getValues('selectedCoinIndex');
 
-      if (selectedCoinIndex[0] && selectedCoinIndex[1]) {
+      if (selectedCoinIndex.includes(0) && selectedCoinIndex.includes(1)) {
         payload = interestCurveSdk.removeLiquidity({
           pool: poolAddress,
           recipient: account.address,
