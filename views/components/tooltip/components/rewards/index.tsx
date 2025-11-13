@@ -9,7 +9,6 @@ import unikey from 'unikey';
 import { TokenIcon } from '@/components';
 import { Network } from '@/constants';
 import { useCoinsPrice } from '@/hooks';
-import { useFarmAccount } from '@/hooks/use-farm-account';
 import { useFarms } from '@/hooks/use-farms';
 import { FixedPointMath } from '@/lib';
 import { TokenStandard } from '@/lib/coins-manager/coins-manager.types';
@@ -21,18 +20,18 @@ import { RewardsProps } from './rewards.types';
 const DAYS_PER_SECONDS = 86400;
 
 const Rewards: FC<RewardsProps> = ({ poolAddress }) => {
-  const { data: farmAccountData, isLoading: isLoadingFarmAccount } =
-    useFarmAccount(poolAddress);
   const { data: farm, isLoading: isLoadingFarms } = useFarms([
     poolAddress ?? '',
   ]);
 
   const tokens = useMemo(
     () =>
-      farmAccountData?.rewards.map((reward) =>
-        normalizeSuiAddress(reward.fa)
+      farm?.flatMap((currentFarm) =>
+        currentFarm.rewards.map((reward) =>
+          normalizeSuiAddress(reward.rewardFa.address)
+        )
       ) || [],
-    [farmAccountData]
+    [isLoadingFarms]
   );
 
   const { data: priceList, isLoading: isPriceLoading } = useCoinsPrice(
@@ -47,11 +46,7 @@ const Rewards: FC<RewardsProps> = ({ poolAddress }) => {
       )
   );
 
-  const isLoading =
-    isLoadingMetadata ||
-    isLoadingFarmAccount ||
-    isPriceLoading ||
-    isLoadingFarms;
+  const isLoading = isLoadingMetadata || isPriceLoading || isLoadingFarms;
 
   const rewardsPerDay = useMemo(() => {
     if (!farm?.[0]?.rewards || farm[0].rewards.length === 0) {
