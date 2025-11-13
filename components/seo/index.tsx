@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const SEO: FC = () => (
   <Head>
-    <title>Movement</title>
+    <title>Interest Protocol</title>
     <link rel="icon" type="image/x-icon" href="/icon.svg" />
   </Head>
 );

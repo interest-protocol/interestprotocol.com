@@ -56,7 +56,7 @@ const SummaryHeader: FC = () => {
         {
           label: '24H Fees',
           amount: formatDollars(
-            Number(formatNumber(poolMetrics?.metrics.fees)),
+            Number(formatNumber(poolMetrics?.metrics.fees1D)),
             6,
             'start'
           ),

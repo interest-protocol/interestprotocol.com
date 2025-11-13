@@ -1,7 +1,7 @@
 import { normalizeSuiAddress } from '@interest-protocol/interest-aptos-v2';
 import { Div, P, Span } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
-import { FC, useEffect, useState } from 'react';
+import { FC, useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
 import unikey from 'unikey';
@@ -18,41 +18,51 @@ import { formatDollars, formatMoney } from '@/utils/string';
 
 import { RewardsProps } from './rewards.types';
 
+const DAYS_PER_SECONDS = 86400;
+
 const Rewards: FC<RewardsProps> = ({ poolAddress }) => {
-  const [rewardsPerDay, setRewardsPerDay] = useState(0);
-  const { data, isLoading: isLoadingFarmAccount } = useFarmAccount(poolAddress);
+  const { data: farmAccountData, isLoading: isLoadingFarmAccount } =
+    useFarmAccount(poolAddress);
   const { data: farm, isLoading: isLoadingFarms } = useFarms([
     poolAddress ?? '',
   ]);
 
-  const tokens = isLoadingFarmAccount
-    ? []
-    : data?.rewards.map((reward) => normalizeSuiAddress(reward.fa));
+  const tokens = useMemo(
+    () =>
+      farmAccountData?.rewards.map((reward) =>
+        normalizeSuiAddress(reward.fa)
+      ) || [],
+    [farmAccountData]
+  );
 
   const { data: priceList, isLoading: isPriceLoading } = useCoinsPrice(
     tokens || ''
   );
 
-  const { data: metadata, isLoading } = useSWR(['pool-metadata', tokens], () =>
-    Promise.all(
-      [...(tokens || [])].map((token) => getCoinMetadata(token))
-    ).then((result) => result.map(parseToMetadata))
+  const { data: metadata, isLoading: isLoadingMetadata } = useSWR(
+    tokens.length > 0 ? ['pool-metadata', tokens] : null,
+    () =>
+      Promise.all(tokens.map((token) => getCoinMetadata(token))).then(
+        (result) => result.map(parseToMetadata)
+      )
   );
 
-  const DAYS_PER_SECONDS = 86400;
+  const isLoading =
+    isLoadingMetadata ||
+    isLoadingFarmAccount ||
+    isPriceLoading ||
+    isLoadingFarms;
 
-  const loading =
-    isLoading && isLoadingFarmAccount && isPriceLoading && isLoadingFarms;
+  const rewardsPerDay = useMemo(() => {
+    if (!farm?.[0]?.rewards || farm[0].rewards.length === 0) {
+      return [];
+    }
 
-  useEffect(() => {
-    setRewardsPerDay(
-      loading
-        ? 0
-        : FixedPointMath?.toNumber(
-            BigNumber(String(farm?.[0]?.rewards[0].rewardsPerSecond || 0))
-          ) * DAYS_PER_SECONDS
-    );
-  }, [loading, farm]);
+    return farm[0].rewards.map((reward) => {
+      const rewardsPerSecond = BigNumber(String(reward.rewardsPerSecond || 0));
+      return FixedPointMath?.toNumber(rewardsPerSecond) * DAYS_PER_SECONDS;
+    });
+  }, [farm]);
 
   return (
     <Div mt="1.5rem" gap="0.5rem">
@@ -74,73 +84,74 @@ const Rewards: FC<RewardsProps> = ({ poolAddress }) => {
       </Div>
 
       <Div display="flex" flexDirection="column" gap="0.5rem">
-        {!loading && metadata ? (
-          metadata.length ? (
-            metadata.map(({ symbol, iconUri, standard }, index) => (
-              <Div
-                key={unikey()}
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <TokenIcon
-                  withBg
-                  size="16px"
-                  url={iconUri}
-                  symbol={symbol}
-                  network={Network.MovementMainnet}
-                  rounded={standard === TokenStandard.COIN}
-                />
-
-                <Span
-                  ml="0.5rem"
-                  color="#FFFFFF"
-                  fontWeight="400"
-                  fontFamily="Inter"
-                  fontSize="0.875rem"
-                >
-                  {symbol}
-                </Span>
-
-                <Div
-                  flex="1"
-                  mx="0.5rem"
-                  height="1px"
-                  borderBottom="1px dashed #4B556380"
-                />
-
-                <P
-                  color="#FFFFFF"
-                  fontWeight="400"
-                  fontFamily="Inter"
-                  fontSize="0.875rem"
-                >
-                  {formatMoney(rewardsPerDay)}
-                  <Span color="#9CA3AF">
-                    (
-                    {formatDollars(
-                      rewardsPerDay * (priceList?.[index]?.price ?? 0),
-                      6,
-                      'start'
-                    )}
-                    )
-                  </Span>
-                </P>
-              </Div>
-            ))
-          ) : (
-            <P color="#929292" fontSize="0.75rem" textDecoration="">
-              No Rewards founded
-            </P>
-          )
-        ) : (
+        {isLoading ? (
           <>
             <Skeleton height="16px" width="100%" />
             <Skeleton height="16px" width="100%" />
           </>
+        ) : metadata && metadata.length > 0 && rewardsPerDay.length > 0 ? (
+          metadata.map(({ symbol, iconUri, standard }, index) => (
+            <Div
+              key={unikey()}
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <TokenIcon
+                withBg
+                size="16px"
+                url={iconUri}
+                symbol={symbol}
+                network={Network.MovementMainnet}
+                rounded={standard === TokenStandard.COIN}
+              />
+
+              <Span
+                ml="0.5rem"
+                color="#FFFFFF"
+                fontWeight="400"
+                fontFamily="Inter"
+                fontSize="0.875rem"
+              >
+                {symbol}
+              </Span>
+
+              <Div
+                flex="1"
+                mx="0.5rem"
+                height="1px"
+                borderBottom="1px dashed #4B556380"
+              />
+
+              <P
+                color="#FFFFFF"
+                fontWeight="400"
+                fontFamily="Inter"
+                fontSize="0.875rem"
+              >
+                {formatMoney(rewardsPerDay[index] || 0)}
+                <Span color="#9CA3AF">
+                  {' '}
+                  (
+                  {formatDollars(
+                    (rewardsPerDay[index] || 0) *
+                      (priceList?.[index]?.price ?? 0),
+                    6,
+                    'start'
+                  )}
+                  )
+                </Span>
+              </P>
+            </Div>
+          ))
+        ) : (
+          <P color="#929292" fontSize="0.75rem">
+            No Rewards found
+          </P>
         )}
       </Div>
     </Div>
   );
 };
+
 export default Rewards;

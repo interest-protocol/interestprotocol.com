@@ -1,8 +1,9 @@
 import { Div, P, Span } from '@stylin.js/elements';
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FormFieldBox } from '@/components/form-field-box';
+import { parseInputEventToNumberString } from '@/utils';
 
 import { ICreateTokenForm } from '../../create-token.types';
 import CreateTokenFormButton from '../create-token-form-button';
@@ -12,6 +13,7 @@ import InputImagePreview from './preview-image';
 const CreateTokenFormPreset: FC = () => {
   const {
     register,
+    setValue,
     formState: { errors },
   } = useFormContext<ICreateTokenForm>();
 
@@ -62,6 +64,33 @@ const CreateTokenFormPreset: FC = () => {
         <Div
           gap="1.5rem"
           display="grid"
+          gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
+        >
+          <FormFieldBox
+            type="number"
+            label="Decimals"
+            placeholder="9"
+            {...register('decimals')}
+            supportingText={errors.decimals?.message}
+            status={errors.name?.message ? 'error' : 'none'}
+          />
+
+          <FormFieldBox
+            label="Supply"
+            placeholder="1.000.000"
+            {...register('supply', {
+              onChange: (v: ChangeEvent<HTMLInputElement>) => {
+                setValue('supply', Number(parseInputEventToNumberString(v)));
+              },
+            })}
+            supportingText={errors.supply?.message}
+            status={errors.symbol?.message ? 'error' : 'none'}
+          />
+        </Div>
+
+        <Div
+          gap="1.5rem"
+          display="grid"
           gridTemplateColumns={['1fr', '1fr', '1fr auto 1fr']}
         >
           <FormFieldBox
@@ -97,6 +126,18 @@ const CreateTokenFormPreset: FC = () => {
             isTextArea
           />
         </Div>
+
+        <P
+          marginTop="-0.5rem"
+          fontSize="0.875rem"
+          lineHeight="1.25rem"
+          color="#9CA3AF"
+          fontFamily="Inter"
+          fontWeight="400"
+        >
+          Pay
+          <Span color="#BBB9FD"> 1 MOVE </Span> to create your token instantly.
+        </P>
         <CreateTokenFormButton />
       </Div>
     </>

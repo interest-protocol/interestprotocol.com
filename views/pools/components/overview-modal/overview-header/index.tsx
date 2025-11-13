@@ -5,7 +5,6 @@ import useSWR from 'swr';
 
 import { TokenIcon } from '@/components';
 import Filter from '@/components/filter';
-import Tag from '@/components/tag';
 import { Network } from '@/constants';
 import { getCoinMetadata, parseToMetadata } from '@/utils';
 import {
@@ -15,11 +14,13 @@ import {
 import { Aggregation } from '@/views/pools/header-summary/pool-header-summary.types';
 
 import { OverviewHeaderProps } from './overview-header.types';
+import OverviewHeaderItem from './overview-header-item';
 
 const OverviewHeader: FC<OverviewHeaderProps> = ({
   apr,
   tvl,
   volume,
+  fees,
   address,
   symbols,
   aggregation,
@@ -37,46 +38,57 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
   const [poolMetadata, ...tokensMetadata] = metadata ?? [];
 
   return (
-    <Div display="flex" alignItems="center" justifyContent="space-between">
-      <Div gap="1rem" display="flex" alignItems="center">
-        <TokenIcon
-          withBg
-          rounded
-          size="1.25rem"
-          url={poolMetadata?.iconUri}
-          network={Network.MovementMainnet}
-          symbol={poolMetadata?.symbol || address}
-        />
-        <Div gap="0.5rem" display="flex" flexDirection="column">
-          <P
-            color="#FFFFFF"
-            fontWeight="500"
-            fontFamily="Inter"
-            fontSize="0.875rem"
-          >
-            {symbols?.join(' • ') ??
-              (isLoading ? (
-                <Skeleton width={100} height={14} />
-              ) : (
-                tokensMetadata.map((item) => item.symbol).join(' • ')
-              ))}
-          </P>
-          <Div display="flex" gap="0.5rem" flexWrap="wrap">
-            <Tag type="success" label={'APR: ' + apr} />
-            <Tag type="staked" label={'Volume: ' + (volume ?? '0.00')} />
-            <Tag type="staked" label={'TVL: ' + (tvl ?? '0.00')} />
+    <Div display="flex" flexDirection="column" gap="0.75rem">
+      <Div display="flex" alignItems="center" justifyContent="space-between">
+        <Div gap="1rem" display="flex" alignItems="center">
+          <TokenIcon
+            withBg
+            rounded
+            size="1.25rem"
+            url={poolMetadata?.iconUri}
+            network={Network.MovementMainnet}
+            symbol={poolMetadata?.symbol || address}
+          />
+          <Div gap="0.5rem" display="flex" flexDirection="column">
+            <P
+              color="#FFFFFF"
+              fontWeight="500"
+              fontFamily="Inter"
+              fontSize="0.875rem"
+            >
+              {symbols?.join(' • ') ??
+                (isLoading ? (
+                  <Skeleton width={100} height={14} />
+                ) : (
+                  tokensMetadata.map((item) => item.symbol).join(' • ')
+                ))}
+            </P>
           </Div>
         </Div>
-      </Div>
 
-      <Filter
-        options={['D', 'W']}
-        labels={['24H', '7D']}
-        interval={AGGREGATION_REVERSE_MAP[aggregation]}
-        setInterval={(value) =>
-          setAggregation(AGGREGATION_MAP[value as Aggregation])
-        }
-      />
+        <Filter
+          options={['D', 'W']}
+          labels={['24H', '7D']}
+          interval={AGGREGATION_REVERSE_MAP[aggregation]}
+          setInterval={(value) =>
+            setAggregation(AGGREGATION_MAP[value as Aggregation])
+          }
+        />
+      </Div>
+      <Div
+        p="1rem"
+        display="flex"
+        gap="0.625rem"
+        bg="#9CA3AF0D"
+        borderRadius="0.5rem"
+        justifyContent="space-between"
+        border="1px solid #1F2937"
+      >
+        <OverviewHeaderItem title="TVL" value={tvl ? tvl : ''} />
+        <OverviewHeaderItem title="24H Volume" value={volume ? volume : ''} />
+        <OverviewHeaderItem title="24H Fees" value={fees ? fees : ''} />
+        <OverviewHeaderItem title="Total APR" value={apr ? apr : ''} />
+      </Div>
     </Div>
   );
 };

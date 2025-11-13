@@ -16,7 +16,7 @@ import { GlobalStyles } from '@/styles';
 const MyApp = ({ Component, pageProps }: AppProps<NextPage>): ReactNode => (
   <>
     <Head>
-      <title>Movement</title>
+      <title>Interest Protocol</title>
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
