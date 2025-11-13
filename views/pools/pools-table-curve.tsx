@@ -95,7 +95,7 @@ const PoolsTableCurve: FC = () => {
               <Skeleton width="100%" height={15} />
             </Div>
           ) : (
-            formatDollars(Number(Number(pool.metrics.volume).toFixed(2)))
+            formatDollars(Number(Number(pool.metrics.volume1D).toFixed(2)))
           ),
           position: 'right' as const,
         },
@@ -145,8 +145,9 @@ const PoolsTableCurve: FC = () => {
                     apr: `${(
                       Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
                     ).toFixed(2)}%`,
-                    volume: formatDollars(Number(pool?.metrics.volume)),
+                    volume: formatDollars(Number(pool?.metrics.volume1D)),
                     tvl: formatDollars(Number(pool?.metrics.tvl)),
+                    fees: formatDollars(Number(pool?.metrics.fees1D)),
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
