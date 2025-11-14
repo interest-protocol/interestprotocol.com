@@ -1,6 +1,8 @@
-import toast from 'react-hot-toast';
+import { toasting } from '@/components/toast';
 
 export const copyToClipboard = (content: string, successMessage?: string) => {
   window.navigator.clipboard.writeText(content || '');
-  toast(successMessage || 'Copied to clipboard');
+  toasting.success({
+    action: successMessage || 'Copied to clipboard',
+  });
 };

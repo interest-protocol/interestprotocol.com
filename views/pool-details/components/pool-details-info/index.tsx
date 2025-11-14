@@ -10,7 +10,7 @@ import { CopySVG } from '@/components/svg';
 import { Network } from '@/constants';
 import { FixedPointMath } from '@/lib';
 import { AssetMetadata } from '@/lib/coins-manager/coins-manager.types';
-import { formatAddress, formatMoney } from '@/utils';
+import { copyToClipboard, formatAddress, formatMoney } from '@/utils';
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
@@ -91,6 +91,13 @@ const PoolDetailsInfo: FC = () => {
           variant="text"
           nHover={{
             color: '#B4C5FF',
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            copyToClipboard(
+              token.type,
+              `${token.symbol} address copied to the clipboard`
+            );
           }}
         >
           <CopySVG maxWidth="1rem" maxHeight="1rem" width="1rem" />

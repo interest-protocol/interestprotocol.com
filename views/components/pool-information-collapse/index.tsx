@@ -9,7 +9,12 @@ import { FC } from 'react';
 import { Button } from '@/components/button';
 import { CopySVG } from '@/components/svg';
 import { FixedPointMath } from '@/lib';
-import { formatAddress, formatDollars, formatMoney } from '@/utils';
+import {
+  copyToClipboard,
+  formatAddress,
+  formatDollars,
+  formatMoney,
+} from '@/utils';
 import CollapseCardInfo from '@/views/components/collapse-card-info';
 import { CollapseCardInfoLineProps } from '@/views/components/collapse-card-info/collapse-card-info.types';
 
@@ -126,6 +131,13 @@ const PoolDetailsInformation: FC<PoolInformationCollapseProps> = ({
             variant="text"
             nHover={{
               color: '#B4C5FF',
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              copyToClipboard(
+                query.address as string,
+                'Pool Address copied to the clipboard'
+              );
             }}
           >
             <CopySVG maxWidth="1rem" maxHeight="1rem" width="1rem" />
