@@ -117,28 +117,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
     try {
       invariant(account, 'You must be connected to proceed');
 
-      const lpCoin = getValues('lpCoin');
-
       let payload, txResult;
-      const selectedCoinIndex = getValues('selectedCoinIndex');
-
-      if (selectedCoinIndex.includes(0) && selectedCoinIndex.includes(1)) {
-        payload = interestCurveSdk.removeLiquidity({
-          pool: poolAddress,
-          recipient: account.address,
-          amount: BigInt(lpCoin.valueBN.toFixed(0)),
-          minAmountsOut: getValues('tokenList').map(() => BigInt(0)),
-        });
-      } else {
-        const tmpIndex = selectedCoinIndex[0];
-        payload = interestCurveSdk.removeLiquidityOneFa({
-          pool: lpCoin.type,
-          minAmountOut: BigInt(0),
-          recipient: account.address,
-          amount: BigInt(lpCoin.valueBN.decimalPlaces(0, 1).toString()),
-          faOut: getValues('tokenList')[tmpIndex!].type,
-        });
-      }
 
       if (payload) {
         const tx = await signAndSubmitTransaction({ payload });
