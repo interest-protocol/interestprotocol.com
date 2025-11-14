@@ -117,7 +117,16 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
     try {
       invariant(account, 'You must be connected to proceed');
 
-      let payload, txResult;
+      const lpCoin = getValues('lpCoin');
+
+      let txResult;
+
+      const payload = interestCurveSdk.removeLiquidity({
+        pool: poolAddress,
+        recipient: account.address,
+        amount: BigInt(lpCoin.valueBN.toFixed(0)),
+        minAmountsOut: getValues('tokenList').map(() => BigInt(0)),
+      });
 
       if (payload) {
         const tx = await signAndSubmitTransaction({ payload });
