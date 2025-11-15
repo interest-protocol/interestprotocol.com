@@ -1,4 +1,4 @@
-import { Div, Hr } from '@stylin.js/elements';
+import { Div } from '@stylin.js/elements';
 import { FC } from 'react';
 
 import PoolDetailsInfo from '../pool-details-info';
@@ -22,10 +22,7 @@ const Pool: FC = () => (
       <Div display={['flex', 'flex', 'flex', 'none']} width="100%">
         <PoolDetailsInfo />
       </Div>
-      <Hr
-        border="1px solid #F3F4F61A"
-        display={['none', 'none', 'none', 'flex']}
-      />
+
       <TransactionList />
     </Div>
     <PoolFormSection />
