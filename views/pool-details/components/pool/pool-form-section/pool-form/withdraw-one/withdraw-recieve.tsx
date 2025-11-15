@@ -17,10 +17,10 @@ const WithdrawReceive: FC = () => {
   return (
     <Input
       readonly
-      type="radio"
       shortView
-      label="You pay"
+      type="radio"
       field={field}
+      label="You pay"
       onSelectToken={(index) => setValue('selectedCoinIndex', [index])}
     />
   );
