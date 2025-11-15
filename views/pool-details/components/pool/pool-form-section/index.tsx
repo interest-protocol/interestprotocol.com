@@ -11,8 +11,9 @@ import PoolDetailsInfo from '../../pool-details-info';
 import PoolFormSectionSettings from './form-settings';
 import PoolFormDeposit from './pool-form/deposit';
 import PoolFormWithdraw from './pool-form/withdraw';
+import PoolFormWithdrawOne from './pool-form/withdraw-one';
 
-const TABS = ['Deposit', 'Withdraw'];
+const TABS = ['Deposit', 'Withdraw both', 'Withdraw one'];
 
 const PoolFormSection: FC = () => {
   const [poolTabs, setPoolTabs] = useState(0);
@@ -26,7 +27,7 @@ const PoolFormSection: FC = () => {
     setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
     setValue('tokenList.1.value', '');
     setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
-    setValue('selectedCoinIndex', [0, 1]);
+    setValue('selectedCoinIndex', tab === 2 ? [] : [0, 1]);
     setValue('balanced', false);
   };
 
@@ -54,9 +55,11 @@ const PoolFormSection: FC = () => {
           <PoolFormSectionSettings />
         </Div>
         {
-          [<PoolFormDeposit key={v4()} />, <PoolFormWithdraw key={v4()} />][
-            poolTabs
-          ]
+          [
+            <PoolFormDeposit key={v4()} />,
+            <PoolFormWithdraw key={v4()} />,
+            <PoolFormWithdrawOne key={v4()} />,
+          ][poolTabs]
         }
       </Div>
       <Div display={['none', 'none', 'none', 'flex']} width="100%">

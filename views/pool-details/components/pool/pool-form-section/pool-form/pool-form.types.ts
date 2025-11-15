@@ -1,3 +1,4 @@
+type PoolAction = 'deposit' | 'withdraw' | 'withdrawOne';
 export interface PoolFormButtonProps {
-  isDeposit: boolean;
+  action: PoolAction;
 }
