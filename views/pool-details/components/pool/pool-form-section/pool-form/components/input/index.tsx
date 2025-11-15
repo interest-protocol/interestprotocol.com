@@ -194,6 +194,7 @@ const Input: FC<InputProps> = ({
                       cursor="pointer"
                       alignItems="center"
                       borderRadius="9999rem"
+                      justifyContent="space-between"
                       onClick={() => onSelectToken?.(i)}
                     >
                       <SelectedToken field={`tokenList.${i}`} Suffix={Suffix} />
