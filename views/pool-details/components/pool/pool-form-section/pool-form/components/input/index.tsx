@@ -6,6 +6,7 @@ import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { v4 } from 'uuid';
 
+import { RadioButton } from '@/components/radio-input';
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
@@ -28,13 +29,14 @@ const Input: FC<InputProps> = ({
   type = 'default',
   onSelectToken,
 }) => {
-  const { register, setValue, getValues } =
+  const { register, setValue, getValues, control } =
     useFormContext<PortfolioDetailsFormProps>();
 
   const { loading, pool } = usePoolDetailsContext();
 
   const tokenDecimals = useWatch({ name: `${field}.decimals` });
-  const selectedIndex = Number(field.split('.').pop());
+  const selectedCoinIndex = useWatch({ control, name: 'selectedCoinIndex' });
+  const activeIndex = selectedCoinIndex[0];
 
   const handleChange = (amount: string) => {
     if (loading || !pool) return;
@@ -180,42 +182,25 @@ const Input: FC<InputProps> = ({
               justifyContent="space-between"
             >
               {type === 'radio' ? (
-                <Div display="flex" gap="0.5rem" flexDirection="column">
+                <Div display="flex" gap="0.75rem" flexDirection="column">
                   {[0, 1].map((i) => (
                     <Div
                       key={v4()}
-                      p="0.5rem"
-                      height="2.5rem"
+                      pr="0.5rem"
+                      height="2rem"
                       display="flex"
                       bg="#030712"
                       gap="0.5rem"
                       cursor="pointer"
                       alignItems="center"
                       borderRadius="9999rem"
-                      border="1px solid #F3F4F633"
                       onClick={() => onSelectToken?.(i)}
                     >
-                      <Div
-                        width="1.25rem"
-                        height="1.25rem"
-                        cursor="pointer"
-                        display="flex"
-                        borderRadius="50%"
-                        alignItems="center"
-                        justifyContent="center"
-                        border="2px solid #B4C5FF"
-                        bg={selectedIndex === i ? '#B4C5FF' : 'transparent'}
-                      >
-                        {selectedIndex === i && (
-                          <Div
-                            width="0.625rem"
-                            height="0.625rem"
-                            bg="#FFFFFF"
-                            borderRadius="50%"
-                          />
-                        )}
-                      </Div>
                       <SelectedToken field={`tokenList.${i}`} Suffix={Suffix} />
+                      <RadioButton
+                        selected={activeIndex === i}
+                        onClick={() => onSelectToken?.(i)}
+                      />
                     </Div>
                   ))}
                 </Div>

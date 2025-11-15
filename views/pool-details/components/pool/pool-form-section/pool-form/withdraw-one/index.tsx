@@ -30,7 +30,7 @@ const PoolFormWithdrawOne: FC = () => (
       </Div>
       <WithdrawReceive />
     </Div>
-    <PoolFormButton isDeposit={false} />
+    <PoolFormButton action="withdrawOne" />
   </Div>
 );
 

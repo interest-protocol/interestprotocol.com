@@ -17,7 +17,7 @@ import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-d
 
 import { PoolFormButtonProps } from './pool-form.types';
 
-const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
+const PoolFormButton: FC<PoolFormButtonProps> = ({ action }) => {
   const client = useAptosClient();
   const { setContent } = useModal();
   const { mutate } = useCoins();
@@ -34,6 +34,16 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
     setContent(<ConnectWalletModal />, {
       title: 'Login or Connect wallet',
     });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const resetForm = (setValue: any) => {
+    setValue('lpCoin.value', '');
+    setValue('tokenList.0.value', '');
+    setValue('tokenList.1.value', '');
+    setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+    setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+  };
 
   if (!account)
     return (
@@ -111,13 +121,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
-      setValue('lpCoin.value', '');
-      setValue('tokenList.0.value', '');
-      setValue('tokenList.1.value', '');
-      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
-      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
-      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
-
+      resetForm(setValue);
       stopLoading();
     }
   };
@@ -175,29 +179,91 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
-      setValue('lpCoin.value', '');
-      setValue('tokenList.0.value', '');
-      setValue('tokenList.1.value', '');
-      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
-      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
-      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+      resetForm(setValue);
+      stopLoading();
+    }
+  };
 
+  const handleWithdrawOne = async (stopLoading: () => void) => {
+    try {
+      invariant(account, 'You must be connected to proceed');
+
+      const lpCoin = getValues('lpCoin');
+      const selectedCoinIndex = getValues('selectedCoinIndex');
+
+      invariant(
+        selectedCoinIndex.length > 0,
+        'You need to select a coin to withdraw'
+      );
+
+      let txResult;
+
+      const tmpIndex = selectedCoinIndex[0];
+      const payload = interestCurveSdk.removeLiquidityOneFa({
+        pool: lpCoin.type,
+        minAmountOut: BigInt(0),
+        recipient: account.address,
+        amount: BigInt(lpCoin.valueBN.decimalPlaces(0, 1).toString()),
+        faOut: getValues('tokenList')[tmpIndex!].type,
+      });
+
+      if (payload) {
+        const tx = await signAndSubmitTransaction({ payload });
+
+        invariant(tx.status === 'Approved', 'Rejected by User');
+
+        txResult = tx.args;
+      }
+
+      if (txResult) {
+        let waitingTx = true;
+
+        do {
+          await client
+            .waitForTransaction({
+              transactionHash: txResult.hash,
+              options: { checkSuccess: true },
+            })
+            .then(() => {
+              waitingTx = false;
+            })
+            .catch();
+        } while (waitingTx);
+
+        toasting.success({
+          action: 'Withdraw',
+          message: 'See on explorer',
+          link: EXPLORER_URL[Network.MAINNET](`txn/${txResult.hash}`),
+        });
+        mutate();
+      }
+    } catch (e) {
+      //console.warn({ e });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((e as any)?.data?.error_code === 'mempool_is_full')
+        throw new Error('The mempool is full, try again in a few seconds.');
+
+      throw e;
+    } finally {
+      resetForm(setValue);
       stopLoading();
     }
   };
 
   const onSubmit = async () => {
     const dismiss = toasting.loading({
-      message: isDeposit ? 'Depositing...' : 'Withdrawing...',
+      message: action === 'deposit' ? 'Depositing...' : 'Withdrawing...',
     });
 
     try {
       setLoading(true);
 
-      await (isDeposit ? handleDeposit : handleWithdraw)(dismiss);
+      if (action === 'deposit') await handleDeposit(dismiss);
+      else if (action === 'withdraw') await handleWithdraw(dismiss);
+      else await handleWithdrawOne(dismiss);
     } catch (e) {
       toasting.error({
-        action: isDeposit ? 'Deposit' : 'Withdraw',
+        action: action === 'deposit' ? 'Deposit' : 'Withdraw',
         message: (e as Error).message ?? 'Error executing transaction',
       });
     } finally {
@@ -223,7 +289,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
       borderRadius="0.75rem"
       justifyContent="center"
     >
-      {isDeposit
+      {action === 'deposit'
         ? loading
           ? 'Depositing...'
           : 'Deposit'

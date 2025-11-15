@@ -60,7 +60,8 @@ const PoolFormDeposit: FC = () => (
       <Input field="lpCoin" label="You get" shortView readonly />
     </Div>
     <DepositBalanced />
-    <PoolFormButton isDeposit />
+
+    <PoolFormButton action="deposit" />
   </Div>
 );
 

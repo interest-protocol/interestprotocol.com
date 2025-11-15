@@ -27,7 +27,7 @@ const PoolFormSection: FC = () => {
     setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
     setValue('tokenList.1.value', '');
     setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
-    setValue('selectedCoinIndex', [0, 1]);
+    setValue('selectedCoinIndex', tab === 2 ? [] : [0, 1]);
     setValue('balanced', false);
   };
 
