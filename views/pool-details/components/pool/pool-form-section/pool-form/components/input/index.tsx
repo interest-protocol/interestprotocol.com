@@ -4,6 +4,7 @@ import { Div, P } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { v4 } from 'uuid';
 
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
@@ -24,6 +25,8 @@ const Input: FC<InputProps> = ({
   readonly,
   shortView,
   onlyField,
+  type = 'default',
+  onSelectToken,
 }) => {
   const { register, setValue, getValues } =
     useFormContext<PortfolioDetailsFormProps>();
@@ -31,6 +34,7 @@ const Input: FC<InputProps> = ({
   const { loading, pool } = usePoolDetailsContext();
 
   const tokenDecimals = useWatch({ name: `${field}.decimals` });
+  const selectedIndex = Number(field.split('.').pop());
 
   const handleChange = (amount: string) => {
     if (loading || !pool) return;
@@ -170,8 +174,54 @@ const Input: FC<InputProps> = ({
                 })}
               />
             </Div>
-            <Div display="flex" alignItems="center">
-              <SelectedToken field={field} Suffix={Suffix} />
+            <Div
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              {type === 'radio' ? (
+                <Div display="flex" gap="0.5rem" flexDirection="column">
+                  {[0, 1].map((i) => (
+                    <Div
+                      key={v4()}
+                      p="0.5rem"
+                      height="2.5rem"
+                      display="flex"
+                      bg="#030712"
+                      gap="0.5rem"
+                      cursor="pointer"
+                      alignItems="center"
+                      borderRadius="9999rem"
+                      border="1px solid #F3F4F633"
+                      onClick={() => onSelectToken?.(i)}
+                    >
+                      <Div
+                        width="1.25rem"
+                        height="1.25rem"
+                        cursor="pointer"
+                        display="flex"
+                        borderRadius="50%"
+                        alignItems="center"
+                        justifyContent="center"
+                        border="2px solid #B4C5FF"
+                        bg={selectedIndex === i ? '#B4C5FF' : 'transparent'}
+                      >
+                        {selectedIndex === i && (
+                          <Div
+                            width="0.625rem"
+                            height="0.625rem"
+                            bg="#FFFFFF"
+                            borderRadius="50%"
+                          />
+                        )}
+                      </Div>
+                      <SelectedToken field={`tokenList.${i}`} Suffix={Suffix} />
+                    </Div>
+                  ))}
+                </Div>
+              ) : (
+                <SelectedToken field={field} Suffix={Suffix} />
+              )}
             </Div>
           </Div>
           <Div display="flex" justifyContent="space-between">

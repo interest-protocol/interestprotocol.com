@@ -11,8 +11,9 @@ import PoolDetailsInfo from '../../pool-details-info';
 import PoolFormSectionSettings from './form-settings';
 import PoolFormDeposit from './pool-form/deposit';
 import PoolFormWithdraw from './pool-form/withdraw';
+import PoolFormWithdrawOne from './pool-form/withdraw-one';
 
-const TABS = ['Deposit', 'Withdraw'];
+const TABS = ['Deposit', 'Withdraw both', 'Withdraw one'];
 
 const PoolFormSection: FC = () => {
   const [poolTabs, setPoolTabs] = useState(0);
@@ -54,9 +55,11 @@ const PoolFormSection: FC = () => {
           <PoolFormSectionSettings />
         </Div>
         {
-          [<PoolFormDeposit key={v4()} />, <PoolFormWithdraw key={v4()} />][
-            poolTabs
-          ]
+          [
+            <PoolFormDeposit key={v4()} />,
+            <PoolFormWithdraw key={v4()} />,
+            <PoolFormWithdrawOne key={v4()} />,
+          ][poolTabs]
         }
       </Div>
       <Div display={['none', 'none', 'none', 'flex']} width="100%">
