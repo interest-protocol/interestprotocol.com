@@ -25,12 +25,10 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
   const interestCurveSdk = useInterestCurveSdk();
   const { account, signAndSubmitTransaction } = useAptosWallet();
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
-  const { reset } = useFormContext<PortfolioDetailsFormProps>();
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
   const {
     pool: { poolAddress },
   } = usePoolDetailsContext();
-
-  const { pool } = usePoolDetailsContext();
 
   const connectModal = () =>
     setContent(<ConnectWalletModal />, {
@@ -170,14 +168,12 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
-      reset({
-        lpCoin: { ...pool.poolMetadata, value: '', valueBN: ZERO_BIG_NUMBER },
-        tokenList: pool.tokensMetadata?.map((token) => ({
-          ...token,
-          value: '',
-          valueBN: ZERO_BIG_NUMBER,
-        })),
-      });
+      setValue('lpCoin.value', '');
+      setValue('tokenList.0.value', '');
+      setValue('tokenList.1.value', '');
+      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
 
       stopLoading();
     }
