@@ -11,6 +11,7 @@ import { useModal } from '@/hooks';
 import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
+import { ZERO_BIG_NUMBER } from '@/utils';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
@@ -24,10 +25,12 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
   const interestCurveSdk = useInterestCurveSdk();
   const { account, signAndSubmitTransaction } = useAptosWallet();
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
-  const { resetField } = useFormContext<PortfolioDetailsFormProps>();
+  const { reset } = useFormContext<PortfolioDetailsFormProps>();
   const {
     pool: { poolAddress },
   } = usePoolDetailsContext();
+
+  const { pool } = usePoolDetailsContext();
 
   const connectModal = () =>
     setContent(<ConnectWalletModal />, {
@@ -167,9 +170,15 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
-      resetField('lpCoin');
-      resetField('tokenList.0');
-      resetField('tokenList.1');
+      reset({
+        lpCoin: { ...pool.poolMetadata, value: '', valueBN: ZERO_BIG_NUMBER },
+        tokenList: pool.tokensMetadata?.map((token) => ({
+          ...token,
+          value: '',
+          valueBN: ZERO_BIG_NUMBER,
+        })),
+      });
+
       stopLoading();
     }
   };
