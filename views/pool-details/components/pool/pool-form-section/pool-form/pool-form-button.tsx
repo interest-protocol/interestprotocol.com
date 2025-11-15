@@ -11,6 +11,7 @@ import { useModal } from '@/hooks';
 import { useInterestCurveSdk } from '@/hooks/use-interest-curve-sdk';
 import { useAptosClient } from '@/lib/aptos-provider/aptos-client/aptos-client.hooks';
 import { useCoins } from '@/lib/coins-manager/coins-manager.hooks';
+import { ZERO_BIG_NUMBER } from '@/utils';
 import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context';
 import { PortfolioDetailsFormProps } from '@/views/portfolio-details/portfolio-details.types';
 
@@ -24,6 +25,7 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
   const interestCurveSdk = useInterestCurveSdk();
   const { account, signAndSubmitTransaction } = useAptosWallet();
   const { getValues } = useFormContext<PortfolioDetailsFormProps>();
+  const { setValue } = useFormContext<PortfolioDetailsFormProps>();
   const {
     pool: { poolAddress },
   } = usePoolDetailsContext();
@@ -109,6 +111,13 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
+      setValue('lpCoin.value', '');
+      setValue('tokenList.0.value', '');
+      setValue('tokenList.1.value', '');
+      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+
       stopLoading();
     }
   };
@@ -166,6 +175,13 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
+      setValue('lpCoin.value', '');
+      setValue('tokenList.0.value', '');
+      setValue('tokenList.1.value', '');
+      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+
       stopLoading();
     }
   };
