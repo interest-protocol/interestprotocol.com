@@ -197,8 +197,8 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ action }) => {
       );
 
       let txResult;
-
       const tmpIndex = selectedCoinIndex[0];
+
       const payload = interestCurveSdk.removeLiquidityOneFa({
         pool: lpCoin.type,
         minAmountOut: BigInt(0),
