@@ -48,7 +48,7 @@ const PoolFormSection: FC = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Div display="flex">
+          <Div display="flex" flexWrap="wrap">
             <Tabs tabs={TABS} setTab={onHandle} tab={poolTabs} />
           </Div>
 
