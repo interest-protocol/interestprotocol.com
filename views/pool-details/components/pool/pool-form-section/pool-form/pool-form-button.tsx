@@ -111,6 +111,13 @@ const PoolFormButton: FC<PoolFormButtonProps> = ({ isDeposit }) => {
 
       throw e;
     } finally {
+      setValue('lpCoin.value', '');
+      setValue('tokenList.0.value', '');
+      setValue('tokenList.1.value', '');
+      setValue('lpCoin.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.0.valueBN', ZERO_BIG_NUMBER);
+      setValue('tokenList.1.valueBN', ZERO_BIG_NUMBER);
+
       stopLoading();
     }
   };
