@@ -13,7 +13,7 @@ import PoolFormDeposit from './pool-form/deposit';
 import PoolFormWithdraw from './pool-form/withdraw';
 import PoolFormWithdrawOne from './pool-form/withdraw-one';
 
-const TABS = ['Deposit', 'Withdraw both', 'Withdraw one'];
+const TABS = ['Deposit', 'Withdraw', 'Withdraw one'];
 
 const PoolFormSection: FC = () => {
   const [poolTabs, setPoolTabs] = useState(0);
@@ -48,7 +48,7 @@ const PoolFormSection: FC = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Div display="flex" flexWrap="wrap">
+          <Div display="flex" width="90%">
             <Tabs tabs={TABS} setTab={onHandle} tab={poolTabs} />
           </Div>
 

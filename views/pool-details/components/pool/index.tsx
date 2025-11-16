@@ -11,7 +11,7 @@ const Pool: FC = () => (
     gap={['1rem', '1rem', '1rem', '2rem']}
     display={['flex', 'flex', 'flex', 'grid']}
     flexDirection="column-reverse"
-    gridTemplateColumns="2fr 1fr"
+    gridTemplateColumns="1fr 23rem"
   >
     <Div
       display="flex"
