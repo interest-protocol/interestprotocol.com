@@ -8,18 +8,18 @@ import VolumeSection from './volume-section';
 
 const Pool: FC = () => (
   <Div
-    gap={['1rem', '1rem', '1rem', '2rem']}
-    display={['flex', 'flex', 'flex', 'grid']}
+    gap={['1rem', '1rem', '1rem', '1rem', '2rem']}
+    display={['flex', 'flex', 'flex', 'flex', 'grid']}
     flexDirection="column-reverse"
     gridTemplateColumns="1fr 23rem"
   >
     <Div
       display="flex"
       flexDirection="column"
-      gap={['1rem', '1rem', '1rem', '2rem']}
+      gap={['1rem', '1rem', '1rem', '1rem', '2rem']}
     >
       <VolumeSection />
-      <Div display={['flex', 'flex', 'flex', 'none']} width="100%">
+      <Div display={['flex', 'flex', 'flex', 'flex', 'none']} width="100%">
         <PoolDetailsInfo />
       </Div>
 

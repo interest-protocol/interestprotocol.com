@@ -36,7 +36,7 @@ const PoolFormSection: FC = () => {
       gap="2rem"
       display="flex"
       flexDirection="column"
-      mb={['0.5rem', '0.5rem', '0.5rem', 'unset']}
+      mb={['0.5rem', '0.5rem', '0.5rem', '0.5rem', 'unset']}
     >
       <Div>
         <Div
@@ -62,7 +62,7 @@ const PoolFormSection: FC = () => {
           ][poolTabs]
         }
       </Div>
-      <Div display={['none', 'none', 'none', 'flex']} width="100%">
+      <Div display={['none', 'none', 'none', 'none', 'flex']} width="100%">
         <PoolDetailsInfo />
       </Div>
     </Div>

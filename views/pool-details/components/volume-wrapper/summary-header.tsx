@@ -34,7 +34,13 @@ const SummaryHeader: FC = () => {
       display="grid"
       justifyItems="start end"
       justifyContent="space-between"
-      gridTemplateColumns={['1fr 1fr', '1fr 1fr', '1fr 1fr', 'repeat(5, 1fr)']}
+      gridTemplateColumns={[
+        '1fr 1fr',
+        '1fr 1fr',
+        '1fr 1fr',
+        '1fr 1fr',
+        'repeat(5, 1fr)',
+      ]}
     >
       {[
         {
@@ -75,22 +81,29 @@ const SummaryHeader: FC = () => {
             index % 2 == 1 ? 'end' : 'unset',
             index % 2 == 1 ? 'end' : 'unset',
             index % 2 == 1 ? 'end' : 'unset',
+            index % 2 == 1 ? 'end' : 'unset',
             'unset',
           ]}
         >
           <Span
             fontWeight="400"
             color="#9CA3AF"
-            fontSize={['0.75rem', '0.75rem', '0.75rem', '0.875rem']}
-            lineHeight={['1.25rem', '1.25rem', '1.25rem', '1.75rem']}
+            fontSize={['0.75rem', '0.75rem', '0.75rem', '0.75rem', '0.875rem']}
+            lineHeight={['1.25rem', '1.25rem', '1.25rem', '1.25rem', '1.75rem']}
           >
             {label}
           </Span>
           <Span
             color="#fff"
             fontWeight="500"
-            lineHeight={['2rem', '2rem', '2rem', '2.25rem']}
-            fontSize={['1.125rem', '1.125rem', '1.125rem', '1.5rem']}
+            lineHeight={['2rem', '2rem', '2rem', '2rem', '2.25rem']}
+            fontSize={[
+              '1.125rem',
+              '1.125rem',
+              '1.125rem',
+              '1.125rem',
+              '1.5rem',
+            ]}
           >
             {amount}
           </Span>
@@ -100,7 +113,7 @@ const SummaryHeader: FC = () => {
         key={v4()}
         flexWrap="wrap"
         flexDirection="column"
-        display={['none', 'none', 'none', 'flex']}
+        display={['none', 'none', 'none', 'none', 'flex']}
       >
         <PoolBalance />
       </Div>

@@ -36,7 +36,7 @@ const PoolsDetailsTableMobile: FC = () => {
       borderRadius="0.5rem"
       borderColor="#1F2937"
       borderWidth="1px 1px 0px 1px"
-      display={['flex', 'flex', 'flex', 'none']}
+      display={['flex', 'flex', 'flex', 'flex', 'none']}
     >
       {data?.data.map(({ timestamp, eventType, usd, coins }) => (
         <Div

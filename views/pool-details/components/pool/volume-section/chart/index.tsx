@@ -27,7 +27,13 @@ const Chart: FC = () => {
             fontWeight="400"
             lineHeight="2rem"
             fontFamily="Inter"
-            fontSize={['1,125rem', '1,125rem', '1,125rem', '1.5rem']}
+            fontSize={[
+              '1,125rem',
+              '1,125rem',
+              '1,125rem',
+              '1,125rem',
+              '1.5rem',
+            ]}
           >
             {formatDollars(
               Number(poolMetrics?.metrics.volume ?? 0),
@@ -39,7 +45,7 @@ const Chart: FC = () => {
             fontWeight="400"
             color="#9CA3AF"
             lineHeight="1.25rem"
-            fontSize={['0,75rem', '0,75rem', '0,75rem', '0.875rem']}
+            fontSize={['0,75rem', '0,75rem', '0,75rem', '0,75rem', '0.875rem']}
           >
             USD Volume
           </Span>
@@ -48,12 +54,15 @@ const Chart: FC = () => {
           fontWeight="400"
           color="#9CA3AF"
           lineHeight="1.25rem"
-          fontSize={['0,75rem', '0,75rem', '0,75rem', '0.875rem']}
+          fontSize={['0,75rem', '0,75rem', '0,75rem', '0,75rem', '0.875rem']}
         >
           All time
         </Span>
       </Div>
-      <Div width="100%" height={['7.4rem', '7.4rem', '7.4rem', '17rem']}>
+      <Div
+        width="100%"
+        height={['7.4rem', '7.4rem', '7.4rem', '7.4rem', '17rem']}
+      >
         <VolumeChart
           data={
             poolsMetricsOvertime?.map(({ volume, timestamp }) => ({

@@ -11,7 +11,7 @@ const VolumeWrapper: FC<PropsWithChildren> = ({ children }) => (
       key={v4()}
       flexWrap="wrap"
       flexDirection="column"
-      display={['flex', 'flex', 'flex', 'none']}
+      display={['flex', 'flex', 'flex', 'flex', 'none']}
     >
       <PoolBalance />
     </Div>
