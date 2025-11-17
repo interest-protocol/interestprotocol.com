@@ -8,7 +8,7 @@ const TableSummaryPosition: FC<TableSummaryPositionProps> = ({
 }) => (
   <Div
     gap="0.5rem"
-    display="flex"
+    display={['none', 'none', 'none', 'flex']}
     bg="#121621"
     p="0.75rem 1rem"
     width="fit-content"

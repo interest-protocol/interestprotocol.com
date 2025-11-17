@@ -225,7 +225,7 @@ const PortfolioCurvePools: FC = () => {
           ? formatDollars(usdUserPosition ?? 0)
           : undefined,
         gain: claimableRewards ? (
-          `${formatMoney(FixedPointMath.toNumber(claimableRewards), 2)} MOVE`
+          `${formatMoney(FixedPointMath.toNumber(claimableRewards))} MOVE`
         ) : isAccountFarmsLoading ? (
           <Skeleton width={60} height={16} />
         ) : (
@@ -305,7 +305,7 @@ const PortfolioCurvePools: FC = () => {
                     )
                   )
                 ),
-                4
+                MOVE.decimals
               )} MOVE`
             ),
             position: 'right',

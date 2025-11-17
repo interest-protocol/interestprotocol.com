@@ -168,7 +168,10 @@ const PoolDetailsHeader: FC = () => {
           label="Claim rewards:"
           amount={
             movePrice
-              ? (movePrice * FixedPointMath.toNumber(balance)).toFixed(6)
+              ? formatMoney(
+                  movePrice * FixedPointMath.toNumber(balance),
+                  MOVE.decimals
+                )
               : '0.00'
           }
         />

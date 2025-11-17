@@ -73,7 +73,7 @@ const RewardsModal: FC<RewardsModalProps> = ({
             fontSize="1.25rem"
             lineHeight="2.25rem"
           >
-            {formatDollars(+totalEarnings, 6, 'start')}
+            {formatDollars(+totalEarnings, +totalEarnings > 0 ? 8 : 2, 'start')}
           </Span>
         </Div>
 
