@@ -49,7 +49,7 @@ const PoolFormSection: FC = () => {
           justifyContent="space-between"
         >
           <Div display="flex" width="90%">
-            <Tabs tabs={TABS} setTab={onHandle} tab={poolTabs} />
+            <Tabs tabs={TABS} setTab={onHandle} tab={poolTabs} isShortSize />
           </Div>
 
           <PoolFormSectionSettings />

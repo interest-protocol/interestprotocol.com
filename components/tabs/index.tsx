@@ -5,7 +5,14 @@ import { v4 } from 'uuid';
 import { Button } from '../button';
 import { TabsProps } from './tabs.types';
 
-const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
+const Tabs: FC<TabsProps> = ({
+  tab,
+  tabs,
+  color,
+  total,
+  setTab,
+  isShortSize,
+}) => (
   <>
     {tabs.map((text, index) => {
       const tabTotal = total?.[index];
@@ -13,7 +20,6 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
       return (
         <Button
           key={v4()}
-          px="1rem"
           gap="1rem"
           py="0.5rem"
           display="flex"
@@ -27,8 +33,11 @@ const Tabs: FC<TabsProps> = ({ setTab, tab, tabs, color, total }) => (
           justifyContent="center"
           onClick={() => setTab(index)}
           nHover={{ color: '#B4C5FF' }}
-          width={['100%', '100%', '100%', 'unset']}
+          width={
+            isShortSize ? 'max-content' : ['100%', '100%', '100%', 'unset']
+          }
           fontWeight={tab === index ? '400' : '500'}
+          px={['0.65rem', '0.65rem', '1rem', '1rem']}
           color={tab === index ? '#FFFFFF' : '#9CA3AF'}
           bg={tab === index ? color || '#9CA3AF1A' : 'transparent'}
         >

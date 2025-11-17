@@ -4,4 +4,5 @@ export interface TabsProps {
   total?: ReadonlyArray<number | string | null>;
   tabs: ReadonlyArray<string>;
   setTab: (tab: number) => void;
+  isShortSize?: boolean;
 }
