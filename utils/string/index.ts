@@ -75,7 +75,7 @@ export const formatMoney = (
   allowK: boolean = true
 ): string => {
   const { integralDigits, newMoney, decimalDigits } = treatMoneyDecimals(
-    +money.toFixed(4),
+    money,
     maxFractionDigits,
     allowK
   );

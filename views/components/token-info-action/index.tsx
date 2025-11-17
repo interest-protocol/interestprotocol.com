@@ -1,3 +1,4 @@
+import { useAptosWallet } from '@razorlabs/wallet-kit';
 import { Div, Span } from '@stylin.js/elements';
 import { FC } from 'react';
 
@@ -12,33 +13,38 @@ const TokenInfoAction: FC<TokenInfoActionProps> = ({
   label,
   amount,
   onClaim,
-}) => (
-  <TokenInfoActionsWrapper>
-    <Div
-      display="flex"
-      gap="0.5rem"
-      width={onClaim ? 'unset' : '100%'}
-      justifyContent="space-between"
-    >
-      <Span color="#9CA3AF">{label}</Span>
-      <Span color="#FFFFFF">${formatMoney(+(+amount).toFixed(4))}</Span>
-    </Div>
-    {onClaim && (
-      <Button
-        p="unset"
-        ml="0.5rem"
-        gap="0.2rem"
-        border="none"
-        variant="text"
-        color="#B4C5FF"
-        onClick={onClaim}
-        nHover={{ color: '#b4c6ffc1' }}
+}) => {
+  const { account } = useAptosWallet();
+  return (
+    <TokenInfoActionsWrapper>
+      <Div
+        display="flex"
+        gap="0.5rem"
+        width={onClaim ? 'unset' : '100%'}
+        justifyContent="space-between"
       >
-        Claim
-        <ArrowRightSVG width="100%" maxWidth="0.75rem" maxHeight="0.75rem" />
-      </Button>
-    )}
-  </TokenInfoActionsWrapper>
-);
+        <Span color="#9CA3AF">{label}</Span>
+        <Span color="#FFFFFF">${formatMoney(+(+amount))}</Span>
+      </Div>
+      {onClaim && (
+        <Button
+          p="unset"
+          ml="0.5rem"
+          gap="0.2rem"
+          border="none"
+          variant="text"
+          cursor={account?.address ? 'pointer' : 'not-allowed'}
+          disabled={!account?.address}
+          color="#B4C5FF"
+          onClick={onClaim}
+          nHover={{ color: '#b4c6ffc1' }}
+        >
+          Claim
+          <ArrowRightSVG width="100%" maxWidth="0.75rem" maxHeight="0.75rem" />
+        </Button>
+      )}
+    </TokenInfoActionsWrapper>
+  );
+};
 
 export default TokenInfoAction;

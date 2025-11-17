@@ -178,7 +178,10 @@ const PoolDetailsHeaderSummary: FC<PoolDetailsProps> = ({ isV3 }) => {
               onClaim={onClaim}
               amount={
                 movePrice
-                  ? String(movePrice * FixedPointMath.toNumber(balance))
+                  ? formatMoney(
+                      movePrice * FixedPointMath.toNumber(balance),
+                      MOVE.decimals
+                    )
                   : '0.00'
               }
             />
