@@ -11,7 +11,7 @@ import MenuProfile from './menu-profile';
 
 const Profile: FC = () => {
   const { account } = useAptosWallet();
-  const { setContent } = useModal();
+  const { setContent, handleClose } = useModal();
   const [open, setOpen] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -25,17 +25,18 @@ const Profile: FC = () => {
 
   const handleOpen = () => {
     if (isMobile) {
-      setContent(<MenuProfile />, {
+      setContent(<MenuProfile onClose={handleClose} />, {
         title: 'Profile',
         mobileOnly: true,
         showTitleOnMobile: false,
+        allowClose: true,
       });
     } else {
       setOpen(true);
     }
   };
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpen(false);
   };
 
@@ -64,8 +65,8 @@ const Profile: FC = () => {
       </Div>
       <AnimatePresence>
         {open && (
-          <DirectionalMenu onClose={handleClose} isDirectionalRight>
-            <MenuProfile />
+          <DirectionalMenu onClose={handleCloseModal} isDirectionalRight>
+            <MenuProfile onClose={handleCloseModal} />
           </DirectionalMenu>
         )}
       </AnimatePresence>
