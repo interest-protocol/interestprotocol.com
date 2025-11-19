@@ -6,8 +6,10 @@ export interface InputProps {
   readonly?: boolean;
   onlyField?: boolean;
   shortView?: boolean;
+  type?: 'default' | 'radio';
   field: `tokenList.${number}` | 'lpCoin';
   onHandleChange?: (amount: string) => void;
+  onSelectToken?: (index: number) => void;
 }
 
 export interface MaxBadgeProps {

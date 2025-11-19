@@ -34,17 +34,18 @@ const PoolBalance: FC = () => {
         'space-between',
         'space-between',
         'space-between',
+        'space-between',
         'flex-end',
       ]}
-      flexDirection={['row', 'row', 'row', 'column']}
-      alignItems={['center', 'center', 'center', 'unset']}
+      flexDirection={['row', 'row', 'row', 'row', 'column']}
+      alignItems={['center', 'center', 'center', 'center', 'unset']}
     >
       <Span
         fontWeight="400"
         color="#9CA3AF"
         textAlign="right"
         fontSize="0.875rem"
-        lineHeight={['1.25rem', '1.25rem', '1.25rem', '1.75rem']}
+        lineHeight={['1.25rem', '1.25rem', '1.25rem', '1.25rem', '1.75rem']}
       >
         Pool Balance
       </Span>
@@ -69,8 +70,14 @@ const PoolBalance: FC = () => {
               <Span
                 color="#fff"
                 fontWeight="500"
-                lineHeight={['2rem', '2rem', '2rem', '1.75rem']}
-                fontSize={['1.125rem', '1.125rem', '1.125rem', '0.875rem']}
+                lineHeight={['2rem', '2rem', '2rem', '2rem', '1.75rem']}
+                fontSize={[
+                  '1.125rem',
+                  '1.125rem',
+                  '1.125rem',
+                  '1.125rem',
+                  '0.875rem',
+                ]}
               >
                 {+((balance / total) * 100).toFixed(2)}%
               </Span>
