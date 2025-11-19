@@ -33,23 +33,23 @@ const TransactionList: FC = () => {
     <Div
       display="flex"
       flexDirection="column"
-      gap={['0.75rem', '0.75rem', '0.75rem', '1rem']}
+      gap={['0.75rem', '0.75rem', '0.75rem', '0.75rem', '1rem']}
     >
       <Div
         display="flex"
         justifyContent="space-between"
-        flexDirection={['column', 'column', 'column', 'row']}
+        flexDirection={['column', 'column', 'column', 'column', 'row']}
       >
         <Span
           color="#fff"
-          my={['unset', 'unset', 'unset', '0.5rem']}
+          my={['unset', 'unset', 'unset', 'unset', '0.5rem']}
           fontWeight="400"
           lineHeight="2.25rem"
-          fontSize={['1.125rem', '1.125rem', '1.125rem', '1.75rem']}
+          fontSize={['1.125rem', '1.125rem', '1.125rem', '1.125rem', '1.75rem']}
         >
           Recent Transactions
         </Span>
-        <Div display={['none', 'none', 'none', 'flex']}>
+        <Div display={['none', 'none', 'none', 'none', 'flex']}>
           <Dropdown
             isRounded
             placeholder="All transactions"
@@ -59,7 +59,7 @@ const TransactionList: FC = () => {
         </Div>
       </Div>
 
-      <Div display={['none', 'none', 'none', 'flex']}>
+      <Div display={['none', 'none', 'none', 'none', 'flex']}>
         <Table
           gridTemplateColumns="6rem 2fr 1fr 1fr 1fr 3rem"
           title={[

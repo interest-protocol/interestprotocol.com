@@ -4,7 +4,9 @@ import { Div, P } from '@stylin.js/elements';
 import BigNumber from 'bignumber.js';
 import { ChangeEvent, FC } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { v4 } from 'uuid';
 
+import { RadioButton } from '@/components/radio-input';
 import { TextField } from '@/components/text-field';
 import { FixedPointMath } from '@/lib';
 import { parseInputEventToNumberString } from '@/utils';
@@ -24,13 +26,17 @@ const Input: FC<InputProps> = ({
   readonly,
   shortView,
   onlyField,
+  type = 'default',
+  onSelectToken,
 }) => {
-  const { register, setValue, getValues } =
+  const { register, setValue, getValues, control } =
     useFormContext<PortfolioDetailsFormProps>();
 
   const { loading, pool } = usePoolDetailsContext();
 
   const tokenDecimals = useWatch({ name: `${field}.decimals` });
+  const selectedCoinIndex = useWatch({ control, name: 'selectedCoinIndex' });
+  const activeIndex = selectedCoinIndex[0];
 
   const handleChange = (amount: string) => {
     if (loading || !pool) return;
@@ -170,8 +176,38 @@ const Input: FC<InputProps> = ({
                 })}
               />
             </Div>
-            <Div display="flex" alignItems="center">
-              <SelectedToken field={field} Suffix={Suffix} />
+            <Div
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              {type === 'radio' ? (
+                <Div display="flex" gap="0.75rem" flexDirection="column">
+                  {[0, 1].map((i) => (
+                    <Div
+                      key={v4()}
+                      pr="0.5rem"
+                      height="2rem"
+                      display="flex"
+                      bg="#030712"
+                      gap="0.5rem"
+                      cursor="pointer"
+                      alignItems="center"
+                      borderRadius="9999rem"
+                      justifyContent="space-between"
+                      onClick={() => onSelectToken?.(i)}
+                    >
+                      <SelectedToken field={`tokenList.${i}`} Suffix={Suffix} />
+                      <RadioButton
+                        selected={activeIndex === i}
+                        onClick={() => onSelectToken?.(i)}
+                      />
+                    </Div>
+                  ))}
+                </Div>
+              ) : (
+                <SelectedToken field={field} Suffix={Suffix} />
+              )}
             </Div>
           </Div>
           <Div display="flex" justifyContent="space-between">

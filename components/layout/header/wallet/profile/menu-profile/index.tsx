@@ -6,10 +6,16 @@ import { SignOutSVG } from '@/components/svg';
 
 import BottomButton from './bottom-button';
 import HomeProfile from './home-profile';
+import { MenuProfileProps } from './menu-profile.types';
 import UserInfo from './user-info';
 
-const MenuProfile: FC = () => {
+const MenuProfile: FC<MenuProfileProps> = ({ onClose }) => {
   const { disconnect } = useAptosWallet();
+
+  const handleDisconnect = () => {
+    disconnect();
+    onClose?.();
+  };
   return (
     <>
       <Div
@@ -37,7 +43,7 @@ const MenuProfile: FC = () => {
         <BottomButton
           Icon={SignOutSVG}
           title="Disconnect"
-          onClick={disconnect}
+          onClick={handleDisconnect}
         />
       </Div>
     </>

@@ -3,9 +3,9 @@ import { FC } from 'react';
 
 import Input from '../components/input';
 import PoolFormButton from '../pool-form-button';
-import WithdrawReceive from './withdraw-receive';
+import WithdrawReceive from './withdraw-recieve';
 
-const PoolFormWithdraw: FC = () => (
+const PoolFormWithdrawOne: FC = () => (
   <Div display="flex" flexDirection="column" gap="0.75rem">
     <Div display="flex" flexDirection="column" gap="0.35rem">
       <Input field="lpCoin" label="You give" />
@@ -30,8 +30,8 @@ const PoolFormWithdraw: FC = () => (
       </Div>
       <WithdrawReceive />
     </Div>
-    <PoolFormButton action="withdraw" />
+    <PoolFormButton action="withdrawOne" />
   </Div>
 );
 
-export default PoolFormWithdraw;
+export default PoolFormWithdrawOne;
