@@ -12,8 +12,8 @@ const PositionsTabs: FC<PortfolioTabsProps> = ({
   total,
 }) => {
   return (
-    <Div mb="1rem" display="flex">
-      <Tabs tabs={tabs} setTab={setTab} tab={tab} total={total} />
+    <Div display="flex" width="90%">
+      <Tabs tabs={tabs} setTab={setTab} tab={tab} total={total} isShortSize />
     </Div>
   );
 };
