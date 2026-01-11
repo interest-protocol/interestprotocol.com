@@ -26,7 +26,7 @@ const StatsPoolsTable: FC = () => {
   }));
 
   const rows =
-    metricsData?.data.map((pool, index) => ({
+    metricsData?.data?.map((pool, index) => ({
       cells: [
         {
           color: '#FFFFFF80',

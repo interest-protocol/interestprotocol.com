@@ -240,7 +240,9 @@ const PortfolioCurvePools: FC = () => {
         { description: 'Rewards', position: 'right', isSortable: true },
       ]}
       rows={poolsPosition.map(({ poolAddress, tokensAddresses }) => ({
-        link: `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`,
+        link: metricsData?.data?.length
+          ? `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`
+          : '#',
         cells: [
           {
             Content: isLoading ? (
@@ -269,8 +271,9 @@ const PortfolioCurvePools: FC = () => {
             ) : (
               formatDollars(
                 Number(
-                  metricsData?.data.find(({ poolId }) => poolId === poolAddress)
-                    ?.metrics.tvl
+                  metricsData?.data?.find(
+                    ({ poolId }) => poolId === poolAddress
+                  )?.metrics.tvl || 0
                 )
               )
             ),
@@ -282,7 +285,7 @@ const PortfolioCurvePools: FC = () => {
                 <Skeleton width="100%" height={15} />
               </Div>
             ) : (
-              `${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`
+              `${+(Number(metricsData?.data?.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data?.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2) || '0.00'}%`
             ),
             position: 'right',
             color: '#34D399',
