@@ -77,7 +77,9 @@ const PoolsTableCurve: FC = () => {
       });
 
     return {
-      link: `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`,
+      link: metricsData?.data?.length
+        ? `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`
+        : '#',
       cells: [
         {
           Content: isLoading ? (
