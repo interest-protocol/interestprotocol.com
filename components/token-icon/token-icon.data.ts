@@ -43,6 +43,21 @@ const DEFAULT_TOKEN_ICON = {
   mBTC: { url: 'https://assets.echo-protocol.xyz/mbtc.svg' },
   RUCO: { url: '/images/ruco.webp' },
   MOMO: { url: 'images/momo.webp' },
+  'IPX s-USDCe/USDTe': {
+    url: '/images/usdc-usdt.webp',
+  },
+  'IPX v-USDCe/MOVE': {
+    url: '/images/usdc-move.webp',
+  },
+  'IPX v-USDTe/MOVE': {
+    url: '/images/usdt-move.webp',
+  },
+  'IPX v-USDCe/WETHe': {
+    url: '/images/usdc-weth.webp',
+  },
+  'IPX v-MOVE/WETHe': {
+    url: '/images/move-weth.webp',
+  },
 };
 
 export const TOKEN_ICONS: DefaultTokenIcons = {

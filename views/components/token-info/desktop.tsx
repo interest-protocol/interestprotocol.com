@@ -9,6 +9,10 @@ import { usePoolDetailsContext } from '@/views/pool-details/pool-details.context
 const TokenInfoDesktop: FC = () => {
   const { pool, loading } = usePoolDetailsContext();
 
+  const isInfuraURL = (pool.poolMetadata?.iconUri as string)?.includes(
+    'infura-ipfs'
+  );
+
   return (
     <Div
       gap="1rem"
@@ -26,14 +30,14 @@ const TokenInfoDesktop: FC = () => {
             withBg
             size="1.52rem"
             network={Network.MAINNET}
-            url={loading ? undefined : pool.poolMetadata?.iconUri}
-            symbol={
+            url={
               loading
-                ? 'loading...'
-                : (pool.tokensMetadata
-                    ?.map((token) => token.symbol)
-                    .join('-') ?? '--')
+                ? undefined
+                : isInfuraURL
+                  ? undefined
+                  : pool.poolMetadata?.iconUri
             }
+            symbol={loading ? 'loading...' : pool.poolMetadata.symbol}
           />
           <P
             fontWeight="600"

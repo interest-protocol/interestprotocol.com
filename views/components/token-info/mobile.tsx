@@ -11,7 +11,9 @@ import { TokenInfoProps } from './token-info.types';
 
 const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
   const { pool, loading } = usePoolDetailsContext();
-
+  const isInfuraURL = (pool.poolMetadata?.iconUri as string)?.includes(
+    'infura-ipfs'
+  );
   return (
     <Div
       justifyContent="space-between"
@@ -29,13 +31,13 @@ const TokenInfoMobile: FC<TokenInfoProps> = ({ isV3 }) => {
               withBg
               size="1.52rem"
               network={Network.MAINNET}
-              url={loading ? undefined : pool.poolMetadata?.iconUri}
+              url={
+                loading || isInfuraURL ? undefined : pool.poolMetadata?.iconUri
+              }
               symbol={
                 loading || !pool?.poolMetadata
                   ? 'loading...'
-                  : (pool.tokensMetadata
-                      ?.map((token) => token.symbol)
-                      .join('-') ?? '--')
+                  : pool?.poolMetadata?.symbol
               }
             />
             <P
