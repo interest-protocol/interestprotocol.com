@@ -35,7 +35,7 @@ const PoolsTableMobile: FC = () => {
       showTitleOnMobile: true,
     });
 
-  const poolsMetricsMap = metricsData?.data.reduce(
+  const poolsMetricsMap = metricsData?.data?.reduce(
     (acc, pool) => {
       acc[pool.poolId] = pool;
       return acc;
@@ -153,7 +153,11 @@ const PoolsTableMobile: FC = () => {
                   Overview
                 </Button>
                 <Link
-                  href={`${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`}
+                  href={
+                    metricsData?.data?.length
+                      ? `${Routes[RoutesEnum.PoolDetails]}?address=${poolAddress}`
+                      : '#'
+                  }
                   title="pool name"
                 >
                   <Button

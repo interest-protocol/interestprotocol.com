@@ -33,7 +33,7 @@ const StatsPoolsTableMobile: FC = () => {
       {noPools ? (
         <NoCoin />
       ) : (
-        metricsData?.data.map((pool) => (
+        metricsData?.data?.map((pool) => (
           <Div
             key={v4()}
             p="1rem"

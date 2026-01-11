@@ -113,15 +113,16 @@ const PortfolioTableMobile: FC = () => {
               label="Liquidity"
               value={formatDollars(
                 Number(
-                  metricsData?.data.find(({ poolId }) => poolId === poolAddress)
-                    ?.metrics.tvl
+                  metricsData?.data?.find(
+                    ({ poolId }) => poolId === poolAddress
+                  )?.metrics.tvl || 0
                 )
               )}
             />
             <TableMobileLine
               label="APR"
               color="#34D399"
-              value={`${+(Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2)}%`}
+              value={`${+(Number(metricsData?.data?.find(({ poolId }) => poolId === poolAddress)?.metrics.apr) + Number(metricsData?.data?.find(({ poolId }) => poolId === poolAddress)?.metrics.farmApr)).toFixed(2) || '0.00'}%`}
             />
             <TableMobileLine
               label="Rewards"
@@ -148,7 +149,11 @@ const PortfolioTableMobile: FC = () => {
             >
               <Link
                 title="Pool Transaction"
-                href={`${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`}
+                href={
+                  metricsData?.data?.length
+                    ? `${Routes[RoutesEnum.PortfolioDetails]}?address=${poolAddress}`
+                    : '#'
+                }
               >
                 <Button
                   px="1rem"
