@@ -1,6 +1,6 @@
 import { Div } from '@stylin.js/elements';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 
@@ -17,48 +17,59 @@ import OverviewModal from './components/overview-modal';
 import { OverviewModalProps } from './components/overview-modal/overview-modal.types';
 import OverviewTooltip from './components/overview-tooltip';
 import { VERIFIED_POOLS_HEADER_DATA } from './pools.data';
-import usePoolsMetrics, { PoolMetrics } from './pools.hooks/use-pools-metrics';
+import usePoolsMetrics, {
+  PoolMetrics,
+  ZERO_METRICS,
+} from './pools.hooks/use-pools-metrics';
 import PoolsTableMobile from './pools-table-mobile';
 
 const PoolsTableCurve: FC = () => {
   const { setContent } = useModal();
-  const { data: metricsData } = usePoolsMetrics();
-
+  const { data: metricsData, isLoading: isLoadingMetrics } = usePoolsMetrics();
   const search = useWatch({ name: 'search' }) as string;
 
-  const poolsMetricsMap = metricsData?.data.reduce(
-    (acc, pool) => {
-      acc[pool.poolId] = pool;
-      return acc;
-    },
-    {} as Record<string, PoolMetrics>
-  );
+  const poolsMetricsMap = useMemo(() => {
+    return (
+      metricsData?.data?.reduce(
+        (acc, pool) => {
+          acc[pool.poolId] = pool;
+          return acc;
+        },
+        {} as Record<string, PoolMetrics>
+      ) ?? {}
+    );
+  }, [metricsData]);
 
-  const filteredPools = POOLS.filter(({ poolAddress, tokensAddresses }) => {
-    const pool = poolsMetricsMap?.[poolAddress];
-    if (!search) return true;
+  const filteredPools = useMemo(() => {
+    if (!search) return POOLS;
 
     const normalizedSearch = search.trim().toLowerCase();
 
-    const matchesSymbol = pool?.symbols?.some((symbol) =>
-      symbol.toLowerCase().includes(normalizedSearch)
-    );
+    return POOLS.filter(({ poolAddress, tokensAddresses }) => {
+      const pool = poolsMetricsMap[poolAddress];
 
-    const matchesPoolAddress = poolAddress.toLowerCase() === normalizedSearch;
+      const matchesSymbol = pool?.symbols?.some((symbol) =>
+        symbol.toLowerCase().includes(normalizedSearch)
+      );
 
-    const matchesTokenAddress = tokensAddresses?.some(
-      (address) => address.toLowerCase() === normalizedSearch
-    );
+      const matchesPoolAddress = poolAddress.toLowerCase() === normalizedSearch;
 
-    return matchesSymbol || matchesPoolAddress || matchesTokenAddress;
-  });
+      const matchesTokenAddress = tokensAddresses?.some(
+        (address) => address.toLowerCase() === normalizedSearch
+      );
+
+      return matchesSymbol || matchesPoolAddress || matchesTokenAddress;
+    });
+  }, [search, poolsMetricsMap]);
 
   const rows = filteredPools.map(({ poolAddress, tokensAddresses }) => {
-    const pool = poolsMetricsMap?.[poolAddress];
-    const isLoading = !pool;
+    const pool = poolsMetricsMap[poolAddress];
+    const metrics = pool?.metrics ?? ZERO_METRICS;
 
-    const PoolOverview = (overviewModalProps: OverviewModalProps) =>
-      setContent(<OverviewModal {...overviewModalProps} />, {
+    const isLoading = isLoadingMetrics;
+
+    const openOverview = (props: OverviewModalProps) =>
+      setContent(<OverviewModal {...props} />, {
         title: 'Overview',
         titleAlign: 'center',
         modalWidth: '32rem',
@@ -81,57 +92,46 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Title: isLoading ? (
-            <Div width="100%">
-              <Skeleton width="100%" height={15} />
-            </Div>
+            <Skeleton height={15} />
           ) : (
-            formatDollars(Number(Number(pool.metrics.tvl).toFixed(2)))
+            formatDollars(Number(metrics.tvl))
           ),
           position: 'right' as const,
         },
         {
           Title: isLoading ? (
-            <Div width="100%">
-              <Skeleton width="100%" height={15} />
-            </Div>
+            <Skeleton height={15} />
           ) : (
-            formatDollars(Number(Number(pool.metrics.volume1D).toFixed(2)))
+            formatDollars(Number(metrics.volume1D))
           ),
           position: 'right' as const,
         },
         {
           Title: isLoading
             ? '0'
-            : `${(
-                Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
-              ).toFixed(2)}%`,
+            : `${(Number(metrics.apr) + Number(metrics.farmApr)).toFixed(2)}%`,
           Content: isLoading ? (
-            <Div width="100%">
-              <Skeleton width="100%" height={15} />
-            </Div>
+            <Skeleton height={15} />
           ) : (
             <OverviewTooltip
-              title={`${(
-                Number(pool.metrics.apr) + Number(pool.metrics.farmApr)
-              ).toFixed(2)}%`}
+              title={`${(Number(metrics.apr) + Number(metrics.farmApr)).toFixed(
+                2
+              )}%`}
               poolAddress={poolAddress}
-              feesApr={Number(pool.metrics.apr)}
-              rewardsApr={Number(pool.metrics.farmApr)}
-              apr={Number(pool.metrics.apr) + Number(pool.metrics.farmApr)}
+              feesApr={Number(metrics.apr)}
+              rewardsApr={Number(metrics.farmApr)}
+              apr={Number(metrics.apr) + Number(metrics.farmApr)}
             />
           ),
           position: 'right' as const,
         },
         {
           Content: isLoading ? (
-            <Div width="100%">
-              <Skeleton width="100%" height={15} />
-            </Div>
+            <Skeleton height={15} />
           ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Button
                 p="unset"
-                gap="0.2rem"
                 border="none"
                 variant="text"
                 fontWeight="400"
@@ -141,13 +141,14 @@ const PoolsTableCurve: FC = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  PoolOverview({
+
+                  openOverview({
                     apr: `${(
-                      Number(pool?.metrics.apr) + Number(pool?.metrics.farmApr)
+                      Number(metrics.apr) + Number(metrics.farmApr)
                     ).toFixed(2)}%`,
-                    volume: formatDollars(Number(pool?.metrics.volume1D)),
-                    tvl: formatDollars(Number(pool?.metrics.tvl)),
-                    fees: formatDollars(Number(pool?.metrics.fees1D)),
+                    volume: formatDollars(Number(metrics.volume1D)),
+                    tvl: formatDollars(Number(metrics.tvl)),
+                    fees: formatDollars(Number(metrics.fees1D)),
                     address: poolAddress,
                     symbols: pool?.symbols,
                     tokensAddresses: pool?.coins ?? tokensAddresses,
@@ -162,9 +163,7 @@ const PoolsTableCurve: FC = () => {
         },
         {
           Content: isLoading ? (
-            <Div width="100%">
-              <Skeleton width="100%" height={15} />
-            </Div>
+            <Skeleton height={15} />
           ) : (
             <Div display="flex" justifyContent="flex-end" width="100%">
               <Link
@@ -173,7 +172,6 @@ const PoolsTableCurve: FC = () => {
               >
                 <Button
                   p="unset"
-                  gap="0.2rem"
                   border="none"
                   variant="text"
                   fontWeight="400"
