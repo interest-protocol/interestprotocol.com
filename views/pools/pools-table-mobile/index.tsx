@@ -35,7 +35,7 @@ const PoolsTableMobile: FC = () => {
       showTitleOnMobile: true,
     });
 
-  const poolsMetricsMap = metricsData?.data.reduce(
+  const poolsMetricsMap = metricsData?.data?.reduce(
     (acc, pool) => {
       acc[pool.poolId] = pool;
       return acc;
