@@ -37,6 +37,10 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
 
   const [poolMetadata, ...tokensMetadata] = metadata ?? [];
 
+  const isInfuraURL = (poolMetadata?.iconUri as string)?.includes(
+    'infura-ipfs'
+  );
+
   return (
     <Div display="flex" flexDirection="column" gap="0.75rem">
       <Div display="flex" alignItems="center" justifyContent="space-between">
@@ -45,7 +49,7 @@ const OverviewHeader: FC<OverviewHeaderProps> = ({
             withBg
             rounded
             size="1.25rem"
-            url={poolMetadata?.iconUri}
+            url={isInfuraURL ? undefined : poolMetadata?.iconUri}
             network={Network.MovementMainnet}
             symbol={poolMetadata?.symbol || address}
           />

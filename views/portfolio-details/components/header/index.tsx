@@ -115,6 +115,10 @@ const PoolDetailsHeader: FC = () => {
       }
     );
 
+  const isInfuraURL = (pool?.poolMetadata?.iconUri as string)?.includes(
+    'infura-ipfs'
+  );
+
   return (
     <Div
       gap="1rem"
@@ -135,13 +139,8 @@ const PoolDetailsHeader: FC = () => {
           withBg
           size="1.52rem"
           network={Network.MAINNET}
-          url={loading ? undefined : pool.poolMetadata?.iconUri}
-          symbol={
-            loading
-              ? 'loading...'
-              : (pool.tokensMetadata?.map((token) => token.symbol).join('-') ??
-                'none')
-          }
+          url={loading || isInfuraURL ? undefined : pool.poolMetadata?.iconUri}
+          symbol={loading ? 'loading...' : pool?.poolMetadata?.symbol || ''}
         />
         <P
           fontWeight="600"
