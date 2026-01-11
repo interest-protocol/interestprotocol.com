@@ -32,13 +32,17 @@ const PoolName: FC<PoolNameProps> = ({ address, tokensAddresses, symbols }) => {
     (pool) => pool.poolAddress === address && pool.curve === 'stable'
   );
 
+  const isInfuraURL = (poolMetadata?.iconUri as string)?.includes(
+    'infura-ipfs'
+  );
+
   return (
     <>
       <TokenIcon
         withBg
         size="20px"
         network={Network.MAINNET}
-        url={poolMetadata?.iconUri}
+        url={isInfuraURL ? undefined : poolMetadata?.iconUri}
         symbol={poolMetadata?.symbol || address}
         rounded={poolMetadata?.standard === TokenStandard.COIN}
       />
